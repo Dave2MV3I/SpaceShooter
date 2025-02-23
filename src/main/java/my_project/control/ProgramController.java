@@ -40,7 +40,7 @@ public class ProgramController {
 
     /**
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen. Hier sollte also alles geregelt werden,
-     * was zu diesem Zeipunkt passieren muss.
+     * was zu diesem Zeitpunkt passieren muss.
      */
     public void startProgram() {
         // Vorbereitungen
