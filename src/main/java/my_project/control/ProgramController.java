@@ -64,6 +64,11 @@ public class ProgramController {
         p1 = new Player(50,300);
         viewController.draw(p1,1);
 
+        viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
+        //Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
+
+        //Bild von https://pixabay.com/de/users/tombud-1908037/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1265186 Thomas Budach auf https://pixabay.com/de//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1265186 Pixabay
+
         // Endbildschirm (Szene 2)
     }
 
@@ -80,6 +85,7 @@ public class ProgramController {
             currentScene = 1;
             viewController.showScene(currentScene);
             SoundController.stopSound("startBGM");
+            SoundController.playSound("level1BGM");
         }
 
     }
