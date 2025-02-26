@@ -2,7 +2,6 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import my_project.model.Level1BG;
 import my_project.model.Picture;
 import my_project.model.Player;
 import my_project.model.StartBackground;
@@ -62,7 +61,7 @@ public class ProgramController {
 
         // Spielbildschirm (Szene 1)
         viewController.createScene();
-        Level1BG level1BG = new Level1BG();
+        Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
         viewController.draw(level1BG,1);
         p1 = new Player(50,300);
         viewController.draw(p1,1);

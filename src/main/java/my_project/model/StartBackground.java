@@ -23,7 +23,7 @@ public class StartBackground extends GraphicalObject {
         drawTool.drawFilledCircle(700,630,2);
         drawTool.drawFilledCircle(700,230,2);
 
-        drawPlanet(500, 600, 60, 0, 0, 255, 255, true, drawTool);
+        drawPlanet(500, 600, 60, 0, 0, 255, 150, true, drawTool);
     }
 
     private void drawPlanet(double x, double y, int radius, double r, double g, double b, double a, boolean withDust, DrawTool drawTool){
