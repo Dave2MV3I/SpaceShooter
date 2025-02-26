@@ -22,6 +22,17 @@ public class StartBackground extends GraphicalObject {
         drawTool.drawFilledCircle(230,530,2);
         drawTool.drawFilledCircle(700,630,2);
         drawTool.drawFilledCircle(700,230,2);
+
+        drawPlanet(500, 600, 60, 0, 0, 255, 255, true, drawTool);
     }
 
+    private void drawPlanet(double x, double y, int radius, double r, double g, double b, double a, boolean withDust, DrawTool drawTool){
+        drawTool.setCurrentColor((int) r, (int) g, (int) b, (int) a);
+        drawTool.drawFilledCircle(x, y, radius);
+
+        if (withDust){
+            drawTool.drawFilledRectangle(x-1.5*radius, y-0.1*radius, 3*radius, 0.2*radius);
+        }
+
+    }
 }

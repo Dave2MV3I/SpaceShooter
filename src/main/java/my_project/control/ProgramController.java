@@ -91,3 +91,10 @@ public class ProgramController {
 
     }
 }
+
+// TODO 1 Der Hintergrund von Szene 0 soll weiterhin nur gezeichnet werden.
+//  Verschönern Sie ihn nach eigenem Ermessen, aber animieren Sie die Sterne in jedem Fall
+//  (sie könnten z.B. von links nach rechts fliegen und links wieder erscheinen o.ä.).
+//  Beachten Sie bei der Verschönerung, dass sie dabei zwei Methoden implementieren sollen,
+//  die etwas in den Hintergrund zeichnen und dabei sinnvolle Parameter verwenden,
+//  z.B. “zeichnePlanet(radius, farbe, mitWolken, mitMond)”.
