@@ -2,6 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
+import my_project.model.Level1BG;
 import my_project.model.Picture;
 import my_project.model.Player;
 import my_project.model.StartBackground;
@@ -61,13 +62,13 @@ public class ProgramController {
 
         // Spielbildschirm (Szene 1)
         viewController.createScene();
+        Level1BG level1BG = new Level1BG();
+        viewController.draw(level1BG,1);
         p1 = new Player(50,300);
         viewController.draw(p1,1);
-
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
-        //Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
-
-        //Bild von https://pixabay.com/de/users/tombud-1908037/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1265186 Thomas Budach auf https://pixabay.com/de//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1265186 Pixabay
+        // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
+        // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
 
         // Endbildschirm (Szene 2)
     }
