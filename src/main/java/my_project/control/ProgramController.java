@@ -50,7 +50,7 @@ public class ProgramController {
         // Startbildschirm (Szene 0)
         // Ton
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-        SoundController.playSound("startBGM");
+        //SoundController.playSound("startBGM");
         // Bild
         StartBackground sback = new StartBackground();
         viewController.draw(sback,0);
@@ -68,6 +68,7 @@ public class ProgramController {
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
         // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
         // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
+        viewController.register(inputManager,1);
 
         // Endbildschirm (Szene 2)
     }
@@ -85,10 +86,22 @@ public class ProgramController {
             currentScene = 1;
             viewController.showScene(currentScene);
             SoundController.stopSound("startBGM");
-            SoundController.playSound("level1BGM");
+            //SoundController.playSound("level1BGM");
         }
-
     }
+
+    public void processWASD(int keyCode){
+        if (keyCode == KeyEvent.VK_W) {
+            p1.setDirection(1);
+        } else if (keyCode == KeyEvent.VK_A) {
+            p1.setDirection(3);
+        } else if (keyCode == KeyEvent.VK_S) {
+            p1.setDirection(2);
+        } else if (keyCode == KeyEvent.VK_D) {
+            p1.setDirection(4);
+        }
+    }
+
 }
 
 // TODO 1 Der Hintergrund von Szene 0 soll weiterhin nur gezeichnet werden.
