@@ -3,6 +3,8 @@ package KAGO_framework.model;
 import KAGO_framework.Config;
 import KAGO_framework.view.DrawTool;
 import KAGO_framework.control.Drawable;
+import my_project.model.Player;
+import my_project.model.Spaceship;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -105,7 +107,7 @@ public class GraphicalObject implements Drawable {
      * Wird vom Hintergrundprozess für jeden Frame aufgerufen. Hier kann das verhalten des Objekts festgelegt werden, zum Beispiel
      * seine Bewegung.
      */
-    public void update(double dt){
+    public void update(double dt, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player){
 
     }
 
@@ -115,7 +117,7 @@ public class GraphicalObject implements Drawable {
      * @param gO Das Objekt, das auf Kollision überprüft wird
      * @return True, falls eine Kollision besteht, sonst false.
      */
-    public boolean collidesWith(GraphicalObject gO){
+    public boolean collidesWith(Spaceship gO){
         if(radius == 0){
             if(gO.getRadius() == 0){
                 if ( x < gO.getX()+gO.getWidth() && x + width > gO.getX() && y < gO.getY() + gO.getHeight() && y + height > gO.getY() ) return true;

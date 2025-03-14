@@ -2,6 +2,9 @@ package KAGO_framework.view.simple_gui;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.model.Player;
+import my_project.model.Spaceship;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -87,7 +90,7 @@ public class Label extends GraphicalObject {
     }
 
     @Override
-    public void update(double dt) {
+    public void update(double dt, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player) {
 
     }
 
