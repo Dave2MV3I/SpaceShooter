@@ -30,7 +30,7 @@ public class Player extends GraphicalObject {
     }
 
     @Override
-    public void update(double dt, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player){
+    public void update(double dt/*, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player*/){
         // Bewegung auf der Stelle
         if (hoverUp){
             hoverY = hoverY - 8*dt;
@@ -52,8 +52,6 @@ public class Player extends GraphicalObject {
         if (floatDown){
             y += speed*dt;
         }
-
-        //System.out.print(floatUp);
     }
 
     public void setDirection(int direction){
@@ -72,6 +70,10 @@ public class Player extends GraphicalObject {
         if (direction == 4){
             floatRight = true;
         } else floatRight = false;
+    }
+
+    public void setHealth (int health){
+        this.health += health;
     }
 
 }

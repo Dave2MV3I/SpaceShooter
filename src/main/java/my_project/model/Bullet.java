@@ -22,42 +22,47 @@ public class Bullet extends GraphicalObject {
     }
 
 
-    public void Update(double dt, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Spaceship player) {
+    public void update(double dt, Object shooter, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player) {
         this.x = this.x + speed * dt;
 
-        if (this.collidesWith(sp1)) {
-            sp1.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp2)) {
-            sp2.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp3)) {
-            sp3.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp4)) {
-            sp4.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp5)) {
-            sp5.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp6)) {
-            sp6.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp7)) {
-            sp7.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp8)) {
-            sp8.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp9)) {
-            sp9.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(sp10)) {
-            sp10.health -= damage;
-            bulletControl.removeBullet(this);
-        } else if (this.collidesWith(player)) {
-            player.health -= damage;
-            bulletControl.removeBullet(this);
+        if (shooter instanceof Player){
+            if (this.collidesWith(sp1)) {
+                sp1.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp2)) {
+                sp2.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp3)) {
+                sp3.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp4)) {
+                sp4.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp5)) {
+                sp5.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp6)) {
+                sp6.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp7)) {
+                sp7.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp8)) {
+                sp8.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp9)) {
+                sp9.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            } else if (this.collidesWith(sp10)) {
+                sp10.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            }
+        } else if (shooter instanceof Spaceship){
+            if (this.collidesWith(player)) {
+                player.setHealth(-damage);
+                bulletControl.removeBullet(this);
+            }
         }
+
     }
 }

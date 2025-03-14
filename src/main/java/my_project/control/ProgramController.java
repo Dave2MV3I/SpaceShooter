@@ -65,7 +65,7 @@ public class ProgramController {
         viewController.draw(level1BG,1);
         p1 = new Player(50,300);
         spaceshipControl = new SpaceshipControl ();
-        bulletControl = new BulletControl();
+        bulletControl = new BulletControl(this);
 
         viewController.draw(p1,1);
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);

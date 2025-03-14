@@ -1,10 +1,10 @@
 package my_project.model;
 
-
+import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
 
-public class Spaceship {
+public class Spaceship extends GraphicalObject{
     double x, y;
     int health;
     double speed;
@@ -15,10 +15,13 @@ public class Spaceship {
     }
 
 
-    public void update (double dt){
+    public void update(double dt){
         this.x = this.x + speed*dt;
-        if (this.health > 0){
+        //if (this.health > 0){
+        //}
+    }
 
-        }
+    public void setHealth (int health){
+        this.health += health;
     }
 }

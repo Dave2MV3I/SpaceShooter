@@ -46,12 +46,13 @@ public class BulletControl {
         Bullet bullet24;
         Bullet bullet25;
 
-        //Spaceships Referenzen
+        //Weitere Referenzen
         private Spaceship sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10;
         private Player player;
         private ProgramController proCon;
         private SpaceshipControl spaCon;
 
+        public BulletControl(ProgramController proCon) {this.player = proCon.getPlayer();}
 
     //Methoden
         public void addBullet(Bullet bullet) {
@@ -146,9 +147,9 @@ public class BulletControl {
             }
         }
 
-        public void Update (double dt){
+        public void update(double dt){
             //Update Referenzen
-            player = proCon.getPlayer ();
+            player = proCon.getPlayer();
             sp1 = spaCon.getSp1();
             sp2 = spaCon.getSp2();
             sp3 = spaCon.getSp3();
@@ -162,43 +163,43 @@ public class BulletControl {
 
 
             //Referenzen 1-5
-            bullet1.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet2.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet3.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet4.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet5.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet1.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet2.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet3.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet4.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet5.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
 
 
             //Referenzen 6-10
-            bullet6.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet7.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet8.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet9.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet10.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet6.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet7.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet8.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet9.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet10.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
 
 
             //Referenzen 11-15
-            bullet11.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet12.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet13.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet14.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet15.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet11.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet12.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet13.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet14.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet15.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
 
 
             //Referenzen 16-20
-            bullet16.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet17.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet18.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet19.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet20.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet16.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet17.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet18.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet19.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet20.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
 
 
             //Referenzen 21-25
-            bullet21.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet22.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet23.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet24.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet25.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet21.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet22.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet23.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet24.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            bullet25.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
         }
 
 

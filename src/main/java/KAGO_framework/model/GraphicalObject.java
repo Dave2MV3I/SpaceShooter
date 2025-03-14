@@ -107,7 +107,7 @@ public class GraphicalObject implements Drawable {
      * Wird vom Hintergrundprozess für jeden Frame aufgerufen. Hier kann das verhalten des Objekts festgelegt werden, zum Beispiel
      * seine Bewegung.
      */
-    public void update(double dt, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player){
+    public void update(double dt/*, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player*/){
 
     }
 
@@ -117,7 +117,7 @@ public class GraphicalObject implements Drawable {
      * @param gO Das Objekt, das auf Kollision überprüft wird
      * @return True, falls eine Kollision besteht, sonst false.
      */
-    public boolean collidesWith(Spaceship gO){
+    public boolean collidesWith(GraphicalObject gO){
         if(radius == 0){
             if(gO.getRadius() == 0){
                 if ( x < gO.getX()+gO.getWidth() && x + width > gO.getX() && y < gO.getY() + gO.getHeight() && y + height > gO.getY() ) return true;
