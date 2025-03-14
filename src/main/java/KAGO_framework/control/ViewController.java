@@ -290,6 +290,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
         while (drawIterator.hasNext() && notChangingDrawables){
             Drawable currentObject = drawIterator.next();
             currentObject.draw(drawTool);
+            //TODO Problem mit dtSeconds direkt unten
             currentObject.update(dtSeconds);
             if (my_project.Config.useSound && soundController != null) soundController.update(dtSeconds);
         }
