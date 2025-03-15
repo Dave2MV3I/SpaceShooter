@@ -88,24 +88,15 @@ public class ProgramController {
         return p1;
     }
 
-    public void processKeyboardInput(int keyCode) {
-        if (keyCode == KeyEvent.VK_SPACE && currentScene == 0) {
+    public void processKeyboardInput(int key, boolean pressed) {
+        if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             currentScene = 1;
             viewController.showScene(currentScene);
             SoundController.stopSound("startBGM");
             //SoundController.playSound("level1BGM");
         }
-    }
-
-    public void processWASD(int keyCode){
-        if (keyCode == KeyEvent.VK_W) {
-            p1.setDirection(1);
-        } else if (keyCode == KeyEvent.VK_A) {
-            p1.setDirection(3);
-        } else if (keyCode == KeyEvent.VK_S) {
-            p1.setDirection(2);
-        } else if (keyCode == KeyEvent.VK_D) {
-            p1.setDirection(4);
+        if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
+            p1.processWASD(key, pressed);
         }
     }
 

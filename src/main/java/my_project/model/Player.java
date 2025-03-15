@@ -3,6 +3,8 @@ package my_project.model;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
+import java.awt.event.KeyEvent;
+
 public class Player extends GraphicalObject {
 
     private double hoverY;
@@ -54,22 +56,27 @@ public class Player extends GraphicalObject {
         }
     }
 
-    public void setDirection(int direction){
-        if (direction == 1){
-            floatUp = true;
-        } else floatUp = false;
+    public void processWASD(int keyCode, boolean pressed){
+        if (keyCode == KeyEvent.VK_W) {
+            if (pressed){
+                floatUp = true;
+            } else floatUp = false;
 
-        if (direction == 2){
-            floatDown = true;
-        } else floatDown = false;
+        } else if (keyCode == KeyEvent.VK_A) {
+            if (pressed){
+                floatLeft = true;
+            } else floatLeft = false;
 
-        if (direction == 3){
-            floatLeft = true;
-        }  else floatLeft = false;
+        } else if (keyCode == KeyEvent.VK_S) {
+            if (pressed){
+                floatDown = true;
+            } else floatDown = false;
 
-        if (direction == 4){
-            floatRight = true;
-        } else floatRight = false;
+        } else if (keyCode == KeyEvent.VK_D) {
+            if (pressed){
+                floatRight = true;
+            } else floatRight = false;
+        }
     }
 
     public void setHealth (int health){

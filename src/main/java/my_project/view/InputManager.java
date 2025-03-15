@@ -24,15 +24,13 @@ public class InputManager extends InteractiveGraphicalObject {
     }
 
     @Override
-    public void keyReleased(int key){
-        programController.processKeyboardInput(key);
+    public void keyPressed(int key){
+        programController.processKeyboardInput(key, true);
     }
 
     @Override
-    public void keyPressed(int key){
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
-            programController.processWASD(key);
-        }
+    public void keyReleased(int key){
+        programController.processKeyboardInput(key, false);
     }
 }
 
