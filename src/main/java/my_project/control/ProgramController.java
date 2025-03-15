@@ -1,5 +1,6 @@
 package my_project.control;
 
+import KAGO_framework.control.Drawable;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.*;
@@ -24,8 +25,8 @@ public class ProgramController {
     private final ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private Player p1;
     private int currentScene;
-    private SpaceshipControl spaceshipControl;
-    private BulletControl bulletControl;
+    public SpaceshipControl spaceshipControl;
+    public BulletControl bulletControl;
 
     /**
      * Konstruktor
@@ -63,11 +64,14 @@ public class ProgramController {
         viewController.createScene();
         Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
         viewController.draw(level1BG,1);
-        p1 = new Player(50,300);
+        p1 = new Player(50,300, this);
         spaceshipControl = new SpaceshipControl ();
-        bulletControl = new BulletControl(this);
+        bulletControl = new BulletControl(this, spaceshipControl);
+
+
 
         viewController.draw(p1,1);
+
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
         // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
         // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
@@ -81,7 +85,8 @@ public class ProgramController {
      * @param dt Zeit seit letztem Frame in Sekunden
      */
     public void updateProgram(double dt){
-
+        //bulletControl.update(dt);
+        //spaceshipControl.update(dt);
     }
 
     public Player getPlayer(){
@@ -97,6 +102,9 @@ public class ProgramController {
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
             p1.processWASD(key, pressed);
+        }
+        if (key == KeyEvent.VK_SPACE) {
+            p1.processSpace(key, pressed);
         }
     }
 

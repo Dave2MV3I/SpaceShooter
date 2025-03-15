@@ -1,10 +1,12 @@
 package my_project.model;
 
 
+import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
-public class BulletControl {
 
+public class BulletControl  {
     //Referenzen
 
         //Referenzen 1-5
@@ -52,9 +54,44 @@ public class BulletControl {
         private ProgramController proCon;
         private SpaceshipControl spaCon;
 
-        public BulletControl(ProgramController proCon) {this.player = proCon.getPlayer();}
+    //Attribute
+    int radius;
+
+
 
     //Methoden
+        public BulletControl(ProgramController proCon, SpaceshipControl spaCon) {
+        this.proCon = proCon;
+        this.player = proCon.getPlayer();
+        this.spaCon = spaCon;
+
+        bullet1 = null;
+        bullet2 = null;
+        bullet3 = null;
+        bullet4 = null;
+        bullet5 = null;
+        bullet6 = null;
+        bullet7 = null;
+        bullet8 = null;
+        bullet9 = null;
+        bullet10 = null;
+        bullet11 = null;
+        bullet12 = null;
+        bullet13 = null;
+        bullet14 = null;
+        bullet15 = null;
+        bullet16 = null;
+        bullet17 = null;
+        bullet18 = null;
+        bullet19 = null;
+        bullet20 = null;
+        bullet21 = null;
+        bullet22 = null;
+        bullet23 = null;
+        bullet24 = null;
+        bullet25 = null;
+    }
+
         public void addBullet(Bullet bullet) {
 
             //Referenzen 1-5
@@ -63,6 +100,7 @@ public class BulletControl {
             }
             else if (bullet2 == null) {
                 bullet2 = bullet;
+                System.out.println ("hallo");
             }
             else if (bullet3 == null) {
                 bullet3 = bullet;
@@ -162,46 +200,82 @@ public class BulletControl {
             sp10 = spaCon.getSp10();
 
 
-            //Referenzen 1-5
-            bullet1.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet2.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet3.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet4.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet5.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-
-
-            //Referenzen 6-10
-            bullet6.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet7.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet8.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet9.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet10.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-
-
-            //Referenzen 11-15
-            bullet11.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet12.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet13.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet14.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet15.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-
-
-            //Referenzen 16-20
-            bullet16.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet17.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet18.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet19.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet20.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-
-
-            //Referenzen 21-25
-            bullet21.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet22.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet23.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet24.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            bullet25.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            if (bullet1 != null) {
+                bullet1.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet2 != null) {
+                bullet2.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet3 != null) {
+                bullet3.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet4 != null) {
+                bullet4.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet5 != null) {
+                bullet5.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet6 != null) {
+                bullet6.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet7 != null) {
+                bullet7.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet8 != null) {
+                bullet8.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet9 != null) {
+                bullet9.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet10 != null) {
+                bullet10.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet11 != null) {
+                bullet11.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet12 != null) {
+                bullet12.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet13 != null) {
+                bullet13.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet14 != null) {
+                bullet14.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet15 != null) {
+                bullet15.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet16 != null) {
+                bullet16.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet17 != null) {
+                bullet17.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet18 != null) {
+                bullet18.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet19 != null) {
+                bullet19.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet20 != null) {
+                bullet20.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet21 != null) {
+                bullet21.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet22 != null) {
+                bullet22.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet23 != null) {
+                bullet23.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet24 != null) {
+                bullet24.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
+            if (bullet25 != null) {
+                bullet25.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+            }
         }
-
 
         public void removeBullet(Bullet bullet) {
             if (bullet1 == bullet) bullet1 = null;
@@ -214,6 +288,86 @@ public class BulletControl {
             else if (bullet8 == bullet) bullet8 = null;
             else if (bullet9 == bullet) bullet9 = null;
             else if (bullet10 == bullet) bullet10 = null;
+        }
+
+        public void draw (DrawTool drawTool){
+            drawTool.drawFilledCircle(0, 0, 0);
+
+            if (bullet1 != null) {
+                bullet1.draw(drawTool);
+            }
+            if (bullet2 != null) {
+                bullet2.draw(drawTool);
+            }
+            if (bullet3 != null) {
+                bullet3.draw(drawTool);
+            }
+            if (bullet4 != null) {
+                bullet4.draw(drawTool);
+            }
+            if (bullet5 != null) {
+                bullet5.draw(drawTool);
+            }
+            if (bullet6 != null) {
+                bullet6.draw(drawTool);
+            }
+            if (bullet7 != null) {
+                bullet7.draw(drawTool);
+            }
+            if (bullet8 != null) {
+                bullet8.draw(drawTool);
+            }
+            if (bullet9 != null) {
+                bullet9.draw(drawTool);
+            }
+            if (bullet10 != null) {
+                bullet10.draw(drawTool);
+            }
+            if (bullet11 != null) {
+                bullet11.draw(drawTool);
+            }
+            if (bullet12 != null) {
+                bullet12.draw(drawTool);
+            }
+            if (bullet13 != null) {
+                bullet13.draw(drawTool);
+            }
+            if (bullet14 != null) {
+                bullet14.draw(drawTool);
+            }
+            if (bullet15 != null) {
+                bullet15.draw(drawTool);
+            }
+            if (bullet16 != null) {
+                bullet16.draw(drawTool);
+            }
+            if (bullet17 != null) {
+                bullet17.draw(drawTool);
+            }
+            if (bullet18 != null) {
+                bullet18.draw(drawTool);
+            }
+            if (bullet19 != null) {
+                bullet19.draw(drawTool);
+            }
+            if (bullet20 != null) {
+                bullet20.draw(drawTool);
+            }
+            if (bullet21 != null) {
+                bullet21.draw(drawTool);
+            }
+            if (bullet22 != null) {
+                bullet22.draw(drawTool);
+            }
+            if (bullet23 != null) {
+                bullet23.draw(drawTool);
+            }
+            if (bullet24 != null) {
+                bullet24.draw(drawTool);
+            }
+            if (bullet25 != null) {
+                bullet25.draw(drawTool);
+            }
         }
 
 }

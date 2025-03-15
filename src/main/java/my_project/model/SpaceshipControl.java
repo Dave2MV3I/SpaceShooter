@@ -1,6 +1,11 @@
 package my_project.model;
 
 
+import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.view.DrawTool;
+import my_project.control.ProgramController;
+
+
 public class SpaceshipControl {
     //Referenzen
         Spaceship spaceship1;
@@ -13,6 +18,7 @@ public class SpaceshipControl {
         Spaceship spaceship8;
         Spaceship spaceship9;
         Spaceship spaceship10;
+
 
 
     //Methoden
@@ -143,7 +149,11 @@ public class SpaceshipControl {
                     spaceship10 = null;
                 }
             }
-            else ;
+            else;
+
+        }
+
+        public void draw (DrawTool drawTool){
 
         }
 }

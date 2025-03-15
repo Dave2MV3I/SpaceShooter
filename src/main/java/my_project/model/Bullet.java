@@ -13,16 +13,23 @@ public class Bullet extends GraphicalObject {
     double speed;
     public BulletControl bulletControl;
 
-    public Bullet(BulletControl bulletcontrol) {
+    public Bullet(BulletControl bulletcontrol, double x, double y, int damage, double speed) {
         this.bulletControl = bulletcontrol;
+        this.bulletControl.addBullet(this);
+
+        this.x = x;
+        this.y = y;
+        this.damage = damage;
+        this.speed = speed;
+
     }
 
-    public void draw(DrawTool drawTool) {
-        drawTool.drawFilledCircle(this.x, this.y, 1);
+    public void draw (DrawTool drawTool) {
+        drawTool.drawFilledCircle(this.x, this.y, 5);
     }
 
 
-    public void update(double dt, Object shooter, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player) {
+    public void update (double dt, Object shooter, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player) {
         this.x = this.x + speed * dt;
 
         if (shooter instanceof Player){
