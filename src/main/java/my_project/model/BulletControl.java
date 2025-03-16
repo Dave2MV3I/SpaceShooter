@@ -1,6 +1,7 @@
 package my_project.model;
 
 
+import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
@@ -10,48 +11,49 @@ public class BulletControl  {
     //Referenzen
 
         //Referenzen 1-5
-        Bullet bullet1;
-        Bullet bullet2;
-        Bullet bullet3;
-        Bullet bullet4;
-        Bullet bullet5;
+        public Bullet bullet1;
+        public Bullet bullet2;
+        public Bullet bullet3;
+        public Bullet bullet4;
+        public Bullet bullet5;
 
 
         //Referenzen 6-10
-        Bullet bullet6;
-        Bullet bullet7;
-        Bullet bullet8;
-        Bullet bullet9;
-        Bullet bullet10;
+        public Bullet bullet6;
+        public Bullet bullet7;
+        public Bullet bullet8;
+        public Bullet bullet9;
+        public Bullet bullet10;
 
 
         //Referenzen 11-15
-        Bullet bullet11;
-        Bullet bullet12;
-        Bullet bullet13;
-        Bullet bullet14;
-        Bullet bullet15;
+        public Bullet bullet11;
+        public Bullet bullet12;
+        public Bullet bullet13;
+        public Bullet bullet14;
+        public Bullet bullet15;
 
 
         //Referenzen 16-20
-        Bullet bullet16;
-        Bullet bullet17;
-        Bullet bullet18;
-        Bullet bullet19;
-        Bullet bullet20;
+        public Bullet bullet16;
+        public Bullet bullet17;
+        public Bullet bullet18;
+        public Bullet bullet19;
+        public Bullet bullet20;
 
 
         //Referenzen 21-25
-        Bullet bullet21;
-        Bullet bullet22;
-        Bullet bullet23;
-        Bullet bullet24;
-        Bullet bullet25;
+        public Bullet bullet21;
+        public Bullet bullet22;
+        public Bullet bullet23;
+        public Bullet bullet24;
+        public Bullet bullet25;
 
         //Weitere Referenzen
         private Spaceship sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10;
         private Player player;
         private ProgramController proCon;
+        private ViewController viewCon;
         private SpaceshipControl spaCon;
 
     //Attribute
@@ -60,10 +62,11 @@ public class BulletControl  {
 
 
     //Methoden
-        public BulletControl(ProgramController proCon, SpaceshipControl spaCon) {
+        public BulletControl(ProgramController proCon, SpaceshipControl spaCon, ViewController viewCon) {
         this.proCon = proCon;
         this.player = proCon.getPlayer();
         this.spaCon = spaCon;
+        this.viewCon = viewCon;
 
         bullet1 = null;
         bullet2 = null;
@@ -90,7 +93,7 @@ public class BulletControl  {
         bullet23 = null;
         bullet24 = null;
         bullet25 = null;
-    }
+        }
 
         public void addBullet(Bullet bullet) {
 
@@ -182,6 +185,7 @@ public class BulletControl  {
             }
             else if (bullet25 == null) {
                 bullet25 = bullet;
+                System.out.println("hi");
             }
         }
 
@@ -288,10 +292,103 @@ public class BulletControl  {
             else if (bullet8 == bullet) bullet8 = null;
             else if (bullet9 == bullet) bullet9 = null;
             else if (bullet10 == bullet) bullet10 = null;
+            else if (bullet11 == bullet) bullet11 = null;
+            else if (bullet12 == bullet) bullet12 = null;
+            else if (bullet13 == bullet) bullet13 = null;
+            else if (bullet14 == bullet) bullet14 = null;
+            else if (bullet15 == bullet) bullet15 = null;
+            else if (bullet16 == bullet) bullet16 = null;
+            else if (bullet17 == bullet) bullet17 = null;
+            else if (bullet18 == bullet) bullet18 = null;
+            else if (bullet19 == bullet) bullet19 = null;
+            else if (bullet20 == bullet) bullet20 = null;
+            else if (bullet21 == bullet) bullet21 = null;
+            else if (bullet22 == bullet) bullet22 = null;
+            else if (bullet23 == bullet) bullet23 = null;
+            else if (bullet24 == bullet) bullet24 = null;
+            else if (bullet25 == bullet) bullet25 = null;
         }
 
-        public void draw (DrawTool drawTool){
-            drawTool.drawFilledCircle(0, 0, 0);
+        public void drawBullets (){
+            System.out.println("GG");
+            if (bullet1 != null) {
+                viewCon.draw(bullet1, 1);
+            }
+            if (bullet2 != null) {
+                viewCon.draw(bullet2, 1);
+            }
+            if (bullet3 != null) {
+                viewCon.draw(bullet3, 1);
+            }
+            if (bullet4 != null) {
+                viewCon.draw(bullet4, 1);
+            }
+            if (bullet5 != null) {
+                viewCon.draw(bullet5, 1);
+            }
+            if (bullet6 != null) {
+                viewCon.draw(bullet6, 1);
+            }
+            if (bullet7 != null) {
+                viewCon.draw(bullet7, 1);
+            }
+            if (bullet8 != null) {
+                viewCon.draw(bullet8, 1);
+            }
+            if (bullet9 != null) {
+                viewCon.draw(bullet9, 1);
+            }
+            if (bullet10 != null) {
+                viewCon.draw(bullet10, 1);
+            }
+            if (bullet11 != null) {
+                viewCon.draw(bullet11, 1);
+            }
+            if (bullet12 != null) {
+                viewCon.draw(bullet12, 1);
+            }
+            if (bullet13 != null) {
+                viewCon.draw(bullet13, 1);
+            }
+            if (bullet14 != null) {
+                viewCon.draw(bullet14, 1);
+            }
+            if (bullet15 != null) {
+                viewCon.draw(bullet15, 1);
+            }
+            if (bullet16 != null) {
+                viewCon.draw(bullet16, 1);
+            }
+            if (bullet17 != null) {
+                viewCon.draw(bullet17, 1);
+            }
+            if (bullet18 != null) {
+                viewCon.draw(bullet18, 1);
+            }
+            if (bullet19 != null) {
+                viewCon.draw(bullet19, 1);
+            }
+            if (bullet20 != null) {
+                viewCon.draw(bullet20, 1);
+            }
+            if (bullet21 != null) {
+                viewCon.draw(bullet21, 1);
+            }
+            if (bullet22 != null) {
+                viewCon.draw(bullet22, 1);
+            }
+            if (bullet23 != null) {
+                viewCon.draw(bullet23, 1);
+            }
+            if (bullet24 != null) {
+                viewCon.draw(bullet24, 1);
+            }
+            if (bullet25 != null) {
+                viewCon.draw(bullet25, 1);
+            }
+
+
+            /*drawTool.drawFilledCircle(0, 0, 0);
 
             if (bullet1 != null) {
                 bullet1.draw(drawTool);
@@ -367,7 +464,7 @@ public class BulletControl  {
             }
             if (bullet25 != null) {
                 bullet25.draw(drawTool);
-            }
+            }*/
         }
 
 }

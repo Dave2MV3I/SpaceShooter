@@ -25,12 +25,14 @@ public class Bullet extends GraphicalObject {
     }
 
     public void draw (DrawTool drawTool) {
+        drawTool.setCurrentColor(255, 255, 255, 255);
         drawTool.drawFilledCircle(this.x, this.y, 5);
     }
 
 
     public void update (double dt, Object shooter, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player) {
         this.x = this.x + speed * dt;
+
 
         if (shooter instanceof Player){
             if (this.collidesWith(sp1)) {

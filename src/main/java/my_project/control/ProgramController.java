@@ -66,11 +66,12 @@ public class ProgramController {
         viewController.draw(level1BG,1);
         p1 = new Player(50,300, this);
         spaceshipControl = new SpaceshipControl ();
-        bulletControl = new BulletControl(this, spaceshipControl);
+        bulletControl = new BulletControl(this, spaceshipControl, viewController);
 
 
-
+        bulletControl.drawBullets();
         viewController.draw(p1,1);
+
 
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
         // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
@@ -85,8 +86,7 @@ public class ProgramController {
      * @param dt Zeit seit letztem Frame in Sekunden
      */
     public void updateProgram(double dt){
-        //bulletControl.update(dt);
-        //spaceshipControl.update(dt);
+        this.zeichneBullets();
     }
 
     public Player getPlayer(){
@@ -106,6 +106,86 @@ public class ProgramController {
         if (key == KeyEvent.VK_SPACE) {
             p1.processSpace(key, pressed);
         }
+    }
+
+    private void zeichneBullets (){
+        if (bulletControl.bullet1 != null) {
+            System.out.println("gdz");
+            viewController.draw(bulletControl.bullet1, 1);
+        }
+        if (bulletControl.bullet2 != null) {
+            viewController.draw(bulletControl.bullet2, 1);
+        }
+        if (bulletControl.bullet3 != null) {
+            viewController.draw(bulletControl.bullet3, 1);
+        }
+        if (bulletControl.bullet4 != null) {
+            viewController.draw(bulletControl.bullet4, 1);
+        }
+        if (bulletControl.bullet5 != null) {
+            viewController.draw(bulletControl.bullet5, 1);
+        }
+        if (bulletControl.bullet6 != null) {
+            viewController.draw(bulletControl.bullet6, 1);
+        }
+        if (bulletControl.bullet7 != null) {
+            viewController.draw(bulletControl.bullet7, 1);
+        }
+        if (bulletControl.bullet8 != null) {
+            viewController.draw(bulletControl.bullet8, 1);
+        }
+        if (bulletControl.bullet9 != null) {
+            viewController.draw(bulletControl.bullet9, 1);
+        }
+        if (bulletControl.bullet10 != null) {
+            viewController.draw(bulletControl.bullet10, 1);
+        }
+        if (bulletControl.bullet11 != null) {
+            viewController.draw(bulletControl.bullet11, 1);
+        }
+        if (bulletControl.bullet12 != null) {
+            viewController.draw(bulletControl.bullet12, 1);
+        }
+        if (bulletControl.bullet13 != null) {
+            viewController.draw(bulletControl.bullet13, 1);
+        }
+        if (bulletControl.bullet14 != null) {
+            viewController.draw(bulletControl.bullet14, 1);
+        }
+        if (bulletControl.bullet15 != null) {
+            viewController.draw(bulletControl.bullet15, 1);
+        }
+        if (bulletControl.bullet16 != null) {
+            viewController.draw(bulletControl.bullet16, 1);
+        }
+        if (bulletControl.bullet17 != null) {
+            viewController.draw(bulletControl.bullet17, 1);
+        }
+        if (bulletControl.bullet18 != null) {
+            viewController.draw(bulletControl.bullet18, 1);
+        }
+        if (bulletControl.bullet19 != null) {
+            viewController.draw(bulletControl.bullet19, 1);
+        }
+        if (bulletControl.bullet20 != null) {
+            viewController.draw(bulletControl.bullet20, 1);
+        }
+        if (bulletControl.bullet21 != null) {
+            viewController.draw(bulletControl.bullet21, 1);
+        }
+        if (bulletControl.bullet22 != null) {
+            viewController.draw(bulletControl.bullet22, 1);
+        }
+        if (bulletControl.bullet23 != null) {
+            viewController.draw(bulletControl.bullet23, 1);
+        }
+        if (bulletControl.bullet24 != null) {
+            viewController.draw(bulletControl.bullet24, 1);
+        }
+        if (bulletControl.bullet25 != null) {
+            viewController.draw(bulletControl.bullet25, 1);
+        }
+
     }
 
 }
