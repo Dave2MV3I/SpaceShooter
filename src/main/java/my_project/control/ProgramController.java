@@ -68,6 +68,16 @@ public class ProgramController {
         spaceshipControl = new SpaceshipControl ();
         bulletControl = new BulletControl(this, spaceshipControl, viewController);
 
+        // Spielbildschirm (Szene 4)
+        viewController.createScene();
+        Picture loseText = new Picture(0,0,"src/main/resources/graphic/loseBG.png");
+        viewController.draw(loseText,4);
+
+        // Spielbildschirm (Szene 5)
+        viewController.createScene();
+        Picture winText = new Picture(0,0,"src/main/resources/graphic/winBG.png");
+        viewController.draw(winText,5);
+
 
         bulletControl.drawBullets();
         viewController.draw(p1,1);
