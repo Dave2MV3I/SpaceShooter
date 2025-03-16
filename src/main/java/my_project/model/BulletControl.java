@@ -189,8 +189,9 @@ public class BulletControl  {
             }
         }
 
-        public void update(double dt){
+        public void updateBullets (double dt){
             //Update Referenzen
+            System.out.println ("updateBullets() wurde aufgerufen");
             player = proCon.getPlayer();
             sp1 = spaCon.getSp1();
             sp2 = spaCon.getSp2();
@@ -205,79 +206,79 @@ public class BulletControl  {
 
 
             if (bullet1 != null) {
-                bullet1.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet1.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet2 != null) {
-                bullet2.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet2.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet3 != null) {
-                bullet3.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet3.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet4 != null) {
-                bullet4.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet4.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet5 != null) {
-                bullet5.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet5.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet6 != null) {
-                bullet6.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet6.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet7 != null) {
-                bullet7.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet7.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet8 != null) {
-                bullet8.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet8.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet9 != null) {
-                bullet9.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet9.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet10 != null) {
-                bullet10.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet10.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet11 != null) {
-                bullet11.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet11.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet12 != null) {
-                bullet12.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet12.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet13 != null) {
-                bullet13.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet13.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet14 != null) {
-                bullet14.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet14.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet15 != null) {
-                bullet15.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet15.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet16 != null) {
-                bullet16.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet16.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet17 != null) {
-                bullet17.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet17.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet18 != null) {
-                bullet18.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet18.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet19 != null) {
-                bullet19.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet19.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet20 != null) {
-                bullet20.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet20.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet21 != null) {
-                bullet21.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet21.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet22 != null) {
-                bullet22.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet22.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet23 != null) {
-                bullet23.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet23.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet24 != null) {
-                bullet24.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet24.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
             if (bullet25 != null) {
-                bullet25.update(dt, player, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
+                bullet25.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
             }
         }
 

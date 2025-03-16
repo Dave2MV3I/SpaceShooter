@@ -87,6 +87,7 @@ public class ProgramController {
      */
     public void updateProgram(double dt){
         this.zeichneBullets();
+        bulletControl.updateBullets (dt);
     }
 
     public Player getPlayer(){
@@ -110,7 +111,6 @@ public class ProgramController {
 
     private void zeichneBullets (){
         if (bulletControl.bullet1 != null) {
-            System.out.println("gdz");
             viewController.draw(bulletControl.bullet1, 1);
         }
         if (bulletControl.bullet2 != null) {
