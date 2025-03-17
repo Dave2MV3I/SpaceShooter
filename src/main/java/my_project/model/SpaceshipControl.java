@@ -152,8 +152,4 @@ public class SpaceshipControl {
             else;
 
         }
-
-        public void draw (DrawTool drawTool){
-
-        }
 }

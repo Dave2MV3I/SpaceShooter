@@ -86,7 +86,9 @@ public class Player extends GraphicalObject {
 
     public void processSpace (int keyCode, boolean pressed){
         if (keyCode == KeyEvent.VK_SPACE && pressed){
-                new Bullet (this.programController.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 100, "player");
+                //new Bullet (this.programController.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
+            //TODO StartBullet anstelle von new Bullet
+            programController.level1.startBullet(this.x + this.getWidth(), this.y + (this.getHeight()/2), "player", 50, 100);
         }
     }
 

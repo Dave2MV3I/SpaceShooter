@@ -1,6 +1,8 @@
 package my_project.model;
 
-public abstract class LevelControl {
+import KAGO_framework.model.GraphicalObject;
+
+public abstract class LevelControl extends GraphicalObject     {
 
     Bullet[] bullets;
     Spaceship[] spaceships;
@@ -8,6 +10,8 @@ public abstract class LevelControl {
     public LevelControl(int nBullets, int nSpaceships) {
         bullets = new Bullet[nBullets];
         spaceships = new Spaceship[nSpaceships];
+
+
 
         // TODO 1 Der Hintergrund von Szene 0 soll weiterhin nur gezeichnet werden.
         //  Verschönern Sie ihn nach eigenem Ermessen, aber animieren Sie die Sterne in jedem Fall

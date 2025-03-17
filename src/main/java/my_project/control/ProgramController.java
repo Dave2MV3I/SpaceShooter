@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.control.Drawable;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
+import KAGO_framework.view.DrawTool;
 import my_project.model.*;
 import my_project.view.InputManager;
 
@@ -16,33 +17,24 @@ import java.awt.event.KeyEvent;
  *   nicht geändert werden
  * - Zusätzliche Methoden sind natürlich gar kein Problem
  */
+
+
+
 public class ProgramController {
 
     //Attribute
-
+    private int currentScene;
 
     // Referenzen
-    private final ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private final ViewController viewController;
     private Player p1;
-    private int currentScene;
-    public SpaceshipControl spaceshipControl;
-    public BulletControl bulletControl;
+    public Level1 level1;
 
-    /**
-     * Konstruktor
-     * Dieser legt das Objekt der Klasse ProgramController an, das den Programmfluss steuert.
-     * Damit der ProgramController auf das Fenster zugreifen kann, benötigt er eine Referenz auf das Objekt
-     * der Klasse viewController. Diese wird als Parameter übergeben.
-     * @param viewController das viewController-Objekt des Programms
-     */
+
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
     }
 
-    /**
-     * Diese Methode wird genau ein mal nach Programmstart aufgerufen. Hier sollte also alles geregelt werden,
-     * was zu diesem Zeitpunkt passieren muss.
-     */
     public void startProgram() {
         // Vorbereitungen
         InputManager inputManager = new InputManager(this);
@@ -65,8 +57,11 @@ public class ProgramController {
         Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
         viewController.draw(level1BG,1);
         p1 = new Player(50,300, this);
-        spaceshipControl = new SpaceshipControl ();
-        bulletControl = new BulletControl(this, spaceshipControl, viewController);
+        level1 = new Level1(64, 8, this);
+        viewController.draw(p1,1);
+        viewController.draw(level1,1);
+
+
 
         // Spielbildschirm (Szene 4)
         viewController.createScene();
@@ -79,9 +74,6 @@ public class ProgramController {
         viewController.draw(winText,5);
 
 
-        bulletControl.drawBullets();
-        viewController.draw(p1,1);
-
 
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
         // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
@@ -91,13 +83,13 @@ public class ProgramController {
         // Endbildschirm (Szene 2)
     }
 
-    /**
-     * Diese Methode wird vom ViewController-Objekt automatisch mit jedem Frame aufgerufen (ca. 60mal pro Sekunde)
-     * @param dt Zeit seit letztem Frame in Sekunden
-     */
     public void updateProgram(double dt){
-        this.zeichneBullets();
-        bulletControl.updateBullets (dt);
+        //this.zeichneBullets();
+        level1.update(dt);
+
+        //if (currentScene == 1){
+          //   level1.zeichneLevel(new DrawTool());
+        //}
     }
 
     public Player getPlayer(){
@@ -118,84 +110,4 @@ public class ProgramController {
             p1.processSpace(key, pressed);
         }
     }
-
-    private void zeichneBullets (){
-        if (bulletControl.bullet1 != null) {
-            viewController.draw(bulletControl.bullet1, 1);
-        }
-        if (bulletControl.bullet2 != null) {
-            viewController.draw(bulletControl.bullet2, 1);
-        }
-        if (bulletControl.bullet3 != null) {
-            viewController.draw(bulletControl.bullet3, 1);
-        }
-        if (bulletControl.bullet4 != null) {
-            viewController.draw(bulletControl.bullet4, 1);
-        }
-        if (bulletControl.bullet5 != null) {
-            viewController.draw(bulletControl.bullet5, 1);
-        }
-        if (bulletControl.bullet6 != null) {
-            viewController.draw(bulletControl.bullet6, 1);
-        }
-        if (bulletControl.bullet7 != null) {
-            viewController.draw(bulletControl.bullet7, 1);
-        }
-        if (bulletControl.bullet8 != null) {
-            viewController.draw(bulletControl.bullet8, 1);
-        }
-        if (bulletControl.bullet9 != null) {
-            viewController.draw(bulletControl.bullet9, 1);
-        }
-        if (bulletControl.bullet10 != null) {
-            viewController.draw(bulletControl.bullet10, 1);
-        }
-        if (bulletControl.bullet11 != null) {
-            viewController.draw(bulletControl.bullet11, 1);
-        }
-        if (bulletControl.bullet12 != null) {
-            viewController.draw(bulletControl.bullet12, 1);
-        }
-        if (bulletControl.bullet13 != null) {
-            viewController.draw(bulletControl.bullet13, 1);
-        }
-        if (bulletControl.bullet14 != null) {
-            viewController.draw(bulletControl.bullet14, 1);
-        }
-        if (bulletControl.bullet15 != null) {
-            viewController.draw(bulletControl.bullet15, 1);
-        }
-        if (bulletControl.bullet16 != null) {
-            viewController.draw(bulletControl.bullet16, 1);
-        }
-        if (bulletControl.bullet17 != null) {
-            viewController.draw(bulletControl.bullet17, 1);
-        }
-        if (bulletControl.bullet18 != null) {
-            viewController.draw(bulletControl.bullet18, 1);
-        }
-        if (bulletControl.bullet19 != null) {
-            viewController.draw(bulletControl.bullet19, 1);
-        }
-        if (bulletControl.bullet20 != null) {
-            viewController.draw(bulletControl.bullet20, 1);
-        }
-        if (bulletControl.bullet21 != null) {
-            viewController.draw(bulletControl.bullet21, 1);
-        }
-        if (bulletControl.bullet22 != null) {
-            viewController.draw(bulletControl.bullet22, 1);
-        }
-        if (bulletControl.bullet23 != null) {
-            viewController.draw(bulletControl.bullet23, 1);
-        }
-        if (bulletControl.bullet24 != null) {
-            viewController.draw(bulletControl.bullet24, 1);
-        }
-        if (bulletControl.bullet25 != null) {
-            viewController.draw(bulletControl.bullet25, 1);
-        }
-
-    }
-
 }

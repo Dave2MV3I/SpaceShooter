@@ -52,13 +52,11 @@ public class BulletControl  {
         //Weitere Referenzen
         private Spaceship sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10;
         private Player player;
-        private ProgramController proCon;
+        public ProgramController proCon;
         private ViewController viewCon;
         private SpaceshipControl spaCon;
 
     //Attribute
-    int radius;
-
 
 
     //Methoden
@@ -205,81 +203,7 @@ public class BulletControl  {
             sp10 = spaCon.getSp10();
 
 
-            if (bullet1 != null) {
-                bullet1.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet2 != null) {
-                bullet2.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet3 != null) {
-                bullet3.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet4 != null) {
-                bullet4.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet5 != null) {
-                bullet5.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet6 != null) {
-                bullet6.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet7 != null) {
-                bullet7.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet8 != null) {
-                bullet8.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet9 != null) {
-                bullet9.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet10 != null) {
-                bullet10.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet11 != null) {
-                bullet11.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet12 != null) {
-                bullet12.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet13 != null) {
-                bullet13.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet14 != null) {
-                bullet14.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet15 != null) {
-                bullet15.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet16 != null) {
-                bullet16.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet17 != null) {
-                bullet17.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet18 != null) {
-                bullet18.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet19 != null) {
-                bullet19.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet20 != null) {
-                bullet20.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet21 != null) {
-                bullet21.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet22 != null) {
-                bullet22.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet23 != null) {
-                bullet23.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet24 != null) {
-                bullet24.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
-            if (bullet25 != null) {
-                bullet25.update(dt, sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, player);
-            }
+
         }
 
         public void removeBullet(Bullet bullet) {
@@ -388,84 +312,6 @@ public class BulletControl  {
                 viewCon.draw(bullet25, 1);
             }
 
-
-            /*drawTool.drawFilledCircle(0, 0, 0);
-
-            if (bullet1 != null) {
-                bullet1.draw(drawTool);
-            }
-            if (bullet2 != null) {
-                bullet2.draw(drawTool);
-            }
-            if (bullet3 != null) {
-                bullet3.draw(drawTool);
-            }
-            if (bullet4 != null) {
-                bullet4.draw(drawTool);
-            }
-            if (bullet5 != null) {
-                bullet5.draw(drawTool);
-            }
-            if (bullet6 != null) {
-                bullet6.draw(drawTool);
-            }
-            if (bullet7 != null) {
-                bullet7.draw(drawTool);
-            }
-            if (bullet8 != null) {
-                bullet8.draw(drawTool);
-            }
-            if (bullet9 != null) {
-                bullet9.draw(drawTool);
-            }
-            if (bullet10 != null) {
-                bullet10.draw(drawTool);
-            }
-            if (bullet11 != null) {
-                bullet11.draw(drawTool);
-            }
-            if (bullet12 != null) {
-                bullet12.draw(drawTool);
-            }
-            if (bullet13 != null) {
-                bullet13.draw(drawTool);
-            }
-            if (bullet14 != null) {
-                bullet14.draw(drawTool);
-            }
-            if (bullet15 != null) {
-                bullet15.draw(drawTool);
-            }
-            if (bullet16 != null) {
-                bullet16.draw(drawTool);
-            }
-            if (bullet17 != null) {
-                bullet17.draw(drawTool);
-            }
-            if (bullet18 != null) {
-                bullet18.draw(drawTool);
-            }
-            if (bullet19 != null) {
-                bullet19.draw(drawTool);
-            }
-            if (bullet20 != null) {
-                bullet20.draw(drawTool);
-            }
-            if (bullet21 != null) {
-                bullet21.draw(drawTool);
-            }
-            if (bullet22 != null) {
-                bullet22.draw(drawTool);
-            }
-            if (bullet23 != null) {
-                bullet23.draw(drawTool);
-            }
-            if (bullet24 != null) {
-                bullet24.draw(drawTool);
-            }
-            if (bullet25 != null) {
-                bullet25.draw(drawTool);
-            }*/
         }
 
 }
