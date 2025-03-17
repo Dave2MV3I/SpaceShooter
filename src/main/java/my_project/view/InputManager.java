@@ -33,6 +33,3 @@ public class InputManager extends InteractiveGraphicalObject {
         programController.processKeyboardInput(key, false);
     }
 }
-
-// TODO 2 Diagonal fliegen können und aufhören zu fliegen bei Nichtdrücken, also bei Keyreleased direction auf false
-//// TODO 3: Schiessen und Bullets

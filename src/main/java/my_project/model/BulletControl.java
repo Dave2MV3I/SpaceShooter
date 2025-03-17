@@ -191,7 +191,7 @@ public class BulletControl  {
 
         public void updateBullets (double dt){
             //Update Referenzen
-            System.out.println ("updateBullets() wurde aufgerufen");
+            //System.out.println ("updateBullets() wurde aufgerufen");
             player = proCon.getPlayer();
             sp1 = spaCon.getSp1();
             sp2 = spaCon.getSp2();
