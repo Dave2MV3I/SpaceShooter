@@ -1,6 +1,7 @@
 package my_project.model;
 
 
+import my_project.Config;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
@@ -32,10 +33,8 @@ public class Bullet extends GraphicalObject {
         //this.speed = speed;
     }
 
-    public void startBullet (double x, double y, String shooter, int damage, double speed) {
+    public void startBullet(double x, double y, String shooter, int damage, double speed) {
         this.isActive = true;
-
-
 
         this.x = x;
         this.y = y;
@@ -46,23 +45,24 @@ public class Bullet extends GraphicalObject {
         this.speed = speed;
     }
 
-    public void draw (DrawTool drawTool) {
+    public void draw(DrawTool drawTool) {
         if (isActive) {
 
-
-            //TODO hier wird die methode aufgerufen, aber aus irgendeinem grund nichts gezeichnet
-            drawTool.setCurrentColor(255, 255, 255, 255);
+            //drawTool.setCurrentColor(255, 255, 255, 255);
+            drawTool.setCurrentColor(255, 0, 0, 255);
             drawTool.drawFilledCircle(this.x, this.y, 5);
         }
     }
 
 
-    public void update (double dt) {
+    public void update(double dt) {
         if (isActive) {
-
             this.x = this.x + speed * dt;
-
-
+            if (this.x > Config.WINDOW_WIDTH){this.isActive = false;}
         }
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 }

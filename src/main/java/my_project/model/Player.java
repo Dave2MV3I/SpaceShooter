@@ -19,15 +19,15 @@ public class Player extends GraphicalObject {
     public int health;
     private int speed = 100;
 
-    private ProgramController programController;
+    private ProgramController pc;
 
-    public Player(double x, double y, ProgramController programController){
+    public Player(double x, double y, ProgramController pc){
         this.setNewImage("src/main/resources/graphic/spaceship.png");
         this.x = x;
         this.y = y;
         hoverUp = true;
         this.health = 50;
-        this.programController = programController;
+        this.pc = pc;
 
     }
 
@@ -84,12 +84,9 @@ public class Player extends GraphicalObject {
         }
     }
 
-    public void processSpace (int keyCode, boolean pressed){
-        if (keyCode == KeyEvent.VK_SPACE && pressed){
-                //new Bullet (this.programController.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
-            //TODO StartBullet anstelle von new Bullet
-            programController.level1.startBullet(this.x + this.getWidth(), this.y + (this.getHeight()/2), "player", 50, 100);
-        }
+    public void processSpace(){
+        //new Bullet (this.pc.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
+        pc.level1.startBullet(this.x + this.getWidth(), this.y + (this.getHeight()/2), "player", 50, 100);
     }
 
     public void setHealth (int health){

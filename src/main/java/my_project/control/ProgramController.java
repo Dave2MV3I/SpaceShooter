@@ -58,8 +58,9 @@ public class ProgramController {
         viewController.draw(level1BG,1);
         p1 = new Player(50,300, this);
         level1 = new Level1(64, 8, this);
-        viewController.draw(p1,1);
         viewController.draw(level1,1);
+        //viewController.draw(p1,1);
+        //viewController.draw(level1,1);
 
 
 
@@ -106,8 +107,8 @@ public class ProgramController {
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
             p1.processWASD(key, pressed);
         }
-        if (key == KeyEvent.VK_SPACE) {
-            p1.processSpace(key, pressed);
+        if (key == KeyEvent.VK_SPACE && pressed) {
+            p1.processSpace();
         }
     }
 }
