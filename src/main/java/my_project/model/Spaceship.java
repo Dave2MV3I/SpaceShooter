@@ -7,16 +7,17 @@ import my_project.control.ProgramController;
 
 public class Spaceship extends GraphicalObject{
 
-    double x, y;
-    int health;
-    double speed;
-    public boolean isActive;
-    private ProgramController pc;
+    protected double x, y;
+    protected int health;
+    protected double speed;
+    protected boolean isActive;
+    protected ProgramController pc;
+
     private double cooldown;
     private double cooldownTimer;
 
 
-    public void draw (DrawTool drawTool){
+    public void draw(DrawTool drawTool){
         //drawTool.drawFilledCircle (this.x, this.y, 1);
         drawTool.drawImage(getMyImage(),x,y);
     }
@@ -47,8 +48,8 @@ public class Spaceship extends GraphicalObject{
         this.pc = pc;
     }
 
-    public void setHealth (int health){
-        this.health += health;
+    public void modifyHP(int points){
+        this.health += points;
     }
 
     public boolean isActive() {

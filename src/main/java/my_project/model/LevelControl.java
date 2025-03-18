@@ -31,10 +31,11 @@ public abstract class LevelControl extends GraphicalObject     {
         // Anzeige oben: Munition übrig (natürlich abzüglich der Munition der Gegner, eventuell Anzahl im Array erhöhen. Grenzen für Shooter festlegen)
         // Gewinnen wenn alle getötet
         // Verlieren wenn von Gegner berührt oder getroffen
-        // Player soll nicht aus dem Spiel rausfliegen können
+        // Player darf aus dem Spiel rausfliegen können, aber dann zeigt eine Stecknadel am Rand, wo man ist
         // Player soll von SpaceShip erben
         // Kollisionserkennung in dieser Klasse implementieren
         //Timer pro Level und ihn pausieren, falls nicht alle getötet und keine Referenzen für neue Gegner übrig
+        // Animationen und Sound bei Treffern/ Schüssen
 
     }
 
@@ -57,17 +58,16 @@ public abstract class LevelControl extends GraphicalObject     {
 
                         if (spaceships[j].isActive) {
                             if (bullets[i].collidesWith(spaceships[j]) && bullets[i].getShooter().equals("player")) {
-                                spaceships[j].setHealth(bullets[i].damage);
-                                System.out.println ("bullet ist mit player kolidiert");
+                                spaceships[j].modifyHP(-(bullets[i].damage));
+                                System.out.println("Bullet ist mit Gegner kollidiert");
                                 bullets[i].isActive = false;
                             }
                         }
                     }
 
                     if (bullets[i].collidesWith(pc.getPlayer()) && bullets[i].getShooter().equals("enemy")) {
-                        pc.getPlayer().setHealth(bullets[i].damage);
+                        pc.getPlayer().modifyHP(-(bullets[i].damage));
                         bullets[i].isActive = false;
-
                     }
 
                 }
