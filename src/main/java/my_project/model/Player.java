@@ -6,7 +6,7 @@ import my_project.control.ProgramController;
 
 import java.awt.event.KeyEvent;
 
-public class Player extends GraphicalObject {
+public class Player extends Spaceship {
 
     private double hoverY;
     private boolean hoverUp;
@@ -25,6 +25,7 @@ public class Player extends GraphicalObject {
     private ProgramController pc;
 
     public Player(double x, double y, ProgramController pc, double cooldown) {
+        super();
         this.setNewImage("src/main/resources/graphic/spaceship.png");
         this.x = x;
         this.y = y;
@@ -34,8 +35,9 @@ public class Player extends GraphicalObject {
 
         this.cooldown = cooldown;
         this.cooldownTimer = cooldown;
-
+        this.speed = 100;
     }
+
 
     @Override
     public void draw(DrawTool drawTool) {
@@ -105,5 +107,6 @@ public class Player extends GraphicalObject {
     public void modifyHP(int points){
         this.health += points;
     }
+
 
 }
