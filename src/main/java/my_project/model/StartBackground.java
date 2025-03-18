@@ -30,7 +30,7 @@ public class StartBackground extends GraphicalObject {
     }
 
     public void update (double dt) {
-        starsX += dt;
+        starsX += 32*dt;
     }
 
     private void drawPlanet(double x, double y, int radius, double r, double g, double b, double a, boolean withDust, DrawTool drawTool){

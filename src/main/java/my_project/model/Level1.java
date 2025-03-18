@@ -55,7 +55,7 @@ public class Level1 extends LevelControl{
                 bullets[i].startBullet(x, y, shooter, damage, speedX, speedY);
                 break;
             }
-              //break;
+            //break;
         }
     }
 

@@ -29,7 +29,7 @@ public class ProgramController {
     private final ViewController viewController;
     private Player p1;
     public Level1 level1;
-
+    StartBackground sback;
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
@@ -45,7 +45,7 @@ public class ProgramController {
         viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
         //SoundController.playSound("startBGM");
         // Bild
-        StartBackground sback = new StartBackground();
+        sback = new StartBackground();
         viewController.draw(sback,0);
         Picture titleText = new Picture(100, 200, "src/main/resources/graphic/title_text.png");
         viewController.draw(titleText,0);
@@ -89,6 +89,7 @@ public class ProgramController {
         //this.zeichneBullets();
         System.out.println(1/dt);
         level1.update(dt);
+        sback.update(dt);
 
         //if (currentScene == 1){
         //   level1.zeichneLevel(new DrawTool());
