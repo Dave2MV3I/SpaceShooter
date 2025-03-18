@@ -62,6 +62,9 @@ public abstract class LevelControl extends GraphicalObject     {
                             if (bullets[i].collidesWith(spaceships[j]) && bullets[i].getShooter().equals("player")) {
                                 spaceships[j].modifyHP(-(bullets[i].damage));
                                 System.out.println("Bullet ist mit Gegner kollidiert");
+                                //TODO funktion fuer bullet collision (frag joshi genaueres)
+
+                                //weiteres TODO ↓ privatisierung des wohnraums.. ähm "isActive" tag
                                 bullets[i].isActive = false;
                             }
                         }
