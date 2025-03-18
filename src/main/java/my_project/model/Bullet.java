@@ -9,7 +9,7 @@ import KAGO_framework.view.DrawTool;
 public class Bullet extends GraphicalObject {
 
 
-    double x, y;
+
     int damage;
     double speedX, speedY;
     private String shooter;

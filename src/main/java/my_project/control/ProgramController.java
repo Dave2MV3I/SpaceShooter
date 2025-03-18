@@ -87,6 +87,7 @@ public class ProgramController {
 
     public void updateProgram(double dt){
         //this.zeichneBullets();
+        System.out.println(1/dt);
         level1.update(dt);
 
         //if (currentScene == 1){

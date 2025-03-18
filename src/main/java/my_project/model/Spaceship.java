@@ -7,7 +7,6 @@ import my_project.control.ProgramController;
 
 public class Spaceship extends GraphicalObject{
 
-    protected double x, y;
     protected int health;
     protected double speed;
     protected boolean isActive;
