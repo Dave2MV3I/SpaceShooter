@@ -19,15 +19,21 @@ public class Player extends GraphicalObject {
     public int health;
     private int speed = 100;
 
+    private double cooldown;
+    private double cooldownTimer;
+
     private ProgramController pc;
 
-    public Player(double x, double y, ProgramController pc){
+    public Player(double x, double y, ProgramController pc, double cooldown){
         this.setNewImage("src/main/resources/graphic/spaceship.png");
         this.x = x;
         this.y = y;
         hoverUp = true;
         this.health = 50;
         this.pc = pc;
+
+        this.cooldown = cooldown;
+        this.cooldownTimer = cooldown;
 
     }
 
@@ -59,6 +65,8 @@ public class Player extends GraphicalObject {
         if (floatDown){
             y += speed*dt;
         }
+
+        this.cooldownTimer = this.cooldownTimer - dt;
     }
 
     public void processWASD(int keyCode, boolean pressed){
@@ -86,8 +94,13 @@ public class Player extends GraphicalObject {
 
     public void processSpace(){
         //new Bullet (this.pc.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
-        pc.level1.startBullet(this.x + this.getWidth(), this.y + (this.getHeight()/2), "player", 50, 100);
-    }
+
+
+        if (this.cooldownTimer<0)
+            pc.level1.startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "enemy", 50, 100, 0);
+            this.cooldownTimer = this.cooldown;
+        }
+
 
     public void setHealth (int health){
         this.health += health;

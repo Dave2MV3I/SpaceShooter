@@ -47,6 +47,32 @@ public abstract class LevelControl extends GraphicalObject     {
     public void update(double dt){
         pc.getPlayer().update(dt);
 
+        //TODO Kollisonserkennung reparieren (fragt nicht wo das Problem ist, kp)
+
+            for (int i = 0; i < bullets.length; i++) {
+
+                if (bullets[i].isActive){
+
+                    for (int j = 0; j < spaceships.length; j++) {
+
+                        if (spaceships[j].isActive) {
+                            if (bullets[i].collidesWith(spaceships[j]) && bullets[i].getShooter().equals("player")) {
+                                spaceships[j].setHealth(bullets[i].damage);
+                                System.out.println ("bullet ist mit player kolidiert");
+                                bullets[i].isActive = false;
+                            }
+                        }
+                    }
+
+                    if (bullets[i].collidesWith(pc.getPlayer()) && bullets[i].getShooter().equals("enemy")) {
+                        pc.getPlayer().setHealth(bullets[i].damage);
+                        bullets[i].isActive = false;
+
+                    }
+
+                }
+
+            }
         // Kollisionsüberprüfung Player und Bullets (shooter nicht instanceof player)
 
         // Kollisionsüberprüfung jeder Bullet mit jedem Spaceship (shooter instanceof player)

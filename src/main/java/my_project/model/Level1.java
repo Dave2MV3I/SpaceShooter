@@ -21,7 +21,8 @@ public class Level1 extends LevelControl{
         }
         this.pc = pc;
 
-        spaceships[1].startSpaceship(300,300);
+        spaceships[1].startSpaceship(300,300, 0.5, pc);
+        bullets[1].startBullet(800, 400, "enemy", 20, 100, 100);
     }
 
     public void draw (DrawTool drawTool) {
@@ -47,14 +48,14 @@ public class Level1 extends LevelControl{
         }
     }
 
-    public void startBullet (double x, double y, String shooter, int damage, double speed){
+    public void startBullet (double x, double y, String shooter, int damage, double speedX, double speedY){
 
         for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i].isActive() == false){
-                bullets[i].startBullet(x, y, shooter, damage, speed);
+            if (!bullets[i].isActive()){
+                bullets[i].startBullet(x, y, shooter, damage, speedX, speedY);
                 break;
             }
-            break;
+              //break;
         }
     }
 

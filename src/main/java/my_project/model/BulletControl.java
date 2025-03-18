@@ -7,7 +7,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
 
-public class BulletControl  {
+/*public class BulletControl  {
     //Referenzen
 
         //Referenzen 1-5
@@ -314,4 +314,4 @@ public class BulletControl  {
 
         }
 
-}
+}*/

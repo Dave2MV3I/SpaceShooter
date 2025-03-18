@@ -11,29 +11,18 @@ public class Bullet extends GraphicalObject {
 
     double x, y;
     int damage;
-    double speed;
+    double speedX, speedY;
     private String shooter;
     public boolean isActive;
 
-    public BulletControl bulletControl;
+    //wpublic BulletControl bulletControl;
 
 
-    public Bullet(/*BulletControl bulletcontrol, double x, double y, int damage, double speed, String shooter*/) {
+    public Bullet() {
         this.isActive = false;
-
-        //this.bulletControl = bulletcontrol;
-        //this.bulletControl.addBullet(this);
-
-        //this.shooter = shooter;
-
-        //this.x = x;
-        //this.y = y;
-
-        //this.damage = damage;
-        //this.speed = speed;
     }
 
-    public void startBullet(double x, double y, String shooter, int damage, double speed) {
+    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY) {
         this.isActive = true;
 
         this.x = x;
@@ -42,7 +31,8 @@ public class Bullet extends GraphicalObject {
         this.shooter = shooter;
 
         this.damage = damage;
-        this.speed = speed;
+        this.speedX = speedX;
+        this.speedY = speedY;
     }
 
     public void draw(DrawTool drawTool) {
@@ -57,12 +47,17 @@ public class Bullet extends GraphicalObject {
 
     public void update(double dt) {
         if (isActive) {
-            this.x = this.x + speed * dt;
+            this.x = this.x + speedX * dt;
+            this.y = this.y + speedY * dt;
             if (this.x > Config.WINDOW_WIDTH){this.isActive = false;}
         }
     }
 
     public boolean isActive() {
         return isActive;
+    }
+
+    public String getShooter() {
+        return shooter;
     }
 }

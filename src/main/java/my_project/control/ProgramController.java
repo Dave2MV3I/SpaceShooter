@@ -56,7 +56,7 @@ public class ProgramController {
         viewController.createScene();
         Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
         viewController.draw(level1BG,1);
-        p1 = new Player(50,300, this);
+        p1 = new Player(50,300, this, 0.5);
         level1 = new Level1(64, 8, this);
         viewController.draw(level1,1);
         //viewController.draw(p1,1);
