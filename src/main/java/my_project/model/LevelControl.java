@@ -9,6 +9,7 @@ public abstract class LevelControl extends GraphicalObject     {
     private final ProgramController pc;
     Bullet[] bullets;
     SmallSpaceship[] spaceships;
+    protected double timer;
 
     public LevelControl(int nBullets, int nSpaceships, ProgramController pc) {
 
@@ -46,6 +47,7 @@ public abstract class LevelControl extends GraphicalObject     {
 
     @Override
     public void update(double dt){
+        timer += dt;
         pc.getPlayer().update(dt);
 
         //SOLVED Kollisonserkennung reparieren (fragt nicht wo das Problem ist, kp)

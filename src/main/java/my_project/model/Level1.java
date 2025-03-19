@@ -38,6 +38,7 @@ public class Level1 extends LevelControl{
     }
 
     public void update (double dt){
+        super.update(dt);
         for (int i = 0; i < bullets.length; i++) {
             bullets[i].update(dt);
         }
@@ -45,7 +46,6 @@ public class Level1 extends LevelControl{
         for (int i = 0; i < spaceships.length; i++) {
             spaceships[i].update(dt);
         }
-        super.update(dt);
     }
 
     public void startBullet (double x, double y, String shooter, int damage, double speedX, double speedY){

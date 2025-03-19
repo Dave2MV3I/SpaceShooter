@@ -49,6 +49,7 @@ public class Spaceship extends GraphicalObject{
 
     public void modifyHP(int points){
         this.health += points;
+        if (health <= 0) isActive = false;
     }
 
     public boolean isActive() {
