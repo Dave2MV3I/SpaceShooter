@@ -88,7 +88,7 @@ public class ProgramController {
 
     public void updateProgram(double dt){
         //this.zeichneBullets();
-        System.out.println(1/dt);
+        //System.out.println(1/dt); FPS ANZEIGE
         level1.update(dt);
         sback.update(dt);
 
