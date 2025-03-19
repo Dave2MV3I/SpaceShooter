@@ -39,6 +39,16 @@ public class Level1 extends LevelControl{
 
     public void update (double dt){
         super.update(dt);
+
+        if (timer > 1) {
+            for (int i = 0,  j < spaceships.length; I++){
+                if (!spaceships[j].isActive()){
+                   spaceships[j].activate spaceship(800, 800*Math.random(), 1, pc);
+                   break;
+                }
+            }
+            timer = timer%1
+        } // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
         for (int i = 0; i < bullets.length; i++) {
             bullets[i].update(dt);
         }
@@ -58,6 +68,7 @@ public class Level1 extends LevelControl{
             //break;
         }
     }
-
+    
+    public void startSpaceship
 
 }
