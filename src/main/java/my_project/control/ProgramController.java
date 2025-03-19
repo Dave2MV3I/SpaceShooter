@@ -28,7 +28,8 @@ public class ProgramController {
     // Referenzen
     private final ViewController viewController;
     private Player p1;
-    public Level1 level1;
+
+    private Level1 level1;
     StartBackground sback;
 
     public ProgramController(ViewController viewController){
@@ -56,7 +57,7 @@ public class ProgramController {
         viewController.createScene();
         Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
         viewController.draw(level1BG,1);
-        p1 = new Player(50,300, this, 0.5);
+        p1 = new Player(50,300, this);
         //p1.startSpaceship(50, 300, 5, this); ///////////////////////////////////////////////////
         level1 = new Level1(64, 8, this);
         viewController.draw(level1,1);
@@ -98,6 +99,9 @@ public class ProgramController {
 
     public Player getPlayer(){
         return p1;
+    }
+    public Level1 getLevel1() {
+        return level1;
     }
 
     public void processKeyboardInput(int key, boolean pressed) {

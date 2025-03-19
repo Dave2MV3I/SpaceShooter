@@ -13,7 +13,8 @@ public class Bullet extends GraphicalObject {
     int damage;
     double speedX, speedY;
     private String shooter;
-    public boolean isActive;
+
+    private boolean isActive;
 
     //wpublic BulletControl bulletControl;
 
@@ -49,12 +50,15 @@ public class Bullet extends GraphicalObject {
         if (isActive) {
             this.x = this.x + speedX * dt;
             this.y = this.y + speedY * dt;
-            if (this.x > Config.WINDOW_WIDTH){this.isActive = false;}
+            if (this.x > Config.WINDOW_WIDTH || this.x < 0 || this.y > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}
         }
     }
 
     public boolean isActive() {
         return isActive;
+    }
+    public void setIsActive(boolean active) {
+        isActive = active;
     }
 
     public String getShooter() {

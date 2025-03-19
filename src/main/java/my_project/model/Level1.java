@@ -21,8 +21,8 @@ public class Level1 extends LevelControl{
         }
         this.pc = pc;
 
-        spaceships[1].startSpaceship(300,300, 0.5, pc);
-        bullets[1].startBullet(800, 400, "enemy", 20, 100, 100);
+        //spaceships[1].startSpaceship(300,300, 0.5, pc);
+        //bullets[1].startBullet(800, 400, "enemy", 20, 100, 100);
     }
 
     public void draw(DrawTool drawTool) {
@@ -43,7 +43,7 @@ public class Level1 extends LevelControl{
         if (timer > 1) {
             for (int i = 0; i < spaceships.length; i++){
                 if (!spaceships[i].isActive()){
-                   spaceships[i].startSpaceship(800, 800*Math.random(), 1, pc);
+                   spaceships[i].startSpaceship(800, 800*Math.random(), pc);
                    break;
                 }
             }
