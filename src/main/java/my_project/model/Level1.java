@@ -29,7 +29,7 @@ public class Level1 extends LevelControl{
         super.draw(drawTool);
         //System.out.println("startBullet() wurde aufgerufen");
         for (int i = 0; i < bullets.length; i++) {
-            bullets[i].draw(drawTool);
+            if (bullets[i].isActive()) bullets[i].draw(drawTool);
         }
 
         for (int i = 0; i < spaceships.length; i++) {
@@ -50,11 +50,11 @@ public class Level1 extends LevelControl{
             timer = timer%1;
         } // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
         for (int i = 0; i < bullets.length; i++) {
-            bullets[i].update(dt);
+            if (bullets[i].isActive()) bullets[i].update(dt);
         }
 
         for (int i = 0; i < spaceships.length; i++) {
-            spaceships[i].update(dt);
+            if (spaceships[i].isActive()) spaceships[i].update(dt);
         }
     }
 

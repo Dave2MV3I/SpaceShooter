@@ -92,6 +92,7 @@ public class ProgramController {
         level1.update(dt);
         sback.update(dt);
 
+        System.out.println(p1.getHealth());
         //if (currentScene == 1){
         //   level1.zeichneLevel(new DrawTool());
         //}

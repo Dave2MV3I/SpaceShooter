@@ -16,6 +16,7 @@ public class Player extends Spaceship {
     private boolean floatRight = false;
     private boolean floatLeft = false;
 
+
     public int health;
     private int speed = 100;
 
@@ -108,5 +109,8 @@ public class Player extends Spaceship {
         this.health += points;
     }
 
+    public int getHealth() {
+        return health;
+    }
 
 }
