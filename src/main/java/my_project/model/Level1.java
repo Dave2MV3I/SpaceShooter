@@ -5,6 +5,9 @@ import my_project.control.ProgramController;
 
 public class Level1 extends LevelControl{
 
+    //Attribute
+    int counter = 0;
+
     //Referenzen
     private final ProgramController pc;
 
@@ -40,15 +43,22 @@ public class Level1 extends LevelControl{
     public void update (double dt){
         super.update(dt);
 
-        if (timer > 1) {
-            for (int i = 0; i < spaceships.length; i++){
-                if (!spaceships[i].isActive()){
-                   spaceships[i].startSpaceship(800, 800*Math.random(), pc);
-                   break;
+
+        //for (int i = 0; i < 7; i++) {
+
+            if (timer > 10 && counter < 8) {
+                for (int j = 0; j < spaceships.length; j++) {
+                    if (!spaceships[j].isActive()) {
+                        spaceships[j].startSpaceship(800, counter * 80, pc);
+                        counter += 1;
+                        timer = timer % 10;
+                        break;
+                    }
                 }
             }
-            timer = timer%1;
-        } // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
+        //}
+        // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
+
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].update(dt);
         }
