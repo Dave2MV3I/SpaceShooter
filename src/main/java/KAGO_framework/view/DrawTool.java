@@ -338,6 +338,11 @@ public class DrawTool {
         if (graphics2D!=null) graphics2D.drawString(text,(int)x,(int)y);
     }
 
+    public void drawNumber (double x, double y, int n){
+        System.out.println ("drawNumber aufgerufen");
+        if (graphics2D!=null) graphics2D.drawString(String.valueOf(n),(int)x,(int)y);
+    }
+
     /**
      * Passt die Schriftart und Größe der gezeichneten Texte an.
      * @param fontName Der Name der Schriftart, z.B. "Arial"

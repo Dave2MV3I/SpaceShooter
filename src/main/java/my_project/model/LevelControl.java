@@ -10,6 +10,7 @@ public abstract class LevelControl extends GraphicalObject     {
     Bullet[] bullets;
     SmallSpaceship[] spaceships;
     protected double timer;
+    protected double globalTimer;
 
     public LevelControl(int nBullets, int nSpaceships, ProgramController pc) {
 
@@ -22,11 +23,18 @@ public abstract class LevelControl extends GraphicalObject     {
     @Override
     public void draw(DrawTool drawTool){
         pc.getPlayer().draw(drawTool);
+        drawTool.setCurrentColor(255, 255, 255, 255);
+        drawTool.drawFilledRectangle (0, 0, 100, 48);
+        drawTool.setCurrentColor(0, 0, 0, 255);
+        drawTool.drawText (2, 10, "Dauer des Levels:");
+        drawTool.setCurrentColor(0, 0, 0, 255);
+        drawTool.drawText (44, 40, String.valueOf((int) globalTimer + "s"));
     }
 
     @Override
     public void update(double dt){
         timer += dt;
+        globalTimer += dt;
         pc.getPlayer().update(dt);
 
         //SOLVED Kollisonserkennung reparieren (fragt nicht wo das Problem ist, kp)
