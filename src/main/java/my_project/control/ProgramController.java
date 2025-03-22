@@ -64,17 +64,15 @@ public class ProgramController {
         //viewController.draw(p1,1);
         //viewController.draw(level1,1);
 
-
-
-        // Spielbildschirm (Szene 4)
+        // Spielbildschirm (Szene 3)
         viewController.createScene();
-        Picture loseText = new Picture(0,0,"src/main/resources/graphic/loseBG.png");
-        viewController.draw(loseText,4);
+        Picture loseText = new Picture(100,200,"src/main/resources/graphic/spaceBG.png");
+        viewController.draw(loseText,3);
 
         // Spielbildschirm (Szene 5)
         viewController.createScene();
         Picture winText = new Picture(0,0,"src/main/resources/graphic/winBG.png");
-        viewController.draw(winText,5);
+        viewController.draw(winText,4);
 
 
 
@@ -96,6 +94,11 @@ public class ProgramController {
         //if (currentScene == 1){
         //   level1.zeichneLevel(new DrawTool());
         //}
+
+        if (p1.getHealth() <= 0) {
+            currentScene = 3;
+            viewController.showScene(currentScene);
+        }
     }
 
     public Player getPlayer(){
@@ -118,5 +121,7 @@ public class ProgramController {
         if (key == KeyEvent.VK_SPACE && pressed) {
             p1.processSpace();
         }
+
+
     }
 }

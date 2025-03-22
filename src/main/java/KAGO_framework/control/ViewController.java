@@ -175,6 +175,8 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
         }
     }
 
+
+
     /**
      * Zeichnet und aktualisiert ein neues Objekt in der aktuellen Szene
      * @param d Das zu zeichnende Objekt.
