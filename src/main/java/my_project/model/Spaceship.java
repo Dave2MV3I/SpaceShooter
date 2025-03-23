@@ -29,7 +29,7 @@ public class Spaceship extends GraphicalObject{
                 this.cooldownTimer = cooldown;
 
                 double phi = Math.atan2(- this.y + pc.getPlayer().getY(), - this.x +pc.getPlayer().getX());
-                pc.getLevel1().startBullet(this.x, this.y + this.getHeight()/2, "enemy", 10, 64* Math.cos(phi), 64*Math.sin(phi) );
+                pc.getLevel(1).startBullet(this.x, this.y + this.getHeight()/2, "enemy", 10, 64* Math.cos(phi), 64*Math.sin(phi) );
 
             }else {
                 cooldownTimer = cooldownTimer - dt;

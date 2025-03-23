@@ -12,24 +12,29 @@ import java.awt.event.MouseEvent;
  */
 public class InputManager extends InteractiveGraphicalObject {
 
-    private final ProgramController programController;
+    private final ProgramController pc;
 
     /**
      * Objekterzeugung
-     * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
+     * @param pc Nötig als Objekt vom Controllerbereich, das informiert wird
      */
-    public InputManager(ProgramController programController){
-        this.programController = programController;
+    public InputManager(ProgramController pc){
+        this.pc = pc;
 
     }
 
     @Override
     public void keyPressed(int key){
-        programController.processKeyboardInput(key, true);
+        pc.processKeyboardInput(key, true);
     }
 
     @Override
     public void keyReleased(int key){
-        programController.processKeyboardInput(key, false);
+        pc.processKeyboardInput(key, false);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e){
+        if (e.getX()<100){pc.getUIManager().mousePressed(e);}
     }
 }

@@ -23,14 +23,17 @@ import java.awt.event.KeyEvent;
 public class ProgramController {
 
     //Attribute
-    private int currentScene;
+        private int currentScene;
 
     // Referenzen
-    private final ViewController viewController;
-    private Player p1;
+        private final ViewController viewController;
+        private Player p1;
 
-    private Level1 level1;
-    StartBackground sback;
+        private Level1 level1;
+        private StartBackground sback;
+        private UIManager ui;
+
+    // Methoden
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
@@ -38,81 +41,73 @@ public class ProgramController {
 
     public void startProgram() {
         // Vorbereitungen
-        InputManager inputManager = new InputManager(this);
-        currentScene = 0;
+            InputManager inputManager = new InputManager(this);
+            currentScene = 0;
+            ui = new UIManager();
 
         // Startbildschirm (Szene 0)
-        // Ton
-        viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-        //SoundController.playSound("startBGM");
-        // Bild
-        sback = new StartBackground();
-        viewController.draw(sback,0);
-        Picture titleText = new Picture(100, 200, "src/main/resources/graphic/title_text.png");
-        viewController.draw(titleText,0);
-        // Interaktion
-        viewController.register(inputManager,0);
+            // Ton
+                viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
+                //SoundController.playSound("startBGM");
+            // Bild
+                sback = new StartBackground();
+                viewController.draw(sback,0);
+                Picture titleText = new Picture(100, 200, "src/main/resources/graphic/title_text.png");
+                viewController.draw(titleText,0);
+            // Interaktion
+                viewController.register(inputManager,0);
 
         // Spielbildschirm (Szene 1)
-        viewController.createScene();
-        Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
-        viewController.draw(level1BG,1);
-        p1 = new Player(50,300, this);
-        //p1.startSpaceship(50, 300, 5, this); ///////////////////////////////////////////////////
-        level1 = new Level1(64, 8, this);
-        viewController.draw(level1,1);
-        //viewController.draw(p1,1);
-        //viewController.draw(level1,1);
+            viewController.createScene();
+            Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
+            viewController.draw(level1BG,1);
+            p1 = new Player(50,300, this);
+            level1 = new Level1(64, 8, this);
+            viewController.draw(level1,1);
+
+        // Spielbildschirm (Szene 2)
+            viewController.createScene();
 
         // Spielbildschirm (Szene 3)
-        viewController.createScene();
-        Picture loseText = new Picture(100,200,"src/main/resources/graphic/spaceBG.png");
-        viewController.draw(loseText,3);
+            viewController.createScene();
 
-        // Spielbildschirm (Szene 5)
-        viewController.createScene();
-        Picture winText = new Picture(0,0,"src/main/resources/graphic/winBG.png");
-        viewController.draw(winText,4);
+        // Endbildschirm (Szene 4)
+            viewController.createScene();
+            Picture loseText = new Picture(-1500,-1500,"src/main/resources/graphic/loseBG.png");
+            viewController.draw(loseText,4);
 
+        // Endbildschirm (Szene 5)
+            viewController.createScene();
+            Picture winText = new Picture(-1500,-1500,"src/main/resources/graphic/winBG.png");
+            viewController.draw(winText,5);
 
+        // Background Music
+            viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
+            // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
+            // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
 
-        viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
-        // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
-        // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
         viewController.register(inputManager,1);
-
-        // Endbildschirm (Szene 2)
     }
 
     public void updateProgram(double dt){
-        //this.zeichneBullets();
-        //System.out.println(1/dt); FPS ANZEIGE
-        level1.update(dt);
-        sback.update(dt);
+        if (currentScene == 0) sback.update(dt);
+        if (currentScene == 1) level1.update(dt);
 
-        System.out.println(p1.getHealth());
-        //if (currentScene == 1){
-        //   level1.zeichneLevel(new DrawTool());
-        //}
-
-        if (p1.getHealth() <= 0) {
-            currentScene = 3;
-            viewController.showScene(currentScene);
-        }
+        // System.out.println(1/dt ); FPS ANZEIGE
+         System.out.println(p1.getHealth());
     }
 
     public Player getPlayer(){
         return p1;
     }
-    public Level1 getLevel1() {
-        return level1;
-    }
+    public Level1 getLevel(int l) {if (l == 1) return level1; return null;}
+    public UIManager getUIManager(){return ui;}
 
     public void processKeyboardInput(int key, boolean pressed) {
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             currentScene = 1;
             viewController.showScene(currentScene);
-            SoundController.stopSound("startBGM");
+            //SoundController.stopSound("startBGM");
             //SoundController.playSound("level1BGM");
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
@@ -121,7 +116,10 @@ public class ProgramController {
         if (key == KeyEvent.VK_SPACE && pressed) {
             p1.processSpace();
         }
+    }
 
-
+    public void setCurrentScene(int s){
+        this.currentScene = s;
+        viewController.showScene(currentScene);
     }
 }
