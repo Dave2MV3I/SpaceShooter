@@ -31,7 +31,7 @@ public class Player extends Spaceship {
         this.x = x;
         this.y = y;
         hoverUp = true;
-        this.health = 50;
+        this.health = 20; //50
         this.pc = pc;
 
         this.cooldown = 0.5;
@@ -100,7 +100,7 @@ public class Player extends Spaceship {
         //new Bullet (this.pc.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
 
         if (this.cooldownTimer < 0) {
-            pc.getLevel1().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 50, 100, 0);
+            pc.getLevel(1).startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 50, 100, 0);
             this.cooldownTimer = this.cooldown;
         }
     }

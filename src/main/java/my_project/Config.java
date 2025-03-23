@@ -7,7 +7,7 @@ package my_project;
 public class Config {
 
     // Titel des Programms (steht oben in der Fenstertitelzeile)
-    public final static String WINDOW_TITLE = "Space Shooter (Projekt von ???) - Version 0.1";
+    public final static String WINDOW_TITLE = "Space Shooter (Projekt von Glühbirne, Blume & Wolf) - Version 0.1";
 
     // Konfiguration des Standardfensters: Anzeige und Breite des Programmfensters (Width) und Höhe des Programmfensters (Height)
     public final static boolean SHOW_DEFAULT_WINDOW = true;
