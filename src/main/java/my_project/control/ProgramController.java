@@ -73,12 +73,12 @@ public class ProgramController {
 
         // Endbildschirm (Szene 4)
             viewController.createScene();
-            Picture loseText = new Picture(-1500,-1500,"src/main/resources/graphic/loseBG.png");
+            Picture loseText = new Picture(0,0,"src/main/resources/graphic/loseBG.png");
             viewController.draw(loseText,4);
 
         // Endbildschirm (Szene 5)
             viewController.createScene();
-            Picture winText = new Picture(-1500,-1500,"src/main/resources/graphic/winBG.png");
+            Picture winText = new Picture(0,0,"src/main/resources/graphic/winBG.png");
             viewController.draw(winText,5);
 
         // Background Music
