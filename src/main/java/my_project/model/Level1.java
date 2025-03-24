@@ -40,8 +40,9 @@ public class Level1 extends LevelControl{
         }
     }
 
-    public void update (double dt){
+    public void update(double dt){
         super.update(dt);
+
         if (timer > 10 && counter < 8) {
             for (int j = 0; j < spaceships.length; j++) {
                 if (!spaceships[j].isActive()) {
@@ -52,8 +53,11 @@ public class Level1 extends LevelControl{
                 }
             }
         }
+        // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
-        // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
+        if (counter > 7 && noSpaceships()) {
+            pc.setCurrentScene(5);
+        }
 
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].update(dt);
@@ -67,6 +71,14 @@ public class Level1 extends LevelControl{
             pc.setCurrentScene(4);
         }
     }
+
+    public boolean noSpaceships(){
+        for (int i = 0; i< spaceships.length; i++){
+            if (spaceships[i].isActive()) return false;
+        }
+        return true;
+    }
+
 
     public void startBullet (double x, double y, String shooter, int damage, double speedX, double speedY){
 
