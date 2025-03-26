@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 
 import java.awt.*;
 
@@ -18,13 +19,13 @@ public class StartBackground extends GraphicalObject {
         drawTool.setCurrentColor(Color.black);
         drawTool.drawFilledRectangle(0,0,800,800);
         drawTool.setCurrentColor(Color.WHITE);
-        drawTool.drawFilledCircle(70 + starsX%800,30,2);
-        drawTool.drawFilledCircle(170 + starsX%800,60,2);
-        drawTool.drawFilledCircle(20 + starsX%800,230,2);
-        drawTool.drawFilledCircle(400 + starsX%800,130,2);
-        drawTool.drawFilledCircle(230 + starsX%800,530,2);
-        drawTool.drawFilledCircle(700 + starsX%800,630,2);
-        drawTool.drawFilledCircle(700 + starsX%800,230,2);
+        drawTool.drawFilledCircle((70 + starsX)% Config.WINDOW_HEIGHT,30,2);
+        drawTool.drawFilledCircle((170 + starsX)% Config.WINDOW_HEIGHT,60,2);
+        drawTool.drawFilledCircle((20 + starsX)% Config.WINDOW_HEIGHT,230,2);
+        drawTool.drawFilledCircle((400 + starsX)% Config.WINDOW_HEIGHT,130,2);
+        drawTool.drawFilledCircle((230 + starsX)% Config.WINDOW_HEIGHT,530,2);
+        drawTool.drawFilledCircle((700 + starsX)% Config.WINDOW_HEIGHT,630,2);
+        drawTool.drawFilledCircle((700 + starsX)% Config.WINDOW_HEIGHT,230,2);
 
         drawPlanet(500, 600, 60, 0, 0, 255, 150, true, drawTool);
     }
