@@ -2,8 +2,6 @@ package KAGO_framework.view.simple_gui;
 
 import KAGO_framework.control.Interactable;
 import KAGO_framework.view.DrawTool;
-import my_project.model.Player;
-import my_project.model.Spaceship;
 
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;

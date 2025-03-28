@@ -1,8 +1,9 @@
-package my_project.model;
+package my_project.control;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.control.ProgramController;
+import my_project.model.Bullet;
+import my_project.model.enemy.SmallSpaceship;
 
 public abstract class LevelControl extends GraphicalObject     {
 
@@ -51,7 +52,7 @@ public abstract class LevelControl extends GraphicalObject     {
                         //System.out.println("Spaceship existiert");
                         //System.out.println("Distance to Bullet: " + bullets[i].getDistanceTo(spaceships[j]));
                         if (bullets[i].collidesWith(spaceships[j]) && bullets[i].getShooter().equals("player")) {
-                            spaceships[j].modifyHP(-(bullets[i].damage));
+                            spaceships[j].modifyHP(-(bullets[i].getDamage()));
                             System.out.println("Bullet ist mit Gegner kollidiert");
                             //TODO funktion fuer bullet collision (frag joshi genaueres)
 
@@ -61,7 +62,7 @@ public abstract class LevelControl extends GraphicalObject     {
                 }
 
                 if (bullets[i].collidesWith(pc.getPlayer()) && bullets[i].getShooter().equals("enemy")) {
-                    pc.getPlayer().modifyHP(-(bullets[i].damage));
+                    pc.getPlayer().modifyHP(-(bullets[i].getDamage()));
                     bullets[i].setIsActive(false);
                 }
 

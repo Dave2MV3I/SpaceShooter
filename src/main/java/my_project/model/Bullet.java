@@ -10,7 +10,7 @@ public class Bullet extends GraphicalObject {
 
 
 
-    int damage;
+    private int damage;
     double speedX, speedY;
     private String shooter;
 
@@ -64,4 +64,6 @@ public class Bullet extends GraphicalObject {
     public String getShooter() {
         return shooter;
     }
+
+    public int getDamage() {return damage;}
 }

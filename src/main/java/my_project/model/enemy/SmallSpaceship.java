@@ -1,9 +1,9 @@
-package my_project.model;
+package my_project.model.enemy;
 
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 
-public class SmallSpaceship extends Spaceship{
+public class SmallSpaceship extends Spaceship {
 
     public SmallSpaceship(){
         this.setNewImage("src/main/resources/graphic/SpaceshipSmall.png");

@@ -1,9 +1,10 @@
-package my_project.model;
+package my_project.control;
 
 import KAGO_framework.view.DrawTool;
-import my_project.control.ProgramController;
+import my_project.model.Bullet;
+import my_project.model.enemy.SmallSpaceship;
 
-public class Level1 extends LevelControl{
+public class Level1 extends LevelControl {
 
     //Attribute
     int counter = 0;
@@ -36,7 +37,7 @@ public class Level1 extends LevelControl{
         }
 
         for (int i = 0; i < spaceships.length; i++) {
-            if (spaceships[i].isActive) spaceships[i].draw(drawTool);
+            if (spaceships[i].isActive()) spaceships[i].draw(drawTool);
         }
     }
 

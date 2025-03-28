@@ -1,7 +1,8 @@
-package my_project.model;
+package my_project.model.menue;
 
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
+
 import java.awt.event.MouseEvent;
 
 public class UIManager extends InteractiveGraphicalObject {

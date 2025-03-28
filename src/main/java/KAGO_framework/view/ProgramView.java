@@ -3,8 +3,6 @@ package KAGO_framework.view;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.InteractiveGraphicalObject;
 import my_project.control.ProgramController;
-import my_project.model.Player;
-import my_project.model.Spaceship;
 
 import java.awt.event.MouseEvent;
 

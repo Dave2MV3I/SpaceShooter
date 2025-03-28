@@ -3,8 +3,6 @@ package KAGO_framework.model;
 import KAGO_framework.Config;
 import KAGO_framework.view.DrawTool;
 import KAGO_framework.control.Drawable;
-import my_project.model.Player;
-import my_project.model.Spaceship;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

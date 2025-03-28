@@ -1,10 +1,10 @@
 package my_project.control;
 
-import KAGO_framework.control.Drawable;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.view.DrawTool;
 import my_project.model.*;
+import my_project.model.menue.UIManager;
+import my_project.model.player.Player;
 import my_project.view.InputManager;
 
 import java.awt.event.KeyEvent;
@@ -48,7 +48,7 @@ public class ProgramController {
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-                //SoundController.playSound("startBGM");
+                SoundController.playSound("startBGM");
             // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
@@ -107,8 +107,8 @@ public class ProgramController {
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             currentScene = 1;
             viewController.showScene(currentScene);
-            //SoundController.stopSound("startBGM");
-            //SoundController.playSound("level1BGM");
+            SoundController.stopSound("startBGM");
+            SoundController.playSound("level1BGM");
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
             p1.processWASD(key, pressed);

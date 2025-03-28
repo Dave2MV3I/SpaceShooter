@@ -1,8 +1,8 @@
-package my_project.model;
+package my_project.model.player;
 
-import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
+import my_project.model.enemy.Spaceship;
 
 import java.awt.event.KeyEvent;
 

@@ -1,8 +1,6 @@
 package KAGO_framework.control;
 
 import KAGO_framework.view.DrawTool;
-import my_project.model.Player;
-import my_project.model.Spaceship;
 
 /**
  * Interface für Objekte, die man zeichnen und steuern kann.
