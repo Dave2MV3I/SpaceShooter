@@ -23,7 +23,7 @@ public abstract class LevelControl extends GraphicalObject     {
 
     @Override
     public void draw(DrawTool drawTool){
-        pc.getUIManager().draw(drawTool);
+        pc.getMenu().draw(drawTool);
         pc.getPlayer().draw(drawTool);
         /*drawTool.setCurrentColor(255, 255, 255, 255);
         drawTool.drawFilledRectangle (0, 0, 100, 48);
@@ -37,7 +37,7 @@ public abstract class LevelControl extends GraphicalObject     {
     public void update(double dt){
         timer += dt;
         globalTimer += dt;
-        pc.getUIManager().update(dt);
+        pc.getMenu().update(dt);
         pc.getPlayer().update(dt);
 
         //SOLVED Kollisonserkennung reparieren (fragt nicht wo das Problem ist, kp)

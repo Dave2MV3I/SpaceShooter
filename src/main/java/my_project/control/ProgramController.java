@@ -3,7 +3,7 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.*;
-import my_project.model.menue.UIManager;
+import my_project.model.menu.Menu;
 import my_project.model.player.Player;
 import my_project.view.InputManager;
 
@@ -31,7 +31,7 @@ public class ProgramController {
 
         private Level1 level1;
         private StartBackground sback;
-        private UIManager ui;
+        private Menu ui;
 
     // Methoden
 
@@ -43,7 +43,7 @@ public class ProgramController {
         // Vorbereitungen
             InputManager inputManager = new InputManager(this);
             currentScene = 0;
-            ui = new UIManager();
+            ui = new Menu();
 
         // Startbildschirm (Szene 0)
             // Ton
@@ -101,7 +101,7 @@ public class ProgramController {
         return p1;
     }
     public Level1 getLevel(int l) {if (l == 1) return level1; return null;}
-    public UIManager getUIManager(){return ui;}
+    public Menu getMenu(){return ui;}
 
     public void processKeyboardInput(int key, boolean pressed) {
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {

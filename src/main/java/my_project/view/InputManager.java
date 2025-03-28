@@ -35,6 +35,6 @@ public class InputManager extends InteractiveGraphicalObject {
 
     @Override
     public void mouseClicked(MouseEvent e){
-        if (e.getX()<100){pc.getUIManager().mousePressed(e);}
+        if (e.getX()<100){pc.getMenu().mousePressed(e);}
     }
 }
