@@ -27,7 +27,7 @@ public class Player extends Spaceship {
 
     public Player(double x, double y, ProgramController pc) {
         super();
-        this.setNewImage("src/main/resources/graphic/spaceship.png");
+        this.setNewImage("src/main/resources/graphic/spaceships/spaceship.png");
         this.x = x;
         this.y = y;
         hoverUp = true;

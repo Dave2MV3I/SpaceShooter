@@ -6,8 +6,8 @@ import my_project.Config;
 public class SmallSpaceship extends Spaceship {
 
     public SmallSpaceship(){
-        this.setNewImage("src/main/resources/graphic/SpaceshipSmall.png");
-        // https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - Flaticon
+        this.setNewImage("src/main/resources/graphic/spaceships/SpaceshipSmall.png");
+        //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - Flaticon
 
         this.speed = 25;
         this.cooldown = 5;

@@ -5,7 +5,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.enemy.SmallSpaceship;
 
-public abstract class LevelControl extends GraphicalObject     {
+public abstract class LevelControl extends GraphicalObject{
 
     private final ProgramController pc;
     Bullet[] bullets;
@@ -23,7 +23,7 @@ public abstract class LevelControl extends GraphicalObject     {
 
     @Override
     public void draw(DrawTool drawTool){
-        pc.getMenu().draw(drawTool);
+        pc.getUI().draw(drawTool);
         pc.getPlayer().draw(drawTool);
         /*drawTool.setCurrentColor(255, 255, 255, 255);
         drawTool.drawFilledRectangle (0, 0, 100, 48);
@@ -37,7 +37,7 @@ public abstract class LevelControl extends GraphicalObject     {
     public void update(double dt){
         timer += dt;
         globalTimer += dt;
-        pc.getMenu().update(dt);
+        pc.getUI().update(dt);
         pc.getPlayer().update(dt);
 
         //SOLVED Kollisonserkennung reparieren (fragt nicht wo das Problem ist, kp)

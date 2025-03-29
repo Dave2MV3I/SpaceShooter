@@ -3,7 +3,6 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.*;
-import my_project.model.menu.Menu;
 import my_project.model.player.Player;
 import my_project.view.InputManager;
 
@@ -31,7 +30,7 @@ public class ProgramController {
 
         private Level1 level1;
         private StartBackground sback;
-        private Menu ui;
+        private UserInterface ui;
 
     // Methoden
 
@@ -43,7 +42,7 @@ public class ProgramController {
         // Vorbereitungen
             InputManager inputManager = new InputManager(this);
             currentScene = 0;
-            ui = new Menu();
+            ui = new UserInterface();
 
         // Startbildschirm (Szene 0)
             // Ton
@@ -59,7 +58,7 @@ public class ProgramController {
 
         // Spielbildschirm (Szene 1)
             viewController.createScene();
-            Picture level1BG = new Picture(0,0,"src/main/resources/graphic/spaceBG.png");
+            Picture level1BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
             viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
             level1 = new Level1(64, 8, this);
@@ -73,12 +72,12 @@ public class ProgramController {
 
         // Endbildschirm (Szene 4)
             viewController.createScene();
-            Picture loseText = new Picture(0,0,"src/main/resources/graphic/loseBG.png");
+            Picture loseText = new Picture(0,0,"src/main/resources/graphic/backgrounds/loseBG.png");
             viewController.draw(loseText,4);
 
         // Endbildschirm (Szene 5)
             viewController.createScene();
-            Picture winText = new Picture(0,0,"src/main/resources/graphic/winBG.png");
+            Picture winText = new Picture(0,0,"src/main/resources/graphic/backgrounds/winBG.png");
             viewController.draw(winText,5);
 
         // Background Music
@@ -101,7 +100,7 @@ public class ProgramController {
         return p1;
     }
     public Level1 getLevel(int l) {if (l == 1) return level1; return null;}
-    public Menu getMenu(){return ui;}
+    public UserInterface getUI(){return ui;}
 
     public void processKeyboardInput(int key, boolean pressed) {
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
