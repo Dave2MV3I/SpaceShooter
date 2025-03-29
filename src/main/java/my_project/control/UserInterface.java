@@ -8,18 +8,19 @@ public class UserInterface extends GraphicalObject{
 
     // Attribute
         private boolean menuVisible = false;
+        private final int visibleInTheBeninging = 4;
 
     // Arrays
-        private final String[] visiblePaths = {
+        private final String[] paths = {
                 "src/main/resources/graphic/menu/settings.png", // SETTINGS
                 "src/main/resources/graphic/menu/settings.png", // LEVEL
                 "src/main/resources/graphic/menu/settings.png", // LEVEL_TIMER
                 "src/main/resources/graphic/menu/settings.png",  // GLOBAL_TIMER
-        };
-        private final String[] invisiblePaths = {
+
                 "src/main/resources/graphic/menu/settings.png", // MUSIC
                 "src/main/resources/graphic/menu/settings.png" // SHIELD
         };
+
         private final String[] buttonTexts = {
                 "Settings", // SETTINGS
                 "Level", // LEVEL
@@ -30,7 +31,7 @@ public class UserInterface extends GraphicalObject{
                 "Shield" // SHIELD
         };
 
-        private MenuButton[] buttons = new MenuButton[visiblePaths.length + invisiblePaths.length];
+        private MenuButton[] buttons = new MenuButton[paths.length];
 
     // Referenzen
 
@@ -41,11 +42,12 @@ public class UserInterface extends GraphicalObject{
         double height = 30;
 
         // So viele Buttons erstellen, wie es Pfade gibt, richtiger Pfad als Parameter übergeben; buttons[] mit ihnen befüllen
-        for (int i = 0; i < visiblePaths.length; i++) {
-            buttons[i] = new MenuButton(20, 20+i*(height+10), width, height, visiblePaths[i],true, true, buttonTexts[i]);
-        }
-        for (int i = 0; i < invisiblePaths.length; i++) {
-            buttons[visiblePaths.length+i] = new MenuButton(20, (20+visiblePaths.length*(height+10))+(20+i*(height+10)), width, height, visiblePaths[i],true, false, buttonTexts[visiblePaths.length+i]);
+        for (int i = 0; i < paths.length; i++) {
+            buttons[i] = new MenuButton(
+                    20, 20+i*(height+10), width, height, paths[i],
+                    true, i <= visibleInTheBeninging, buttonTexts[i]
+                    // Bei buttonVisible wird true übergeben, wenn der Pfad zu einem am Anfang sichtbaren Button gehört, also i <= visibleInTheBeninging
+            );
         }
     }
 
