@@ -1,21 +1,29 @@
 package my_project.model.menu;
 
-import my_project.model.Picture;
+import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
-public class MenuButton extends Picture {
-    private double radius; // Nicht der Radius des GraphicalObjects, deshalb neu deklariert
+import javax.swing.*;
+
+public class MenuButton extends GraphicalObject {
+    private final double radius; // Nicht der Radius des GraphicalObjects, deshalb neu deklariert
 
     private boolean settingActive; // Die Einstellung ist aktiviert, z.B. BG-Musik
     private boolean buttonVisible; // Der Button dieser Einstellung wird angezeigt
+    private String buttonText;
 
-    public MenuButton(double x, double y, String path, double width, double height, boolean settingActive, boolean buttonVisible) {
-        super(x+0.5*height, y, path); //Icon bekommt eigene Koordinaten
+    private Icon icon;
+
+    public MenuButton(double x, double y, double width, double height, String path, boolean settingActive, boolean buttonVisible, String buttonText) {
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
         this.radius = 0.5*height;
         this.settingActive = settingActive;
         this.buttonVisible = buttonVisible;
+        this.icon = new Icon(path, x, y, width, height);
+        this.buttonText = buttonText;
     }
 
     @Override
@@ -28,13 +36,15 @@ public class MenuButton extends Picture {
         else drawTool.setCurrentColor(0,0,255,100);
 
         drawTool.drawFilledCircle(x+radius, y+radius, radius);
-        drawTool.drawFilledRectangle(x+radius, y, width-height, height);
+        drawTool.drawFilledRectangle(x+radius, y, width-2*radius, height);
         drawTool.drawFilledCircle(x+width-radius, y+radius, radius);
 
         // Icon zeichnen
-        super.draw(drawTool);
+        icon.draw(drawTool);
 
         // Text zeichnen
+        drawTool.setCurrentColor(0,0,0,255);
+        drawTool.drawText(x+radius+30, y+1.3*radius, buttonText ); //Position an Schriftgröße anpassen?
 
     }
 
@@ -53,5 +63,21 @@ public class MenuButton extends Picture {
     }
 
 
+
+    private class Icon extends GraphicalObject{
+        double buttonX, buttonY;
+        double buttonWidth, buttonHeight;
+        public Icon(String path, double x, double y, double width, double height) {
+            setNewImage(path);
+            buttonX = x;
+            buttonY = y;
+            buttonWidth = width;
+            buttonHeight = height;
+        }
+        @Override
+        public void draw(DrawTool drawTool){
+            drawTool.drawImage(getMyImage(),buttonX+0.5*buttonHeight, buttonY+((buttonHeight-20)/2)); //Icon bekommt eigene Koordinaten; 20px als Iconhöhe
+        }
+    }
 
 }

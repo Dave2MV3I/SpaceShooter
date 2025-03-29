@@ -11,19 +11,25 @@ public class UserInterface extends GraphicalObject{
 
     // Arrays
         private final String[] visiblePaths = {
-                "src/main/resources/graphic/menu/button.png", // MUSIC
-                "src/main/resources/graphic/menu/button.png", // LEVEL
-                "src/main/resources/graphic/menu/button.png", // LEVEL_TIMER
-                "src/main/resources/graphic/menu/button.png",  // GLOBAL_TIMER
-                "src/main/resources/graphic/menu/button.png"  // SHIELD
+                "src/main/resources/graphic/menu/settings.png", // SETTINGS
+                "src/main/resources/graphic/menu/settings.png", // LEVEL
+                "src/main/resources/graphic/menu/settings.png", // LEVEL_TIMER
+                "src/main/resources/graphic/menu/settings.png",  // GLOBAL_TIMER
         };
         private final String[] invisiblePaths = {
-                "src/main/resources/graphic/menu/button.png", //
-                "src/main/resources/graphic/menu/button.png", //
-                "src/main/resources/graphic/menu/button.png", //
-                "src/main/resources/graphic/menu/button.png",  //
-                "src/main/resources/graphic/menu/button.png"  //
+                "src/main/resources/graphic/menu/settings.png", // MUSIC
+                "src/main/resources/graphic/menu/settings.png" // SHIELD
         };
+        private final String[] buttonTexts = {
+                "Settings", // SETTINGS
+                "Level", // LEVEL
+                "Timer lvl", // LEVEL_TIMER
+                "Timer glb",  // GLOBAL_TIMER
+
+                "BG-Music", // MUSIC
+                "Shield" // SHIELD
+        };
+
         private MenuButton[] buttons = new MenuButton[visiblePaths.length + invisiblePaths.length];
 
     // Referenzen
@@ -36,10 +42,10 @@ public class UserInterface extends GraphicalObject{
 
         // So viele Buttons erstellen, wie es Pfade gibt, richtiger Pfad als Parameter übergeben; buttons[] mit ihnen befüllen
         for (int i = 0; i < visiblePaths.length; i++) {
-            buttons[i] = new MenuButton(20, 20+i*(height+10), visiblePaths[i], width, height, true, true);
+            buttons[i] = new MenuButton(20, 20+i*(height+10), width, height, visiblePaths[i],true, true, buttonTexts[i]);
         }
         for (int i = 0; i < invisiblePaths.length; i++) {
-            buttons[visiblePaths.length+i] = new MenuButton(20, (20+visiblePaths.length*(height+10))+(20+i*(height+10)), visiblePaths[i], width, height, true, false);
+            buttons[visiblePaths.length+i] = new MenuButton(20, (20+visiblePaths.length*(height+10))+(20+i*(height+10)), width, height, visiblePaths[i],true, false, buttonTexts[visiblePaths.length+i]);
         }
     }
 
@@ -59,11 +65,12 @@ public class UserInterface extends GraphicalObject{
      * Methode ändert den Status einer bestimmten Einstellung.
      *
      * @param index Die Indexe der Einstellungen:<br>
-     *              0 = MUSIC<br>
+     *              0 = SETTINGS<br>
      *              1 = LEVEL<br>
      *              2 = LEVEL_TIMER<br>
      *              3 = GLOBAL_TIMER<br>
-     *              4 = SHIELD<br>
+     *              4 = MUSIC<br>
+     *              5 = SHIELD<br>
      */
 
     public void changeSettingStatus(int index) {
