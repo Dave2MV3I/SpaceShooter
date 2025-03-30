@@ -8,6 +8,7 @@ public class Level1 extends LevelControl {
 
     //Attribute
     int counter = 0;
+    boolean levelEnded = false;
 
     //Referenzen
     private final ProgramController pc;
@@ -54,10 +55,14 @@ public class Level1 extends LevelControl {
                 }
             }
         }
-        // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
+        // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
-            pc.setCurrentScene(5);
+            if (!levelEnded) {
+                pc.startLevel2();
+                System.out.println("Szene auf 2 gesetzt");
+                levelEnded = true;
+            }
         }
 
         for (int i = 0; i < bullets.length; i++) {
@@ -68,9 +73,7 @@ public class Level1 extends LevelControl {
             if (spaceships[i].isActive()) spaceships[i].update(dt);
         }
 
-        if (pc.getPlayer().getHealth() <= 0) {
-            pc.setCurrentScene(4);
-        }
+
     }
 
     public boolean noSpaceships(){
@@ -81,16 +84,7 @@ public class Level1 extends LevelControl {
     }
 
 
-    public void startBullet (double x, double y, String shooter, int damage, double speedX, double speedY){
 
-        for (int i = 0; i < bullets.length; i++) {
-            if (!bullets[i].isActive()){
-                bullets[i].startBullet(x, y, shooter, damage, speedX, speedY);
-                break;
-            }
-            //break;
-        }
-    }
 
 
 }

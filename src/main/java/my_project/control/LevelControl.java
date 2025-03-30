@@ -65,13 +65,26 @@ public abstract class LevelControl extends GraphicalObject{
                     pc.getPlayer().modifyHP(-(bullets[i].getDamage()));
                     bullets[i].setIsActive(false);
                 }
-
             }
+        }
 
+        if (pc.getPlayer().getHealth() <= 0) {
+            pc.setCurrentScene(4);
         }
         // Kollisionsüberprüfung Player und Bullets (shooter nicht instanceof player)
 
         // Kollisionsüberprüfung jeder Bullet mit jedem Spaceship (shooter instanceof player)
+    }
+
+    public void startBullet (double x, double y, String shooter, int damage, double speedX, double speedY){
+
+        for (int i = 0; i < bullets.length; i++) {
+            if (!bullets[i].isActive()){
+                bullets[i].startBullet(x, y, shooter, damage, speedX, speedY);
+                break;
+            }
+            //break;
+        }
     }
 
 }
