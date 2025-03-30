@@ -33,7 +33,7 @@ public class Player extends Spaceship {
         hoverUp = true;
         this.health = 20; //50
         this.pc = pc;
-
+        maxHealth = 20;
         this.cooldown = 0.5;
         this.cooldownTimer = 0.5;
         this.speed = 100;
@@ -42,7 +42,7 @@ public class Player extends Spaceship {
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.drawImage(getMyImage(),x,y+hoverY);
+        super.draw(drawTool);
     }
 
     @Override
