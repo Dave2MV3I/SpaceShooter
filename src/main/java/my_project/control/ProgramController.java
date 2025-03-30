@@ -28,7 +28,9 @@ public class ProgramController {
         private final ViewController viewController;
         private Player p1;
 
-        private Level1 level1;
+
+
+    private LevelControl currentLevel;
         private Level2 level2;
         private StartBackground sback;
         private UserInterface ui;
@@ -58,19 +60,21 @@ public class ProgramController {
                 viewController.register(inputManager,0);
 
         // Spielbildschirm (Szene 1)
+
             viewController.createScene();
             Picture level1BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
             viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
-            level1 = new Level1(64, 8, this);
-            viewController.draw(level1,1);
+            currentLevel = new Level1(64, 8, this);
+            viewController.draw(this.getCurrentLevel(),1);
+
 
         // Spielbildschirm (Szene 2)
             viewController.createScene();
-            Picture level2BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
+            /*Picture level2BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
             viewController.draw(level2BG,2);
             level2 = new Level2(64, 8, this);
-            viewController.draw(level2,2);
+            viewController.draw(level2,2);*/
 
         // Spielbildschirm (Szene 3)
             viewController.createScene();
@@ -94,18 +98,20 @@ public class ProgramController {
     }
 
     public void updateProgram(double dt){
-        if (currentScene == 0) sback.update(dt);
-        if (currentScene == 1) level1.update(dt);
-        if (currentScene == 2) level2.update(dt);
 
-        // System.out.println(1/dt ); FPS ANZEIGE
+        if (currentScene == 0) sback.update(dt);
+        if (currentScene == 1) currentLevel.update(dt);
+
+        //if (currentScene == 2) level2.update(dt);
+
+        //System.out.println(1/dt ); /*FPS ANZEIGE*/
         //System.out.println(p1.getHealth());
     }
 
     public Player getPlayer(){
         return p1;
     }
-    public Level1 getLevel(int l) {if (l == 1) return level1; return null;}
+    public Level1 getLevel(int l) {if (l == 1) return (Level1) currentLevel; return null;}
     public UserInterface getUI(){return ui;}
 
     public void processKeyboardInput(int key, boolean pressed) {
@@ -126,5 +132,13 @@ public class ProgramController {
     public void setCurrentScene(int s){
         this.currentScene = s;
         viewController.showScene(currentScene);
+    }
+
+    public void startLevel2(){
+        currentLevel = new Level2(64, 8, this);
+    }
+
+    public LevelControl getCurrentLevel() {
+        return currentLevel;
     }
 }

@@ -100,7 +100,7 @@ public class Player extends Spaceship {
         //new Bullet (this.pc.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
 
         if (this.cooldownTimer < 0) {
-            pc.getLevel(1).startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 50, 100, 0);
+            pc.getCurrentLevel().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 50, 100, 0);
             this.cooldownTimer = this.cooldown;
         }
     }
