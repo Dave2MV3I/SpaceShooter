@@ -1,4 +1,4 @@
 package my_project.model.userInterface;
 
-public class StatusBlock {
+public class StatusDisplay {
 }

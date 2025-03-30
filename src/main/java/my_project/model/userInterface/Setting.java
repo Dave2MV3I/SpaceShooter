@@ -1,10 +1,38 @@
 package my_project.model.userInterface;
 
-import KAGO_framework.model.GraphicalObject;
-import KAGO_framework.view.DrawTool;
+public class Setting {
 
-public class Setting extends GraphicalObject {
-    private final double radius; // Nicht der Radius des GraphicalObjects, deshalb neu deklariert
+
+    // Attribute
+    private String name;
+    private String iconPath;
+    private boolean active;
+
+    // Arrays
+
+
+    // Referenzen
+
+
+    // Konstruktor
+    public Setting(String name, String iconPath, boolean active) {
+        this.name = name;
+        this.iconPath = iconPath;
+        this.active = active;
+    }
+
+    // Methoden
+    public String getName(){return name;}
+    public boolean isActive(){return active;}
+    public String getIconPath(){return iconPath;}
+    public void switchActivity() {
+        active = !active;
+    }
+
+
+
+
+    /*private final double radius; // Nicht der Radius des GraphicalObjects, deshalb neu deklariert
 
     private boolean settingActive; // Die Einstellung ist aktiviert, z.B. BG-Musik
     private boolean buttonVisible; // Der Button dieser Einstellung wird angezeigt
@@ -47,14 +75,22 @@ public class Setting extends GraphicalObject {
             // Text zeichnen
             drawTool.setCurrentColor(0,0,0,255);
             drawTool.drawText(x+radius+30, y+1.3*radius, buttonText ); // TODO Position an Schriftgröße und Font anpassen
+        } else {
+
+            if (settingActive) { drawTool.setCurrentColor(47,76,57,255);}
+            drawTool.drawFilledCircle(x+radius, y+radius, radius);
+            drawTool.drawFilledCircle(x+width-radius, y+radius, radius);
+            drawTool.drawFilledRectangle(x+radius, y, width-2*radius, height);
+
+            // Icon zeichnen
+            icon.draw(drawTool);
+
+            // Text zeichnen
         }
     }
 
     public boolean isSettingActive() {
         return settingActive;
-    }
-    public void setSettingActive(boolean settingActive) {
-        this.settingActive = settingActive;
     }
 
     public boolean isButtonVisible() {
@@ -80,6 +116,6 @@ public class Setting extends GraphicalObject {
         public void draw(DrawTool drawTool){
             drawTool.drawImage(getMyImage(),buttonX+0.5*buttonHeight, parentButton.getY()+((buttonHeight-20)/2)); //Icon bekommt eigene Koordinaten; 20px als Iconhöhe
         }
-    }
+    }*/
 
 }
