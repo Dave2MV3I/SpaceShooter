@@ -2,120 +2,92 @@ package my_project.control;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.model.userInterface.Setting;
+import my_project.model.userInterface.*;
 
 import java.awt.event.MouseEvent;
 
 public class UserInterface extends GraphicalObject {
 
     // Attribute
-        private double buttonWidth = 120;
-        private double buttonHeight = 30;
-        private double buffer = 10;
-        private boolean menuOpen = false;
-        private final int settingsWithStatusBlock = 2;
+    private final int totalSettings = 4;
+    private final int totalStatusDisplays = 3;
+    private final double buttonHeight = 30;
+    private final double buffer = 10;
+    private boolean menuOpen = false;
 
     // Arrays
-        private final String[] paths = {
-                // Without StatusBlock
-                "src/main/resources/graphic/menu/settings.png", // SETTINGS
-                "src/main/resources/graphic/menu/settings.png", // MUSIC
+    private final Setting[] settings = new Setting[totalSettings];
+    private final StatusDisplay[] statusDisplays = new StatusDisplay[totalStatusDisplays];
+    private final BlockWithIcon[] settingButtons = new BlockWithIcon[totalSettings];
 
-                // With StatusBlock
-                "src/main/resources/graphic/menu/settings.png", // LEVEL
-                "src/main/resources/graphic/menu/settings.png", // LEVEL_TIMER
-                "src/main/resources/graphic/menu/settings.png"  // GLOBAL_TIMER
-        };
-
-        private final String[] buttonTexts = {
-                "Settings", // SETTINGS
-                "BG-Music", // MUSIC
-
-                "Level", // LEVEL
-                "Timer lvl", // LEVEL_TIMER
-                "Timer glb"  // GLOBAL_TIMER
-        };
-
-        private Setting[] settings = new Setting[paths.length];
 
     // Referenzen
+    private SettingButton settingButton;
 
 
-    // Methoden
+    // Konstruktor
     public UserInterface() {
-        // So viele Buttons erstellen, wie es Pfade gibt, richtiger Pfad als Parameter übergeben; settings[] mit ihnen befüllen
-        for (int i = 0; i < paths.length; i++) {
-            settings[i] = new Setting(
-                    20, 20+i*(buttonHeight+buffer), buttonWidth, buttonHeight, paths[i],
-                    buttonTexts[i], true, i < 1, i < settingsWithStatusBlock
-            );
+        // Objekte für Einstellungen erstellen
+        // Mit Statusanzeige
+        settings[0] = new Setting("Level", "src/main/resources/graphic/menu/settings.png", true);
+        settings[1] = new Setting("LevelTimer", "src/main/resources/graphic/menu/settings.png", false);
+        settings[2] = new Setting("GlobalTimer", "src/main/resources/graphic/menu/settings.png", true);
+
+        // Ohne Statusanzeige
+        settings[3] = new Setting("Music", "src/main/resources/graphic/menu/settings.png", true);
+        //settings[4] = new Setting("HP-Bar bottomed", "src/main/resources/graphic/menu/settings.png", true, false);
+
+        //Buttons erstellen
+        settingButton = new SettingButton(20, 20, 30, true, "src/main/resources/graphic/menu/settings.png",this);
+        for (int i = 0; i < settings.length; i++) {
+            settingButtons[i] = new BlockWithIcon(20, 60+ i*(buttonHeight+buffer), buttonHeight, false, settings[i]);
+        }
+
+        //Statusanzeigen erstellen
+        double shift = 0;
+        for (int i = 0; i < statusDisplays.length; i++) {
+            statusDisplays[i] = new StatusDisplay(220 + shift, 20, buttonHeight, true, settings[i]);
+            shift += statusDisplays[i].getWidth() + 10;
         }
     }
 
-    @Override
-    public void update(double dt){
-    }
-
+    // Methoden
     @Override
     public void draw(DrawTool drawTool){
-        for (Setting setting : settings) {
-            if (setting.isButtonVisible()) setting.draw(drawTool);
+        settingButton.draw(drawTool);
+        for (BlockWithIcon button : settingButtons) {
+            if (button.getVisible()) button.draw(drawTool);
+        }
+        for (int i = 0; i < statusDisplays.length; i++) {
+            if (settings[i].isActive()) statusDisplays[i].draw(drawTool);
+        }
+    }
+
+    public boolean getMenuOpen() {return menuOpen;}
+
+    public void mouseClicked(MouseEvent e){
+        if (settingButton.collidesWith(e.getX(), e.getY())){
+            menuOpen = !menuOpen;
+            menuClicked();
+        } else {
+            for (int i = 0; i < settingButtons.length; i++){
+                if (settingButtons[i].collidesWith(e.getX(), e.getY())){
+                    settings[i].switchActivity();
+                    settingButtons[i].switchColours();
+                }
+            }
         }
     }
 
     public void menuClicked(){
         if (menuOpen){
-            for (int i = 0; i < settings.length; i++) {
-                settings[i].setY(20+i*(buttonHeight+buffer));
-                settings[i].setButtonVisible(true);
+            for (int i = 0; i < settingButtons.length; i++) {
+                settingButtons[i].setY(60+i*(buttonHeight+buffer));
+                settingButtons[i].setVisibility(true);
             }
         } else {
-            for (int i = 1; i < settings.length; i++) {
-                settings[i].setButtonVisible(false);
-            }
-
-            // Kommentiert man die "setButtonVisible(false)"-Schleife aus und entfert folgenden Kommentar,
-            // so bleiben aktive Einstellungen im Spiel sichtbar
-            /*
-            for (int i = 1; i < settings.length; i++) {
-                if (!settings[i].isSettingActive()) settings[i].setButtonVisible(false);
-            }
-
-            int visibles = 0;
-            Setting[] visibleButtons;
-
-            for (int i = 0; i < settings.length; i++) {
-                if (settings[i].isButtonVisible()) visibles++;
-            }
-            visibleButtons = new Setting[visibles];
-
-            int index = 0;
-            for (int i = 0; i < settings.length; i++) {
-                if (settings[i].isButtonVisible()) {
-                    visibleButtons[index] = settings[i];
-                    index++;  // Den Index erhöhen, damit der nächste sichtbare Button die nächste Stelle im array visibleButtons bekommt
-                }
-            }
-
-            for (int i = 0; i < visibleButtons.length; i++) {
-                visibleButtons[i].setY(20+i*(buttonHeight+buffer));
-            }
-            */
-        }
-    }
-
-    public void mouseClicked(MouseEvent e){
-        if (settings[0].collidesWith(e.getX(), e.getY())){
-            menuOpen = !menuOpen;
-            menuClicked();
-            if (menuOpen){
-                settings[0].setSettingActive(true);
-            } else settings[0].setSettingActive(false);
-        } else {
-            for (int i = 0; i < settings.length; i++){
-                if (settings[i].collidesWith(e.getX(), e.getY())){
-                    settings[i].setSettingActive(!settings[i].isSettingActive());
-                }
+            for (int i = 0; i < settingButtons.length; i++) {
+                settingButtons[i].setVisibility(false);
             }
         }
     }
