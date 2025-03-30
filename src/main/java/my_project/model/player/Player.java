@@ -31,7 +31,7 @@ public class Player extends Spaceship {
         this.x = x;
         this.y = y;
         hoverUp = true;
-        this.health = 20; //50
+        this.health = 50; //50
         this.pc = pc;
 
         this.cooldown = 0.5;

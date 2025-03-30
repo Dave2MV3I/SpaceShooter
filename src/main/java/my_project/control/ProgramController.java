@@ -29,6 +29,7 @@ public class ProgramController {
         private Player p1;
 
         private Level1 level1;
+        private Level2 level2;
         private StartBackground sback;
         private UserInterface ui;
 
@@ -66,6 +67,10 @@ public class ProgramController {
 
         // Spielbildschirm (Szene 2)
             viewController.createScene();
+            Picture level2BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
+            viewController.draw(level2BG,2);
+            level2 = new Level2(64, 8, this);
+            viewController.draw(level2,2);
 
         // Spielbildschirm (Szene 3)
             viewController.createScene();
@@ -91,6 +96,7 @@ public class ProgramController {
     public void updateProgram(double dt){
         if (currentScene == 0) sback.update(dt);
         if (currentScene == 1) level1.update(dt);
+        if (currentScene == 2) level2.update(dt);
 
         // System.out.println(1/dt ); FPS ANZEIGE
         //System.out.println(p1.getHealth());

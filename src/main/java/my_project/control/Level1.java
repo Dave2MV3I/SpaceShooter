@@ -57,7 +57,8 @@ public class Level1 extends LevelControl {
         // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
-            pc.setCurrentScene(5);
+            pc.setCurrentScene(2);
+            System.out.println ("Szene auf 2 gesetzt");
         }
 
         for (int i = 0; i < bullets.length; i++) {
@@ -68,9 +69,7 @@ public class Level1 extends LevelControl {
             if (spaceships[i].isActive()) spaceships[i].update(dt);
         }
 
-        if (pc.getPlayer().getHealth() <= 0) {
-            pc.setCurrentScene(4);
-        }
+
     }
 
     public boolean noSpaceships(){
