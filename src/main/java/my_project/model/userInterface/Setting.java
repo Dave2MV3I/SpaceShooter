@@ -1,29 +1,29 @@
-package my_project.model.menu;
+package my_project.model.userInterface;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
-import javax.swing.*;
-
-public class MenuButton extends GraphicalObject {
+public class Setting extends GraphicalObject {
     private final double radius; // Nicht der Radius des GraphicalObjects, deshalb neu deklariert
 
     private boolean settingActive; // Die Einstellung ist aktiviert, z.B. BG-Musik
     private boolean buttonVisible; // Der Button dieser Einstellung wird angezeigt
+    private boolean hasStatusBlock;
     private String buttonText;
 
     private Icon icon;
 
-    public MenuButton(double x, double y, double width, double height, String path, boolean settingActive, boolean buttonVisible, String buttonText) {
+    public Setting(double x, double y, double width, double height, String path, String buttonText, boolean settingActive, boolean buttonVisible, boolean hasStatusBlock) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.radius = 0.5*height;
+        this.buttonText = buttonText;
         this.settingActive = settingActive;
         this.buttonVisible = buttonVisible;
+        this.hasStatusBlock = hasStatusBlock;
         this.icon = new Icon(path, this, x, width, height);
-        this.buttonText = buttonText;
     }
 
     @Override
@@ -65,10 +65,10 @@ public class MenuButton extends GraphicalObject {
     }
 
     private class Icon extends GraphicalObject{
-        private final MenuButton parentButton;
+        private final Setting parentButton;
         double buttonX, buttonWidth, buttonHeight;
 
-        public Icon(String path, MenuButton parentButton, double x, double width, double height) {
+        public Icon(String path, Setting parentButton, double x, double width, double height) {
             setNewImage(path);
             this.parentButton = parentButton;
             buttonX = x;
