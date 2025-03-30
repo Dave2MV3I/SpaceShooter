@@ -93,7 +93,7 @@ public class ProgramController {
         if (currentScene == 1) level1.update(dt);
 
         // System.out.println(1/dt ); FPS ANZEIGE
-         System.out.println(p1.getHealth());
+        //System.out.println(p1.getHealth());
     }
 
     public Player getPlayer(){
