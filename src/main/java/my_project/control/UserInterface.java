@@ -28,21 +28,27 @@ public class UserInterface extends GraphicalObject {
     // Konstruktor
     public UserInterface() {
         // Objekte für Einstellungen erstellen
-        settings[0] = new Setting("Music", "src/main/resources/graphic/menu/settings.png", true);
-        settings[1] = new Setting("Level", "src/main/resources/graphic/menu/settings.png", true);
-        settings[2] = new Setting("LevelTimer", "src/main/resources/graphic/menu/settings.png", false);
-        settings[3] = new Setting("GlobalTimer", "src/main/resources/graphic/menu/settings.png", true);
-        //settings[4] = new Setting("HP-Bar below", "src/main/resources/graphic/menu/settings.png", true, false);
+        // Mit Statusanzeige
+        settings[0] = new Setting("Level", "src/main/resources/graphic/menu/settings.png", true);
+        settings[1] = new Setting("LevelTimer", "src/main/resources/graphic/menu/settings.png", false);
+        settings[2] = new Setting("GlobalTimer", "src/main/resources/graphic/menu/settings.png", true);
+
+        // Ohne Statusanzeige
+        settings[3] = new Setting("Music", "src/main/resources/graphic/menu/settings.png", true);
+        //settings[4] = new Setting("HP-Bar bottomed", "src/main/resources/graphic/menu/settings.png", true, false);
 
         //Buttons erstellen
         settingButton = new SettingButton(20, 20, 30, true, "src/main/resources/graphic/menu/settings.png",this);
-        for (int i = 0; i < totalSettings; i++) {
+        for (int i = 0; i < settings.length; i++) {
             settingButtons[i] = new BlockWithIcon(20, 60+ i*(buttonHeight+buffer), buttonHeight, false, settings[i]);
         }
 
-//        statusDisplays[0] = new StatusDisplay();
-//        statusDisplays[1] = new StatusDisplay();
-//        statusDisplays[2] = new StatusDisplay();
+        //Statusanzeigen erstellen
+        double shift = 0;
+        for (int i = 0; i < statusDisplays.length; i++) {
+            statusDisplays[i] = new StatusDisplay(220 + shift, 20, buttonHeight, true, settings[i]);
+            shift += statusDisplays[i].getWidth() + 10;
+        }
     }
 
     // Methoden
@@ -51,6 +57,9 @@ public class UserInterface extends GraphicalObject {
         settingButton.draw(drawTool);
         for (BlockWithIcon button : settingButtons) {
             if (button.getVisible()) button.draw(drawTool);
+        }
+        for (int i = 0; i < statusDisplays.length; i++) {
+            if (settings[i].isActive()) statusDisplays[i].draw(drawTool);
         }
     }
 
@@ -80,34 +89,6 @@ public class UserInterface extends GraphicalObject {
             for (int i = 0; i < settingButtons.length; i++) {
                 settingButtons[i].setVisibility(false);
             }
-
-            // Kommentiert man die "setButtonVisible(false)"-Schleife aus und entfert folgenden Kommentar,
-            // so bleiben aktive Einstellungen im Spiel sichtbar
-            /*
-            for (int i = 1; i < settings.length; i++) {
-                if (!settings[i].isSettingActive()) settings[i].setButtonVisible(false);
-            }
-
-            int visibles = 0;
-            Setting[] visibleButtons;
-
-            for (int i = 0; i < settings.length; i++) {
-                if (settings[i].isButtonVisible()) visibles++;
-            }
-            visibleButtons = new Setting[visibles];
-
-            int index = 0;
-            for (int i = 0; i < settings.length; i++) {
-                if (settings[i].isButtonVisible()) {
-                    visibleButtons[index] = settings[i];
-                    index++;  // Den Index erhöhen, damit der nächste sichtbare Button die nächste Stelle im array visibleButtons bekommt
-                }
-            }
-
-            for (int i = 0; i < visibleButtons.length; i++) {
-                visibleButtons[i].setY(20+i*(buttonHeight+buffer));
-            }
-            */
         }
     }
 }

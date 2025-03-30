@@ -69,7 +69,7 @@ public class BlockWithIcon extends GraphicalObject{
     public void update(double dt){
     }
 
-    private double calculateWidth(String name) {
+    protected double calculateWidth(String name) {
         // TODO Width an Textlänge anpassen
         return name.length()*15 + buttonRadius*2 + 20;
     }
