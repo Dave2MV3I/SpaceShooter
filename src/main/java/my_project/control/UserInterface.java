@@ -75,6 +75,7 @@ public class UserInterface extends GraphicalObject {
                     settings[i].switchActivity();
                     settingButtons[i].switchColours();
                 }
+//                if (i==4)
             }
         }
     }
@@ -90,6 +91,19 @@ public class UserInterface extends GraphicalObject {
                 settingButtons[i].setVisibility(false);
             }
         }
+    }
+
+    /**
+     * @param index <br>
+     * 1- Level <br>
+     * 2- LevelTimer <br>
+     * 3- GlobalTimer <br>
+     * 4- Music <br>
+     *
+     */
+
+    public boolean getActive(int index){
+        return settings[index].isActive();
     }
 }
 
