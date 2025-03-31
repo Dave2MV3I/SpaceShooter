@@ -23,6 +23,7 @@ public class ProgramController {
 
     //Attribute
         private int currentScene;
+        private String currentSong;
 
     // Referenzen
         private final ViewController viewController;
@@ -31,7 +32,6 @@ public class ProgramController {
 
 
     private LevelControl currentLevel;
-        private Level2 level2;
         private StartBackground sback;
         private UserInterface ui;
 
@@ -50,7 +50,8 @@ public class ProgramController {
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-                SoundController.playSound("startBGM");
+                //SoundController.playSound("startBGM");
+                currentSong = "startBGM";
             // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
@@ -101,7 +102,7 @@ public class ProgramController {
 
         if (currentScene == 0) sback.update(dt);
         if (currentScene == 1) currentLevel.update(dt);
-
+        //if (ui.getActive(3)) SoundController.playSound(currentSong);
         //if (currentScene == 2) level2.update(dt);
 
         //System.out.println(1/dt ); /*FPS ANZEIGE*/
@@ -118,8 +119,11 @@ public class ProgramController {
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             currentScene = 1;
             viewController.showScene(currentScene);
-            SoundController.stopSound("startBGM");
-            SoundController.playSound("level1BGM");
+//            SoundController.stopSound("startBGM");
+            SoundController.stopSound(currentSong);
+//            SoundController.playSound("level1BGM");
+            currentSong = "level1BGM";
+            SoundController.playSound(currentSong);
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
             p1.processWASD(key, pressed);
@@ -135,7 +139,7 @@ public class ProgramController {
     }
 
     public void startLevel2(){
-        currentLevel = new Level2(64, 8, this);
+//        currentLevel = new Level2(64, 8, this);
     }
 
     public LevelControl getCurrentLevel() {
