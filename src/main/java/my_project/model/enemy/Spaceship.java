@@ -48,7 +48,10 @@ public class Spaceship extends GraphicalObject{
         this.x = x;
         this.y = y;
         this.pc = pc;
-
+        if (this instanceof SmallSpaceship){
+        this.health = 20;
+        this.maxHealth = this.health;
+        }
 
     }
 

@@ -135,7 +135,7 @@ public class ProgramController {
     }
 
     public void startLevel2(){
-        //currentLevel = new Level2(64, 8, this);
+        currentLevel = new Level2(64, 8, this);
         //controlMusic();
     }
 
