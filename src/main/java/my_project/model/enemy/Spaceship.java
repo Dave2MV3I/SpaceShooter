@@ -3,12 +3,12 @@ package my_project.model.enemy;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
+import my_project.model.player.Player;
 
 
 public class Spaceship extends GraphicalObject{
-
-    protected int health;
     protected int maxHealth;
+    protected int health;
     protected double speed;
     protected boolean isActive;
     protected ProgramController pc;
@@ -21,6 +21,7 @@ public class Spaceship extends GraphicalObject{
     public void draw(DrawTool drawTool){
         //drawTool.drawFilledCircle (this.x, this.y, 1);
         drawTool.drawImage(getMyImage(),x,y);
+
         drawHealthBar(drawTool);
     }
 
@@ -47,6 +48,8 @@ public class Spaceship extends GraphicalObject{
         this.x = x;
         this.y = y;
         this.pc = pc;
+
+
     }
 
         public void modifyHP(int points) {
@@ -61,7 +64,12 @@ public class Spaceship extends GraphicalObject{
     private void drawHealthBar(DrawTool drawTool) {
         double barWidth = 40;
         double barHeight = 5;
-        double healthPercentage = (double) health / maxHealth;
+        double h = this.health;
+        double mH = this.maxHealth;
+
+        double healthPercentage =  (h/mH);
+        System.out.println(healthPercentage);
+
         drawTool.setCurrentColor(255, 0, 0, 255);
         drawTool.drawFilledRectangle(x, y - 10, barWidth, barHeight);
         drawTool.setCurrentColor(0, 255, 0, 255);

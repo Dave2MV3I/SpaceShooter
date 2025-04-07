@@ -17,7 +17,7 @@ public class Player extends Spaceship {
     private boolean floatLeft = false;
 
 
-    public int health;
+    //public int health;
     private int speed = 100;
 
     private double cooldown;
@@ -31,12 +31,15 @@ public class Player extends Spaceship {
         this.x = x;
         this.y = y;
         hoverUp = true;
-        this.health = 50; //50
+
         this.pc = pc;
-        maxHealth = 20;
+
         this.cooldown = 0.5;
         this.cooldownTimer = 0.5;
         this.speed = 100;
+
+        this.health = 50;
+        this.maxHealth = 50;
     }
 
 
@@ -48,6 +51,7 @@ public class Player extends Spaceship {
     @Override
     public void update(double dt/*, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player*/) {
 
+        //System.out.println(health);
         // Bewegung auf der Stelle
         if (hoverUp) {
             hoverY = hoverY - 8 * dt;
@@ -100,7 +104,7 @@ public class Player extends Spaceship {
         //new Bullet (this.pc.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
 
         if (this.cooldownTimer < 0) {
-            pc.getCurrentLevel().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 50, 100, 0);
+            pc.getCurrentLevel().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 10, 100, 0);
             this.cooldownTimer = this.cooldown;
         }
     }
