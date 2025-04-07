@@ -23,7 +23,7 @@ public class ProgramController {
 
     //Attribute
         private int currentScene;
-
+        private String currentSong;
     // Referenzen
         private final ViewController viewController;
         private Player p1;
@@ -136,9 +136,18 @@ public class ProgramController {
 
     public void startLevel2(){
         //currentLevel = new Level2(64, 8, this);
+        //controlMusic();
     }
 
     public LevelControl getCurrentLevel() {
         return currentLevel;
+    }
+
+
+    public void toggleMusic(String newPath){
+        currentSong = newPath;
+        if (ui.getActive(3)) {
+            SoundController.playSound(currentSong);
+        } else SoundController.stopSound(currentSong);
     }
 }

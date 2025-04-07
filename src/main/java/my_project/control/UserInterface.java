@@ -26,7 +26,7 @@ public class UserInterface extends GraphicalObject {
 
 
     // Konstruktor
-    public UserInterface() {
+    public UserInterface(ProgramController pc) {
         // Objekte für Einstellungen erstellen
         // Mit Statusanzeige
         settings[0] = new Setting("Level", "src/main/resources/graphic/menu/settings.png", true);
@@ -75,7 +75,10 @@ public class UserInterface extends GraphicalObject {
                     settings[i].switchActivity();
                     settingButtons[i].switchColours();
                 }
-//                if (i==4)
+               if (i==3) {
+                   settings[3].switchActivity();
+                   //pc.toggleMusic(pc.getCurrentSong());
+               }
             }
         }
     }
@@ -95,10 +98,10 @@ public class UserInterface extends GraphicalObject {
 
     /**
      * @param index <br>
-     * 1- Level <br>
-     * 2- LevelTimer <br>
-     * 3- GlobalTimer <br>
-     * 4- Music <br>
+     * 0- Level <br>
+     * 1- LevelTimer <br>
+     * 2- GlobalTimer <br>
+     * 3- Music <br>
      *
      */
 
