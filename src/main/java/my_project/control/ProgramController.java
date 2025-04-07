@@ -45,7 +45,7 @@ public class ProgramController {
         // Vorbereitungen
             InputManager inputManager = new InputManager(this);
             currentScene = 0;
-            ui = new UserInterface();
+            ui = new UserInterface(this);
 
         // Startbildschirm (Szene 0)
             // Ton
