@@ -45,13 +45,13 @@ public class ProgramController {
         // Vorbereitungen
             InputManager inputManager = new InputManager(this);
             currentScene = 0;
-            ui = new UserInterface();
+            ui = new UserInterface(this);
 
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 //SoundController.playSound("startBGM");
-                currentSong = "startBGM";
+                toggleMusic("startBGM");
             // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
@@ -119,11 +119,7 @@ public class ProgramController {
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             currentScene = 1;
             viewController.showScene(currentScene);
-//            SoundController.stopSound("startBGM");
-            SoundController.stopSound(currentSong);
-//            SoundController.playSound("level1BGM");
-            currentSong = "level1BGM";
-            SoundController.playSound(currentSong);
+            toggleMusic("level1BGM");
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
             p1.processWASD(key, pressed);
@@ -140,9 +136,17 @@ public class ProgramController {
 
     public void startLevel2(){
 //        currentLevel = new Level2(64, 8, this);
+//        controlMusic();
     }
 
     public LevelControl getCurrentLevel() {
         return currentLevel;
+    }
+
+    public void toggleMusic(String newPath){
+        currentSong = newPath;
+        if (ui.getActive(3)) {
+            SoundController.playSound(currentSong);
+        } else SoundController.stopSound(currentSong);
     }
 }
