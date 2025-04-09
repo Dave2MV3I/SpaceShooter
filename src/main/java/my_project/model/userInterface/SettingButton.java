@@ -1,11 +1,41 @@
 package my_project.model.userInterface;
 
 import KAGO_framework.view.DrawTool;
-import my_project.control.UserInterface;
+import my_project.control.SettingController;
 
 public class SettingButton extends BlockWithIcon{
 
-    private UserInterface ui;
+
+    private int[] activeColor = {47,76,57,255};
+    private int[] inactiveColor = {194,59,34,255};
+    private final SettingController sc;
+    private final int index;
+
+    public SettingButton(double x, double y, double height, boolean visible, String iconPath, SettingController sc, int index, String text) {
+        super(x, y, height, visible, iconPath, text);
+        this.sc = sc;
+        this.index = index;
+        if (sc.getActivity(index)) {
+            color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
+        } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
+
+    }
+
+    @Override
+    public void draw(DrawTool drawTool){
+        if (sc.getActivity(index)) {
+            color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
+        } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
+    }
+
+    public void switchColours() {
+        /*if (isActive()) {
+            color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
+        } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
+        */
+    }
+
+    /*private UserInterface ui;
 
     public SettingButton(double x, double y, double height, boolean visible, String iconPath, UserInterface ui) {
         super(x, y, height, visible, iconPath);
@@ -40,5 +70,5 @@ public class SettingButton extends BlockWithIcon{
             icon.draw(drawTool);
         }
 
-    }
+    }*/
 }

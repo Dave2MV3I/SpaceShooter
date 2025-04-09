@@ -2,48 +2,31 @@ package my_project.model.userInterface;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.control.SettingController;
 
 public class BlockWithIcon extends GraphicalObject{
 
     // Attribute
     protected boolean visible;
     protected final double buttonRadius;  // Nicht der Radius des GraphicalObjects, deshalb neu deklariert
+    protected final double iconWidth = 20;
+    private String text;
 
     // Arrays
-    private int[] activeColor = {47,76,57,255};
-    private int[] inactiveColor = {194,59,34,255};
-    private int[] color = new int[4];
-
+    protected int[] color = new int[4];
 
     // Referenzen
-    private Setting setting;
     protected Icon icon;
 
-
     // Konstruktoren
-    public BlockWithIcon(double x, double y, double height, boolean visible, Setting setting) {
-        this.setting = setting;
+    public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath, String text) {
         this.x = x;
         this.y = y;
-        this.width = calculateWidth(setting.getName());
+        this.width = calculateWidth(text);
         this.height = height;
         this.visible = visible;
         this.buttonRadius = height/2;
-
-        if (setting.isActive()) {
-            color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
-        } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
-
-        icon = new Icon(this, setting.getIconPath());
-    }
-    public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath) {
-        this.setting = setting;
-        this.x = x;
-        this.y = y;
-        this.width = calculateWidth("Settings");
-        this.height = height;
-        this.visible = visible;
-        this.buttonRadius = height/2;
+        this.text = text;
 
         icon = new Icon(this, iconPath);
     }
@@ -62,7 +45,7 @@ public class BlockWithIcon extends GraphicalObject{
 
         // Text zeichnen
         drawTool.setCurrentColor(0,0,0,255);
-        drawTool.drawText(x+buttonRadius+30, y+1.3*buttonRadius, setting.getName()); // TODO Position an Schriftgröße und Font anpassen
+        drawTool.drawText(x+buttonRadius+30, y+1.3*buttonRadius, text); // TODO Position an Schriftgröße und Font anpassen
     }
 
     @Override
@@ -78,13 +61,6 @@ public class BlockWithIcon extends GraphicalObject{
     public void setVisibility(boolean visible) {this.visible = visible;}
 
     public double getButtonRadius(){return buttonRadius;}
-
-    public void switchColours() {
-        if (setting.isActive()) {
-            color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
-        } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
-    }
-
 
     // Private Klasse
     protected class Icon extends GraphicalObject {

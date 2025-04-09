@@ -1,19 +1,63 @@
-package my_project.control;
+package my_project.model.userInterface;
 
 import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.model.userInterface.*;
+import my_project.control.ProgramController;
+import my_project.control.SettingController;
 
 import java.awt.event.MouseEvent;
 
-public class UserInterface extends GraphicalObject {
+public class UserInterface extends InteractiveGraphicalObject {
 
     // Attribute
+    private boolean menuOpen;
+    private final double buffer = 10;
+    private final BlockWithIcon[] settingButtons = new BlockWithIcon[5];
+    //private final StatusDisplay[] statusDisplays = new StatusDisplay[3];
+    private final double buttonHeight = 30;
+    // totals: 4 setting buttons, 3 status displays up to now
+
+    // Referenzen
+    private ProgramController pc;
+    private SettingController sc;
+
+    // Methoden
+    public UserInterface(ProgramController pc) {
+        this.pc = pc;
+        /*settingButtons[0] = new BlockWithIcon();
+        settingButtons[1] = new BlockWithIcon();
+        settingButtons[2] = new BlockWithIcon();
+        settingButtons[3] = new BlockWithIcon();
+        settingButtons[4] = new BlockWithIcon();*/
+        sc = new SettingController(settingButtons.length);
+        /*statusDisplays[0] = ;
+        statusDisplays[1] = ;
+        statusDisplays[2] = ;*/
+    }
+
+    @Override
+    public void draw(DrawTool drawTool){
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+    }
+
+    public void menuClicked(){
+
+    }
+
+    public boolean getMenuOpen(){
+        return menuOpen;
+    }
+
+    /*// Attribute
     private final int totalSettings = 4;
     private final int totalStatusDisplays = 3;
-    private final double buttonHeight = 30;
-    private final double buffer = 10;
-    private boolean menuOpen = false;
+
 
     // Arrays
     private final Setting[] settings = new Setting[totalSettings];
@@ -96,17 +140,17 @@ public class UserInterface extends GraphicalObject {
         }
     }
 
-    /**
+    *//**
      * @param index <br>
      * 0- Level <br>
      * 1- LevelTimer <br>
      * 2- GlobalTimer <br>
      * 3- Music <br>
      *
-     */
+     *//*
 
     public boolean getActive(int index){
         return settings[index].isActive();
-    }
+    }*/
 }
 

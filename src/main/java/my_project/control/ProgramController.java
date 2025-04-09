@@ -4,6 +4,7 @@ import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.*;
 import my_project.model.player.Player;
+import my_project.model.userInterface.UserInterface;
 import my_project.view.InputManager;
 
 import java.awt.event.KeyEvent;
@@ -145,9 +146,9 @@ public class ProgramController {
 
 
     public void toggleMusic(String newPath){
-        currentSong = newPath;
+        /*currentSong = newPath;
         if (ui.getActive(3)) {
             SoundController.playSound(currentSong);
-        } else SoundController.stopSound(currentSong);
+        } else SoundController.stopSound(currentSong);*/
     }
 }
