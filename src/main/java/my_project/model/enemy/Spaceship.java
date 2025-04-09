@@ -71,7 +71,7 @@ public class Spaceship extends GraphicalObject{
         double mH = this.maxHealth;
 
         double healthPercentage =  (h/mH);
-        System.out.println(healthPercentage);
+        //System.out.println(healthPercentage);
 
         drawTool.setCurrentColor(255, 0, 0, 255);
         drawTool.drawFilledRectangle(x, y - 10, barWidth, barHeight);

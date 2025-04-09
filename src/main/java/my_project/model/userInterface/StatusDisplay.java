@@ -1,20 +1,15 @@
 package my_project.model.userInterface;
 
 import KAGO_framework.view.DrawTool;
+import my_project.control.SettingController;
 
 public class StatusDisplay extends BlockWithIcon{
-    public StatusDisplay(double x, double y, double height, boolean visible, String iconPath, String text) {
-        super(x, y, height, visible, iconPath, text);
-        // Eigentlich variable statt text, z.B. int oder double
-    }
+    static double widthNeeded;
 
-    public StatusDisplay(double x, double y, double height, boolean visible, String iconPath, int text) {
-        super(x, y, height, visible, iconPath, String.valueOf(text));
-        // Eigentlich variable statt text, z.B. int oder double
-    }
-
-    public StatusDisplay(double x, double y, double height, boolean visible, String iconPath, double text) {
-        super(x, y, height, visible, iconPath, String.valueOf(text));
+    public StatusDisplay(double x, double y, double height, boolean visible, String iconPath, int index, UserInterface ui) {
+        super(x, y, height, visible, iconPath, "status", ui);
+        widthNeeded += width + 20;
+        // text setzen mit sc und getter, text aktualisieren
     }
 
     /*private Setting setting;

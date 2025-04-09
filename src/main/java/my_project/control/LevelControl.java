@@ -18,7 +18,7 @@ public abstract class LevelControl extends GraphicalObject{
         bullets = new Bullet[nBullets];
         spaceships = new SmallSpaceship[nSpaceships];
         this.pc = pc;
-
+        pc.getViewController().register(pc.getUI());
     }
 
     @Override

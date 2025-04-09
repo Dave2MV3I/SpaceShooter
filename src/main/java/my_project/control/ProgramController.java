@@ -2,6 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
+import KAGO_framework.view.DrawTool;
 import my_project.model.*;
 import my_project.model.player.Player;
 import my_project.model.userInterface.UserInterface;
@@ -25,11 +26,10 @@ public class ProgramController {
     //Attribute
         private int currentScene;
         private String currentSong;
+
     // Referenzen
         private final ViewController viewController;
         private Player p1;
-
-
 
     private LevelControl currentLevel;
         //private Level2 level2;
@@ -51,7 +51,7 @@ public class ProgramController {
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-                SoundController.playSound("startBGM");
+                toggleMusic("startBGM");
             // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
@@ -104,9 +104,6 @@ public class ProgramController {
         if (currentScene == 1) currentLevel.update(dt);
 
         //if (currentScene == 2) level2.update(dt);
-
-        //System.out.println(1/dt ); /*FPS ANZEIGE*/
-        //System.out.println(p1.getHealth());
     }
 
     public Player getPlayer(){
@@ -119,8 +116,7 @@ public class ProgramController {
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             currentScene = 1;
             viewController.showScene(currentScene);
-            SoundController.stopSound("startBGM");
-            SoundController.playSound("level1BGM");
+            toggleMusic("level1BGM");
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
             p1.processWASD(key, pressed);
@@ -143,12 +139,19 @@ public class ProgramController {
     public LevelControl getCurrentLevel() {
         return currentLevel;
     }
+    public ViewController getViewController(){return viewController;}
 
 
-    public void toggleMusic(String newPath){
-        /*currentSong = newPath;
-        if (ui.getActive(3)) {
-            SoundController.playSound(currentSong);
-        } else SoundController.stopSound(currentSong);*/
+    public void toggleMusic(String song){
+        if (song != null){
+            if (currentSong != song){
+                SoundController.stopSound(currentSong);
+                if (song != "current") currentSong = song;
+            }
+            if (ui.getSC().getActivity(0)){
+                SoundController.playSound(currentSong);
+            }
+
+        } else SoundController.stopSound(currentSong);
     }
 }

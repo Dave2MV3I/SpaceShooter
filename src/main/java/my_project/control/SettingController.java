@@ -2,7 +2,8 @@ package my_project.control;
 
 public class SettingController {
 
-    private boolean[] settings;
+    private boolean[] settings = {true, true, false, false, false, false};
+    private String[] settingNames = {"music", "sounds", "level StatusDisplay", "levelTimer StatusDisplay", "globalTimer StatusDisplay", "FPS StatusDisplay"};
 
     // Methoden
     public SettingController(int size) {
@@ -17,6 +18,7 @@ public class SettingController {
      * 2 - level StatusDisplay
      * 3 - levelTimer StatusDisplay
      * 4 - globalTimer StatusDisplay
+     * 5 - FPS StatusDisplay
      */
 
     public void toggleSetting(int i){
@@ -31,11 +33,31 @@ public class SettingController {
      * 2 - level StatusDisplay
      * 3 - levelTimer StatusDisplay
      * 4 - globalTimer StatusDisplay
+     * 5 - FPS StatusDisplay
      */
 
     public boolean getActivity(int i){
         return settings[i];
     }
+
+
+    /**
+     *
+     * @param i
+     * 0 - music
+     * 1 - sounds
+     * 2 - level StatusDisplay
+     * 3 - levelTimer StatusDisplay
+     * 4 - globalTimer StatusDisplay
+     * 5 - FPS StatusDisplay
+     */
+
+    public String getSettingName(int i){
+        return settingNames[i];
+    }
+}
+    //System.out.println(1/dt ); /*FPS ANZEIGE*/
+    //System.out.println(p1.getHealth());
 
     /*
     private String name;
@@ -70,4 +92,3 @@ public class SettingController {
         active = !active;
     }
     public double getVariable(){return variable;}*/
-}
