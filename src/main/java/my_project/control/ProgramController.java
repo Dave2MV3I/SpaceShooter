@@ -96,6 +96,7 @@ public class ProgramController {
             // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
 
         viewController.register(inputManager,1);
+        viewController.register(ui, 0);
     }
 
     public void updateProgram(double dt){

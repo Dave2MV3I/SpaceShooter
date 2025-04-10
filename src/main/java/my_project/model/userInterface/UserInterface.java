@@ -6,6 +6,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 import my_project.control.SettingController;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class UserInterface extends InteractiveGraphicalObject {
@@ -80,8 +81,14 @@ public class UserInterface extends InteractiveGraphicalObject {
         }
     }
 
+    @Override
+    public void keyPressed(int k){
+        if (k == KeyEvent.VK_F){
+            System.out.println("MUSIC: " + String.valueOf(sc.getActivity(0)));
+        }
+    }
+
     public void menuClicked(){
-        System.out.print(sc.getActivity(0));
         if (menuOpen){
             for (int i = 0; i < settingButtons.length; i++) {
                 settingButtons[i].setY(gBY(i+1));

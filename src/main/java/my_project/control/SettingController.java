@@ -7,7 +7,7 @@ public class SettingController {
 
     // Methoden
     public SettingController(int size) {
-        this.settings = new boolean[size];
+        if (size != settings.length) System.out.println("ERROR: Amount of Settings in SettingController wrong.");
     }
 
     /**
