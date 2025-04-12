@@ -31,7 +31,7 @@ public class ProgramController {
         private final ViewController viewController;
         private Player p1;
 
-    private LevelControl currentLevel;
+        private LevelControl currentLevel;
         //private Level2 level2;
         private StartBackground sback;
         private UserInterface ui;
@@ -130,29 +130,28 @@ public class ProgramController {
     public void setCurrentScene(int s){
         this.currentScene = s;
         viewController.showScene(currentScene);
-    }
-
-    public void startLevel2(){
-        currentLevel = new Level2(64, 8, this);
-        //controlMusic();
+        if (s == 2) currentLevel = new Level2(64, 8, this);
     }
 
     public LevelControl getCurrentLevel() {
         return currentLevel;
     }
     public ViewController getViewController(){return viewController;}
+    public String getCurrentSong() {return currentSong;}
 
 
     public void toggleMusic(String song){
-        if (song != null){
-            if (currentSong != song){
+        if (song == "current" || currentSong == song) {
+            SoundController.playSound(currentSong);
+        } else {
+            if (song == null) {
                 SoundController.stopSound(currentSong);
-                if (song != "current") currentSong = song;
-            }
-            if (ui.getSC().getActivity(0)){
+            } else if (currentSong != song) {
+                SoundController.stopSound(currentSong);
+                currentSong = song;
                 SoundController.playSound(currentSong);
             }
+        }
 
-        } else SoundController.stopSound(currentSong);
     }
 }

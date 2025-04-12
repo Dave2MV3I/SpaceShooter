@@ -38,9 +38,9 @@ public class UserInterface extends InteractiveGraphicalObject {
         settingButtons[4] = new SettingButton(bX, gBY(5), buttonHeight, "src/main/resources/graphic/menu/settings.png", this, 4);
         settingButtons[5] = new SettingButton(bX, gBY(6), buttonHeight, "src/main/resources/graphic/menu/settings.png", this, 5);
 
-        statusDisplays[0] = new StatusDisplay(bX, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 0, this);
-        statusDisplays[1] = new StatusDisplay(bX, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 1, this);
-        statusDisplays[2] = new StatusDisplay(bX, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 0, this);
+        statusDisplays[0] = new StatusDisplay(200, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 0, this);
+        statusDisplays[1] = new StatusDisplay(200, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 1, this);
+        statusDisplays[2] = new StatusDisplay(200, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 0, this);
     }
 
     private double gBY(int i){
@@ -76,7 +76,7 @@ public class UserInterface extends InteractiveGraphicalObject {
                         pc.toggleMusic(null);
                     } else pc.toggleMusic("current");
                 }
-
+                if (i == 3 || i == 4 || i == 5) statusDisplays[i-3].updateAlignment();
             }
         }
     }
@@ -84,7 +84,8 @@ public class UserInterface extends InteractiveGraphicalObject {
     @Override
     public void keyPressed(int k){
         if (k == KeyEvent.VK_F){
-            System.out.println("MUSIC: " + String.valueOf(sc.getActivity(0)));
+            //System.out.println("MUSIC: " + String.valueOf(sc.getActivity(0)) + ", SONG: " + pc.getCurrentSong());
+            System.out.print(String.valueOf(StatusDisplay.widthNeeded));
         }
     }
 

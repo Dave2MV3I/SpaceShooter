@@ -24,6 +24,7 @@ public class SettingButton extends BlockWithIcon{
         if (sc.getActivity(index)) {
             color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
         } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
+
         super.draw(drawTool);
     }
 }

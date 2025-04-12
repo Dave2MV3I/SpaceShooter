@@ -68,7 +68,7 @@ public class Level2 extends LevelControl{
                 }
             }
         }
-        // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
+        // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
             pc.setCurrentScene(5);
