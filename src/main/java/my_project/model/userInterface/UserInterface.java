@@ -38,9 +38,9 @@ public class UserInterface extends InteractiveGraphicalObject {
         settingButtons[4] = new SettingButton(bX, gBY(5), buttonHeight, "src/main/resources/graphic/menu/settings.png", this, 4);
         settingButtons[5] = new SettingButton(bX, gBY(6), buttonHeight, "src/main/resources/graphic/menu/settings.png", this, 5);
 
-        statusDisplays[0] = new StatusDisplay(200, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 0, this);
-        statusDisplays[1] = new StatusDisplay(200, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 1, this);
-        statusDisplays[2] = new StatusDisplay(200, 20, buttonHeight, true, "src/main/resources/graphic/menu/settings.png", 0, this);
+        statusDisplays[0] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(2), "src/main/resources/graphic/menu/settings.png", 2, this);
+        statusDisplays[1] = new StatusDisplay(statusDisplays[0].getWidth(), 20, buttonHeight, sc.getActivity(3), "src/main/resources/graphic/menu/settings.png", 3, this);
+        statusDisplays[2] = new StatusDisplay(statusDisplays[0].getWidth() + statusDisplays[1].getWidth() + 40, 20, buttonHeight, sc.getActivity(4), "src/main/resources/graphic/menu/settings.png", 4, this);
     }
 
     private double gBY(int i){
@@ -56,8 +56,9 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (SettingButton button : settingButtons) {
             if (button.getVisible()) button.draw(drawTool);
         }
-        for (int i = 2; i < statusDisplays.length; i++) {
-            if (sc.getActivity(i)) statusDisplays[i].draw(drawTool);
+        for (StatusDisplay display : statusDisplays) {
+            //if (sc.getActivity(i+2)) statusDisplays[i].draw(drawTool);
+            if (display.getVisible()) display.draw(drawTool);
         }
     }
 
@@ -76,7 +77,6 @@ public class UserInterface extends InteractiveGraphicalObject {
                         pc.toggleMusic(null);
                     } else pc.toggleMusic("current");
                 }
-                if (i == 3 || i == 4 || i == 5) statusDisplays[i-3].updateAlignment();
             }
         }
     }
@@ -85,7 +85,7 @@ public class UserInterface extends InteractiveGraphicalObject {
     public void keyPressed(int k){
         if (k == KeyEvent.VK_F){
             //System.out.println("MUSIC: " + String.valueOf(sc.getActivity(0)) + ", SONG: " + pc.getCurrentSong());
-            System.out.print(String.valueOf(StatusDisplay.widthNeeded));
+            //System.out.println("DISPLAY1 VISIBILITY: " + String.valueOf(ui.getVisible(2)));
         }
     }
 
