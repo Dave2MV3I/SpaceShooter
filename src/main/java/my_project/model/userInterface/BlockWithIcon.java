@@ -2,8 +2,6 @@ package my_project.model.userInterface;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.control.ProgramController;
-import my_project.control.SettingController;
 
 import java.awt.*;
 
@@ -68,7 +66,7 @@ public class BlockWithIcon extends GraphicalObject{
     }
 
     public boolean getVisible(){return visible;}
-    public void setVisibility(boolean visible) {this.visible = visible;}
+    public void setVisible(boolean visible) {this.visible = visible;}
 
     public double getButtonRadius(){return buttonRadius;}
 

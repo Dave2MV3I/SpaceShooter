@@ -1,6 +1,5 @@
 package my_project.model.userInterface;
 
-import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
@@ -17,6 +16,7 @@ public class UserInterface extends InteractiveGraphicalObject {
     private final SettingButton[] settingButtons = new SettingButton[6];
     private final StatusDisplay[] statusDisplays = new StatusDisplay[3];
     private final double buttonHeight = 30;
+    private boolean StatusDisplaysAligned;
 
     // Referenzen
     private ProgramController pc;
@@ -39,8 +39,9 @@ public class UserInterface extends InteractiveGraphicalObject {
         settingButtons[5] = new SettingButton(bX, gBY(6), buttonHeight, "src/main/resources/graphic/menu/settings.png", this, 5);
 
         statusDisplays[0] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(2), "src/main/resources/graphic/menu/settings.png", 2, this);
-        statusDisplays[1] = new StatusDisplay(statusDisplays[0].getWidth(), 20, buttonHeight, sc.getActivity(3), "src/main/resources/graphic/menu/settings.png", 3, this);
-        statusDisplays[2] = new StatusDisplay(statusDisplays[0].getWidth() + statusDisplays[1].getWidth() + 40, 20, buttonHeight, sc.getActivity(4), "src/main/resources/graphic/menu/settings.png", 4, this);
+        statusDisplays[1] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(3), "src/main/resources/graphic/menu/settings.png", 3, this);
+        statusDisplays[2] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(4), "src/main/resources/graphic/menu/settings.png", 4, this);
+        //200 + statusDisplays[0].getWidth() + 20 + statusDisplays[1].getWidth() + 80
     }
 
     private double gBY(int i){
@@ -63,6 +64,21 @@ public class UserInterface extends InteractiveGraphicalObject {
     }
 
     @Override
+    public void update(double dt){
+        if (!StatusDisplaysAligned) {
+            for (int i = 1; i < statusDisplays.length; i++){
+                double shift = 0;
+                for (int j = 0; j < statusDisplays.length; j++){
+                    if (j < i) {
+                        shift += statusDisplays[j].getWidth() + 20;
+                    }
+                }
+                statusDisplays[i].setX(200 + shift);
+            }
+        } else StatusDisplaysAligned = true;
+    }
+
+    @Override
     public void mouseClicked(MouseEvent e) {
         if (mainSettingButton.collidesWith(e.getX(), e.getY())){
             menuOpen = !menuOpen;
@@ -76,6 +92,9 @@ public class UserInterface extends InteractiveGraphicalObject {
                     if (!sc.getActivity(0)) {
                         pc.toggleMusic(null);
                     } else pc.toggleMusic("current");
+                }
+                for (int j = 0; j < statusDisplays.length; j++){
+                    statusDisplays[j].setVisible(sc.getActivity(j+2));
                 }
             }
         }
@@ -93,11 +112,11 @@ public class UserInterface extends InteractiveGraphicalObject {
         if (menuOpen){
             for (int i = 0; i < settingButtons.length; i++) {
                 settingButtons[i].setY(gBY(i+1));
-                settingButtons[i].setVisibility(true);
+                settingButtons[i].setVisible(true);
             }
         } else {
             for (int i = 0; i < settingButtons.length; i++) {
-                settingButtons[i].setVisibility(false);
+                settingButtons[i].setVisible(false);
             }
         }
     }

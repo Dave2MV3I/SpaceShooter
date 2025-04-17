@@ -7,23 +7,23 @@ public class StatusDisplay extends BlockWithIcon{
 
     private int index;
 
-    public StatusDisplay(double x, double y, double height, boolean visible, String iconPath, int index, UserInterface ui) {
-        super(x, y, height, visible, iconPath, "status", ui);
+    public StatusDisplay(double startX, double y, double height, boolean visible, String iconPath, int index, UserInterface ui) {
+        super(startX, y, height, visible, iconPath, "status", ui);
         // text setzen mit sc und getter, text aktualisieren
         text = "Statusanzeige";
         this.index = index;
+
+        color[0] = 150;
+        color[1] = 0;
+        color[2] = 0;
+        color[3] = 255;
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        // Block zeichnen
-        //x = widthNeeded;
-        System.out.println("Visibility1: " + String.valueOf(visible));
-        x = 400;
-        drawTool.setCurrentColor(29, 28, 26,255);
-        drawTool.drawFilledCircle(x+buttonRadius, y+buttonRadius, buttonRadius);
-        drawTool.drawFilledCircle(x+width-10, y+buttonRadius, buttonRadius);
-        drawTool.drawFilledRectangle(x+buttonRadius, y, width-height, height);
+        //System.out.println("Position von: " + String.valueOf(index) + ": " + String.valueOf(x));
+        //System.out.println(String.valueOf(width));
+        super.draw(drawTool);
     }
 
     @Override
