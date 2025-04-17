@@ -103,8 +103,7 @@ public class UserInterface extends InteractiveGraphicalObject {
     @Override
     public void keyPressed(int k){
         if (k == KeyEvent.VK_F){
-            //System.out.println("MUSIC: " + String.valueOf(sc.getActivity(0)) + ", SONG: " + pc.getCurrentSong());
-            //System.out.println("DISPLAY1 VISIBILITY: " + String.valueOf(ui.getVisible(2)));
+            System.out.println("MUSIC: " + String.valueOf(sc.getActivity(0)) + ", SONG: " + pc.getCurrentSong());
         }
     }
 
@@ -129,63 +128,5 @@ public class UserInterface extends InteractiveGraphicalObject {
     public DrawTool getDrawTool(){return theDrawTool;}
 
 }
-
-    /*// Attribute
-    private final int totalSettings = 4;
-    private final int totalStatusDisplays = 3;
-
-
-    // Arrays
-    private final Setting[] settings = new Setting[totalSettings];
-    private final StatusDisplay[] statusDisplays = new StatusDisplay[totalStatusDisplays];
-    private final BlockWithIcon[] settingButtons = new BlockWithIcon[totalSettings];
-
-
-    // Referenzen
-    private SettingButton settingButton;
-
-
-    // Konstruktor
-    public UserInterface(ProgramController pc) {
-        // Objekte für Einstellungen erstellen
-        // Mit Statusanzeige
-        settings[0] = new Setting("Level", "src/main/resources/graphic/menu/settings.png", true);
-        settings[1] = new Setting("LevelTimer", "src/main/resources/graphic/menu/settings.png", false);
-        settings[2] = new Setting("GlobalTimer", "src/main/resources/graphic/menu/settings.png", true);
-
-        // Ohne Statusanzeige
-        settings[3] = new Setting("Music", "src/main/resources/graphic/menu/settings.png", true);
-        //settings[4] = new Setting("HP-Bar bottomed", "src/main/resources/graphic/menu/settings.png", true, false);
-
-        //Buttons erstellen
-        settingButton = new SettingButton(20, 20, 30, true, "src/main/resources/graphic/menu/settings.png",this);
-        for (int i = 0; i < settings.length; i++) {
-            settingButtons[i] = new BlockWithIcon(20, 60+ i*(buttonHeight+buffer), buttonHeight, false, settings[i]);
-        }
-
-        //Statusanzeigen erstellen
-        double shift = 0;
-        for (int i = 0; i < statusDisplays.length; i++) {
-            statusDisplays[i] = new StatusDisplay(220 + shift, 20, buttonHeight, true, settings[i]);
-            shift += statusDisplays[i].getWidth() + 10;
-        }
-    }
-
-    // Methoden
-
-
-
-    *//**
-     * @param index <br>
-     * 0- Level <br>
-     * 1- LevelTimer <br>
-     * 2- GlobalTimer <br>
-     * 3- Music <br>
-     *
-     *//*
-
-    public boolean getActive(int index){
-        return settings[index].isActive();
-    }*/
 
 

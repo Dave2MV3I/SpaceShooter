@@ -140,18 +140,26 @@ public class ProgramController {
     public String getCurrentSong() {return currentSong;}
 
 
+    /**
+     *
+     * @param song
+     * name of the song if it shall be played (if music-setting is on), eg. "startBGM" <br>
+     * "current" if song shall not be changed <br>
+     * null if the music shall stop
+     *
+     */
+
     public void toggleMusic(String song){
-        if (song == "current" || currentSong == song) {
-            SoundController.playSound(currentSong);
-        } else {
-            if (song == null) {
-                SoundController.stopSound(currentSong);
+        if (song == null) {
+            SoundController.stopSound(currentSong);
+        } else if (ui.getSC().getActivity(0)) {
+            if (song == "current" || currentSong == song) {
+                SoundController.playSound(currentSong);
             } else if (currentSong != song) {
                 SoundController.stopSound(currentSong);
                 currentSong = song;
                 SoundController.playSound(currentSong);
             }
-        }
-
+        } else if (song != null) currentSong = song;
     }
 }
