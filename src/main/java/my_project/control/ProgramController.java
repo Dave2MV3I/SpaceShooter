@@ -2,7 +2,6 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.view.DrawTool;
 import my_project.model.*;
 import my_project.model.player.Player;
 import my_project.model.userInterface.UserInterface;
@@ -32,7 +31,6 @@ public class ProgramController {
         private Player p1;
 
         private LevelControl currentLevel;
-        //private Level2 level2;
         private StartBackground sback;
         private UserInterface ui;
 
@@ -67,15 +65,12 @@ public class ProgramController {
             viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
             currentLevel = new Level1(64, 8, this);
-            viewController.draw(this.getCurrentLevel(),1);
+            viewController.draw(currentLevel,1);
 
 
         // Spielbildschirm (Szene 2)
             viewController.createScene();
-            /*Picture level2BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
-            viewController.draw(level2BG,2);
-            level2 = new Level2(64, 8, this);
-            viewController.draw(level2,2);*/
+            viewController.draw(level1BG,2);
 
         // Spielbildschirm (Szene 3)
             viewController.createScene();
@@ -96,24 +91,24 @@ public class ProgramController {
             // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
 
         viewController.register(inputManager,1);
+        viewController.register(inputManager,2);
+        //viewController.register(inputManager,3);
         viewController.register(ui, 0);
     }
 
     public void updateProgram(double dt){
 
         if (currentScene == 0) sback.update(dt);
-        if (currentScene == 1) currentLevel.update(dt);
-
-        //if (currentScene == 2) level2.update(dt);
+        if (currentScene > 0 && currentScene < 4) currentLevel.update(dt);
     }
 
     public Player getPlayer(){
         return p1;
     }
-    public Level1 getLevel(int l) {if (l == 1) return (Level1) currentLevel; return null;}
     public UserInterface getUI(){return ui;}
 
     public void processKeyboardInput(int key, boolean pressed) {
+        //System.out.println("process keyb.input wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             currentScene = 1;
             viewController.showScene(currentScene);
@@ -127,17 +122,25 @@ public class ProgramController {
         }
     }
 
-    public void setCurrentScene(int s){
+    public void setCurrentSceneAndLevel(int s){
         this.currentScene = s;
+
+        if (s == 2) {
+            viewController.draw(currentLevel,2);
+            currentLevel = new Level2(64, 8, this);
+        }
+
         viewController.showScene(currentScene);
-        if (s == 2) currentLevel = new Level2(64, 8, this);
+
+        System.out.println(String.valueOf(currentScene));
+        System.out.println(String.valueOf(currentLevel));
+
     }
 
     public LevelControl getCurrentLevel() {
         return currentLevel;
     }
     public ViewController getViewController(){return viewController;}
-    public String getCurrentSong() {return currentSong;}
 
 
     /**

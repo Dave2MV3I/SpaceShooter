@@ -69,7 +69,7 @@ public abstract class LevelControl extends GraphicalObject{
         }
 
         if (pc.getPlayer().getHealth() <= 0) {
-            pc.setCurrentScene(4);
+            pc.setCurrentSceneAndLevel(4);
         }
         // Kollisionsüberprüfung Player und Bullets (shooter nicht instanceof player)
 

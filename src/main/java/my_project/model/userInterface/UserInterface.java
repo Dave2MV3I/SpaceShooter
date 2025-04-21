@@ -103,7 +103,7 @@ public class UserInterface extends InteractiveGraphicalObject {
     @Override
     public void keyPressed(int k){
         if (k == KeyEvent.VK_F){
-            System.out.println("MUSIC: " + String.valueOf(sc.getActivity(0)) + ", SONG: " + pc.getCurrentSong());
+            pc.setCurrentSceneAndLevel(2);
         }
     }
 

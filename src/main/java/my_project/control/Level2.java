@@ -34,7 +34,7 @@ public class Level2 extends LevelControl{
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
 
-        System.out.println("startBullet() wurde aufgerufen");
+        //System.out.println("startBullet() wurde aufgerufen");
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].draw(drawTool);
         }
@@ -45,10 +45,11 @@ public class Level2 extends LevelControl{
     }
 
     public void update(double dt){
+        //System.out.println("Lvl2 Update laeuft");
         super.update(dt);
-        System.out.println("level2.update aufgerufen");
+
         if (timer > 10 /*&& counter < 8*/) {
-            //System.out.println("Spaceship gestartet (2)");
+            System.out.println("Spaceship gestartet (2)");
             for (int j = 0; j < spaceships.length; j++) {
 
                 if (!spaceships[j].isActive()) {
@@ -71,7 +72,7 @@ public class Level2 extends LevelControl{
         // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
-            pc.setCurrentScene(5);
+            pc.setCurrentSceneAndLevel(5);
         }
 
         for (int i = 0; i < bullets.length; i++) {

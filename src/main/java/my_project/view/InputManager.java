@@ -25,6 +25,7 @@ public class InputManager extends InteractiveGraphicalObject {
 
     @Override
     public void keyPressed(int key){
+        //System.out.println("keyPressed in InputManager wird aufgerufen");
         pc.processKeyboardInput(key, true);
     }
 
