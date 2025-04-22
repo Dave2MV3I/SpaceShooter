@@ -143,6 +143,7 @@ public class ProgramController {
     public LevelControl getCurrentLevel() {
         return currentLevel;
     }
+    public int getCurrentScene(){return currentScene;}
 
 
     /**

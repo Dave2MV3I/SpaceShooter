@@ -82,5 +82,7 @@ public abstract class LevelControl extends GraphicalObject{
     public String getBgSong() {
         return bgSong;
     }
+    public double getTimer() { return timer;}
+    public double getGlobalTimer() { return globalTimer;}
 
 }

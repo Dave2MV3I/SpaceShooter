@@ -10,17 +10,17 @@ import java.awt.event.MouseEvent;
 public class UserInterface extends InteractiveGraphicalObject {
 
     // Attribute
-    private boolean menuOpen = false;
-    // totals: 6 setting buttons, 1 main setting button, 3 status displays up to now
-    private final SettingButton[] settingButtons = new SettingButton[6];
-    private final StatusDisplay[] statusDisplays = new StatusDisplay[3];
-    private final double buttonHeight = 30;
+        private boolean menuOpen = false;
+        // totals: 6 setting buttons, 1 main setting button, 3 status displays up to now
+        private final SettingButton[] settingButtons = new SettingButton[6];
+        private final StatusDisplay[] statusDisplays = new StatusDisplay[3];
+        private final double buttonHeight = 30;
 
     // Referenzen
-    private final ProgramController pc;
-    private final SettingController sc;
-    private final MainSettingButton mainSettingButton;
-    private DrawTool theDrawTool;
+        private final ProgramController pc;
+        private final SettingController sc;
+        private final MainSettingButton mainSettingButton;
+        private DrawTool theDrawTool;
 
     // Methoden
     public UserInterface(ProgramController pc) {
@@ -113,7 +113,17 @@ public class UserInterface extends InteractiveGraphicalObject {
     }
 
     public SettingController getSC(){return sc;}
+    public ProgramController getPC(){return pc;}
     public DrawTool getDrawTool(){return theDrawTool;}
+
+    public String getStatus(int index, double dt){
+        /*
+        if (index == 3) return String.valueOf(pc.getCurrentLevel().getTimer());
+        if (index == 4) return String.valueOf(pc.getCurrentLevel().getGlobalTimer());
+        if (index == 5) return String.valueOf(1/dt);
+        */
+        return "nichts";
+    }
 
 }
 
