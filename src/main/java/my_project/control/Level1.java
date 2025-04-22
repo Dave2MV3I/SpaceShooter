@@ -59,7 +59,7 @@ public class Level1 extends LevelControl {
 
         if (counter > 7 && noSpaceships()) {
             if (!levelEnded) {
-                pc.setCurrentSceneAndLevel(2);
+                pc.setSceneOrLevel(2);
                 System.out.println("Szene auf 2 gesetzt");
                 levelEnded = true;
             }

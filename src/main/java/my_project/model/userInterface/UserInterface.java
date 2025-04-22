@@ -89,9 +89,7 @@ public class UserInterface extends InteractiveGraphicalObject {
                     sc.toggleSetting(i);
                 }
                 if (i==0) {
-                    if (!sc.getActivity(0)) {
-                        pc.toggleMusic(null);
-                    } else pc.toggleMusic("current");
+                    pc.toggleMusic(null);
                 }
                 for (int j = 0; j < statusDisplays.length; j++){
                     statusDisplays[j].setVisible(sc.getActivity(j+2));
@@ -103,7 +101,8 @@ public class UserInterface extends InteractiveGraphicalObject {
     @Override
     public void keyPressed(int k){
         if (k == KeyEvent.VK_F){
-            pc.setCurrentSceneAndLevel(2);
+            //pc.setSceneOrLevel(2);
+            //System.out.println(String.valueOf(pc.getCurrentSong()));
         }
     }
 

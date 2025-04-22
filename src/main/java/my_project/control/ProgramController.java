@@ -93,7 +93,6 @@ public class ProgramController {
         viewController.register(inputManager,1);
         viewController.register(inputManager,2);
         //viewController.register(inputManager,3);
-        viewController.register(ui, 0);
     }
 
     public void updateProgram(double dt){
@@ -106,12 +105,12 @@ public class ProgramController {
         return p1;
     }
     public UserInterface getUI(){return ui;}
+    public String getCurrentSong(){return currentSong;}
 
     public void processKeyboardInput(int key, boolean pressed) {
         //System.out.println("process keyb.input wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
-            currentScene = 1;
-            viewController.showScene(currentScene);
+            setSceneOrLevel(1);
             toggleMusic("level1BGM");
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
@@ -120,13 +119,21 @@ public class ProgramController {
         if (key == KeyEvent.VK_SPACE && pressed) {
             p1.processSpace();
         }
+        if (key == KeyEvent.VK_F){
+            //pc.setSceneOrLevel(2);
+            System.out.println(currentSong);
+        }
     }
 
-    public void setCurrentSceneAndLevel(int s){
+    public void setSceneOrLevel(int s){
         this.currentScene = s;
 
+        if (s > 0 && s < 4) {
+            viewController.draw(currentLevel, s);
+            viewController.register(ui,s);
+        }
+
         if (s == 2) {
-            viewController.draw(currentLevel,2);
             currentLevel = new Level2(64, 8, this);
         }
 
@@ -140,7 +147,6 @@ public class ProgramController {
     public LevelControl getCurrentLevel() {
         return currentLevel;
     }
-    public ViewController getViewController(){return viewController;}
 
 
     /**
@@ -154,15 +160,45 @@ public class ProgramController {
 
     public void toggleMusic(String song){
         if (song == null) {
+            if (ui.getSC().getActivity(0)){
+                SoundController.playSound(currentSong);
+            } else SoundController.stopSound(currentSong);
+
+        } else if (song != currentSong){
             SoundController.stopSound(currentSong);
-        } else if (ui.getSC().getActivity(0)) {
-            if (song == "current" || currentSong == song) {
+            currentSong = song;
+            if (ui.getSC().getActivity(0)) SoundController.playSound(currentSong);
+
+        } else if (song == currentSong){
+
+            if (ui.getSC().getActivity(0)) {
                 SoundController.playSound(currentSong);
-            } else if (currentSong != song) {
-                SoundController.stopSound(currentSong);
-                currentSong = song;
-                SoundController.playSound(currentSong);
-            }
-        } else if (song != null) currentSong = song;
+            } else SoundController.stopSound(currentSong);
+        }
     }
+
+    /*
+
+    public void toggleMusic(String song){
+    if (song == null) {
+        if (currentSong != null) {
+            SoundController.stopSound(currentSong);
+        }
+        currentSong = null;
+        return;
+    }
+
+    if (!song.equals(currentSong)) {
+        if (currentSong != null) SoundController.stopSound(currentSong);
+        currentSong = song;
+    }
+
+    if (ui.getSC().getActivity(0)) {
+        SoundController.playSound(currentSong);
+    } else {
+        SoundController.stopSound(currentSong);
+    }
+}
+
+     */
 }
