@@ -2,8 +2,8 @@ package my_project.control;
 
 public class SettingController {
 
-    private boolean[] settings = {true, true, false, false, false, false};
-    private String[] settingNames = {"music", "sounds", "level StatusDisplay", "levelTimer StatusDisplay", "globalTimer StatusDisplay", "FPS StatusDisplay"};
+    private final boolean[] settings = {false, true, false, false, false, false};
+    private final String[] settingNames = {"music", "sounds", "level StatusDisplay", "levelTimer StatusDisplay", "globalTimer StatusDisplay", "FPS StatusDisplay"};
 
     // Methoden
     public SettingController(int size) {

@@ -16,14 +16,10 @@ public class Player extends Spaceship {
     private boolean floatRight = false;
     private boolean floatLeft = false;
 
-
-    //public int health;
-    private int speed = 100;
-
-    private double cooldown;
+    private final double cooldown;
     private double cooldownTimer;
 
-    private ProgramController pc;
+    private final ProgramController pc;
 
     public Player(double x, double y, ProgramController pc) {
         super();
@@ -49,9 +45,8 @@ public class Player extends Spaceship {
     }
 
     @Override
-    public void update(double dt/*, Spaceship sp1, Spaceship sp2, Spaceship sp3, Spaceship sp4, Spaceship sp5, Spaceship sp6, Spaceship sp7, Spaceship sp8, Spaceship sp9, Spaceship sp10, Player player*/) {
-        //System.out.println("Player Update laeuft");
-        //System.out.println(health);
+    public void update(double dt) {
+
         // Bewegung auf der Stelle
         if (hoverUp) {
             hoverY = hoverY - 8 * dt;
@@ -79,24 +74,16 @@ public class Player extends Spaceship {
 
     public void processWASD(int keyCode, boolean pressed) {
         if (keyCode == KeyEvent.VK_W) {
-            if (pressed) {
-                floatUp = true;
-            } else floatUp = false;
+            floatUp = pressed;
 
         } else if (keyCode == KeyEvent.VK_A) {
-            if (pressed) {
-                floatLeft = true;
-            } else floatLeft = false;
+            floatLeft = pressed;
 
         } else if (keyCode == KeyEvent.VK_S) {
-            if (pressed) {
-                floatDown = true;
-            } else floatDown = false;
+            floatDown = pressed;
 
         } else if (keyCode == KeyEvent.VK_D) {
-            if (pressed) {
-                floatRight = true;
-            } else floatRight = false;
+            floatRight = pressed;
         }
     }
 

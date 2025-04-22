@@ -14,8 +14,8 @@ public class Level1 extends LevelControl {
     private final ProgramController pc;
 
     //Methoden
-    public Level1(int nBullets, int nSpaceships, ProgramController pc) {
-        super(nBullets, nSpaceships, pc);
+    public Level1(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
+        super(nBullets, nSpaceships, pc, bgSong);
 
         for (int i = 0; i < nBullets; i++) {
             bullets[i] = new Bullet();
@@ -25,20 +25,17 @@ public class Level1 extends LevelControl {
             spaceships[i] = new SmallSpaceship();
         }
         this.pc = pc;
-
-        //spaceships[1].startSpaceship(300,300, 0.5, pc);
-        //bullets[1].startBullet(800, 400, "enemy", 20, 100, 100);
     }
 
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
         //System.out.println("startBullet() wurde aufgerufen");
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i].isActive()) bullets[i].draw(drawTool);
+        for (Bullet bullet : bullets) {
+            if (bullet.isActive()) bullet.draw(drawTool);
         }
 
-        for (int i = 0; i < spaceships.length; i++) {
-            if (spaceships[i].isActive()) spaceships[i].draw(drawTool);
+        for (SmallSpaceship spaceship : spaceships) {
+            if (spaceship.isActive()) spaceship.draw(drawTool);
         }
     }
 
@@ -46,16 +43,16 @@ public class Level1 extends LevelControl {
         super.update(dt);
 
         if (timer > 10 && counter < 8) {
-            for (int j = 0; j < spaceships.length; j++) {
-                if (!spaceships[j].isActive()) {
-                    spaceships[j].startSpaceship(800, counter * 80, pc);
+            for (SmallSpaceship spaceship : spaceships) {
+                if (!spaceship.isActive()) {
+                    spaceship.startSpaceship(800, counter * 80, pc);
                     counter += 1;
                     timer = timer % 10;
                     break;
                 }
             }
         }
-        // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
+        // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
             if (!levelEnded) {
@@ -65,20 +62,20 @@ public class Level1 extends LevelControl {
             }
         }
 
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i].isActive()) bullets[i].update(dt);
+        for (Bullet bullet : bullets) {
+            if (bullet.isActive()) bullet.update(dt);
         }
 
-        for (int i = 0; i < spaceships.length; i++) {
-            if (spaceships[i].isActive()) spaceships[i].update(dt);
+        for (SmallSpaceship spaceship : spaceships) {
+            if (spaceship.isActive()) spaceship.update(dt);
         }
 
 
     }
 
     public boolean noSpaceships(){
-        for (int i = 0; i< spaceships.length; i++){
-            if (spaceships[i].isActive()) return false;
+        for (SmallSpaceship spaceship : spaceships) {
+            if (spaceship.isActive()) return false;
         }
         return true;
     }

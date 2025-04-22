@@ -1,15 +1,12 @@
 package my_project.model.userInterface;
 
 import KAGO_framework.view.DrawTool;
-import my_project.control.SettingController;
 
 public class MainSettingButton extends BlockWithIcon{
-    private final SettingController sc;
     private final UserInterface ui;
 
     public MainSettingButton(double x, double y, double height, String iconPath,  UserInterface ui) {
         super(x, y, height, true, iconPath, "Settings", ui);
-        this.sc = ui.getSC();
         this.ui = ui;
         color[0] = 47;
         color[1] = 76;

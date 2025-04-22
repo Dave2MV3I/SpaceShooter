@@ -9,7 +9,7 @@ public class BlockWithIcon extends GraphicalObject{
 
     // Attribute
     protected boolean visible;
-    protected final double buttonRadius;  // Nicht der Radius des GraphicalObjects, deshalb neu deklariert
+    protected final double buttonRadius;  // Nicht der Radius des GraphicalObject, deshalb neu deklariert
     protected final double iconWidth = 20;
     protected String text;
     private boolean widthCalculated;
@@ -31,7 +31,7 @@ public class BlockWithIcon extends GraphicalObject{
         this.text = text;
         this.ui = ui;
 
-        icon = new Icon(this, iconPath, iconWidth);
+        icon = new Icon(this, iconPath);
     }
 
     // Methoden
@@ -56,13 +56,9 @@ public class BlockWithIcon extends GraphicalObject{
         drawTool.drawText(x+buttonRadius+30, y+1.3*buttonRadius, text); // TODO Position an Schriftgröße und Font anpassen
     }
 
-    @Override
-    public void update(double dt){
-    }
-
     protected double calculateWidth(DrawTool drawTool, String name) {
         FontMetrics fm = drawTool.getGraphics2D().getFontMetrics();
-        return fm.stringWidth(name) + buttonRadius * 3 + 20;
+        return fm.stringWidth(name) + buttonRadius * 3 + iconWidth;
     }
 
     public boolean getVisible(){return visible;}
@@ -73,17 +69,15 @@ public class BlockWithIcon extends GraphicalObject{
     // Private Klasse
     protected class Icon extends GraphicalObject {
         private final BlockWithIcon pb; // parent Button
-        private final double iconWidth;
 
-        public Icon(BlockWithIcon parentButton, String path, double iconWidth) {
+        public Icon(BlockWithIcon parentButton, String path) {
             setNewImage(path);
             this.pb = parentButton;
-            this.iconWidth = iconWidth;
         }
 
         @Override
         public void draw(DrawTool drawTool){
-            drawTool.drawImage(getMyImage(),pb.getX()+pb.getButtonRadius(), pb.getY()+((pb.getHeight()-20)/2)); //Icon bekommt eigene Koordinaten; 20px als Iconhöhe
+            drawTool.drawImage(getMyImage(),pb.getX()+pb.getButtonRadius(), pb.getY()+((pb.getHeight()-iconWidth)/2)); //Icon bekommt eigene Koordinaten innerhalb des Parents
         }
     }
 

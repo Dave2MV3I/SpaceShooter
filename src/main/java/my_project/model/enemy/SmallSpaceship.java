@@ -7,9 +7,7 @@ public class SmallSpaceship extends Spaceship {
 
     public SmallSpaceship(){
         this.setNewImage("src/main/resources/graphic/spaceships/SpaceshipSmall.png");
-        //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - Flaticon
-        //this.health = 20;
-        //this.maxHealth = 20;
+        //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
         this.speed = 25;
         this.cooldown = 5;
         this.cooldownTimer = 5;

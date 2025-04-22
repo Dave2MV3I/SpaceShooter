@@ -16,8 +16,6 @@ public class Bullet extends GraphicalObject {
 
     private boolean isActive;
 
-    //wpublic BulletControl bulletControl;
-
 
     public Bullet() {
         this.isActive = false;

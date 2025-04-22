@@ -3,7 +3,6 @@ package my_project.model.enemy;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
-import my_project.model.player.Player;
 
 
 public class Spaceship extends GraphicalObject{

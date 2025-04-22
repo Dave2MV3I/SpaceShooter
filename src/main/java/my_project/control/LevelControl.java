@@ -12,24 +12,20 @@ public abstract class LevelControl extends GraphicalObject{
     SmallSpaceship[] spaceships;
     protected double timer;
     protected double globalTimer;
+    protected String bgSong;
 
-    public LevelControl(int nBullets, int nSpaceships, ProgramController pc) {
+    public LevelControl(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
 
         bullets = new Bullet[nBullets];
         spaceships = new SmallSpaceship[nSpaceships];
         this.pc = pc;
+        this.bgSong = bgSong;
     }
 
     @Override
     public void draw(DrawTool drawTool){
         pc.getUI().draw(drawTool);
         pc.getPlayer().draw(drawTool);
-        /*drawTool.setCurrentColor(255, 255, 255, 255);
-        drawTool.drawFilledRectangle (0, 0, 100, 48);
-        drawTool.setCurrentColor(0, 0, 0, 255);
-        drawTool.drawText (2, 10, "Dauer des Levels:");
-        drawTool.setCurrentColor(0, 0, 0, 255);
-        drawTool.drawText (44, 40, String.valueOf((int) globalTimer + "s"));*/
     }
 
     @Override
@@ -39,30 +35,27 @@ public abstract class LevelControl extends GraphicalObject{
         pc.getUI().update(dt);
         pc.getPlayer().update(dt);
 
-        //SOLVED Kollisonserkennung reparieren (fragt nicht wo das Problem ist, kp)
+        //SOLVED Kollisionserkennung reparieren (fragt nicht wo das Problem ist, kp)
         //System.out.println("");
-        for (int i = 0; i < bullets.length; i++) {
+        for (Bullet bullet : bullets) {
 
-            if (bullets[i].isActive()){
+            if (bullet.isActive()) {
                 //System.out.println("Bullet existiert" + i);
-                for (int j = 0; j < spaceships.length; j++) {
+                for (SmallSpaceship spaceship : spaceships) {
 
-                    if (spaceships[j].isActive()) {
-                        //System.out.println("Spaceship existiert");
-                        //System.out.println("Distance to Bullet: " + bullets[i].getDistanceTo(spaceships[j]));
-                        if (bullets[i].collidesWith(spaceships[j]) && bullets[i].getShooter().equals("player")) {
-                            spaceships[j].modifyHP(-(bullets[i].getDamage()));
+                    if (spaceship.isActive()) {
+                        if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
+                            spaceship.modifyHP(-(bullet.getDamage()));
                             System.out.println("Bullet ist mit Gegner kollidiert");
-                            //TODO funktion fuer bullet collision (frag joshi genaueres)
 
-                            bullets[i].setIsActive(false);
+                            bullet.setIsActive(false);
                         }
                     }
                 }
 
-                if (bullets[i].collidesWith(pc.getPlayer()) && bullets[i].getShooter().equals("enemy")) {
-                    pc.getPlayer().modifyHP(-(bullets[i].getDamage()));
-                    bullets[i].setIsActive(false);
+                if (bullet.collidesWith(pc.getPlayer()) && bullet.getShooter().equals("enemy")) {
+                    pc.getPlayer().modifyHP(-(bullet.getDamage()));
+                    bullet.setIsActive(false);
                 }
             }
         }
@@ -77,13 +70,17 @@ public abstract class LevelControl extends GraphicalObject{
 
     public void startBullet (double x, double y, String shooter, int damage, double speedX, double speedY){
 
-        for (int i = 0; i < bullets.length; i++) {
-            if (!bullets[i].isActive()){
-                bullets[i].startBullet(x, y, shooter, damage, speedX, speedY);
+        for (Bullet bullet : bullets) {
+            if (!bullet.isActive()) {
+                bullet.startBullet(x, y, shooter, damage, speedX, speedY);
                 break;
             }
             //break;
         }
+    }
+
+    public String getBgSong() {
+        return bgSong;
     }
 
 }

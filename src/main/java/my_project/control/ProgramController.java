@@ -24,7 +24,7 @@ public class ProgramController {
 
     //Attribute
         private int currentScene;
-        private String currentSong;
+        private String currentSong = "level1BGM";
 
     // Referenzen
         private final ViewController viewController;
@@ -49,7 +49,8 @@ public class ProgramController {
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-                toggleMusic("startBGM");
+                currentSong = "startBGM";
+                checkAndHandleMusic(false);
             // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
@@ -64,7 +65,7 @@ public class ProgramController {
             Picture level1BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
             viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
-            currentLevel = new Level1(64, 8, this);
+            currentLevel = new Level1(64, 8, this, "level1BGM");
             viewController.draw(currentLevel,1);
 
 
@@ -105,13 +106,12 @@ public class ProgramController {
         return p1;
     }
     public UserInterface getUI(){return ui;}
-    public String getCurrentSong(){return currentSong;}
 
     public void processKeyboardInput(int key, boolean pressed) {
-        //System.out.println("process keyb.input wird aufgerufen");
+        //System.out.println("process keyboardInput wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
             setSceneOrLevel(1);
-            toggleMusic("level1BGM");
+            checkAndHandleMusic(true);
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
             p1.processWASD(key, pressed);
@@ -119,10 +119,7 @@ public class ProgramController {
         if (key == KeyEvent.VK_SPACE && pressed) {
             p1.processSpace();
         }
-        if (key == KeyEvent.VK_F){
-            //pc.setSceneOrLevel(2);
-            System.out.println(currentSong);
-        }
+        //if (key == KeyEvent.VK_F){;}
     }
 
     public void setSceneOrLevel(int s){
@@ -134,13 +131,12 @@ public class ProgramController {
         }
 
         if (s == 2) {
-            currentLevel = new Level2(64, 8, this);
+            currentLevel = new Level2(64, 8, this, "level1BGM");
         }
 
         viewController.showScene(currentScene);
 
-        System.out.println(String.valueOf(currentScene));
-        System.out.println(String.valueOf(currentLevel));
+        System.out.println("CurrentScene: " + currentScene);
 
     }
 
@@ -150,55 +146,19 @@ public class ProgramController {
 
 
     /**
-     *
-     * @param song
-     * name of the song if it shall be played (if music-setting is on), eg. "startBGM" <br>
-     * "current" if song shall not be changed <br>
-     * null if the music shall stop
-     *
+     * @param lvlChanged
+     * If this method is called because of a new started Level, type true
      */
 
-    public void toggleMusic(String song){
-        if (song == null) {
-            if (ui.getSC().getActivity(0)){
-                SoundController.playSound(currentSong);
-            } else SoundController.stopSound(currentSong);
-
-        } else if (song != currentSong){
+    public void checkAndHandleMusic(boolean lvlChanged){
+        if (lvlChanged) {
             SoundController.stopSound(currentSong);
-            currentSong = song;
+            currentSong = currentLevel.getBgSong();
             if (ui.getSC().getActivity(0)) SoundController.playSound(currentSong);
-
-        } else if (song == currentSong){
-
+        } else {
             if (ui.getSC().getActivity(0)) {
                 SoundController.playSound(currentSong);
             } else SoundController.stopSound(currentSong);
         }
     }
-
-    /*
-
-    public void toggleMusic(String song){
-    if (song == null) {
-        if (currentSong != null) {
-            SoundController.stopSound(currentSong);
-        }
-        currentSong = null;
-        return;
-    }
-
-    if (!song.equals(currentSong)) {
-        if (currentSong != null) SoundController.stopSound(currentSong);
-        currentSong = song;
-    }
-
-    if (ui.getSC().getActivity(0)) {
-        SoundController.playSound(currentSong);
-    } else {
-        SoundController.stopSound(currentSong);
-    }
-}
-
-     */
 }

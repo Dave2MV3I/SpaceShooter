@@ -5,7 +5,6 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 import my_project.control.SettingController;
 
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class UserInterface extends InteractiveGraphicalObject {
@@ -16,12 +15,11 @@ public class UserInterface extends InteractiveGraphicalObject {
     private final SettingButton[] settingButtons = new SettingButton[6];
     private final StatusDisplay[] statusDisplays = new StatusDisplay[3];
     private final double buttonHeight = 30;
-    private boolean StatusDisplaysAligned;
 
     // Referenzen
-    private ProgramController pc;
-    private SettingController sc;
-    private MainSettingButton mainSettingButton;
+    private final ProgramController pc;
+    private final SettingController sc;
+    private final MainSettingButton mainSettingButton;
     private DrawTool theDrawTool;
 
     // Methoden
@@ -65,17 +63,16 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     @Override
     public void update(double dt){
-        if (!StatusDisplaysAligned) {
-            for (int i = 1; i < statusDisplays.length; i++){
-                double shift = 0;
-                for (int j = 0; j < statusDisplays.length; j++){
-                    if (j < i) {
-                        shift += statusDisplays[j].getWidth() + 20;
-                    }
+        // Align StatusDisplays
+        for (int i = 1; i < statusDisplays.length; i++){
+            double shift = 0;
+            for (int j = 0; j < statusDisplays.length; j++){
+                if (j < i) {
+                    shift += statusDisplays[j].getWidth() + 20;
                 }
-                statusDisplays[i].setX(200 + shift);
             }
-        } else StatusDisplaysAligned = true;
+            statusDisplays[i].setX(200 + shift);
+        }
     }
 
     @Override
@@ -89,20 +86,12 @@ public class UserInterface extends InteractiveGraphicalObject {
                     sc.toggleSetting(i);
                 }
                 if (i==0) {
-                    pc.toggleMusic(null);
+                    pc.checkAndHandleMusic(false);
                 }
                 for (int j = 0; j < statusDisplays.length; j++){
                     statusDisplays[j].setVisible(sc.getActivity(j+2));
                 }
             }
-        }
-    }
-
-    @Override
-    public void keyPressed(int k){
-        if (k == KeyEvent.VK_F){
-            //pc.setSceneOrLevel(2);
-            //System.out.println(String.valueOf(pc.getCurrentSong()));
         }
     }
 
@@ -113,8 +102,8 @@ public class UserInterface extends InteractiveGraphicalObject {
                 settingButtons[i].setVisible(true);
             }
         } else {
-            for (int i = 0; i < settingButtons.length; i++) {
-                settingButtons[i].setVisible(false);
+            for (SettingButton settingButton : settingButtons) {
+                settingButton.setVisible(false);
             }
         }
     }
