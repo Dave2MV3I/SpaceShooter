@@ -13,7 +13,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         private boolean menuOpen = false;
         // totals: 6 setting buttons, 1 main setting button, 3 status displays up to now
         private final SettingButton[] settingButtons = new SettingButton[6];
-        private final StatusDisplay[] statusDisplays = new StatusDisplay[3];
+        private final StatusDisplay[] statusDisplays = new StatusDisplay[4];
         private final double buttonHeight = 30;
 
     // Referenzen
@@ -39,7 +39,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         statusDisplays[0] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(2), "src/main/resources/graphic/menu/settings.png", 2, this);
         statusDisplays[1] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(3), "src/main/resources/graphic/menu/settings.png", 3, this);
         statusDisplays[2] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(4), "src/main/resources/graphic/menu/settings.png", 4, this);
-        //200 + statusDisplays[0].getWidth() + 20 + statusDisplays[1].getWidth() + 80
+        statusDisplays[3] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(5), "src/main/resources/graphic/menu/settings.png", 5, this);
     }
 
     private double gBY(int i){
@@ -63,7 +63,7 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     @Override
     public void update(double dt){
-        // Align StatusDisplays
+        // Align and update StatusDisplays
         for (int i = 1; i < statusDisplays.length; i++){
             double shift = 0;
             for (int j = 0; j < statusDisplays.length; j++){
@@ -72,6 +72,7 @@ public class UserInterface extends InteractiveGraphicalObject {
                 }
             }
             statusDisplays[i].setX(200 + shift);
+            statusDisplays[i].update(dt);
         }
     }
 
@@ -117,14 +118,11 @@ public class UserInterface extends InteractiveGraphicalObject {
     public DrawTool getDrawTool(){return theDrawTool;}
 
     public String getStatus(int index, double dt){
-        if (index == 3) return String.valueOf(pc.getCurrentLevel().getTimer());
-        if (index == 4) return String.valueOf(pc.getCurrentLevel().getGlobalTimer());
-        if (index == 5) return String.valueOf(1/dt);
+        if (index == 2) return String.valueOf(pc.getCurrentScene());
+        if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getTimer()));
+        if (index == 4) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
+        if (index == 5) return String.valueOf(Math.round(1/dt));
         return "nichts";
-    }
-
-    public SettingController createSC(){
-        return new SettingController(settingButtons.length);
     }
 
 }

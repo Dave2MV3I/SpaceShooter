@@ -11,7 +11,7 @@ public class BlockWithIcon extends GraphicalObject{
     protected boolean visible;
     protected final double buttonRadius;  // Nicht der Radius des GraphicalObject, deshalb neu deklariert
     protected final double iconWidth = 20;
-    protected String text;
+    protected String text = "nichts";
     protected boolean widthCalculated;
 
     // Arrays

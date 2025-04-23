@@ -126,8 +126,8 @@ public class ProgramController {
         this.currentScene = s;
 
         if (s == 1) {
+            sc = new SettingController(6);
             ui = new UserInterface(this);
-            sc = ui.createSC(); // Problem: sc nach ui erstellt und ui muss bei seiner Erstellung auf sc zugreifen. Zu Ursprungszustand ändern?
         }
 
         if (s > 0 && s < 4) {

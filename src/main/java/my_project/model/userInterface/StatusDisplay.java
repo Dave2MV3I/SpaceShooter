@@ -7,7 +7,6 @@ public class StatusDisplay extends BlockWithIcon{
     public StatusDisplay(double startX, double y, double height, boolean visible, String iconPath, int index, UserInterface ui) {
         super(startX, y, height, visible, iconPath, ui);
         this.index = index;
-        text = "Hallo"; //ui.getStatus(index, 1);
         widthCalculated = false;
 
         color[0] = 150;
@@ -19,6 +18,7 @@ public class StatusDisplay extends BlockWithIcon{
     @Override
     public void update(double dt){
         visible = ui.getSC().getActivity(index);
-        if (ui.getPC().getCurrentScene() > 0 && ui.getPC().getCurrentScene() < 4) text = ui.getStatus(index, dt);
+        if (index == 3) System.out.print(index);
+        if (ui.getPC().getCurrentScene() < 4) text = ui.getStatus(index, dt);
     }
 }
