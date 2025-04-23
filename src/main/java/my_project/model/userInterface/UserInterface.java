@@ -4,10 +4,7 @@ import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 import my_project.control.SettingController;
-
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.io.ObjectInputFilter;
 
 public class UserInterface extends InteractiveGraphicalObject {
 
@@ -66,16 +63,10 @@ public class UserInterface extends InteractiveGraphicalObject {
     @Override
     public void update(double dt){
         // Align and update StatusDisplays
-        for (int i = 1; i < statusDisplays.length; i++){
-            double shift = 0;
-            for (int j = 0; j < statusDisplays.length; j++){
-                if (j < i) {
-                    shift += statusDisplays[j].getWidth() + 20;
-                }
-            }
-            statusDisplays[i].setX(200 + shift);
+        alignDisplays();
+        for (StatusDisplay display : statusDisplays) {
+            display.update(dt);
         }
-        for (ObjectInputFilter.Status D)
     }
 
     @Override
@@ -105,9 +96,25 @@ public class UserInterface extends InteractiveGraphicalObject {
                 settingButtons[i].setVisible(true);
             }
         } else {
+            for (StatusDisplay display : statusDisplays){
+                display.setWidthCalculated(false);
+                alignDisplays();
+            }
             for (SettingButton settingButton : settingButtons) {
                 settingButton.setVisible(false);
             }
+        }
+    }
+
+    public void alignDisplays(){
+        for (int i = 1; i < statusDisplays.length; i++){
+            double shift = 0;
+            for (int j = 0; j < statusDisplays.length; j++){
+                if (j < i) {
+                    shift += statusDisplays[j].getWidth() + 20;
+                }
+            }
+            statusDisplays[i].setX(200 + shift);
         }
     }
 
@@ -128,7 +135,6 @@ public class UserInterface extends InteractiveGraphicalObject {
     public DrawTool getDrawTool(){return theDrawTool;}
 
     public String getStatus(int index, double dt){
-        System.out.println(index);
         if (index == 2) return String.valueOf(pc.getCurrentScene());
         if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getTimer()));
         if (index == 4) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
