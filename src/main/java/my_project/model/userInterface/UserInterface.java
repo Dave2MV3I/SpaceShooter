@@ -5,7 +5,9 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 import my_project.control.SettingController;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.ObjectInputFilter;
 
 public class UserInterface extends InteractiveGraphicalObject {
 
@@ -72,8 +74,8 @@ public class UserInterface extends InteractiveGraphicalObject {
                 }
             }
             statusDisplays[i].setX(200 + shift);
-            statusDisplays[i].update(dt);
         }
+        for (ObjectInputFilter.Status D)
     }
 
     @Override
@@ -109,6 +111,14 @@ public class UserInterface extends InteractiveGraphicalObject {
         }
     }
 
+    /*
+    @Override
+    public void keyPressed(int k){
+        if (k == KeyEvent.VK_F) {
+
+        }
+    }*/
+
     public boolean getMenuOpen(){
         return menuOpen;
     }
@@ -118,6 +128,7 @@ public class UserInterface extends InteractiveGraphicalObject {
     public DrawTool getDrawTool(){return theDrawTool;}
 
     public String getStatus(int index, double dt){
+        System.out.println(index);
         if (index == 2) return String.valueOf(pc.getCurrentScene());
         if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getTimer()));
         if (index == 4) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
