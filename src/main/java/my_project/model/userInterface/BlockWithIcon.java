@@ -12,7 +12,7 @@ public class BlockWithIcon extends GraphicalObject{
     protected final double buttonRadius;  // Nicht der Radius des GraphicalObject, deshalb neu deklariert
     protected final double iconWidth = 20;
     protected String text;
-    private boolean widthCalculated;
+    protected boolean widthCalculated;
 
     // Arrays
     protected int[] color = new int[4];
@@ -29,6 +29,16 @@ public class BlockWithIcon extends GraphicalObject{
         this.visible = visible;
         this.buttonRadius = height/2;
         this.text = text;
+        this.ui = ui;
+
+        icon = new Icon(this, iconPath);
+    }
+    public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath, UserInterface ui) {
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.visible = visible;
+        this.buttonRadius = height/2;
         this.ui = ui;
 
         icon = new Icon(this, iconPath);

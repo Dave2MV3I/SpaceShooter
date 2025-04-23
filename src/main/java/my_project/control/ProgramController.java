@@ -33,6 +33,7 @@ public class ProgramController {
         private LevelControl currentLevel;
         private StartBackground sback;
         private UserInterface ui;
+        private SettingController sc;
 
     // Methoden
 
@@ -44,13 +45,12 @@ public class ProgramController {
         // Vorbereitungen
             InputManager inputManager = new InputManager(this);
             currentScene = 0;
-            ui = new UserInterface(this);
 
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 currentSong = "startBGM";
-                checkAndHandleMusic(false);
+                //checkAndHandleMusic(false);
             // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
@@ -125,6 +125,11 @@ public class ProgramController {
     public void setSceneOrLevel(int s){
         this.currentScene = s;
 
+        if (s == 1) {
+            ui = new UserInterface(this);
+            sc = ui.createSC(); // Problem: sc nach ui erstellt und ui muss bei seiner Erstellung auf sc zugreifen. Zu Ursprungszustand ändern?
+        }
+
         if (s > 0 && s < 4) {
             viewController.draw(currentLevel, s);
             viewController.register(ui,s);
@@ -144,7 +149,7 @@ public class ProgramController {
         return currentLevel;
     }
     public int getCurrentScene(){return currentScene;}
-
+    public SettingController getSC(){return sc;}
 
     /**
      * @param lvlChanged
@@ -155,9 +160,9 @@ public class ProgramController {
         if (lvlChanged) {
             SoundController.stopSound(currentSong);
             currentSong = currentLevel.getBgSong();
-            if (ui.getSC().getActivity(0)) SoundController.playSound(currentSong);
+            if (sc.getActivity(0)) SoundController.playSound(currentSong);
         } else {
-            if (ui.getSC().getActivity(0)) {
+            if (sc.getActivity(0)) {
                 SoundController.playSound(currentSong);
             } else SoundController.stopSound(currentSong);
         }

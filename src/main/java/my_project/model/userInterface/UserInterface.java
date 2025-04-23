@@ -25,7 +25,7 @@ public class UserInterface extends InteractiveGraphicalObject {
     // Methoden
     public UserInterface(ProgramController pc) {
         this.pc = pc;
-        sc = new SettingController(settingButtons.length);
+        sc = pc.getSC();
         double bX = 20;
 
         mainSettingButton = new MainSettingButton(bX, gBY(0), buttonHeight, "src/main/resources/graphic/menu/settings.png",  this);
@@ -117,12 +117,14 @@ public class UserInterface extends InteractiveGraphicalObject {
     public DrawTool getDrawTool(){return theDrawTool;}
 
     public String getStatus(int index, double dt){
-        /*
         if (index == 3) return String.valueOf(pc.getCurrentLevel().getTimer());
         if (index == 4) return String.valueOf(pc.getCurrentLevel().getGlobalTimer());
         if (index == 5) return String.valueOf(1/dt);
-        */
         return "nichts";
+    }
+
+    public SettingController createSC(){
+        return new SettingController(settingButtons.length);
     }
 
 }

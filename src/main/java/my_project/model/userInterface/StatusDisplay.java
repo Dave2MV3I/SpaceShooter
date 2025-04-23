@@ -5,9 +5,10 @@ public class StatusDisplay extends BlockWithIcon{
     private final int index;
 
     public StatusDisplay(double startX, double y, double height, boolean visible, String iconPath, int index, UserInterface ui) {
-        super(startX, y, height, visible, iconPath, ui.getStatus(index, 1), ui);
-        // text setzen mit sc und getter, text aktualisieren
+        super(startX, y, height, visible, iconPath, ui);
         this.index = index;
+        text = "Hallo"; //ui.getStatus(index, 1);
+        widthCalculated = false;
 
         color[0] = 150;
         color[1] = 0;
