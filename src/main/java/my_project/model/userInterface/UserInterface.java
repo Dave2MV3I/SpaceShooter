@@ -70,26 +70,46 @@ public class UserInterface extends InteractiveGraphicalObject {
                 double px = pc.getPlayer().getX();
                 double py = pc.getPlayer().getY();
 
-            // Position Stecknadel
+            // Stecknadelposition
+                double sx = 0;
+                double sy = 0;
 
-                int nearestX = 100000;
-                int nearestY = 100000;
+                if (px < 0 && py >= 0 && py <= Config.WINDOW_HEIGHT){ // links
+                    sx = 0;
+                    sy = py;
+                } else if (px > Config.WINDOW_WIDTH && py >= 0 && py <= Config.WINDOW_HEIGHT){ // rechts
+                    sx = Config.WINDOW_WIDTH;
+                    sy = py;
+                } else if (py < 0 && px >= 0 && px <= Config.WINDOW_WIDTH){ // oben
+                    sx = px;
+                    sy = 0;
+                } else if (py > Config.WINDOW_HEIGHT && px >= 0 && px <= Config.WINDOW_WIDTH){ // unten
+                    sx = px;
+                    sy = Config.WINDOW_HEIGHT;
 
-                for (int i = 0; i < Config.WINDOW_WIDTH; i++){
-                    for (int j = 0; j < Config.WINDOW_HEIGHT; j++){
-                        if (()<())
-                        if ( ( Math.sqrt( Math.pow(px-i, 2) + Math.pow(py-j,2) ) < Math.sqrt( Math.pow(px-nearestX, 2) + Math.pow(py-nearestY,2) ) ){
-                            nearestX = i;
-                            nearestY = j;
-                        }
-                    }
+                } else if (px < 0 && py < 0){ // links oben
+                    sx = 0;
+                    sy = 0;
+                } else if (px > Config.WINDOW_WIDTH && py < 0){ // rechts oben
+                    sx = Config.WINDOW_WIDTH;
+                    sy = 0;
+                } else if (px < 0 && py > Config.WINDOW_HEIGHT){ // links unten
+                    sx = 0;
+                    sy = Config.WINDOW_HEIGHT;
+                } else if (px > Config.WINDOW_WIDTH && py > Config.WINDOW_HEIGHT){ // rechts unten
+                    sx = Config.WINDOW_WIDTH;
+                    sy = Config.WINDOW_HEIGHT;
                 }
 
-                drawTool.setCurrentColor(0,255,0,255);
-                drawTool.drawCircle(nearestX, nearestY, 5);
+            drawTool.setCurrentColor(0,255,0,255);
+            drawTool.drawCircle(sx,sy,5);
 
+            // Stecknadel satt Pfeil
+            // sx und sy anhand Mitte des players
+            // Fehler an zwei der Seiten und Ecken uebverpruefen
+            // IDEE Animierte Pfeile falls player zu lange ausserhalb (Timer) und Militaerflugzeugansage
+            // Das alles in eigene Methode verschieben
 
-                //System.out.println("nearestX: " + nearestX + ", nearestY: " + nearestY);
         }
     }
 
