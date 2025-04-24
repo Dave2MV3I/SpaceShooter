@@ -2,6 +2,7 @@ package my_project.model.userInterface;
 
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 import my_project.control.ProgramController;
 import my_project.control.SettingController;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,8 @@ public class UserInterface extends InteractiveGraphicalObject {
         private final SettingButton[] settingButtons = new SettingButton[6];
         private final StatusDisplay[] statusDisplays = new StatusDisplay[4];
         private final double buttonHeight = 30;
+        private boolean playerOutside = false;
+
 
     // Referenzen
         private final ProgramController pc;
@@ -50,6 +53,7 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     @Override
     public void draw(DrawTool drawTool){
+        // Buttons und Displays zeichnen
         if (theDrawTool == null){theDrawTool = drawTool;}
         mainSettingButton.draw(drawTool);
         for (SettingButton button : settingButtons) {
@@ -58,6 +62,34 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (StatusDisplay display : statusDisplays) {
             //if (sc.getActivity(i+2)) statusDisplays[i].draw(drawTool);
             if (display.getVisible()) display.draw(drawTool);
+        }
+
+        //Stecknadel zeichnen
+        if (playerOutside){
+            // Playerposition
+                double px = pc.getPlayer().getX();
+                double py = pc.getPlayer().getY();
+
+            // Position Stecknadel
+
+                int nearestX = 100000;
+                int nearestY = 100000;
+
+                for (int i = 0; i < Config.WINDOW_WIDTH; i++){
+                    for (int j = 0; j < Config.WINDOW_HEIGHT; j++){
+                        if (()<())
+                        if ( ( Math.sqrt( Math.pow(px-i, 2) + Math.pow(py-j,2) ) < Math.sqrt( Math.pow(px-nearestX, 2) + Math.pow(py-nearestY,2) ) ){
+                            nearestX = i;
+                            nearestY = j;
+                        }
+                    }
+                }
+
+                drawTool.setCurrentColor(0,255,0,255);
+                drawTool.drawCircle(nearestX, nearestY, 5);
+
+
+                //System.out.println("nearestX: " + nearestX + ", nearestY: " + nearestY);
         }
     }
 
@@ -127,10 +159,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         }
     }*/
 
-    public boolean getMenuOpen(){
-        return menuOpen;
-    }
-
+    public boolean getMenuOpen(){return menuOpen;}
     public SettingController getSC(){return sc;}
     public ProgramController getPC(){return pc;}
     public DrawTool getDrawTool(){return theDrawTool;}
@@ -142,6 +171,8 @@ public class UserInterface extends InteractiveGraphicalObject {
         if (index == 5) return String.valueOf(Math.round(1/dt));
         return "nichts";
     }
+
+    public void setPlayerOutside(boolean outside){playerOutside = outside;}
 
 }
 

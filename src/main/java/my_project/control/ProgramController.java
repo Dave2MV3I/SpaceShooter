@@ -102,11 +102,6 @@ public class ProgramController {
         if (currentScene > 0 && currentScene < 4) currentLevel.update(dt);
     }
 
-    public Player getPlayer(){
-        return p1;
-    }
-    public UserInterface getUI(){return ui;}
-
     public void processKeyboardInput(int key, boolean pressed) {
         //System.out.println("process keyboardInput wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
@@ -140,16 +135,8 @@ public class ProgramController {
         }
 
         viewController.showScene(currentScene);
-
         System.out.println("CurrentScene: " + currentScene);
-
     }
-
-    public LevelControl getCurrentLevel() {
-        return currentLevel;
-    }
-    public int getCurrentScene(){return currentScene;}
-    public SettingController getSC(){return sc;}
 
     /**
      * @param lvlChanged
@@ -167,4 +154,10 @@ public class ProgramController {
             } else SoundController.stopSound(currentSong);
         }
     }
+
+    public Player getPlayer(){return p1;}
+    public UserInterface getUI(){return ui;}
+    public LevelControl getCurrentLevel() {return currentLevel;}
+    public int getCurrentScene(){return currentScene;}
+    public SettingController getSC(){return sc;}
 }

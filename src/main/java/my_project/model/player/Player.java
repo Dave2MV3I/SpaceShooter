@@ -1,6 +1,7 @@
 package my_project.model.player;
 
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 import my_project.control.ProgramController;
 import my_project.model.enemy.Spaceship;
 
@@ -56,6 +57,7 @@ public class Player extends Spaceship {
             if (hoverY > 5) hoverUp = true;
         }
 
+        // Bewegung durch Interaktion
         if (floatUp) {
             y -= speed * dt;
         }
@@ -70,6 +72,8 @@ public class Player extends Spaceship {
         }
 
         this.cooldownTimer = this.cooldownTimer - dt;
+
+        pc.getUI().setPlayerOutside(x < 0 || y < 0 || x > Config.WINDOW_WIDTH || y > Config.WINDOW_HEIGHT-29);
     }
 
     public void processWASD(int keyCode, boolean pressed) {
