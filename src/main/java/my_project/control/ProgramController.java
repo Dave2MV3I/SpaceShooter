@@ -133,6 +133,9 @@ public class ProgramController {
         if (s == 2) {
             currentLevel = new Level2(64, 8, this, "level1BGM");
         }
+        if (s == 3) {
+            currentLevel = new Level3(64, 8, this, "level1BGM");
+        }
 
         viewController.showScene(currentScene);
         System.out.println("CurrentScene: " + currentScene);
