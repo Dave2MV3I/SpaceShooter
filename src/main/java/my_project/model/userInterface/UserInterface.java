@@ -111,7 +111,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (int i = 1; i < statusDisplays.length; i++){
             double shift = 0;
             for (int j = 0; j < statusDisplays.length; j++){
-                if (j < i) {
+                if (j < i && statusDisplays[j].getVisible()) {
                     shift += statusDisplays[j].getWidth() + 20;
                 }
             }
