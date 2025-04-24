@@ -4,8 +4,9 @@ import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
+import my_project.model.enemy.Stardestroyer;
 
-public class Level2 extends LevelControl{
+public class Level4 extends LevelControl{
     //Attribute
     int counter = 0;
 
@@ -13,38 +14,41 @@ public class Level2 extends LevelControl{
     private final ProgramController pc;
 
     //Methoden
-    public Level2(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
+    public Level4 (int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
         super(nBullets, nSpaceships, pc, bgSong);
-        System.out.println ("Levels2.draw() wurde aufgerufen");
+
+        counter = 0;
+        this.pc = pc;
 
         for (int i = 0; i < nBullets; i++) {
             bullets[i] = new Bullet();
         }
 
-        for (int i = 0; i < nSpaceships; i++) {
-            spaceships[i] = new SmallSpaceship();
+        for (int i = 0 ; i < nSpaceships; i++) {
+            spaceships[i] = new Stardestroyer();
         }
-        this.pc = pc;
+
+
+
+        //spaceships[1].startSpaceship(300,300, 0.5, pc);
+        //bullets[1].startBullet(800, 400, "enemy", 20, 100, 100);
     }
 
 
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
 
-        //System.out.println("startBullet() wurde aufgerufen");
-        for (Bullet bullet : bullets) {
-            if (bullet.isActive()) bullet.draw(drawTool);
+        System.out.println("startBullet() wurde aufgerufen");
+        for (int i = 0; i < bullets.length; i++) {
+            if (bullets[i].isActive()) bullets[i].draw(drawTool);
         }
 
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) spaceship.draw(drawTool);
+        for (int i = 0; i < spaceships.length; i++) {
+            if (spaceships[i].isActive()) spaceships[i].draw(drawTool);
         }
     }
 
     public void update(double dt){
-        //System.out.println("Lvl2 Update läuft");
-        super.update(dt);
-
         if (timer > 10 /*&& counter < 8*/) {
             System.out.println("Spaceship gestartet (2)");
             for (Spaceship spaceship : spaceships) {
@@ -65,27 +69,31 @@ public class Level2 extends LevelControl{
                     break;
                 }
             }
+
         }
-        // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
+
+
+
+        // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
-            pc.setSceneOrLevel(3);
+            pc.setSceneOrLevel(5);
         }
 
-        for (Bullet bullet : bullets) {
-            if (bullet.isActive()) bullet.update(dt);
+        for (int i = 0; i < bullets.length; i++) {
+            if (bullets[i].isActive()) bullets[i].update(dt);
         }
 
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) spaceship.update(dt);
+        for (int i = 0; i < spaceships.length; i++) {
+            if (spaceships[i].isActive()) spaceships[i].update(dt);
         }
 
 
     }
 
     public boolean noSpaceships(){
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) return false;
+        for (int i = 0; i< spaceships.length; i++){
+            if (spaceships[i].isActive()) return false;
         }
         return true;
     }

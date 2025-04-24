@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.enemy.SmallSpaceship;
+import my_project.model.enemy.Spaceship;
 
 public class Level1 extends LevelControl {
 
@@ -34,7 +35,7 @@ public class Level1 extends LevelControl {
             if (bullet.isActive()) bullet.draw(drawTool);
         }
 
-        for (SmallSpaceship spaceship : spaceships) {
+        for (Spaceship spaceship : spaceships) {
             if (spaceship.isActive()) spaceship.draw(drawTool);
         }
     }
@@ -43,7 +44,7 @@ public class Level1 extends LevelControl {
         super.update(dt);
 
         if (timer > 10 && counter < 8) {
-            for (SmallSpaceship spaceship : spaceships) {
+            for (Spaceship spaceship : spaceships) {
                 if (!spaceship.isActive()) {
                     spaceship.startSpaceship(800, counter * 80, pc);
                     counter += 1;
@@ -66,7 +67,7 @@ public class Level1 extends LevelControl {
             if (bullet.isActive()) bullet.update(dt);
         }
 
-        for (SmallSpaceship spaceship : spaceships) {
+        for (Spaceship spaceship : spaceships) {
             if (spaceship.isActive()) spaceship.update(dt);
         }
 
@@ -74,7 +75,7 @@ public class Level1 extends LevelControl {
     }
 
     public boolean noSpaceships(){
-        for (SmallSpaceship spaceship : spaceships) {
+        for (Spaceship spaceship : spaceships) {
             if (spaceship.isActive()) return false;
         }
         return true;

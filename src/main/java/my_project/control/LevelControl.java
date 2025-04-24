@@ -4,12 +4,13 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.enemy.SmallSpaceship;
+import my_project.model.enemy.Spaceship;
 
 public abstract class LevelControl extends GraphicalObject{
 
     private final ProgramController pc;
     Bullet[] bullets;
-    SmallSpaceship[] spaceships;
+    Spaceship[] spaceships;
     protected double timer;
     protected double globalTimer;
     protected String bgSong;
@@ -17,7 +18,7 @@ public abstract class LevelControl extends GraphicalObject{
     public LevelControl(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
 
         bullets = new Bullet[nBullets];
-        spaceships = new SmallSpaceship[nSpaceships];
+        spaceships = new Spaceship[nSpaceships];
         this.pc = pc;
         this.bgSong = bgSong;
     }
@@ -41,7 +42,7 @@ public abstract class LevelControl extends GraphicalObject{
 
             if (bullet.isActive()) {
                 //System.out.println("Bullet existiert" + i);
-                for (SmallSpaceship spaceship : spaceships) {
+                for (Spaceship spaceship : spaceships) {
 
                     if (spaceship.isActive()) {
                         if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
