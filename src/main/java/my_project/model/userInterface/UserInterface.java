@@ -5,6 +5,8 @@ import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.ProgramController;
 import my_project.control.SettingController;
+import my_project.model.Picture;
+
 import java.awt.event.MouseEvent;
 
 public class UserInterface extends InteractiveGraphicalObject {
@@ -23,6 +25,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         private final SettingController sc;
         private final MainSettingButton mainSettingButton;
         private DrawTool theDrawTool;
+        private Picture pin = new Picture(-20, -20, "src/main/resources/graphic/menu/pin.png");
 
     // Methoden
     public UserInterface(ProgramController pc) {
@@ -69,44 +72,47 @@ public class UserInterface extends InteractiveGraphicalObject {
             // Playerposition
                 double px = pc.getPlayer().getX();
                 double py = pc.getPlayer().getY();
+                double pw = pc.getPlayer().getWidth();
+                double ph = pc.getPlayer().getHeight();
 
             // Stecknadelposition
                 double sx = 0;
                 double sy = 0;
 
-                if (px < 0 && py >= 0 && py <= Config.WINDOW_HEIGHT){ // links
+                if (px+pw < 0 && py >= 0 && py <= Config.WINDOW_HEIGHT-40){ // links
                     sx = 0;
                     sy = py;
-                } else if (px > Config.WINDOW_WIDTH && py >= 0 && py <= Config.WINDOW_HEIGHT){ // rechts
-                    sx = Config.WINDOW_WIDTH;
+                } else if (px > Config.WINDOW_WIDTH-16 && py >= 0 && py <= Config.WINDOW_HEIGHT-40){ // rechts
+                    sx = Config.WINDOW_WIDTH-16;
                     sy = py;
-                } else if (py < 0 && px >= 0 && px <= Config.WINDOW_WIDTH){ // oben
+                } else if (py < 0 && px >= 0 && px <= Config.WINDOW_WIDTH-16){ // oben
                     sx = px;
                     sy = 0;
-                } else if (py > Config.WINDOW_HEIGHT && px >= 0 && px <= Config.WINDOW_WIDTH){ // unten
+                } else if (py > Config.WINDOW_HEIGHT-40 && px >= 0 && px <= Config.WINDOW_WIDTH-16){ // unten
                     sx = px;
-                    sy = Config.WINDOW_HEIGHT;
+                    sy = Config.WINDOW_HEIGHT-40;
 
-                } else if (px < 0 && py < 0){ // links oben
+                } else if (px+pw < 0 && py < 0){ // links oben
                     sx = 0;
                     sy = 0;
-                } else if (px > Config.WINDOW_WIDTH && py < 0){ // rechts oben
-                    sx = Config.WINDOW_WIDTH;
+                } else if (px > Config.WINDOW_WIDTH-16 && py < 0){ // rechts oben
+                    sx = Config.WINDOW_WIDTH-16;
                     sy = 0;
-                } else if (px < 0 && py > Config.WINDOW_HEIGHT){ // links unten
+                } else if (px+pw < 0 && py > Config.WINDOW_HEIGHT-40){ // links unten
                     sx = 0;
-                    sy = Config.WINDOW_HEIGHT;
-                } else if (px > Config.WINDOW_WIDTH && py > Config.WINDOW_HEIGHT){ // rechts unten
-                    sx = Config.WINDOW_WIDTH;
-                    sy = Config.WINDOW_HEIGHT;
+                    sy = Config.WINDOW_HEIGHT-40;
+                } else if (px > Config.WINDOW_WIDTH-16 && py > Config.WINDOW_HEIGHT-40){ // rechts unten
+                    sx = Config.WINDOW_WIDTH-16;
+                    sy = Config.WINDOW_HEIGHT-40;
                 }
 
             drawTool.setCurrentColor(0,255,0,255);
             drawTool.drawCircle(sx,sy,5);
 
-            // Stecknadel satt Pfeil
+            //drawTool.drawTransformedImage(, sx, sy, 0, 0);
+
+            // Stecknadel statt Pfeil
             // sx und sy anhand Mitte des players
-            // Fehler an zwei der Seiten und Ecken uebverpruefen
             // IDEE Animierte Pfeile falls player zu lange ausserhalb (Timer) und Militaerflugzeugansage
             // Das alles in eigene Methode verschieben
 
