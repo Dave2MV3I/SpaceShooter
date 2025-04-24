@@ -25,6 +25,7 @@ public class ProgramController {
     //Attribute
         private int currentScene;
         private String currentSong = "level1BGM";
+        private String soundName;
 
     // Referenzen
         private final ViewController viewController;
@@ -51,7 +52,14 @@ public class ProgramController {
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 currentSong = "startBGM";
                 //checkAndHandleMusic(false);
-            // Bild
+            // Sounds
+                 viewController.getSoundController().loadSound("src/main/resources/sound/laser.mp3", "laser", false);
+                 viewController.getSoundController().loadSound("src/main/resources/sound/space_explosion.mp3", "explosion", false);
+                 viewController.getSoundController().loadSound("src/main/resources/sound/impact.mp3", "impact", false);
+
+
+
+        // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
                 Picture titleText = new Picture(100, 200, "src/main/resources/graphic/title_text.png");
@@ -118,6 +126,7 @@ public class ProgramController {
         }
         if (key == KeyEvent.VK_SPACE && pressed) {
             p1.processSpace();
+            SoundController.playSound("laser");
         }
         //if (key == KeyEvent.VK_F){;}
     }
@@ -166,5 +175,9 @@ public class ProgramController {
                 SoundController.playSound(currentSong);
             } else SoundController.stopSound(currentSong);
         }
+    }
+
+    public void playSound(String soundName){
+        SoundController.playSound(soundName);
     }
 }

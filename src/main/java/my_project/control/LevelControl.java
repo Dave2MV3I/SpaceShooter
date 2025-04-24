@@ -54,6 +54,7 @@ public abstract class LevelControl extends GraphicalObject{
                 }
 
                 if (bullet.collidesWith(pc.getPlayer()) && bullet.getShooter().equals("enemy")) {
+                    pc.playSound("impact");
                     pc.getPlayer().modifyHP(-(bullet.getDamage()));
                     bullet.setIsActive(false);
                 }

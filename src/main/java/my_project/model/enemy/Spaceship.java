@@ -16,7 +16,6 @@ public class Spaceship extends GraphicalObject{
     protected double cooldownTimer;
 
 
-
     public void draw(DrawTool drawTool){
         //drawTool.drawFilledCircle (this.x, this.y, 1);
         drawTool.drawImage(getMyImage(),x,y);
@@ -56,7 +55,10 @@ public class Spaceship extends GraphicalObject{
 
         public void modifyHP(int points) {
             this.health += points;
-            if (health <= 0) isActive = false;
+            if (health <= 0) {
+                isActive = false;
+                pc.playSound("explosion");
+            }
         }
 
     public boolean isActive() {
