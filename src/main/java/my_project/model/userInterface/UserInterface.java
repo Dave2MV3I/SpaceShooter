@@ -2,8 +2,11 @@ package my_project.model.userInterface;
 
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 import my_project.control.ProgramController;
 import my_project.control.SettingController;
+import my_project.model.Picture;
+
 import java.awt.event.MouseEvent;
 
 public class UserInterface extends InteractiveGraphicalObject {
@@ -14,12 +17,15 @@ public class UserInterface extends InteractiveGraphicalObject {
         private final SettingButton[] settingButtons = new SettingButton[6];
         private final StatusDisplay[] statusDisplays = new StatusDisplay[4];
         private final double buttonHeight = 30;
+        private boolean playerOutside = false;
+
 
     // Referenzen
         private final ProgramController pc;
         private final SettingController sc;
         private final MainSettingButton mainSettingButton;
         private DrawTool theDrawTool;
+        private Picture pin = new Picture(-20, -20, "src/main/resources/graphic/menu/pin.png");
 
     // Methoden
     public UserInterface(ProgramController pc) {
@@ -50,6 +56,7 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     @Override
     public void draw(DrawTool drawTool){
+        // Buttons und Displays zeichnen
         if (theDrawTool == null){theDrawTool = drawTool;}
         mainSettingButton.draw(drawTool);
         for (SettingButton button : settingButtons) {
@@ -58,6 +65,57 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (StatusDisplay display : statusDisplays) {
             //if (sc.getActivity(i+2)) statusDisplays[i].draw(drawTool);
             if (display.getVisible()) display.draw(drawTool);
+        }
+
+        //Stecknadel zeichnen
+        if (playerOutside){
+            // Playerposition
+                double px = pc.getPlayer().getX();
+                double py = pc.getPlayer().getY();
+                double pw = pc.getPlayer().getWidth();
+                double ph = pc.getPlayer().getHeight();
+
+            // Stecknadelposition
+                double sx = 0;
+                double sy = 0;
+
+                if (px+pw < 0 && py >= 0 && py <= Config.WINDOW_HEIGHT-40){ // links
+                    sx = 0;
+                    sy = py;
+                } else if (px > Config.WINDOW_WIDTH-16 && py >= 0 && py <= Config.WINDOW_HEIGHT-40){ // rechts
+                    sx = Config.WINDOW_WIDTH-16;
+                    sy = py;
+                } else if (py < 0 && px >= 0 && px <= Config.WINDOW_WIDTH-16){ // oben
+                    sx = px;
+                    sy = 0;
+                } else if (py > Config.WINDOW_HEIGHT-40 && px >= 0 && px <= Config.WINDOW_WIDTH-16){ // unten
+                    sx = px;
+                    sy = Config.WINDOW_HEIGHT-40;
+
+                } else if (px+pw < 0 && py < 0){ // links oben
+                    sx = 0;
+                    sy = 0;
+                } else if (px > Config.WINDOW_WIDTH-16 && py < 0){ // rechts oben
+                    sx = Config.WINDOW_WIDTH-16;
+                    sy = 0;
+                } else if (px+pw < 0 && py > Config.WINDOW_HEIGHT-40){ // links unten
+                    sx = 0;
+                    sy = Config.WINDOW_HEIGHT-40;
+                } else if (px > Config.WINDOW_WIDTH-16 && py > Config.WINDOW_HEIGHT-40){ // rechts unten
+                    sx = Config.WINDOW_WIDTH-16;
+                    sy = Config.WINDOW_HEIGHT-40;
+                }
+
+            drawTool.setCurrentColor(0,255,0,255);
+            drawTool.drawCircle(sx,sy,5);
+
+            //drawTool.drawTransformedImage(, sx, sy, 0, 0);
+
+            // Stecknadel statt Pfeil
+            // sx und sy anhand Mitte des players
+            // IDEE Animierte Pfeile falls player zu lange ausserhalb (Timer) und Militaerflugzeugansage
+            // Das alles in eigene Methode verschieben
+
         }
     }
 
@@ -111,7 +169,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (int i = 1; i < statusDisplays.length; i++){
             double shift = 0;
             for (int j = 0; j < statusDisplays.length; j++){
-                if (j < i) {
+                if (j < i && statusDisplays[j].getVisible()) {
                     shift += statusDisplays[j].getWidth() + 20;
                 }
             }
@@ -127,10 +185,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         }
     }*/
 
-    public boolean getMenuOpen(){
-        return menuOpen;
-    }
-
+    public boolean getMenuOpen(){return menuOpen;}
     public SettingController getSC(){return sc;}
     public ProgramController getPC(){return pc;}
     public DrawTool getDrawTool(){return theDrawTool;}
@@ -142,6 +197,8 @@ public class UserInterface extends InteractiveGraphicalObject {
         if (index == 5) return String.valueOf(Math.round(1/dt));
         return "nichts";
     }
+
+    public void setPlayerOutside(boolean outside){playerOutside = outside;}
 
 }
 

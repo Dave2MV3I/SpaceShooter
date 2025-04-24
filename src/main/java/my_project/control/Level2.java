@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.enemy.SmallSpaceship;
+import my_project.model.enemy.Spaceship;
 
 public class Level2 extends LevelControl{
     //Attribute
@@ -35,7 +36,7 @@ public class Level2 extends LevelControl{
             if (bullet.isActive()) bullet.draw(drawTool);
         }
 
-        for (SmallSpaceship spaceship : spaceships) {
+        for (Spaceship spaceship : spaceships) {
             if (spaceship.isActive()) spaceship.draw(drawTool);
         }
     }
@@ -46,7 +47,7 @@ public class Level2 extends LevelControl{
 
         if (timer > 10 /*&& counter < 8*/) {
             System.out.println("Spaceship gestartet (2)");
-            for (SmallSpaceship spaceship : spaceships) {
+            for (Spaceship spaceship : spaceships) {
 
                 if (!spaceship.isActive()) {
                     spaceship.startSpaceship(800, counter * 60, pc);
@@ -56,7 +57,7 @@ public class Level2 extends LevelControl{
                 }
             }
 
-            for (SmallSpaceship spaceship : spaceships) {
+            for (Spaceship spaceship : spaceships) {
                 if (!spaceship.isActive()) {
                     spaceship.startSpaceship(800, 700 - counter * 50, pc);
                     counter += 1;
@@ -68,14 +69,14 @@ public class Level2 extends LevelControl{
         // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
-            pc.setSceneOrLevel(5);
+            pc.setSceneOrLevel(3);
         }
 
         for (Bullet bullet : bullets) {
             if (bullet.isActive()) bullet.update(dt);
         }
 
-        for (SmallSpaceship spaceship : spaceships) {
+        for (Spaceship spaceship : spaceships) {
             if (spaceship.isActive()) spaceship.update(dt);
         }
 
@@ -83,7 +84,7 @@ public class Level2 extends LevelControl{
     }
 
     public boolean noSpaceships(){
-        for (SmallSpaceship spaceship : spaceships) {
+        for (Spaceship spaceship : spaceships) {
             if (spaceship.isActive()) return false;
         }
         return true;
