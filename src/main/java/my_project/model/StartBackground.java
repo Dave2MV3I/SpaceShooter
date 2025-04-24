@@ -27,7 +27,14 @@ public class StartBackground extends GraphicalObject {
         drawTool.drawFilledCircle((700 + starsX)% Config.WINDOW_HEIGHT,630,2);
         drawTool.drawFilledCircle((700 + starsX)% Config.WINDOW_HEIGHT,230,2);
 
-        drawPlanet(500, 600, 60, 0, 0, 255, 150, true, drawTool);
+        //drawPlanet(500, 600, 60, 0, 0, 255, 150, true, drawTool);
+        //drawPlanet(100, 200, 35, 140, 0, 20, 200, false, drawTool);
+
+        if (Math.random() > 0.5) {
+            for (int i = 0; i< 7; i++){
+                drawPlanet(Math.random()*Config.WINDOW_WIDTH, Math.random()*Config.WINDOW_HEIGHT, (int)(15+Math.random()*100), Math.random()*255, Math.random()*255, Math.random()*255, Math.random()*255, Math.random()>0.5, drawTool);
+            }
+        }
     }
 
     public void update (double dt) {
@@ -39,7 +46,10 @@ public class StartBackground extends GraphicalObject {
         drawTool.drawFilledCircle(x, y, radius);
 
         if (withDust){
+            drawTool.setCurrentColor((int) r, (int) g, (int) b, 255);
             drawTool.drawFilledRectangle(x-1.5*radius, y-0.1*radius, 3*radius, 0.2*radius);
+            drawTool.drawFilledCircle(x-1.5*radius, y, 0.1*radius);
+            drawTool.drawFilledCircle(x+1.5*radius, y, 0.1*radius);
         }
 
     }
