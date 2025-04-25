@@ -73,7 +73,7 @@ public class Player extends Spaceship {
 
         this.cooldownTimer = this.cooldownTimer - dt;
 
-        pc.getUI().setPlayerOutside(x < 0 || y < 0 || x > Config.WINDOW_WIDTH || y > Config.WINDOW_HEIGHT-29);
+        pc.getUI().setPlayerOutside(x+width < 0 || y+height < 0 || x > Config.WINDOW_WIDTH || y > Config.WINDOW_HEIGHT-29);
     }
 
     public void processWASD(int keyCode, boolean pressed) {

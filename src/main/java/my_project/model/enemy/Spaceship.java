@@ -63,7 +63,7 @@ public class Spaceship extends GraphicalObject{
             this.health += points;
             if (health <= 0) {
                 isActive = false;
-                pc.playSound("explosion");
+                if (pc.getSC().getActivity(1)) pc.playSound("explosion");
             }
         }
 
