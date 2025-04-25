@@ -59,7 +59,7 @@ public class ProgramController {
 
 
 
-        // Bild
+            // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
                 Picture titleText = new Picture(100, 200, "src/main/resources/graphic/title_text.png");
@@ -102,10 +102,12 @@ public class ProgramController {
         viewController.register(inputManager,1);
         viewController.register(inputManager,2);
         //viewController.register(inputManager,3);
+        viewController.register(inputManager,4);
+        viewController.register(inputManager,5);
     }
 
     public void updateProgram(double dt){
-
+        //System.out.println(currentLevel);
         if (currentScene == 0) sback.update(dt);
         if (currentScene > 0 && currentScene < 4) currentLevel.update(dt);
     }
@@ -134,11 +136,6 @@ public class ProgramController {
             ui = new UserInterface(this);
         }
 
-        if (s > 0 && s < 4) {
-            viewController.draw(currentLevel, s);
-            viewController.register(ui,s);
-        }
-
         if (s == 2) {
             currentLevel = new Level2 (64, 8, this, "level1BGM");
         }
@@ -147,6 +144,11 @@ public class ProgramController {
         }
         if (s == 4){
             currentLevel = new Level4 (64, 8, this, "level1BGM");
+        }
+
+        if (s > 0 && s < 4) {
+            viewController.draw(currentLevel, s);
+            viewController.register(ui,s);
         }
 
         viewController.showScene(currentScene);

@@ -49,7 +49,7 @@ public class Level4 extends LevelControl{
     }
 
     public void update(double dt){
-        if (timer > 10 /*&& counter < 8*/) {
+        if (timer > 10 && counter < 8) {
             System.out.println("Spaceship gestartet (2)");
             for (Spaceship spaceship : spaceships) {
 
