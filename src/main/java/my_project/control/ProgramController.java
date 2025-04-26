@@ -185,7 +185,7 @@ public class ProgramController {
         }
 
         viewController.showScene(currentScene);
-        System.out.println("CurrentScene: " + currentScene);
+        //System.out.println("CurrentScene: " + currentScene);
     }
 
     /**

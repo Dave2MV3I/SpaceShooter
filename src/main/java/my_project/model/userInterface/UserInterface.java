@@ -87,27 +87,27 @@ public class UserInterface extends InteractiveGraphicalObject {
         double sy = 0;
         double rotation = 0;
 
-        if (px+pw < 0 && py >= 0 && py+ph <= winHeight){ // links .
+        if (px+pw < 0 && py >= 0 && py+ph <= winHeight){ // links
             sx = 0;
             sy = py+ph/2;
             rotation = 90;
-        } else if (px > winWidth && py >= 0 && py+ph <= winHeight){ // rechts .
+        } else if (px > winWidth && py >= 0 && py+ph <= winHeight){ // rechts
             sx = winWidth;
             sy = py+ph/2;
             rotation = 270;
-        } else if (py < 0 && px >= 0 && px <= winWidth){ // oben .
+        } else if (py+ph < 0 && px >= 0 && px+pw <= winWidth){ // oben
             sx = px+pw/2;
             sy = 0;
             rotation = 180;
-        } else if (py > winHeight && px >= 0 && px <= winWidth){ // unten .
+        } else if (py > winHeight && px >= 0 && px+pw <= winWidth){ // unten
             sx = px+pw/2;
             sy = winHeight;
 
-        } else if (px < 0 && py < 0){ // links oben .
+        } else if (px < 0 && py < 0){ // links oben
             sx = 0;
             sy = 0;
             rotation = 135;
-        } else if (px+pw > winWidth && py < 0){ // rechts oben .
+        } else if (px+pw > winWidth && py < 0){ // rechts oben
             sx = winWidth;
             sy = 0;
             rotation = 225;
