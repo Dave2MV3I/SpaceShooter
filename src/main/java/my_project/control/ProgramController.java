@@ -22,16 +22,17 @@ import java.awt.event.KeyEvent;
 
 public class ProgramController {
 
+    // Entwicklerattribute
+        private int afterPressingSpace = 1;     // <<<<<< Entwicklermodus: Um Level zu überspringen >>>>>>
+
     //Attribute
         private int currentScene;
-        private int afterPressingSpace = 1; // Entwicklermodus: Um Level zu überspringen
         private String currentSong = "level1BGM";
-        private String soundName;
+        private int nLevels = 9;
 
     // Referenzen
         private final ViewController viewController;
         private Player p1;
-
         private LevelControl currentLevel;
         private StartBackground sback;
         private UserInterface ui;
@@ -39,7 +40,6 @@ public class ProgramController {
         private InputManager inputManager;
 
     // Methoden
-
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
     }
@@ -123,18 +123,12 @@ public class ProgramController {
             viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
             // Music by https://pixabay.com/de/users/alex-productions-32020823/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919Alex Cristoforetti from https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132919
             // Photo by eberhard grossgasteiger: https://www.pexels.com/photo/brown-rocky-mountain-photography-2098427/
-
-        viewController.register(inputManager,1);
-        viewController.register(inputManager,2);
-        //viewController.register(inputManager,3);
-        viewController.register(inputManager,4);
-        viewController.register(inputManager,5);
     }
 
     public void updateProgram(double dt){
         //System.out.println(currentLevel);
         if (currentScene == 0) sback.update(dt);
-        if (currentScene > 0 && currentScene < 4) currentLevel.update(dt);
+        if (currentScene > 0 && currentScene < nLevels+1) currentLevel.update(dt);
     }
 
     public void processKeyboardInput(int key, boolean pressed) {
@@ -184,7 +178,7 @@ public class ProgramController {
             p1.setAmmunition(64);
         }
 
-        if (s > 0 && s < 10) {
+        if (s > 0 && s < nLevels+1) {
             viewController.draw(currentLevel, s);
             viewController.register(ui,s);
             viewController.register(inputManager,s);
@@ -216,6 +210,7 @@ public class ProgramController {
     public LevelControl getCurrentLevel() {return currentLevel;}
     public int getCurrentScene(){return currentScene;}
     public SettingController getSC(){return sc;}
+    public int getNLevels(){return nLevels;}
 
     public void playSound(String soundName){
         SoundController.playSound(soundName);

@@ -81,14 +81,11 @@ public class Level3 extends LevelControl{
         // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
+            //System.out.println(pc.getCurrentScene());
             pc.setSceneOrLevel(4);
         }
 
-        int activeEnemies = 0;
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) activeEnemies++;
-        }
-        System.out.println("ACTIVE ENEMIES: " + activeEnemies);
+
 
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].update(dt);

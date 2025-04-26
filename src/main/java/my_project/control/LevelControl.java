@@ -36,6 +36,7 @@ public abstract class LevelControl extends GraphicalObject{
         timer += dt;
         globalTimer += dt;
         pc.getUI().update(dt);
+        //System.out.println("Update des lvl wird aufgerufen ;)");
         pc.getPlayer().update(dt);
 
         //SOLVED Kollisionserkennung reparieren (fragt nicht wo das Problem ist, kp)
@@ -78,7 +79,7 @@ public abstract class LevelControl extends GraphicalObject{
         }
 
         if (pc.getPlayer().getHealth() <= 0) {
-            pc.setSceneOrLevel(4);
+            pc.setSceneOrLevel(10);
         }
 
 

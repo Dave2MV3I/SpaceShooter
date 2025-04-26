@@ -39,7 +39,7 @@ public class Level4 extends LevelControl{
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
 
-        System.out.println("startBullet() wurde aufgerufen");
+        //System.out.println("Lvl4 draw() wird aufgerufen");
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].draw(drawTool);
         }
@@ -50,8 +50,10 @@ public class Level4 extends LevelControl{
     }
 
     public void update(double dt){
+        super.update(dt);
+
         if (timer > 10 && counter < 8) {
-            System.out.println("Spaceship gestartet (2)");
+            //System.out.println("Spaceship gestartet (2)");
             for (Spaceship spaceship : spaceships) {
 
                 if (!spaceship.isActive()) {
@@ -72,8 +74,6 @@ public class Level4 extends LevelControl{
             }
 
         }
-
-
 
         // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 

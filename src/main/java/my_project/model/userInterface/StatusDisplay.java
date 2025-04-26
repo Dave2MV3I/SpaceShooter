@@ -18,7 +18,7 @@ public class StatusDisplay extends BlockWithIcon{
     @Override
     public void update(double dt){
         visible = ui.getSC().getActivity(index);
-        if (ui.getPC().getCurrentScene() < 4) text = ui.getStatus(index, dt);
+        if (ui.getPC().getCurrentScene() < ui.getPC().getNLevels()+1) text = ui.getStatus(index, dt);
     }
 
     public void setWidthCalculated(boolean widthCalculated) {this.widthCalculated = widthCalculated;}

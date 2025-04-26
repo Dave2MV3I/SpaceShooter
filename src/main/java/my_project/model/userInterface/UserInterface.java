@@ -126,6 +126,7 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     @Override
     public void update(double dt){
+        //System.out.println("Current Scene: " + pc.getCurrentScene());
         // Align and update StatusDisplays
         alignDisplays();
         for (StatusDisplay display : statusDisplays) {
