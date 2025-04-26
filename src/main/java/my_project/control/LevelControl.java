@@ -50,14 +50,14 @@ public abstract class LevelControl extends GraphicalObject{
 
                         //Man verliert, wenn Gegner "durchgeflogen ist
                         if (spaceship.getX() < - spaceship.getWidth()){
-                            pc.setSceneOrLevel(5);
-                            System.out.println("Hier hätte man eigentlich verlieren müssen");
+                            pc.setSceneOrLevel(10);
                         }
 
                         //Man verliert HP wennn man mit Gegner kollidiert
                         if (spaceship.collidesWith(pc.getPlayer())){
                             spaceship.setActive(false);
                             pc.getPlayer().modifyHP(-16);
+                            if (pc.getSC().getActivity(1)) pc.playSound("impact");
                         }
 
                         if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
@@ -78,7 +78,7 @@ public abstract class LevelControl extends GraphicalObject{
         }
 
         if (pc.getPlayer().getHealth() <= 0) {
-            pc.setSceneOrLevel(5);
+            pc.setSceneOrLevel(4);
         }
 
 
@@ -103,5 +103,6 @@ public abstract class LevelControl extends GraphicalObject{
     }
     public double getTimer() { return timer;}
     public double getGlobalTimer() { return globalTimer;}
+    public Spaceship[] getSpaceships() { return spaceships;}
 
 }

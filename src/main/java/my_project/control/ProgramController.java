@@ -24,6 +24,7 @@ public class ProgramController {
 
     //Attribute
         private int currentScene;
+        private int afterPressingSpace = 1; // Entwicklermodus: Um Level zu überspringen
         private String currentSong = "level1BGM";
         private String soundName;
 
@@ -35,6 +36,7 @@ public class ProgramController {
         private StartBackground sback;
         private UserInterface ui;
         private SettingController sc;
+        private InputManager inputManager;
 
     // Methoden
 
@@ -44,7 +46,7 @@ public class ProgramController {
 
     public void startProgram() {
         // Vorbereitungen
-            InputManager inputManager = new InputManager(this);
+            inputManager = new InputManager(this);
             currentScene = 0;
 
         // Startbildschirm (Szene 0)
@@ -56,8 +58,6 @@ public class ProgramController {
                  viewController.getSoundController().loadSound("src/main/resources/sound/laser.mp3", "laser", false);
                  viewController.getSoundController().loadSound("src/main/resources/sound/space_explosion.mp3", "explosion", false);
                  viewController.getSoundController().loadSound("src/main/resources/sound/impact.mp3", "impact", false);
-
-
 
             // Bild
                 sback = new StartBackground();
@@ -83,19 +83,41 @@ public class ProgramController {
 
         // Spielbildschirm (Szene 3)
             viewController.createScene();
+            viewController.draw(level1BG,3);
 
         // Spielbildschirm (Szene 4)
-        viewController.createScene();
+            viewController.createScene();
+            viewController.draw(level1BG,4);
 
-        // Endbildschirm (Szene 5)
+        // Spielbildschirm (Szene 5)
+            viewController.createScene();
+            viewController.draw(level1BG,5);
+
+        // Spielbildschirm (Szene 6)
+            viewController.createScene();
+            viewController.draw(level1BG,6);
+
+        // Spielbildschirm (Szene 7)
+            viewController.createScene();
+            viewController.draw(level1BG,7);
+
+        // Spielbildschirm (Szene 8)
+            viewController.createScene();
+            viewController.draw(level1BG,8);
+
+        // Spielbildschirm (Szene 9)
+            viewController.createScene();
+            viewController.draw(level1BG,9);
+
+        // Endbildschirm (Szene 10)
             viewController.createScene();
             Picture loseText = new Picture(0,0,"src/main/resources/graphic/backgrounds/loseBG.png");
-            viewController.draw(loseText,5);
+            viewController.draw(loseText,10);
 
-        // Endbildschirm (Szene 6)
+        // Endbildschirm (Szene 11)
             viewController.createScene();
             Picture winText = new Picture(0,0,"src/main/resources/graphic/backgrounds/winBG.png");
-            viewController.draw(winText,6);
+            viewController.draw(winText,11);
 
         // Background Music
             viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
@@ -118,7 +140,7 @@ public class ProgramController {
     public void processKeyboardInput(int key, boolean pressed) {
         //System.out.println("process keyboardInput wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
-            setSceneOrLevel(1);
+            setSceneOrLevel(afterPressingSpace);
             checkAndHandleMusic(true);
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
@@ -130,33 +152,42 @@ public class ProgramController {
         }
         if (key == KeyEvent.VK_F){
             //System.out.println("Playerposition: " + "X: " + Math.round(p1.getX()) + ", Y: " + Math.round(p1.getY()) + ", X2: " + Math.round(p1.getX()+p1.getWidth()) + ", Y2: " + Math.round(p1.getY()+p1.getHeight()));
+
         }
     }
 
+    /**
+     *
+     * @param s <br>
+     *          0 für Startbildschirm <br>
+     *          1-9 für entsprechendes Level <br>
+     *          10 für Lose <br>
+     *          11 für Win <br>
+     */
     public void setSceneOrLevel(int s){
         this.currentScene = s;
+        if (sc == null) sc = new SettingController(6);
+        if (ui == null) ui = new UserInterface(this);
 
-        if (s == 1) {
-            sc = new SettingController(6);
-            ui = new UserInterface(this);
-        }
+        //if (s == 1) {}
 
         if (s == 2) {
             currentLevel = new Level2 (8, this, "level1BGM");
-            getPlayer().setAmmunition(48);
+            p1.setAmmunition(48);
         }
         if (s == 3) {
             currentLevel = new Level3 (8, this, "level1BGM");
-            getPlayer().setAmmunition(64);
+            p1.setAmmunition(64);
         }
         if (s == 4){
             currentLevel = new Level4 (8, this, "level1BGM");
-            getPlayer().setAmmunition(64);
+            p1.setAmmunition(64);
         }
 
-        if (s > 0 && s < 5) {
+        if (s > 0 && s < 10) {
             viewController.draw(currentLevel, s);
             viewController.register(ui,s);
+            viewController.register(inputManager,s);
         }
 
         viewController.showScene(currentScene);
