@@ -140,12 +140,15 @@ public class ProgramController {
 
         if (s == 2) {
             currentLevel = new Level2 (8, this, "level1BGM");
+            getPlayer().setAmmunition(48);
         }
         if (s == 3) {
             currentLevel = new Level3 (8, this, "level1BGM");
+            getPlayer().setAmmunition(64);
         }
         if (s == 4){
             currentLevel = new Level4 (8, this, "level1BGM");
+            getPlayer().setAmmunition(64);
         }
 
         if (s > 0 && s < 4) {

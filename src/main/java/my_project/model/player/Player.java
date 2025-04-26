@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class Player extends Spaceship {
 
+    private int ammunition;
     private double hoverY;
     private boolean hoverUp;
 
@@ -37,6 +38,8 @@ public class Player extends Spaceship {
 
         this.health = 50;
         this.maxHealth = 50;
+
+        this.ammunition = 32;
     }
 
 
@@ -94,9 +97,11 @@ public class Player extends Spaceship {
     public void processSpace() {
         //new Bullet (this.pc.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
 
-        if (this.cooldownTimer < 0) {
+        if (this.cooldownTimer < 0 && this.ammunition > 0) {
             pc.getCurrentLevel().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 10, 100, 0);
             this.cooldownTimer = this.cooldown;
+            this.ammunition = this.ammunition - 1;
+            System.out.println(this.ammunition);
         }
     }
 
@@ -109,5 +114,7 @@ public class Player extends Spaceship {
     public int getHealth() {
         return health;
     }
-
+    public void setAmmunition(int ammunition) {
+        this.ammunition = ammunition;
+    }
 }

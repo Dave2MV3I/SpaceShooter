@@ -32,7 +32,7 @@ public class Level2 extends LevelControl{
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
 
-        System.out.println("drawLevel2() wurde aufgerufen");
+        //System.out.println("drawLevel2() wurde aufgerufen");
         for (Bullet bullet : bullets) {
             if (bullet.isActive()) bullet.draw(drawTool);
         }
