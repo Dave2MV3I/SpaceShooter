@@ -13,8 +13,9 @@ public class Level3 extends LevelControl{
     private final ProgramController pc;
 
     //Methoden
-    public Level3(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
-        super(nBullets, nSpaceships, pc, bgSong);
+    public Level3(int nSpaceships, ProgramController pc, String bgSong) {
+        super(nSpaceships, pc, bgSong);
+        int nBullets = nSpaceships*5 + 20;
 
         counter = 0;
         this.pc = pc;

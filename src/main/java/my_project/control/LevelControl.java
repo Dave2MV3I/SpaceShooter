@@ -15,10 +15,12 @@ public abstract class LevelControl extends GraphicalObject{
     protected double globalTimer;
     protected String bgSong;
 
-    public LevelControl(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
+    public LevelControl(int nSpaceships, ProgramController pc, String bgSong) {
+
+        int nBullets = nSpaceships*5 + 20;
+        spaceships = new Spaceship[nSpaceships];
 
         bullets = new Bullet[nBullets];
-        spaceships = new Spaceship[nSpaceships];
         this.pc = pc;
         this.bgSong = bgSong;
     }

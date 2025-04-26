@@ -15,8 +15,9 @@ public class Level1 extends LevelControl {
     private final ProgramController pc;
 
     //Methoden
-    public Level1(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
-        super(nBullets, nSpaceships, pc, bgSong);
+    public Level1(int nSpaceships, ProgramController pc, String bgSong) {
+        super(nSpaceships, pc, bgSong);
+        int nBullets = nSpaceships*5 + 20;
 
         for (int i = 0; i < nBullets; i++) {
             bullets[i] = new Bullet();

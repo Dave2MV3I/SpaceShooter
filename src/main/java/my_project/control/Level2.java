@@ -13,8 +13,9 @@ public class Level2 extends LevelControl{
     private final ProgramController pc;
 
     //Methoden
-    public Level2(int nBullets, int nSpaceships, ProgramController pc, String bgSong) {
-        super(nBullets, nSpaceships, pc, bgSong);
+    public Level2(int nSpaceships, ProgramController pc, String bgSong) {
+        super(nSpaceships, pc, bgSong);
+        int nBullets = nSpaceships*5 + 20;
         System.out.println ("Levels2.draw() wurde aufgerufen");
 
         for (int i = 0; i < nBullets; i++) {

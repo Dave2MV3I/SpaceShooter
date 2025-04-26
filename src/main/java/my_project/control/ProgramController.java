@@ -73,7 +73,7 @@ public class ProgramController {
             Picture level1BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
             viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
-            currentLevel = new Level1(64, 8, this, "level1BGM");
+            currentLevel = new Level1(8, this, "level1BGM");
             viewController.draw(currentLevel,1);
 
 
@@ -139,13 +139,13 @@ public class ProgramController {
         }
 
         if (s == 2) {
-            currentLevel = new Level2 (64, 8, this, "level1BGM");
+            currentLevel = new Level2 (8, this, "level1BGM");
         }
         if (s == 3) {
-            currentLevel = new Level3 (64, 8, this, "level1BGM");
+            currentLevel = new Level3 (8, this, "level1BGM");
         }
         if (s == 4){
-            currentLevel = new Level4 (64, 8, this, "level1BGM");
+            currentLevel = new Level4 (8, this, "level1BGM");
         }
 
         if (s > 0 && s < 4) {
