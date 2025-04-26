@@ -17,7 +17,6 @@ public class Level3 extends LevelControl{
         super(nSpaceships, pc, bgSong);
         int nBullets = nSpaceships*5 + 20;
 
-        counter = 0;
         this.pc = pc;
 
         for (int i = 0; i < nBullets; i++) {
@@ -28,7 +27,7 @@ public class Level3 extends LevelControl{
             spaceships[i] = new SmallSpaceship();
         }
 
-        for (int i = nSpaceships - 3; i < nSpaceships; i++) {
+        for (int i = nSpaceships - 4; i < nSpaceships; i++) {
             spaceships[i] = new Stardestroyer();
         }
 
@@ -41,8 +40,8 @@ public class Level3 extends LevelControl{
 
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
+        //System.out.println("Lvl3 wird gezeichnet");
 
-        System.out.println("startBullet() wurde aufgerufen");
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].draw(drawTool);
         }
@@ -54,21 +53,22 @@ public class Level3 extends LevelControl{
 
     public void update(double dt){
         super.update(dt);
-        System.out.println("level2.update aufgerufen");
         if (timer > 10 /*&& counter < 8*/) {
             //System.out.println("Spaceship gestartet (2)");
             if (counter%2 == 0){
                 for (int j = 0; j < spaceships.length-4; j++) {
-                    if (spaceships[j].isActive()) {
+                    if (!spaceships[j].isActive()) {
                         spaceships[j].startSpaceship(800, counter * 80, pc);
+                        counter += 1;
                     }
                 }
             }
 
             if (counter%2 == 1){
-                for (int j = spaceships.length - 3; j < spaceships.length; j++) {
-                    if (spaceships[j].isActive()) {
+                for (int j = spaceships.length - 4; j < spaceships.length; j++) {
+                    if (!spaceships[j].isActive()) {
                         spaceships[j].startSpaceship(800, counter * 80, pc);
+                        counter += 1;
                     }
                 }
             }

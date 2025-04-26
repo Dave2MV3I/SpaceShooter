@@ -57,8 +57,6 @@ public class ProgramController {
                  viewController.getSoundController().loadSound("src/main/resources/sound/space_explosion.mp3", "explosion", false);
                  viewController.getSoundController().loadSound("src/main/resources/sound/impact.mp3", "impact", false);
 
-
-
             // Bild
                 sback = new StartBackground();
                 viewController.draw(sback,0);
@@ -83,6 +81,7 @@ public class ProgramController {
 
         // Spielbildschirm (Szene 3)
             viewController.createScene();
+            viewController.draw(level1BG,3);
 
         // Endbildschirm (Szene 4)
             viewController.createScene();
@@ -101,7 +100,7 @@ public class ProgramController {
 
         viewController.register(inputManager,1);
         viewController.register(inputManager,2);
-        //viewController.register(inputManager,3);
+        viewController.register(inputManager,3);
         viewController.register(inputManager,4);
         viewController.register(inputManager,5);
     }
@@ -115,7 +114,7 @@ public class ProgramController {
     public void processKeyboardInput(int key, boolean pressed) {
         //System.out.println("process keyboardInput wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
-            setSceneOrLevel(1);
+            setSceneOrLevel(3);
             checkAndHandleMusic(true);
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
@@ -127,16 +126,16 @@ public class ProgramController {
         }
         if (key == KeyEvent.VK_F){
             //System.out.println("Playerposition: " + "X: " + Math.round(p1.getX()) + ", Y: " + Math.round(p1.getY()) + ", X2: " + Math.round(p1.getX()+p1.getWidth()) + ", Y2: " + Math.round(p1.getY()+p1.getHeight()));
+
         }
     }
 
     public void setSceneOrLevel(int s){
         this.currentScene = s;
+        if (sc == null) sc = new SettingController(6);
+        if (ui == null) ui = new UserInterface(this);
 
-        if (s == 1) {
-            sc = new SettingController(6);
-            ui = new UserInterface(this);
-        }
+        //if (s == 1) {}
 
         if (s == 2) {
             currentLevel = new Level2 (8, this, "level1BGM");
