@@ -47,6 +47,19 @@ public abstract class LevelControl extends GraphicalObject{
                 for (Spaceship spaceship : spaceships) {
 
                     if (spaceship.isActive()) {
+
+                        //Man verliert, wenn Gegner "durchgeflogen ist
+                        if (spaceship.getX() < - spaceship.getWidth()){
+                            pc.setSceneOrLevel(4);
+                            System.out.println("Hier hätte man eigentlich verlieren müssen");
+                        }
+
+                        //Man verliert HP wennn man mit Gegner kollidiert
+                        if (spaceship.collidesWith(pc.getPlayer())){
+                            spaceship.setActive(false);
+                            pc.getPlayer().modifyHP(-16);
+                        }
+
                         if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
                             spaceship.modifyHP(-(bullet.getDamage()));
                             System.out.println("Bullet ist mit Gegner kollidiert");
@@ -67,6 +80,8 @@ public abstract class LevelControl extends GraphicalObject{
         if (pc.getPlayer().getHealth() <= 0) {
             pc.setSceneOrLevel(4);
         }
+
+
         // Kollisionsüberprüfung Player und Bullets (shooter nicht instanceof player)
 
         // Kollisionsüberprüfung jeder Bullet mit jedem Spaceship (shooter instanceof player)

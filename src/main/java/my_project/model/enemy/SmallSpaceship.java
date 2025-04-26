@@ -21,6 +21,6 @@ public class SmallSpaceship extends Spaceship {
     @Override
     public void update(double dt) {
         super.update(dt);
-        if (this.x > Config.WINDOW_WIDTH || this.x < 0 || this.y > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}
+        if (this.x > Config.WINDOW_WIDTH || this.y > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}
     }
 }

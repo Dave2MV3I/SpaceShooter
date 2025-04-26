@@ -9,6 +9,7 @@ public class Spaceship extends GraphicalObject{
     protected int maxHealth;
     protected int health;
     protected double speed;
+
     protected boolean isActive;
     protected ProgramController pc;
 
@@ -70,6 +71,10 @@ public class Spaceship extends GraphicalObject{
     public boolean isActive() {
         return isActive;
     }
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
 
     private void drawHealthBar(DrawTool drawTool) {
         double barWidth = 40;
