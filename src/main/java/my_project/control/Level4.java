@@ -38,8 +38,8 @@ public class Level4 extends LevelControl{
 
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
+        System.out.println("LEVEL 4 GESTARTET");
 
-        System.out.println("startBullet() wurde aufgerufen");
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].draw(drawTool);
         }
@@ -78,7 +78,7 @@ public class Level4 extends LevelControl{
         // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
-            pc.setSceneOrLevel(5);
+            pc.setSceneOrLevel(11);
         }
 
         for (int i = 0; i < bullets.length; i++) {

@@ -50,7 +50,7 @@ public abstract class LevelControl extends GraphicalObject{
 
                         //Man verliert, wenn Gegner "durchgeflogen ist
                         if (spaceship.getX() < - spaceship.getWidth()){
-                            pc.setSceneOrLevel(4);
+                            pc.setSceneOrLevel(10);
                         }
 
                         //Man verliert HP wennn man mit Gegner kollidiert
@@ -78,7 +78,7 @@ public abstract class LevelControl extends GraphicalObject{
         }
 
         if (pc.getPlayer().getHealth() <= 0) {
-            pc.setSceneOrLevel(4);
+            pc.setSceneOrLevel(10);
         }
 
 

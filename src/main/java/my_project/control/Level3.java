@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.enemy.SmallSpaceship;
+import my_project.model.enemy.Spaceship;
 import my_project.model.enemy.Stardestroyer;
 
 public class Level3 extends LevelControl{
@@ -53,7 +54,7 @@ public class Level3 extends LevelControl{
 
     public void update(double dt){
         super.update(dt);
-        if (timer > 10 /*&& counter < 8*/) {
+        if (timer > 10 && counter < 8) {
             //System.out.println("Spaceship gestartet (2)");
             if (counter%2 == 0){
                 for (int j = 0; j < spaceships.length-4; j++) {
@@ -74,13 +75,17 @@ public class Level3 extends LevelControl{
             }
         }
 
-
-
-        // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
+        // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
             pc.setSceneOrLevel(4);
         }
+
+        int activeEnemies = 0;
+        for (Spaceship spaceship : spaceships) {
+            if (spaceship.isActive()) activeEnemies++;
+        }
+        System.out.println("ACTIVE ENEMIES: " + activeEnemies);
 
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].update(dt);
