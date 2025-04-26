@@ -84,15 +84,18 @@ public class ProgramController {
         // Spielbildschirm (Szene 3)
             viewController.createScene();
 
-        // Endbildschirm (Szene 4)
-            viewController.createScene();
-            Picture loseText = new Picture(0,0,"src/main/resources/graphic/backgrounds/loseBG.png");
-            viewController.draw(loseText,4);
+        // Spielbildschirm (Szene 4)
+        viewController.createScene();
 
         // Endbildschirm (Szene 5)
             viewController.createScene();
+            Picture loseText = new Picture(0,0,"src/main/resources/graphic/backgrounds/loseBG.png");
+            viewController.draw(loseText,5);
+
+        // Endbildschirm (Szene 6)
+            viewController.createScene();
             Picture winText = new Picture(0,0,"src/main/resources/graphic/backgrounds/winBG.png");
-            viewController.draw(winText,5);
+            viewController.draw(winText,6);
 
         // Background Music
             viewController.getSoundController().loadSound("src/main/resources/sound/bgm_level1.mp3","level1BGM", true);
@@ -151,7 +154,7 @@ public class ProgramController {
             getPlayer().setAmmunition(64);
         }
 
-        if (s > 0 && s < 4) {
+        if (s > 0 && s < 5) {
             viewController.draw(currentLevel, s);
             viewController.register(ui,s);
         }

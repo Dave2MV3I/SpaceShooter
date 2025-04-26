@@ -9,6 +9,7 @@ import my_project.model.enemy.Stardestroyer;
 public class Level4 extends LevelControl{
     //Attribute
     int counter = 0;
+    boolean levelEnded = false;
 
     //Referenzen
     private final ProgramController pc;
@@ -78,7 +79,10 @@ public class Level4 extends LevelControl{
         // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
         if (counter > 7 && noSpaceships()) {
-            pc.setSceneOrLevel(5);
+            if (!levelEnded) {
+                pc.setSceneOrLevel(6);
+                levelEnded = true;
+            }
         }
 
         for (int i = 0; i < bullets.length; i++) {

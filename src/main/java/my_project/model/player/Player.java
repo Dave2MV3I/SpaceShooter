@@ -36,7 +36,7 @@ public class Player extends Spaceship {
         this.cooldownTimer = 0.5;
         this.speed = 100;
 
-        this.health = 50;
+        this.health = 128;
         this.maxHealth = 50;
 
         this.ammunition = 32;
