@@ -14,8 +14,8 @@ public class UserInterface extends InteractiveGraphicalObject {
     // Attribute
         private boolean menuOpen = false;
         // totals: 6 setting buttons, 1 main setting button, 3 status displays up to now
-        private final SettingButton[] settingButtons = new SettingButton[6];
-        private final StatusDisplay[] statusDisplays = new StatusDisplay[4];
+        private final SettingButton[] settingButtons;
+        private final StatusDisplay[] statusDisplays;
         private final double buttonHeight = 30;
         private boolean playerOutside = false;
 
@@ -31,24 +31,23 @@ public class UserInterface extends InteractiveGraphicalObject {
     public UserInterface(ProgramController pc) {
         this.pc = pc;
         sc = pc.getSC();
-        double bX = 20;
+        settingButtons = new SettingButton[sc.getSettings().length];
+
+        double buttonX = 20;
 
         // Icons von flaticon.com
-        mainSettingButton = new MainSettingButton(bX, gBY(0), buttonHeight, "src/main/resources/graphic/menu/settings.png",  this);
-        settingButtons[0] = new SettingButton(bX, gBY(1), buttonHeight, "src/main/resources/graphic/menu/music.png", this, 0);
-        settingButtons[1] = new SettingButton(bX, gBY(2), buttonHeight, "src/main/resources/graphic/menu/sounds.png", this, 1);
-        settingButtons[2] = new SettingButton(bX, gBY(3), buttonHeight, "src/main/resources/graphic/menu/level.png", this, 2);
-        settingButtons[3] = new SettingButton(bX, gBY(4), buttonHeight, "src/main/resources/graphic/menu/time.png", this, 3);
-        settingButtons[4] = new SettingButton(bX, gBY(5), buttonHeight, "src/main/resources/graphic/menu/globalTime.png", this, 4);
-        settingButtons[5] = new SettingButton(bX, gBY(6), buttonHeight, "src/main/resources/graphic/menu/fps.png", this, 5);
-
-        statusDisplays[0] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(2), "src/main/resources/graphic/menu/level.png", 2, this);
-        statusDisplays[1] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(3), "src/main/resources/graphic/menu/time.png", 3, this);
-        statusDisplays[2] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(4), "src/main/resources/graphic/menu/globalTime.png", 4, this);
-        statusDisplays[3] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(5), "src/main/resources/graphic/menu/fps.png", 5, this);
+        mainSettingButton = new MainSettingButton(buttonX, getButtonY(0), buttonHeight, "src/main/resources/graphic/menu/settings.png",  this);
+        for (int i = 0; i < sc.getSettings().length; i++){
+            settingButtons[i] = new SettingButton(buttonX, getButtonY(i+1), buttonHeight, sc.getIconPaths()[i], this, i);
+        }
+        statusDisplays = new StatusDisplay[sc.getStatusSettingIndices().length];
+        for (int i = 0; i < statusDisplays.length; i++) {
+            int settingIndex = sc.getStatusSettingIndices()[i];
+            statusDisplays[i] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(settingIndex), sc.getIconPaths()[settingIndex], settingIndex, this);
+        }
     }
 
-    private double gBY(int i){
+    private double getButtonY(int i){
         double startBY = 20;
         final double buffer = 10;
         return startBY + i * (buttonHeight + buffer);
@@ -65,6 +64,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (StatusDisplay display : statusDisplays) {
             //if (sc.getActivity(i+2)) statusDisplays[i].draw(drawTool);
             if (display.getVisible()) display.draw(drawTool);
+            // Für shield einbauen, dass Display nur auftaucht, wenn es ein Shield gibt
         }
 
         //Stecknadel zeichnen
@@ -147,18 +147,14 @@ public class UserInterface extends InteractiveGraphicalObject {
                 if (i==0) {
                     pc.checkAndHandleMusic(false);
                 }
-                for (int j = 0; j < statusDisplays.length; j++){
-                    statusDisplays[j].setVisible(sc.getActivity(j+2));
-                }
             }
         }
     }
 
     public void menuClicked(){
         if (menuOpen){
-            for (int i = 0; i < settingButtons.length; i++) {
-                settingButtons[i].setY(gBY(i+1));
-                settingButtons[i].setVisible(true);
+            for (SettingButton settingButton : settingButtons) {
+                settingButton.setVisible(true);
             }
         } else {
             for (StatusDisplay display : statusDisplays){
@@ -183,14 +179,6 @@ public class UserInterface extends InteractiveGraphicalObject {
         }
     }
 
-    /*
-    @Override
-    public void keyPressed(int k){
-        if (k == KeyEvent.VK_F) {
-
-        }
-    }*/
-
     public boolean getMenuOpen(){return menuOpen;}
     public SettingController getSC(){return sc;}
     public ProgramController getPC(){return pc;}
@@ -201,6 +189,8 @@ public class UserInterface extends InteractiveGraphicalObject {
         if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getTimer()));
         if (index == 4) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
         if (index == 5) return String.valueOf(Math.round(1/dt));
+        if (index == 6) return String.valueOf("noch kein Schild");
+        if (index == 7) return String.valueOf(pc.getPlayer().getAmmunition());
         return "nichts";
     }
 

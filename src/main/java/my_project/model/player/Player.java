@@ -1,5 +1,6 @@
 package my_project.model.player;
 
+import KAGO_framework.control.SoundController;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.ProgramController;
@@ -99,6 +100,7 @@ public class Player extends Spaceship {
 
         if (this.cooldownTimer < 0 && this.ammunition > 0) {
             pc.getCurrentLevel().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 10, 100, 0);
+            if (pc.getCurrentScene() > 0 && pc.getCurrentScene() < 10) if (pc.getSC().getActivity(1)) SoundController.playSound("laser");
             this.cooldownTimer = this.cooldown;
             this.ammunition = this.ammunition - 1;
             System.out.println(this.ammunition);
@@ -108,12 +110,10 @@ public class Player extends Spaceship {
     public void modifyHP(int points){
         this.health += points;
     }
-
-
-
     public int getHealth() {
         return health;
     }
+    public int getAmmunition(){return ammunition;}
     public void setAmmunition(int ammunition) {
         this.ammunition = ammunition;
     }

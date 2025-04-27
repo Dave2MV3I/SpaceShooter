@@ -142,7 +142,6 @@ public class ProgramController {
         }
         if (key == KeyEvent.VK_SPACE && pressed) {
             p1.processSpace();
-            if (currentScene != 0) if (sc.getActivity(1)) SoundController.playSound("laser");
         }
         if (key == KeyEvent.VK_F){
             //System.out.println("Playerposition: " + "X: " + Math.round(p1.getX()) + ", Y: " + Math.round(p1.getY()) + ", X2: " + Math.round(p1.getX()+p1.getWidth()) + ", Y2: " + Math.round(p1.getY()+p1.getHeight()));
@@ -160,7 +159,7 @@ public class ProgramController {
      */
     public void setSceneOrLevel(int s){
         this.currentScene = s;
-        if (sc == null) sc = new SettingController(6);
+        if (sc == null) sc = new SettingController();
         if (ui == null) ui = new UserInterface(this);
 
         //if (s == 1) {}

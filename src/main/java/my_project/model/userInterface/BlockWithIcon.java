@@ -69,12 +69,12 @@ public class BlockWithIcon extends GraphicalObject{
     protected double calculateWidth(DrawTool drawTool, String name) {
         FontMetrics fm = drawTool.getGraphics2D().getFontMetrics();
         return fm.stringWidth(name) + buttonRadius * 3 + iconWidth;
+        //fm.stringWidth(name) berechnet die Breite des Strings name in Pixeln
     }
 
     public boolean getVisible(){return visible;}
-    public void setVisible(boolean visible) {this.visible = visible;}
-
     public double getButtonRadius(){return buttonRadius;}
+    public void setVisible(boolean visible) {this.visible = visible;}
 
     // Private Klasse
     protected class Icon extends GraphicalObject {
