@@ -7,8 +7,6 @@ import my_project.model.enemy.Spaceship;
 
 public class Level2 extends LevelControl{
     //Attribute
-    int counter = 0;
-    boolean levelEnded = false;
 
     //Referenzen
     private final ProgramController pc;
@@ -34,13 +32,7 @@ public class Level2 extends LevelControl{
         super.draw(drawTool);
 
         //System.out.println("drawLevel2() wurde aufgerufen");
-        for (Bullet bullet : bullets) {
-            if (bullet.isActive()) bullet.draw(drawTool);
-        }
 
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) spaceship.draw(drawTool);
-        }
     }
 
     public void update(double dt){
@@ -69,13 +61,6 @@ public class Level2 extends LevelControl{
             }
         }
         // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
-        for (Bullet bullet : bullets) {
-            if (bullet.isActive()) bullet.update(dt);
-        }
-
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) spaceship.update(dt);
-        }
 
         if (counter > 7 && noSpaceships()) {
             if (!levelEnded) {
@@ -84,13 +69,6 @@ public class Level2 extends LevelControl{
             }
         }
 
-    }
-
-    public boolean noSpaceships(){
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) return false;
-        }
-        return true;
     }
 
 }
