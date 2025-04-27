@@ -15,12 +15,16 @@ public abstract class LevelControl extends GraphicalObject{
     protected double globalTimer;
     protected String bgSong;
 
+    protected int counter = 0;
+    protected boolean levelEnded = false;
+
     public LevelControl(int nSpaceships, ProgramController pc, String bgSong) {
 
         int nBullets = nSpaceships*5 + 20;
-        spaceships = new Spaceship[nSpaceships];
 
+        spaceships = new Spaceship[nSpaceships];
         bullets = new Bullet[nBullets];
+
         this.pc = pc;
         this.bgSong = bgSong;
     }
@@ -29,6 +33,14 @@ public abstract class LevelControl extends GraphicalObject{
     public void draw(DrawTool drawTool){
         pc.getUI().draw(drawTool);
         pc.getPlayer().draw(drawTool);
+
+        for (Bullet bullet : bullets) {
+            if (bullet.isActive()) bullet.draw(drawTool);
+        }
+
+        for (Spaceship spaceship : spaceships) {
+            if (spaceship.isActive()) spaceship.draw(drawTool);
+        }
     }
 
     @Override
@@ -38,6 +50,20 @@ public abstract class LevelControl extends GraphicalObject{
         pc.getUI().update(dt);
         //System.out.println("Update des lvl wird aufgerufen ;)");
         pc.getPlayer().update(dt);
+
+
+        if (pc.getPlayer().getHealth() <= 0) {
+            pc.setSceneOrLevel(10);
+        }
+
+        for (int i = 0; i < bullets.length; i++) {
+            if (bullets[i].isActive()) bullets[i].update(dt);
+        }
+
+        for (int i = 0; i < spaceships.length; i++) {
+            if (spaceships[i].isActive()) spaceships[i].update(dt);
+        }
+
 
         //SOLVED Kollisionserkennung reparieren (fragt nicht wo das Problem ist, kp)
         //System.out.println("");
@@ -78,11 +104,6 @@ public abstract class LevelControl extends GraphicalObject{
             }
         }
 
-        if (pc.getPlayer().getHealth() <= 0) {
-            pc.setSceneOrLevel(10);
-        }
-
-
         // Kollisionsüberprüfung Player und Bullets (shooter nicht instanceof player)
 
         // Kollisionsüberprüfung jeder Bullet mit jedem Spaceship (shooter instanceof player)
@@ -102,8 +123,16 @@ public abstract class LevelControl extends GraphicalObject{
     public String getBgSong() {
         return bgSong;
     }
+
     public double getTimer() { return timer;}
     public double getGlobalTimer() { return globalTimer;}
     public Spaceship[] getSpaceships() { return spaceships;}
+
+    public boolean noSpaceships(){
+        for (int i = 0; i< spaceships.length; i++){
+            if (spaceships[i].isActive()) return false;
+        }
+        return true;
+    }
 
 }

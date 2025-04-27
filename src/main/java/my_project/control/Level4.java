@@ -8,7 +8,7 @@ import my_project.model.enemy.Stardestroyer;
 
 public class Level4 extends LevelControl{
     //Attribute
-    int counter = 0;
+
 
     //Referenzen
     private final ProgramController pc;
@@ -40,13 +40,6 @@ public class Level4 extends LevelControl{
         super.draw(drawTool);
 
         //System.out.println("Lvl4 draw() wird aufgerufen");
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i].isActive()) bullets[i].draw(drawTool);
-        }
-
-        for (int i = 0; i < spaceships.length; i++) {
-            if (spaceships[i].isActive()) spaceships[i].draw(drawTool);
-        }
     }
 
     public void update(double dt){
@@ -80,23 +73,6 @@ public class Level4 extends LevelControl{
         if (counter > 7 && noSpaceships()) {
             pc.setSceneOrLevel(11);
         }
-
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i].isActive()) bullets[i].update(dt);
-        }
-
-        for (int i = 0; i < spaceships.length; i++) {
-            if (spaceships[i].isActive()) spaceships[i].update(dt);
-        }
-
-
-    }
-
-    public boolean noSpaceships(){
-        for (int i = 0; i< spaceships.length; i++){
-            if (spaceships[i].isActive()) return false;
-        }
-        return true;
     }
 
 }

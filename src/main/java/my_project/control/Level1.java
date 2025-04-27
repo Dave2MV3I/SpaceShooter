@@ -8,8 +8,6 @@ import my_project.model.enemy.Spaceship;
 public class Level1 extends LevelControl {
 
     //Attribute
-    int counter = 0;
-    boolean levelEnded = false;
 
     //Referenzen
     private final ProgramController pc;
@@ -31,14 +29,8 @@ public class Level1 extends LevelControl {
 
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
-        //System.out.println("startBullet() wurde aufgerufen");
-        for (Bullet bullet : bullets) {
-            if (bullet.isActive()) bullet.draw(drawTool);
-        }
 
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) spaceship.draw(drawTool);
-        }
+        //System.out.println("startBullet() wurde aufgerufen");
     }
 
     public void update(double dt){
@@ -64,26 +56,6 @@ public class Level1 extends LevelControl {
             }
         }
 
-        for (Bullet bullet : bullets) {
-            if (bullet.isActive()) bullet.update(dt);
-        }
-
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) spaceship.update(dt);
-        }
-
-
     }
-
-    public boolean noSpaceships(){
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) return false;
-        }
-        return true;
-    }
-
-
-
-
 
 }

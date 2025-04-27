@@ -8,8 +8,6 @@ import my_project.model.enemy.Stardestroyer;
 
 public class Level3 extends LevelControl{
     //Attribute
-    int counter = 0;
-    boolean levelEnded = false;
 
     //Referenzen
     private final ProgramController pc;
@@ -33,11 +31,6 @@ public class Level3 extends LevelControl{
         for (int i = nSpaceships - 4; i < nSpaceships; i++) {
             spaceships[i] = new Stardestroyer();
         }
-
-
-
-        //spaceships[1].startSpaceship(300,300, 0.5, pc);
-        //bullets[1].startBullet(800, 400, "enemy", 20, 100, 100);
     }
 
 
@@ -45,14 +38,6 @@ public class Level3 extends LevelControl{
         super.draw(drawTool);
         //System.out.println("Lvl3 wird gezeichnet");
 
-
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i].isActive()) bullets[i].draw(drawTool);
-        }
-
-        for (int i = 0; i < spaceships.length; i++) {
-            if (spaceships[i].isActive()) spaceships[i].draw(drawTool);
-        }
     }
 
     public void update(double dt){
@@ -85,24 +70,7 @@ public class Level3 extends LevelControl{
             pc.setSceneOrLevel(4);
         }
 
-
-
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i].isActive()) bullets[i].update(dt);
-        }
-
-        for (int i = 0; i < spaceships.length; i++) {
-            if (spaceships[i].isActive()) spaceships[i].update(dt);
-        }
-
-
     }
 
-    public boolean noSpaceships(){
-        for (int i = 0; i< spaceships.length; i++){
-            if (spaceships[i].isActive()) return false;
-        }
-        return true;
-    }
 
 }
