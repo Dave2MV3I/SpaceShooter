@@ -24,6 +24,10 @@ public class Player extends Spaceship {
 
     private final ProgramController pc;
 
+
+    private boolean shieldActive;
+    private double shieldEndTime;
+
     public Player(double x, double y, ProgramController pc) {
         super();
         this.setNewImage("src/main/resources/graphic/spaceships/spaceship.png");
@@ -78,7 +82,12 @@ public class Player extends Spaceship {
         this.cooldownTimer = this.cooldownTimer - dt;
 
         pc.getUI().setPlayerOutside(x+width < 0 || y+height < 0 || x > Config.WINDOW_WIDTH || y > Config.WINDOW_HEIGHT-29);
+
+        if (shieldActive && System.currentTimeMillis() > shieldEndTime) {
+            shieldActive = false;
+        }
     }
+
 
     public void processWASD(int keyCode, boolean pressed) {
         if (keyCode == KeyEvent.VK_W) {
@@ -106,6 +115,16 @@ public class Player extends Spaceship {
             System.out.println(this.ammunition);
         }
     }
+
+
+    public void activateShield() {
+        shieldActive = true;
+        shieldEndTime = System.currentTimeMillis() + 5000;
+    }
+
+    public boolean isShieldActive() {
+            return shieldActive;
+        }
 
     public void modifyHP(int points){
         this.health += points;

@@ -3,13 +3,16 @@ package my_project.control;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
+import my_project.model.Shield;
 import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
+import my_project.model.player.Player;
 
 public abstract class LevelControl extends GraphicalObject{
 
     private final ProgramController pc;
     Bullet[] bullets;
+    Shield[] shields;
     Spaceship[] spaceships;
     protected double timer;
     protected double globalTimer;
@@ -24,6 +27,7 @@ public abstract class LevelControl extends GraphicalObject{
 
         spaceships = new Spaceship[nSpaceships];
         bullets = new Bullet[nBullets];
+        shields = new Shield[nSpaceships];
 
         this.pc = pc;
         this.bgSong = bgSong;
@@ -88,6 +92,7 @@ public abstract class LevelControl extends GraphicalObject{
                         }
 
                         if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
+                            Shield.startShield();
                             spaceship.modifyHP(-(bullet.getDamage()));
                             System.out.println("Bullet ist mit Gegner kollidiert");
 
@@ -98,7 +103,10 @@ public abstract class LevelControl extends GraphicalObject{
 
                 if (bullet.collidesWith(pc.getPlayer()) && bullet.getShooter().equals("enemy")) {
                     if (pc.getSC().getActivity(1)) pc.playSound("impact");
-                    pc.getPlayer().modifyHP(-(bullet.getDamage()));
+                    if (pc.getPlayer().isShieldActive()) {}
+                    else {
+                        pc.getPlayer().modifyHP(-(bullet.getDamage()));
+                    }
                     bullet.setIsActive(false);
                 }
             }
@@ -117,6 +125,15 @@ public abstract class LevelControl extends GraphicalObject{
                 break;
             }
             //break;
+        }
+    }
+
+    public void startShield (double x, double y, ProgramController programController, boolean movingLeft, boolean collected, double spawnTime){
+        for (Shield shield : shields) {
+            if (!shield.isActive()) {
+                shield.startShield(x, y, programController, movingLeft, collected, spawnTime);
+                break;
+            }
         }
     }
 

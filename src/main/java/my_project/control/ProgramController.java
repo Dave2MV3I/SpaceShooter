@@ -2,6 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
+import KAGO_framework.view.ProgramView;
 import my_project.model.*;
 import my_project.model.player.Player;
 import my_project.model.userInterface.UserInterface;
@@ -51,6 +52,9 @@ public class ProgramController {
 
         // Startbildschirm (Szene 0)
             // Ton
+                viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
+                viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
+                viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 currentSong = "startBGM";
                 //checkAndHandleMusic(false);
@@ -213,5 +217,10 @@ public class ProgramController {
 
     public void playSound(String soundName){
         SoundController.playSound(soundName);
+    }
+
+
+    public ViewController getViewController() {
+        return viewController;
     }
 }
