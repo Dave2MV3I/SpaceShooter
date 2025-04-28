@@ -64,6 +64,7 @@ public class Spaceship extends GraphicalObject{
             this.health += points;
             if (health <= 0) {
                 isActive = false;
+                pc.getCurrentLevel().startShield(this.getX(), this.getY(), pc, true, false, 5000);
                 if (pc.getSC().getActivity(1)) pc.playSound("explosion");
             }
         }

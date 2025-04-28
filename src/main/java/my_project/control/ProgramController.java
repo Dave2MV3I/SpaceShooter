@@ -77,7 +77,7 @@ public class ProgramController {
             Picture level1BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
             viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
-            currentLevel = new Level1(8, this, "level1BGM");
+            currentLevel = new Level1(8, this, "level1BGM",8);
             viewController.draw(currentLevel,1);
 
 
@@ -145,6 +145,8 @@ public class ProgramController {
             p1.processWASD(key, pressed);
         }
         if (key == KeyEvent.VK_SPACE && pressed) {
+            viewController.getSoundController().loadSound("src/main/resources/sound/shoot_sound.mp3","shootSound", false);
+            //SoundController.playSound(shootSound);
             p1.processSpace();
         }
         if (key == KeyEvent.VK_F){
@@ -169,15 +171,15 @@ public class ProgramController {
         //if (s == 1) {}
 
         if (s == 2) {
-            currentLevel = new Level2 (8, this, "level1BGM");
+            currentLevel = new Level2 (8, this, "level1BGM",8);
             p1.setAmmunition(48);
         }
         if (s == 3) {
-            currentLevel = new Level3 (8, this, "level1BGM");
+            currentLevel =new Level3 (8, this, "level1BGM",8);
             p1.setAmmunition(64);
         }
         if (s == 4){
-            currentLevel = new Level4 (8, this, "level1BGM");
+            currentLevel = new Level4 (8, this, "level1BGM",8);
             p1.setAmmunition(64);
         }
 

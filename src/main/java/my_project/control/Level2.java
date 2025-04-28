@@ -2,6 +2,7 @@ package my_project.control;
 
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
+import my_project.model.Shield;
 import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
 
@@ -12,8 +13,8 @@ public class Level2 extends LevelControl{
     private final ProgramController pc;
 
     //Methoden
-    public Level2(int nSpaceships, ProgramController pc, String bgSong) {
-        super(nSpaceships, pc, bgSong);
+    public Level2(int nSpaceships, ProgramController pc, String bgSong, int nShields) {
+        super(nSpaceships, pc, bgSong, nShields);
         int nBullets = nSpaceships*5 + 20;
         System.out.println ("Levels2.draw() wurde aufgerufen");
 
@@ -23,6 +24,9 @@ public class Level2 extends LevelControl{
 
         for (int i = 0; i < nSpaceships; i++) {
             spaceships[i] = new SmallSpaceship();
+        }
+        for (int i = 0; i < nShields; i++){
+            shields[i] = new Shield();
         }
         this.pc = pc;
     }

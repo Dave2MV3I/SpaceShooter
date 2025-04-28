@@ -23,7 +23,7 @@ public class Shield extends GraphicalObject {
 
     public void startShield(double x, double y, ProgramController programController, boolean movingLeft, boolean collected, double spawnTime){
         this.isActive = true;
-
+        System.out.println("Shield started");
         this.x = x;
         this.y = y;
 

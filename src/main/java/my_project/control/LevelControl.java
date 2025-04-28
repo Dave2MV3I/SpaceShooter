@@ -21,13 +21,13 @@ public abstract class LevelControl extends GraphicalObject{
     protected int counter = 0;
     protected boolean levelEnded = false;
 
-    public LevelControl(int nSpaceships, ProgramController pc, String bgSong) {
+    public LevelControl(int nSpaceships, ProgramController pc, String bgSong,int nShields) {
 
         int nBullets = nSpaceships*5 + 20;
 
         spaceships = new Spaceship[nSpaceships];
         bullets = new Bullet[nBullets];
-        shields = new Shield[nSpaceships];
+        shields = new Shield[nShields];
 
         this.pc = pc;
         this.bgSong = bgSong;
@@ -44,6 +44,10 @@ public abstract class LevelControl extends GraphicalObject{
 
         for (Spaceship spaceship : spaceships) {
             if (spaceship.isActive()) spaceship.draw(drawTool);
+        }
+
+        for (Shield shield : shields) {
+            if (shield.isActive()) shield.draw(drawTool);
         }
     }
 
@@ -92,9 +96,12 @@ public abstract class LevelControl extends GraphicalObject{
                         }
 
                         if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
-                            Shield.startShield();
+
+
+
                             spaceship.modifyHP(-(bullet.getDamage()));
                             System.out.println("Bullet ist mit Gegner kollidiert");
+
 
                             bullet.setIsActive(false);
                         }
