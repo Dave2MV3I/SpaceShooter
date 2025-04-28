@@ -72,6 +72,10 @@ public abstract class LevelControl extends GraphicalObject{
             if (spaceships[i].isActive()) spaceships[i].update(dt);
         }
 
+        for (int i = 0; i < shields.length; i++) {
+            if (shields[i].isActive()) shields[i].update(dt);
+        }
+
 
         //SOLVED Kollisionserkennung reparieren (fragt nicht wo das Problem ist, kp)
         //System.out.println("");
@@ -135,14 +139,18 @@ public abstract class LevelControl extends GraphicalObject{
         }
     }
 
-    public void startShield (double x, double y, ProgramController programController, boolean movingLeft, boolean collected, double spawnTime){
-        for (Shield shield : shields) {
-            if (!shield.isActive()) {
-                shield.startShield(x, y, programController, movingLeft, collected, spawnTime);
-                break;
+    public void startShield(double x, double y, ProgramController programController, boolean movingLeft, boolean collected, double spawnTime) {
+        if (Math.random() < 0.5) {
+            for (Shield shield : shields) {
+                if (!shield.isActive()) {
+                    boolean moveLeft = Math.random() < 0.5;
+                    shield.startShield(x, y, programController, moveLeft, collected, spawnTime);
+                    break;
+                }
             }
         }
     }
+
 
     public String getBgSong() {
         return bgSong;
