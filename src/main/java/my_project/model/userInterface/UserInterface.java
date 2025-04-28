@@ -24,6 +24,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         private final ProgramController pc;
         private final SettingController sc;
         private final MainSettingButton mainSettingButton;
+        private final BlockWithIcon shieldStatusDisplay;
         private DrawTool theDrawTool;
         private final Picture pin = new Picture(-20, -20, "src/main/resources/graphic/menu/pin.png");
 
@@ -31,6 +32,7 @@ public class UserInterface extends InteractiveGraphicalObject {
     public UserInterface(ProgramController pc) {
         this.pc = pc;
         sc = pc.getSC();
+        shieldStatusDisplay = new BlockWithIcon(20, 750, buttonHeight, false, "src/main/resources/graphic/menu/shield.png", "Shield", this, false);
         settingButtons = new SettingButton[sc.getSettings().length];
 
         double buttonX = 20;
@@ -64,11 +66,11 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (StatusDisplay display : statusDisplays) {
             //if (sc.getActivity(i+2)) statusDisplays[i].draw(drawTool);
             if (display.getVisible()) display.draw(drawTool);
-            // Für shield einbauen, dass Display nur auftaucht, wenn es ein Shield gibt
         }
 
         //Stecknadel zeichnen
         if (playerOutside) drawPin(drawTool);
+        if (shieldStatusDisplay.getVisible()) shieldStatusDisplay.draw(drawTool);
     }
 
     private void drawPin(DrawTool drawTool){
@@ -132,6 +134,12 @@ public class UserInterface extends InteractiveGraphicalObject {
         for (StatusDisplay display : statusDisplays) {
             display.update(dt);
         }
+
+
+        if (pc.getPlayer().isShielded()) {
+            shieldStatusDisplay.setText(String.valueOf(pc.getPlayer().getShieldsActivityTime()));
+            shieldStatusDisplay.setVisible(true);
+        } else shieldStatusDisplay.setVisible(false);
     }
 
     @Override
@@ -189,8 +197,7 @@ public class UserInterface extends InteractiveGraphicalObject {
         if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getTimer()));
         if (index == 4) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
         if (index == 5) return String.valueOf(Math.round(1/dt));
-        if (index == 6) return String.valueOf("noch kein Schild");
-        if (index == 7) return String.valueOf(pc.getPlayer().getAmmunition());
+        if (index == 6) return String.valueOf(pc.getPlayer().getAmmunition());
         return "nichts";
     }
 

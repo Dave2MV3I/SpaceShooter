@@ -11,7 +11,7 @@ public class SettingButton extends BlockWithIcon{
     private final int index;
 
     public SettingButton(double x, double y, double height, String iconPath, UserInterface ui, int index) {
-        super(x, y, height, false, iconPath, ui.getSC().getSettingName(index), ui);
+        super(x, y, height, false, iconPath, ui.getSC().getSettingName(index), ui, true);
         this.sc = ui.getSC();
         this.index = index;
         if (sc.getActivity(index)) {

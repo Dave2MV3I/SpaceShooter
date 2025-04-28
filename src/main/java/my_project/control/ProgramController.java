@@ -53,9 +53,6 @@ public class ProgramController {
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-                viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-                viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
-                viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 currentSong = "startBGM";
                 //checkAndHandleMusic(false);
             // Sounds
@@ -145,7 +142,7 @@ public class ProgramController {
             p1.processWASD(key, pressed);
         }
         if (key == KeyEvent.VK_SPACE && pressed) {
-            viewController.getSoundController().loadSound("src/main/resources/sound/shoot_sound.mp3","shootSound", false);
+            //viewController.getSoundController().loadSound("src/main/resources/sound/shoot_sound.mp3","shootSound", false);
             //SoundController.playSound(shootSound);
             p1.processSpace();
         }

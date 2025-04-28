@@ -22,7 +22,7 @@ public class BlockWithIcon extends GraphicalObject{
     protected Icon icon;
 
     // Konstruktoren
-    public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath, String text, UserInterface ui) {
+    public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath, String text, UserInterface ui, boolean colorIsSet) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -32,8 +32,15 @@ public class BlockWithIcon extends GraphicalObject{
         this.ui = ui;
 
         icon = new Icon(this, iconPath);
+
+        if(!colorIsSet) {
+            color[0] = 150;
+            color[1] = 0;
+            color[2] = 0;
+            color[3] = 255;
+        }
     }
-    public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath, UserInterface ui) {
+    public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath, UserInterface ui, boolean colorIsSet) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -42,6 +49,13 @@ public class BlockWithIcon extends GraphicalObject{
         this.ui = ui;
 
         icon = new Icon(this, iconPath);
+
+        if(!colorIsSet) {
+            color[0] = 150;
+            color[1] = 0;
+            color[2] = 0;
+            color[3] = 255;
+        }
     }
 
     // Methoden
@@ -90,5 +104,7 @@ public class BlockWithIcon extends GraphicalObject{
             drawTool.drawImage(getMyImage(),pb.getX()+pb.getButtonRadius(), pb.getY()+((pb.getHeight()-iconWidth)/2)); //Icon bekommt eigene Koordinaten innerhalb des Parents
         }
     }
+
+    protected void setText(String text){this.text = text;}
 
 }

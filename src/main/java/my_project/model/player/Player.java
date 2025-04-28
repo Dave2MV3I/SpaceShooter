@@ -25,7 +25,7 @@ public class Player extends Spaceship {
     private final ProgramController pc;
 
 
-    private boolean shieldActive;
+    private boolean isShielded;
     private double shieldEndTime;
 
     public Player(double x, double y, ProgramController pc) {
@@ -83,8 +83,8 @@ public class Player extends Spaceship {
 
         pc.getUI().setPlayerOutside(x+width < 0 || y+height < 0 || x > Config.WINDOW_WIDTH || y > Config.WINDOW_HEIGHT-29);
 
-        if (shieldActive && System.currentTimeMillis() > shieldEndTime) {
-            shieldActive = false;
+        if (isShielded && System.currentTimeMillis() > shieldEndTime) {
+            isShielded = false;
         }
     }
 
@@ -118,12 +118,13 @@ public class Player extends Spaceship {
 
 
     public void activateShield() {
-        shieldActive = true;
+        isShielded = true;
         shieldEndTime = System.currentTimeMillis() + 5000;
     }
+    public int getShieldsActivityTime(){return (int)(shieldEndTime-System.currentTimeMillis());}
 
-    public boolean isShieldActive() {
-            return shieldActive;
+    public boolean isShielded() {
+            return isShielded;
         }
 
     public void modifyHP(int points){

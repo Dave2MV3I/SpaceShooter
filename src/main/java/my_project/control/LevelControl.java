@@ -4,9 +4,7 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.Shield;
-import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
-import my_project.model.player.Player;
 
 public abstract class LevelControl extends GraphicalObject{
 
@@ -114,7 +112,7 @@ public abstract class LevelControl extends GraphicalObject{
 
                 if (bullet.collidesWith(pc.getPlayer()) && bullet.getShooter().equals("enemy")) {
                     if (pc.getSC().getActivity(1)) pc.playSound("impact");
-                    if (pc.getPlayer().isShieldActive()) {}
+                    if (pc.getPlayer().isShielded()) {}
                     else {
                         pc.getPlayer().modifyHP(-(bullet.getDamage()));
                     }

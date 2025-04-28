@@ -2,8 +2,8 @@ package my_project.control;
 
 public class SettingController {
 
-    private final boolean[] settings = {false, true, true, false, false, false, false, true};
-    private final int[] statusSettingIndices = {2, 3, 4, 5, 6, 7}; // die settings, im settings-Array zu denen ein StatusDisplay gehört
+    private final boolean[] settings = {false, true, true, false, false, false, true};
+    private final int[] statusSettingIndices = {2, 3, 4, 5, 6}; // die settings, im settings-Array zu denen ein StatusDisplay gehört
 
     private final String[] settingNames = {
             "music",
@@ -13,7 +13,6 @@ public class SettingController {
             "levelTimer StatusDisplay",
             "globalTimer StatusDisplay",
             "FPS StatusDisplay",
-            "shieldTimer StatusDisplay",
             "attacks for this level left StatusDisplay"
     };
     private final String[] iconPaths = {
@@ -24,7 +23,6 @@ public class SettingController {
             "src/main/resources/graphic/menu/time.png",
             "src/main/resources/graphic/menu/globalTime.png",
             "src/main/resources/graphic/menu/fps.png",
-            "src/main/resources/graphic/menu/shield.png",
             "src/main/resources/graphic/menu/attacks.png"
     };
 
@@ -43,6 +41,9 @@ public class SettingController {
 
     public void toggleSetting(int i){
         settings[i] = !settings[i];
+    }
+    public void setSetting(int i, boolean active){
+        settings[i] = active;
     }
 
     /**

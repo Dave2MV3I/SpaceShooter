@@ -5,7 +5,7 @@ public class StatusDisplay extends BlockWithIcon{
     private final int myIndex;
 
     public StatusDisplay(double startX, double y, double height, boolean visible, String iconPath, int index, UserInterface ui) {
-        super(startX, y, height, visible, iconPath, ui);
+        super(startX, y, height, visible, iconPath, ui, true);
         myIndex = index;
         widthCalculated = false;
 
@@ -22,4 +22,5 @@ public class StatusDisplay extends BlockWithIcon{
     }
 
     public void setWidthCalculated(boolean widthCalculated) {this.widthCalculated = widthCalculated;}
+    public int getIndex() {return myIndex;}
 }
