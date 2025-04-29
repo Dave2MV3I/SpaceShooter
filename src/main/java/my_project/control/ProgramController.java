@@ -50,6 +50,11 @@ public class ProgramController {
             inputManager = new InputManager(this);
             currentScene = 0;
 
+        // UserInterface
+        sc = new SettingController();
+        ui = new UserInterface(this);
+        viewController.register(ui,0);
+
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
@@ -61,9 +66,9 @@ public class ProgramController {
                  viewController.getSoundController().loadSound("src/main/resources/sound/impact.mp3", "impact", false);
 
             // Bild
-                sback = new StartBackground();
+                sback = new StartBackground(this);
                 viewController.draw(sback,0);
-                Picture titleText = new Picture(100, 200, "src/main/resources/graphic/title_text.png");
+                Picture titleText = new Picture(100, 350, "src/main/resources/graphic/title_text.png");
                 viewController.draw(titleText,0);
             // Interaktion
                 viewController.register(inputManager,0);
@@ -74,9 +79,8 @@ public class ProgramController {
             Picture level1BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
             viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
-            currentLevel = new Level1(8, this, "level1BGM",8);
+            currentLevel = new Level1(8, this, "level1BGM",8, viewController, 1);
             viewController.draw(currentLevel,1);
-
 
         // Spielbildschirm (Szene 2)
             viewController.createScene();
@@ -127,9 +131,11 @@ public class ProgramController {
     }
 
     public void updateProgram(double dt){
-        //System.out.println(currentLevel);
-        if (currentScene == 0) sback.update(dt);
-        if (currentScene > 0 && currentScene < nLevels+1) currentLevel.update(dt);
+        ui.update(dt);
+        if (!ui.getMenuOpen()) {
+            if (currentScene == 0) sback.update(dt);
+            if (currentScene > 0 && currentScene < nLevels+1) currentLevel.update(dt);
+        }
     }
 
     public void processKeyboardInput(int key, boolean pressed) {
@@ -162,28 +168,30 @@ public class ProgramController {
      */
     public void setSceneOrLevel(int s){
         this.currentScene = s;
-        if (sc == null) sc = new SettingController();
-        if (ui == null) ui = new UserInterface(this);
 
-        //if (s == 1) {}
+        if (s == 1) {
+            p1.setAmmunition(64);
+        }
 
         if (s == 2) {
-            currentLevel = new Level2 (8, this, "level1BGM",8);
-            p1.setAmmunition(48);
+            currentLevel = new Level2 (8, this, "level1BGM",8, viewController, 2);
+            p1.setAmmunition(64);
         }
         if (s == 3) {
-            currentLevel =new Level3 (8, this, "level1BGM",8);
+            currentLevel = new Level3 (8, this, "level1BGM",8, viewController, 3);
             p1.setAmmunition(64);
         }
         if (s == 4){
-            currentLevel = new Level4 (8, this, "level1BGM",8);
+            currentLevel = new Level4 (8, this, "level1BGM",8, viewController, 4);
             p1.setAmmunition(64);
         }
 
         if (s > 0 && s < nLevels+1) {
             viewController.draw(currentLevel, s);
+            viewController.draw(ui,s);
             viewController.register(ui,s);
             viewController.register(inputManager,s);
+            viewController.draw(p1, s);
         }
 
         viewController.showScene(currentScene);

@@ -4,6 +4,7 @@ package my_project.model;
 import my_project.Config;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.control.ProgramController;
 
 
 public class Bullet extends GraphicalObject {
@@ -15,10 +16,12 @@ public class Bullet extends GraphicalObject {
     private String shooter;
 
     private boolean isActive;
+    private ProgramController pc;
 
 
-    public Bullet() {
+    public Bullet(ProgramController pc) {
         this.isActive = false;
+        this.pc = pc;
     }
 
     public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY) {
@@ -36,8 +39,6 @@ public class Bullet extends GraphicalObject {
 
     public void draw(DrawTool drawTool) {
         if (isActive) {
-
-            //drawTool.setCurrentColor(255, 255, 255, 255);
             drawTool.setCurrentColor(255, 0, 0, 255);
             drawTool.drawFilledCircle(this.x, this.y, 5);
         }
@@ -45,7 +46,7 @@ public class Bullet extends GraphicalObject {
 
 
     public void update(double dt) {
-        if (isActive) {
+        if (isActive && !pc.getUI().getMenuOpen()) {
             this.x = this.x + speedX * dt;
             this.y = this.y + speedY * dt;
             if (this.x > Config.WINDOW_WIDTH || this.x < 0 || this.y > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}

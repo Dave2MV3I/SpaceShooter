@@ -10,7 +10,7 @@ public class Stardestroyer extends Spaceship {
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - Flaticon
         //this.health = 20;
         //this.maxHealth = 20;
-        this.speed = 16;
+        this.speed = 32;
         this.cooldown = 4;
         this.cooldownTimer = 4;
     }

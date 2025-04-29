@@ -8,9 +8,9 @@ public class MainSettingButton extends BlockWithIcon{
     public MainSettingButton(double x, double y, double height, String iconPath,  UserInterface ui) {
         super(x, y, height, true, iconPath, "Settings", ui, true);
         this.ui = ui;
-        color[0] = 47;
-        color[1] = 76;
-        color[2] = 57;
+        color[0] = 200;
+        color[1] = 200;
+        color[2] = 200;
         color[3] = 255;
     }
 

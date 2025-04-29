@@ -1,5 +1,7 @@
 package my_project.control;
 
+import KAGO_framework.control.Drawable;
+import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
@@ -9,59 +11,50 @@ import my_project.model.enemy.Spaceship;
 public abstract class LevelControl extends GraphicalObject{
 
     private final ProgramController pc;
-    Bullet[] bullets;
-    Shield[] shields;
-    Spaceship[] spaceships;
+    private final ViewController viewController;
+    protected Bullet[] bullets;
+    protected Shield[] shields;
+    protected Spaceship[] spaceships;
     protected double timer;
     protected double globalTimer;
     protected String bgSong;
 
     protected int counter = 0;
     protected boolean levelEnded = false;
+    protected int myScene;
 
-    public LevelControl(int nSpaceships, ProgramController pc, String bgSong,int nShields) {
-
-        int nBullets = nSpaceships*5 + 20;
+    public LevelControl(int nSpaceships, ProgramController pc, String bgSong, int nShields, ViewController viewController, int scene, int nBullets) {
 
         spaceships = new Spaceship[nSpaceships];
         bullets = new Bullet[nBullets];
         shields = new Shield[nShields];
 
+        for (int i = 0; i < nBullets; i++) {
+            bullets[i] = new Bullet(pc);
+        }
+
         this.pc = pc;
         this.bgSong = bgSong;
+        this.viewController = viewController;
+        myScene = scene;
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        pc.getUI().draw(drawTool);
-        pc.getPlayer().draw(drawTool);
-
-        for (Bullet bullet : bullets) {
-            if (bullet.isActive()) bullet.draw(drawTool);
-        }
-
-        for (Spaceship spaceship : spaceships) {
-            if (spaceship.isActive()) spaceship.draw(drawTool);
-        }
-
-        for (Shield shield : shields) {
-            if (shield.isActive()) shield.draw(drawTool);
-        }
+        //pc.getPlayer().draw(drawTool);
     }
 
     @Override
     public void update(double dt){
         timer += dt;
         globalTimer += dt;
-        pc.getUI().update(dt);
-        //System.out.println("Update des lvl wird aufgerufen ;)");
-        pc.getPlayer().update(dt);
-
+        //pc.getPlayer().update(dt);
 
         if (pc.getPlayer().getHealth() <= 0) {
             pc.setSceneOrLevel(10);
         }
 
+        /*
         for (int i = 0; i < bullets.length; i++) {
             if (bullets[i].isActive()) bullets[i].update(dt);
         }
@@ -72,7 +65,7 @@ public abstract class LevelControl extends GraphicalObject{
 
         for (int i = 0; i < shields.length; i++) {
             if (shields[i].isActive()) shields[i].update(dt);
-        }
+        }*/
 
 
         //SOLVED Kollisionserkennung reparieren (fragt nicht wo das Problem ist, kp)
@@ -126,7 +119,7 @@ public abstract class LevelControl extends GraphicalObject{
         // Kollisionsüberprüfung jeder Bullet mit jedem Spaceship (shooter instanceof player)
     }
 
-    public void startBullet (double x, double y, String shooter, int damage, double speedX, double speedY){
+    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY){
 
         for (Bullet bullet : bullets) {
             if (!bullet.isActive()) {
@@ -163,6 +156,20 @@ public abstract class LevelControl extends GraphicalObject{
             if (spaceships[i].isActive()) return false;
         }
         return true;
+    }
+
+    public void addDrawables() {
+        for (Bullet bullet : bullets) {
+            viewController.draw(bullet, myScene);
+        }
+
+        for (Spaceship spaceship : spaceships) {
+            viewController.draw(spaceship, myScene);
+        }
+
+        for (Shield shield : shields) {
+            viewController.draw(shield, myScene);
+        }
     }
 
 }

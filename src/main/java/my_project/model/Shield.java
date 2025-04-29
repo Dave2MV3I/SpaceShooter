@@ -45,7 +45,7 @@ public class Shield extends GraphicalObject {
 
     @Override
     public void update(double dt) {
-        if (isActive) {
+        if (isActive && !pc.getUI().getMenuOpen()) {
             if (movingLeft) {
                 this.x -= 50 * dt;
                 if (this.x + this.width < 0) {

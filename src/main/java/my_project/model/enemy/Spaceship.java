@@ -18,15 +18,15 @@ public class Spaceship extends GraphicalObject{
 
 
     public void draw(DrawTool drawTool){
-        //drawTool.drawFilledCircle (this.x, this.y, 1);
-        drawTool.drawImage(getMyImage(),x,y);
-
-        drawHealthBar(drawTool);
+        if (isActive){
+            drawTool.drawImage(getMyImage(),x,y);
+            drawHealthBar(drawTool);
+        }
     }
 
 
     public void update(double dt){
-        if (this.isActive) {
+        if (this.isActive && !pc.getUI().getMenuOpen()) {
             this.x -= speed*dt;
             if (cooldownTimer < 0) {
                 this.cooldownTimer = cooldown;
@@ -34,10 +34,10 @@ public class Spaceship extends GraphicalObject{
                     double phi = Math.atan2(-this.y + pc.getPlayer().getY(), -this.x + pc.getPlayer().getX());
                     //System.out.println(phi);
                     if (this instanceof Stardestroyer) {
-                        pc.getCurrentLevel().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 64 * Math.cos(phi), 64 * Math.sin(phi));
+                        pc.getCurrentLevel().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 128 * Math.cos(phi), 128 * Math.sin(phi));
                     }
                     if (this instanceof SmallSpaceship) {
-                        pc.getCurrentLevel().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 64 * Math.cos(phi), 64 * Math.sin(phi));
+                        pc.getCurrentLevel().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 128 * Math.cos(phi), 128 * Math.sin(phi));
                     }
 
                 }
@@ -61,17 +61,16 @@ public class Spaceship extends GraphicalObject{
             this.health = 40;
             this.maxHealth = this.health;
         }
-
     }
 
-        public void modifyHP(int points) {
-            this.health += points;
-            if (health <= 0) {
-                isActive = false;
-                pc.getCurrentLevel().startShield(this.getX(), this.getY(), pc, true, false, 5000);
-                if (pc.getSC().getActivity(1)) pc.playSound("explosion");
-            }
+    public void modifyHP(int points) {
+        this.health += points;
+        if (health <= 0) {
+            isActive = false;
+            pc.getCurrentLevel().startShield(this.getX(), this.getY(), pc, true, false, 5000);
+            if (pc.getSC().getActivity(1)) pc.playSound("explosion");
         }
+    }
 
     public boolean isActive() {
         return isActive;

@@ -1,5 +1,6 @@
 package my_project.control;
 
+import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.Shield;
@@ -14,16 +15,11 @@ public class Level3 extends LevelControl{
     private final ProgramController pc;
 
     //Methoden
-    public Level3(int nSpaceships, ProgramController pc, String bgSong, int nShields) {
-        super(nSpaceships, pc, bgSong, nShields);
-        int nBullets = nSpaceships*5 + 20;
+    public Level3(int nSpaceships, ProgramController pc, String bgSong, int nShields, ViewController viewController, int scene) {
+        super(nSpaceships, pc, bgSong, nShields, viewController, scene, nSpaceships*5 + 20);
 
         counter = 0;
         this.pc = pc;
-
-        for (int i = 0; i < nBullets; i++) {
-            bullets[i] = new Bullet();
-        }
 
         for (int i = 0; i < nSpaceships - 4; i++) {
             spaceships[i] = new SmallSpaceship();
@@ -35,6 +31,7 @@ public class Level3 extends LevelControl{
         for (int i = 0; i < nShields; i++){
             shields[i] = new Shield();
         }
+        addDrawables();
     }
 
 
