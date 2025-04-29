@@ -12,20 +12,20 @@ public class Shield extends GraphicalObject {
     private boolean collected;
     private double spawnTime;
     private final int stayDuration = 3000;
-    private ProgramController programController;
+    private ProgramController pc;
 
     private boolean isActive;
 
     public Shield(){ this.isActive = false; }
 
 
-    public void startShield(double x, double y, ProgramController programController, boolean movingLeft, boolean collected, double spawnTime){
+    public void startShield(double x, double y, ProgramController pc, boolean movingLeft, boolean collected, double spawnTime){
         this.isActive = true;
         System.out.println("Shield started");
         this.x = x;
         this.y = y;
 
-        this.programController = programController;
+        this.pc = pc;
         this.movingLeft = movingLeft;
         this.spawnTime = System.currentTimeMillis();
         this.collected = false;
@@ -50,21 +50,21 @@ public class Shield extends GraphicalObject {
                 this.x -= 50 * dt;
                 if (this.x + this.width < 0) {
                     isActive = false;
-                    programController.getViewController().removeDrawable(this);
+                    pc.getViewController().removeDrawable(this);
                 }
             } else {
                 if (System.currentTimeMillis() - spawnTime > stayDuration) {
                     isActive = false;
-                    programController.getViewController().removeDrawable(this);
+                    pc.getViewController().removeDrawable(this);
                 }
             }
 
-            Player player = programController.getPlayer();
+            Player player = pc.getPlayer();
             if (!collected && this.collidesWith(player)) {
                 collected = true;
                 isActive = false;
                 activatePlayerShield(player);
-                programController.getViewController().removeDrawable(this);
+                pc.getViewController().removeDrawable(this);
             }
         }
     }

@@ -1,17 +1,26 @@
 package my_project.control;
 
+/**
+ * Zum Attribut index: <br>
+  * 0 - music <br>
+  * 1 - sounds <br>
+  * 2 - levelTimer StatusDisplay <br>
+  * 3 - globalTimer StatusDisplay <br>
+  * 4 - FPS StatusDisplay <br>
+  * 5 - attacks left StatusDisplay <br>
+ */
+
 public class SettingController {
 
-    private final boolean[] settings = {false, true, true, false, false, false, true};
-    private final int[] statusSettingIndices = {2, 3, 4, 5, 6}; // die settings, im settings-Array zu denen ein StatusDisplay gehört
+    private final boolean[] settings = {false, true, true, false, false, true};
+    private final int[] statusSettingIndices = {2, 3, 4, 5}; // die settings, im settings-Array zu denen ein StatusDisplay gehört
 
     private final String[] settingNames = {
             "music",
             "sounds",
 
             "level StatusDisplay",
-            "levelTimer StatusDisplay",
-            "globalTimer StatusDisplay",
+            "Time StatusDisplay",
             "FPS StatusDisplay",
             "attacks for this level left StatusDisplay"
     };
@@ -21,7 +30,6 @@ public class SettingController {
 
             "src/main/resources/graphic/menu/level.png",
             "src/main/resources/graphic/menu/time.png",
-            "src/main/resources/graphic/menu/globalTime.png",
             "src/main/resources/graphic/menu/fps.png",
             "src/main/resources/graphic/menu/attacks.png"
     };
@@ -33,10 +41,10 @@ public class SettingController {
      * @param i
      * 0 - music
      * 1 - sounds
-     * 2 - level StatusDisplay
-     * 3 - levelTimer StatusDisplay
-     * 4 - globalTimer StatusDisplay
-     * 5 - FPS StatusDisplay
+     * 2 - levelTimer StatusDisplay
+     * 3 - globalTimer StatusDisplay
+     * 4 - FPS StatusDisplay
+     * 5 - attacks left StatusDisplay
      */
 
     public void toggleSetting(int i){
@@ -48,13 +56,13 @@ public class SettingController {
 
     /**
      *
-     * @param i
-     * 0 - music
-     * 1 - sounds
-     * 2 - level StatusDisplay
-     * 3 - levelTimer StatusDisplay
-     * 4 - globalTimer StatusDisplay
-     * 5 - FPS StatusDisplay
+     @param i
+      * 0 - music
+      * 1 - sounds
+      * 2 - levelTimer StatusDisplay
+      * 3 - globalTimer StatusDisplay
+      * 4 - FPS StatusDisplay
+      * 5 - attacks left StatusDisplay
      */
 
     public boolean getActivity(int i){
@@ -64,13 +72,13 @@ public class SettingController {
 
     /**
      *
-     * @param i
-     * 0 - music
-     * 1 - sounds
-     * 2 - level StatusDisplay
-     * 3 - levelTimer StatusDisplay
-     * 4 - globalTimer StatusDisplay
-     * 5 - FPS StatusDisplay
+     @param i
+      * 0 - music
+      * 1 - sounds
+      * 2 - levelTimer StatusDisplay
+      * 3 - globalTimer StatusDisplay
+      * 4 - FPS StatusDisplay
+      * 5 - attacks left StatusDisplay
      */
 
     public String getSettingName(int i){

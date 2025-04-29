@@ -194,10 +194,9 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     public String getStatus(int index, double dt){
         if (index == 2) return String.valueOf(pc.getCurrentScene());
-        if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getTimer()));
-        if (index == 4) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
-        if (index == 5) return String.valueOf(Math.round(1/dt));
-        if (index == 6) return String.valueOf(pc.getPlayer().getAmmunition());
+        if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
+        if (index == 4) return String.valueOf(Math.round(1/dt));
+        if (index == 5) return String.valueOf(pc.getPlayer().getAmmunition());
         return "nichts";
     }
 

@@ -51,6 +51,10 @@ public class Player extends Spaceship {
     @Override
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
+        if (isShielded){
+            drawTool.setCurrentColor(0, 0, 255, 30);
+            drawTool.drawFilledCircle(x+width/2, y+width/2, 40);
+        }
     }
 
     @Override
