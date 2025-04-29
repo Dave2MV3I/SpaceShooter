@@ -15,7 +15,40 @@ public class StartBackground extends GraphicalObject {
     private double starsX = 0;
     private ProgramController pc;
 
-    public StartBackground(ProgramController pc) {this.pc = pc;}
+    private int nPlanets = 7;
+
+    private double[] xPositions = new double[nPlanets];
+    private double[] yPositions = new double[nPlanets];
+
+    private double[] r = new double[nPlanets];
+    private double[] g = new double[nPlanets];
+    private double[] b = new double[nPlanets];
+
+    private boolean[] dustFlags = new boolean[nPlanets];
+
+    public StartBackground(ProgramController pc) {
+        this.pc = pc;
+        for (int d = 0; d < xPositions.length; d++) {
+            xPositions[d] = (double)(Math.random()*(Config.WINDOW_WIDTH));
+        }
+        for (int d = 0; d < yPositions.length; d++) {
+            yPositions[d] = (double)(Math.random()*Config.WINDOW_HEIGHT);
+        }
+
+        for (int i = 0; i < r.length; i++) {
+            r[i] = (double)(Math.random()*255);
+        }
+        for (int i = 0; i < g.length; i++) {
+            g[i] = (double)(Math.random()*255);
+        }
+        for (int i = 0; i < b.length; i++) {
+            b[i] = (double)(Math.random()*255);
+        }
+
+        for (int i = 0; i < dustFlags.length; i++) {
+            dustFlags[i] = Math.random()>0.5;
+        }
+    }
 
     @Override
     public void draw(DrawTool drawTool) {
@@ -31,20 +64,35 @@ public class StartBackground extends GraphicalObject {
         drawTool.drawFilledCircle((700 + starsX)% Config.WINDOW_HEIGHT,630,2);
         drawTool.drawFilledCircle((700 + starsX)% Config.WINDOW_HEIGHT,230,2);
 
-        //drawPlanet(500, 600, 60, 0, 0, 255, 150, true, drawTool);
-        //drawPlanet(100, 200, 35, 140, 0, 20, 200, false, drawTool);
+        for (int d = 0; d < xPositions.length; d++) {
+            for (int i = 0; i < 21; i++){
+                drawPlanet(xPositions[d]+20*i, yPositions[d], (int)(15+Math.random()*100), r[d], g[d], b[d], 255-i*(255/21), dustFlags[d], drawTool);
+            }
+        }
 
+        /*
         if (Math.random() > 0.5) {
             for (int i = 0; i< 7; i++){
                 drawPlanet(Math.random()*Config.WINDOW_WIDTH, Math.random()*Config.WINDOW_HEIGHT, (int)(15+Math.random()*100), Math.random()*255, Math.random()*255, Math.random()*255, Math.random()*255, Math.random()>0.5, drawTool);
             }
-        }
+        }*/
 
         pc.getUI().draw(drawTool);
     }
 
-    public void update (double dt) {
+    public void update(double dt) {
         starsX += 32*dt;
+
+        for (int i = 0; i < xPositions.length; i++) {
+            xPositions[i] -= 1500*dt;
+            if (xPositions[i] < -50) {
+                xPositions[i] = Config.WINDOW_WIDTH+50 + Math.random()*Config.WINDOW_WIDTH;
+                yPositions[i] = Math.random()*Config.WINDOW_HEIGHT;
+                r[i] = Math.random()*255;
+                g[i] = Math.random()*255;
+                b[i] = Math.random()*255;
+            }
+        }
     }
 
     private void drawPlanet(double x, double y, int radius, double r, double g, double b, double a, boolean withDust, DrawTool drawTool){
