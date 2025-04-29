@@ -1,6 +1,7 @@
 package my_project.model.player;
 
 import KAGO_framework.control.SoundController;
+import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.ProgramController;
@@ -55,6 +56,7 @@ public class Player extends Spaceship {
             drawTool.setCurrentColor(0, 0, 255, 30);
             drawTool.drawFilledCircle(x+width/2, y+width/2, 40);
         }
+        //getHitBoxObject().draw(drawTool);
     }
 
     @Override
@@ -140,5 +142,26 @@ public class Player extends Spaceship {
     public int getAmmunition(){return ammunition;}
     public void setAmmunition(int ammunition) {
         this.ammunition = ammunition;
+    }
+
+    public GraphicalObject getHitBoxObject(){
+        //links min 15, rechts min 6 und o und u min 10
+        //hoehe 40 br 39
+        //10px tiefer, 15px weiter rechts als vorher
+        return new HitBoxObject(x+15, y+10, getWidth()-21, getHeight()-20);
+    }
+
+    private class HitBoxObject extends GraphicalObject{
+        public HitBoxObject(double x, double y, double width, double height) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+        }
+
+        @Override
+        public void draw(DrawTool drawTool) {
+            drawTool.drawRectangle(x, y, width, height);
+        }
     }
 }

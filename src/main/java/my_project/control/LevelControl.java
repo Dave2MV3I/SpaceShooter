@@ -103,7 +103,7 @@ public abstract class LevelControl extends GraphicalObject{
                     }
                 }
 
-                if (bullet.collidesWith(pc.getPlayer()) && bullet.getShooter().equals("enemy")) {
+                if (bullet.collidesWith(pc.getPlayer().getHitBoxObject()) && bullet.getShooter().equals("enemy")) {
                     if (pc.getSC().getActivity(1)) pc.playSound("impact");
                     if (pc.getPlayer().isShielded()) {}
                     else {
@@ -113,10 +113,6 @@ public abstract class LevelControl extends GraphicalObject{
                 }
             }
         }
-
-        // Kollisionsüberprüfung Player und Bullets (shooter nicht instanceof player)
-
-        // Kollisionsüberprüfung jeder Bullet mit jedem Spaceship (shooter instanceof player)
     }
 
     public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY){
