@@ -2,20 +2,22 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
-import my_project.model.Picture;
 import my_project.model.Shield;
 import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
+import my_project.model.FadingPicture;
 
 public class Level1 extends Level {
 
     //Attribute
-    private Picture wKey;
-    private Picture aKey;
-    private Picture sKey;
-    private Picture dKey;
-    private Picture fKey;
-    private Picture spaceKey;
+    private FadingPicture[] keys = new FadingPicture[6];
+
+    private FadingPicture wKey;
+    private FadingPicture aKey;
+    private FadingPicture sKey;
+    private FadingPicture dKey;
+    private FadingPicture fKey;
+    private FadingPicture spaceKey;
 
     private boolean tutorialStarted;
 
@@ -48,9 +50,6 @@ public class Level1 extends Level {
         if (timer > 1 && !tutorialStarted){
             startTutorial();
         }
-        if (tutorialStarted){
-
-        }
 
         if (timer > 10 && counter < 8) {
             for (Spaceship spaceship : spaceships) {
@@ -77,15 +76,16 @@ public class Level1 extends Level {
     private void startTutorial(){
         tutorialStarted = true;
 
-        wKey = new Picture(220, 900,  "src/main/resources/graphic/keys/wkey.png");
-        aKey = new Picture(100, 1000, "src/main/resources/graphic/keys/akey.png");
-        sKey = new Picture(220, 1000, "src/main/resources/graphic/keys/skey.png");
-        dKey = new Picture(340, 1000, "src/main/resources/graphic/keys/dkey.png");
-        //fKey = new Picture(bla, bla, "src/main/resources/graphic/keys/fkey.png");
-        spaceKey = new Picture(500, 900, "src/main/resources/graphic/keys/spacekey.png");
+        keys[0] = new FadingPicture(170, 900,  "src/main/resources/graphic/keys/wkey.png", 500);
+        keys[1] = new FadingPicture(50, 1020, "src/main/resources/graphic/keys/akey.png", 620);
+        keys[2] = new FadingPicture(170, 1020, "src/main/resources/graphic/keys/skey.png", 620);
+        keys[3] = new FadingPicture(290, 1020, "src/main/resources/graphic/keys/dkey.png", 620);
+        keys[4] = new FadingPicture(620, 900, "src/main/resources/graphic/keys/fkey.png", 500);
+        keys[5] = new FadingPicture(450, 900, "src/main/resources/graphic/keys/spacekey.png", 500);
 
-        // Mit Arrays arbeiten und updaten,
-        // bei Picture Methode für Transparenz hinzufügen und Klasse von Picture erbben lassen, updatePositions und updateTransparence dorthin verschieben
+        for (FadingPicture key : keys){
+            viewController.draw(key);
+        }
     }
 
 }

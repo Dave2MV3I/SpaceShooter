@@ -19,9 +19,4 @@ public class Picture extends GraphicalObject {
         drawTool.drawImage(getMyImage(),x,y);
     }
 
-    public void updatePosition(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
 }

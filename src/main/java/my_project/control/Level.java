@@ -10,7 +10,7 @@ import my_project.model.enemy.Spaceship;
 public abstract class Level extends GraphicalObject{
 
     private final ProgramController pc;
-    private final ViewController viewController;
+    protected final ViewController viewController;
     protected Bullet[] bullets;
     protected Shield[] shields;
     protected Spaceship[] spaceships;
