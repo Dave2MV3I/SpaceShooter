@@ -1,13 +1,13 @@
 package my_project.model.userInterface;
 
 import KAGO_framework.view.DrawTool;
-import my_project.control.SettingController;
+import my_project.control.Settings;
 
 public class SettingButton extends BlockWithIcon{
 
     private final int[] activeColor = {47,76,57,255};
     private final int[] inactiveColor = {194,59,34,255};
-    private final SettingController sc;
+    private final Settings sc;
     private final int index;
 
     public SettingButton(double x, double y, double height, String iconPath, UserInterface ui, int index) {

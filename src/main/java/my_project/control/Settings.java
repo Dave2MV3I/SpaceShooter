@@ -10,7 +10,7 @@ package my_project.control;
   * 5 - attacks left StatusDisplay <br>
  */
 
-public class SettingController {
+public class Settings {
 
     private final boolean[] settings = {false, true, true, false, false, true};
     private final int[] statusSettingIndices = {2, 3, 4, 5}; // die settings, im settings-Array zu denen ein StatusDisplay gehört

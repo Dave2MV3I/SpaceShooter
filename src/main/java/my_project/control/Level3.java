@@ -2,13 +2,11 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
-import my_project.model.Bullet;
 import my_project.model.Shield;
 import my_project.model.enemy.SmallSpaceship;
-import my_project.model.enemy.Spaceship;
 import my_project.model.enemy.Stardestroyer;
 
-public class Level3 extends LevelControl{
+public class Level3 extends Level {
     //Attribute
 
     //Referenzen

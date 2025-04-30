@@ -1,6 +1,5 @@
 package my_project.control;
 
-import KAGO_framework.control.Drawable;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
@@ -8,7 +7,7 @@ import my_project.model.Bullet;
 import my_project.model.Shield;
 import my_project.model.enemy.Spaceship;
 
-public abstract class LevelControl extends GraphicalObject{
+public abstract class Level extends GraphicalObject{
 
     private final ProgramController pc;
     private final ViewController viewController;
@@ -16,14 +15,13 @@ public abstract class LevelControl extends GraphicalObject{
     protected Shield[] shields;
     protected Spaceship[] spaceships;
     protected double timer;
-    protected double globalTimer;
     protected String bgSong;
 
     protected int counter = 0;
     protected boolean levelEnded = false;
     protected int myScene;
 
-    public LevelControl(int nSpaceships, ProgramController pc, String bgSong, int nShields, ViewController viewController, int scene, int nBullets) {
+    public Level(int nSpaceships, ProgramController pc, String bgSong, int nShields, ViewController viewController, int scene, int nBullets) {
 
         spaceships = new Spaceship[nSpaceships];
         bullets = new Bullet[nBullets];
@@ -47,8 +45,6 @@ public abstract class LevelControl extends GraphicalObject{
     @Override
     public void update(double dt){
         timer += dt;
-        globalTimer += dt;
-        //pc.getPlayer().update(dt);
 
         if (pc.getPlayer().getHealth() <= 0) {
             pc.setSceneOrLevel(10);
@@ -144,7 +140,6 @@ public abstract class LevelControl extends GraphicalObject{
     }
 
     public double getTimer() { return timer;}
-    public double getGlobalTimer() { return globalTimer;}
     public Spaceship[] getSpaceships() { return spaceships;}
 
     public boolean noSpaceships(){

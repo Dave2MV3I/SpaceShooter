@@ -4,7 +4,7 @@ import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.ProgramController;
-import my_project.control.SettingController;
+import my_project.control.Settings;
 import my_project.model.Picture;
 
 import java.awt.event.MouseEvent;
@@ -22,7 +22,7 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     // Referenzen
         private final ProgramController pc;
-        private final SettingController sc;
+        private final Settings sc;
         private final MainSettingButton mainSettingButton;
         private final BlockWithIcon shieldStatusDisplay;
         private DrawTool theDrawTool;
@@ -188,13 +188,13 @@ public class UserInterface extends InteractiveGraphicalObject {
     }
 
     public boolean getMenuOpen(){return menuOpen;}
-    public SettingController getSC(){return sc;}
+    public Settings getSC(){return sc;}
     public ProgramController getPC(){return pc;}
     public DrawTool getDrawTool(){return theDrawTool;}
 
     public String getStatus(int index, double dt){
         if (index == 2) return String.valueOf(pc.getCurrentScene());
-        if (index == 3) return String.valueOf(Math.round(pc.getCurrentLevel().getGlobalTimer()));
+        if (index == 3) return String.valueOf(Math.round(pc.getGlobalTimer()));
         if (index == 4) return String.valueOf(Math.round(1/dt));
         if (index == 5) return String.valueOf(pc.getPlayer().getAmmunition());
         return "nichts";

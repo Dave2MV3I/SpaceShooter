@@ -2,7 +2,6 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.view.ProgramView;
 import my_project.model.*;
 import my_project.model.player.Player;
 import my_project.model.userInterface.UserInterface;
@@ -30,14 +29,15 @@ public class ProgramController {
         private int currentScene;
         private String currentSong = "level1BGM";
         private int nLevels = 9;
+        private double globalTimer;
 
     // Referenzen
         private final ViewController viewController;
         private Player p1;
-        private LevelControl currentLevel;
+        private Level currentLevel;
         private StartBackground sback;
         private UserInterface ui;
-        private SettingController sc;
+        private Settings sc;
         private InputManager inputManager;
 
     // Methoden
@@ -51,7 +51,7 @@ public class ProgramController {
             currentScene = 0;
 
         // UserInterface
-        sc = new SettingController();
+        sc = new Settings();
         ui = new UserInterface(this);
         viewController.register(ui,0);
 
@@ -131,10 +131,11 @@ public class ProgramController {
     }
 
     public void updateProgram(double dt){
+        globalTimer += dt;
         ui.update(dt);
         if (!ui.getMenuOpen()) {
             if (currentScene == 0) sback.update(dt);
-            if (currentScene > 0 && currentScene < nLevels+1) currentLevel.update(dt);
+            //if (currentScene > 0 && currentScene < nLevels+1) currentLevel.update(dt);
         }
     }
 
@@ -217,10 +218,11 @@ public class ProgramController {
 
     public Player getPlayer(){return p1;}
     public UserInterface getUI(){return ui;}
-    public LevelControl getCurrentLevel() {return currentLevel;}
+    public Level getCurrentLevel() {return currentLevel;}
     public int getCurrentScene(){return currentScene;}
-    public SettingController getSC(){return sc;}
+    public Settings getSC(){return sc;}
     public int getNLevels(){return nLevels;}
+    public double getGlobalTimer() { return globalTimer;}
 
     public void playSound(String soundName){
         SoundController.playSound(soundName);
