@@ -6,7 +6,7 @@ import my_project.Config;
 public class Stardestroyer extends Spaceship {
 
     public Stardestroyer(){
-        this.setNewImage("src/main/resources/graphic/spaceships/SpaceshipSmall.png");
+        this.setNewImage("src/main/resources/graphic/spaceships/stardestroyer1.png");
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - Flaticon
         //this.health = 20;
         //this.maxHealth = 20;

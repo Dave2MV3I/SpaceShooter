@@ -29,6 +29,7 @@ public class ProgramController {
         private int currentScene;
         private String currentSong = "level1BGM";
         private int nLevels = 9;
+        private String deathReason;
         private double globalTimer;
 
     // Referenzen
@@ -118,6 +119,7 @@ public class ProgramController {
             viewController.createScene();
             Picture loseText = new Picture(0,0,"src/main/resources/graphic/backgrounds/loseBG.png");
             viewController.draw(loseText,10);
+            System.out.println(deathReason);
 
         // Endbildschirm (Szene 11)
             viewController.createScene();
