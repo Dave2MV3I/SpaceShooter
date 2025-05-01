@@ -85,6 +85,7 @@ public class Level1 extends Level {
 
         for (FadingPicture key : keys){
             viewController.draw(key);
+            if (key.getFadingEnded()) viewController.removeDrawable(key);
         }
     }
 
