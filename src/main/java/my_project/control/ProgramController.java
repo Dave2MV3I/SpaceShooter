@@ -23,7 +23,7 @@ import java.awt.event.KeyEvent;
 public class ProgramController {
 
     // Entwicklerattribute
-        private int afterPressingSpace = 1;     // <<<<<< Entwicklermodus: Um Level zu überspringen >>>>>>
+        private int afterPressingSpace = 4;     // <<<<<< Entwicklermodus: Um Level zu überspringen >>>>>>
 
     //Attribute
         private int currentScene;

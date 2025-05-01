@@ -7,19 +7,16 @@ import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
 import my_project.model.FadingPicture;
 
+import java.awt.*;
+
 public class Level1 extends Level {
 
     //Attribute
     private FadingPicture[] keys = new FadingPicture[6];
 
-    private FadingPicture wKey;
-    private FadingPicture aKey;
-    private FadingPicture sKey;
-    private FadingPicture dKey;
-    private FadingPicture fKey;
-    private FadingPicture spaceKey;
-
     private boolean tutorialStarted;
+    private Composite originalComposite;
+    private boolean setBackComposite;
 
     //Referenzen
     private final ProgramController pc;
@@ -40,8 +37,6 @@ public class Level1 extends Level {
 
     public void draw(DrawTool drawTool) {
         super.draw(drawTool);
-
-        //System.out.println("startBullet() wurde aufgerufen");
     }
 
     public void update(double dt){
@@ -49,6 +44,15 @@ public class Level1 extends Level {
 
         if (timer > 1 && !tutorialStarted){
             startTutorial();
+
+        } else if (tutorialStarted){
+            for (int i = 0; i < keys.length; i++){
+                if (keys[i] != null && keys[i].getFadingEnded()) {
+                    viewController.removeDrawable(keys[i]);
+                    keys[i] = null;
+                }
+
+            }
         }
 
         if (timer > 10 && counter < 8) {
@@ -85,7 +89,6 @@ public class Level1 extends Level {
 
         for (FadingPicture key : keys){
             viewController.draw(key);
-            if (key.getFadingEnded()) viewController.removeDrawable(key);
         }
     }
 

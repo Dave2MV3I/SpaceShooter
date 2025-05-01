@@ -17,18 +17,18 @@ public class FadingPicture extends Picture{
 
     @Override
     public void draw(DrawTool drawTool) {
+        Graphics2D g2d = drawTool.getGraphics2D();
+        Composite original = g2d.getComposite();
 
-        if (fadingTimer > 0 && fadingTimer <= timerLength) {
-            Graphics2D g2d = drawTool.getGraphics2D();
-            Composite originalComposite = g2d.getComposite(); // merken
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float)(1f-(fadingTimer/timerLength)*1f))); // 0.0f = ganz transparent, 1.0f = voll sichtbar
-            super.draw(drawTool); // das Bild transparent zeichnen
-
-            g2d.setComposite(originalComposite); // zurücksetzen
-        } else {
-            super.draw(drawTool); // das Bild transparent zeichnen
+        if (fadingTimer <= timerLength) {
+            float alpha = (float)(1.0 - (fadingTimer / timerLength));
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         }
+
+        super.draw(drawTool);
+        //g2d.setComposite(original);
     }
+
 
     @Override
     public void update(double dt){

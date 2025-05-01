@@ -8,7 +8,7 @@ import my_project.model.player.Player;
 
 public class Shield extends GraphicalObject {
 
-    private boolean movingLeft;
+    private boolean movingRight;
     private boolean collected;
     private double spawnTime;
     private final int stayDuration = 3000;
@@ -26,7 +26,7 @@ public class Shield extends GraphicalObject {
         this.y = y;
 
         this.pc = pc;
-        this.movingLeft = movingLeft;
+        this.movingRight = movingLeft;
         this.spawnTime = System.currentTimeMillis();
         this.collected = false;
     }
@@ -46,8 +46,8 @@ public class Shield extends GraphicalObject {
     @Override
     public void update(double dt) {
         if (isActive && !pc.getUI().getMenuOpen()) {
-            if (movingLeft) {
-                this.x -= 50 * dt;
+            if (movingRight) {
+                this.x += 70 * dt;
                 if (this.x + this.width < 0) {
                     isActive = false;
                     pc.getViewController().removeDrawable(this);
