@@ -23,7 +23,7 @@ import java.awt.event.KeyEvent;
 public class ProgramController {
 
     // Entwicklerattribute
-        private int afterPressingSpace = 4;     // <<<<<< Entwicklermodus: Um Level zu überspringen >>>>>>
+        private int afterPressingSpace = 4;     // <<<<<< Entwicklermodus: Um LevelController zu überspringen >>>>>>
 
     //Attribute
         private int currentScene;
@@ -35,7 +35,7 @@ public class ProgramController {
     // Referenzen
         private final ViewController viewController;
         private Player p1;
-        private Level currentLevel;
+        private LevelController levelController;
         private StartBackground sback;
         private UserInterface ui;
         private Settings sc;
@@ -44,6 +44,7 @@ public class ProgramController {
     // Methoden
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
+        levelController = new LevelController(this, viewController);
     }
 
     public void startProgram() {
@@ -56,16 +57,16 @@ public class ProgramController {
         ui = new UserInterface(this);
         viewController.register(ui,0);
 
+        // Sounds
+        viewController.getSoundController().loadSound("src/main/resources/sound/laser.mp3", "laser", false);
+        viewController.getSoundController().loadSound("src/main/resources/sound/space_explosion.mp3", "explosion", false);
+        viewController.getSoundController().loadSound("src/main/resources/sound/impact.mp3", "impact", false);
+
+
         // Startbildschirm (Szene 0)
             // Ton
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 currentSong = "startBGM";
-                //checkAndHandleMusic(false);
-            // Sounds
-                 viewController.getSoundController().loadSound("src/main/resources/sound/laser.mp3", "laser", false);
-                 viewController.getSoundController().loadSound("src/main/resources/sound/space_explosion.mp3", "explosion", false);
-                 viewController.getSoundController().loadSound("src/main/resources/sound/impact.mp3", "impact", false);
-
             // Bild
                 sback = new StartBackground(this);
                 viewController.draw(sback,0);
@@ -75,45 +76,33 @@ public class ProgramController {
                 viewController.register(inputManager,0);
 
         // Spielbildschirm (Szene 1)
-
             viewController.createScene();
-            Picture level1BG = new Picture(0,0,"src/main/resources/graphic/backgrounds/spaceBG.png");
-            viewController.draw(level1BG,1);
             p1 = new Player(50,300, this);
-            currentLevel = new Level1(8, this, "level1BGM",8, viewController, 1);
-            viewController.draw(currentLevel,1);
+            viewController.draw(levelController,1);
 
         // Spielbildschirm (Szene 2)
             viewController.createScene();
-            viewController.draw(level1BG,2);
 
         // Spielbildschirm (Szene 3)
             viewController.createScene();
-            viewController.draw(level1BG,3);
 
         // Spielbildschirm (Szene 4)
             viewController.createScene();
-            viewController.draw(level1BG,4);
 
         // Spielbildschirm (Szene 5)
             viewController.createScene();
-            viewController.draw(level1BG,5);
 
         // Spielbildschirm (Szene 6)
             viewController.createScene();
-            viewController.draw(level1BG,6);
 
         // Spielbildschirm (Szene 7)
             viewController.createScene();
-            viewController.draw(level1BG,7);
 
         // Spielbildschirm (Szene 8)
             viewController.createScene();
-            viewController.draw(level1BG,8);
 
         // Spielbildschirm (Szene 9)
             viewController.createScene();
-            viewController.draw(level1BG,9);
 
         // Endbildschirm (Szene 10)
             viewController.createScene();
@@ -144,7 +133,7 @@ public class ProgramController {
     public void processKeyboardInput(int key, boolean pressed) {
         //System.out.println("process keyboardInput wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
-            setSceneOrLevel(afterPressingSpace);
+            setSceneAndLevel(afterPressingSpace);
             checkAndHandleMusic(true);
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
@@ -165,11 +154,11 @@ public class ProgramController {
      *
      * @param s <br>
      *          0 für Startbildschirm <br>
-     *          1-9 für entsprechendes Level <br>
+     *          1-9 für entsprechendes LevelController <br>
      *          10 für Lose <br>
      *          11 für Win <br>
      */
-    public void setSceneOrLevel(int s){
+    public void setSceneAndLevel(int s){
         this.currentScene = s;
 
         if (s == 1) {
@@ -177,20 +166,17 @@ public class ProgramController {
         }
 
         if (s == 2) {
-            currentLevel = new Level2 (8, this, "level1BGM",8, viewController, 2);
             p1.setAmmunition(64);
         }
         if (s == 3) {
-            currentLevel = new Level3 (8, this, "level1BGM",8, viewController, 3);
             p1.setAmmunition(64);
         }
         if (s == 4){
-            currentLevel = new Level4 (8, this, "level1BGM",8, viewController, 4);
             p1.setAmmunition(64);
         }
 
         if (s > 0 && s < nLevels+1) {
-            viewController.draw(currentLevel, s);
+            viewController.draw(levelController, s);
             viewController.draw(ui,s);
             viewController.register(ui,s);
             viewController.register(inputManager,s);
@@ -203,13 +189,13 @@ public class ProgramController {
 
     /**
      * @param lvlChanged
-     * If this method is called because of a new started Level, type true
+     * If this method is called because of a new started LevelController, type true
      */
 
     public void checkAndHandleMusic(boolean lvlChanged){
         if (lvlChanged) {
             SoundController.stopSound(currentSong);
-            currentSong = currentLevel.getBgSong();
+            currentSong = levelController.getBgSong();
             if (sc.getActivity(0)) SoundController.playSound(currentSong);
         } else {
             if (sc.getActivity(0)) {
@@ -220,7 +206,7 @@ public class ProgramController {
 
     public Player getPlayer(){return p1;}
     public UserInterface getUI(){return ui;}
-    public Level getCurrentLevel() {return currentLevel;}
+    public LevelController getLevelController() {return levelController;}
     public int getCurrentScene(){return currentScene;}
     public Settings getSC(){return sc;}
     public int getNLevels(){return nLevels;}

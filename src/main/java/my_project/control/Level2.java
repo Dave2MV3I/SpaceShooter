@@ -1,3 +1,4 @@
+/*
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
@@ -6,7 +7,7 @@ import my_project.model.Shield;
 import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
 
-public class Level2 extends Level {
+public class Level2 extends LevelController {
     //Attribute
 
     //Referenzen
@@ -39,13 +40,13 @@ public class Level2 extends Level {
         //System.out.println("Lvl2 Update läuft");
         super.update(dt);
 
-        if (timer > 10 && counter < 8) {
+        if (timer > 10 && enemyCounter < 8) {
             System.out.println("Spaceship gestartet (2)");
             for (Spaceship spaceship : spaceships) {
 
                 if (!spaceship.isActive()) {
-                    spaceship.startSpaceship(800, counter * 55, pc);
-                    counter += 1;
+                    spaceship.startSpaceship(800, enemyCounter * 55, pc);
+                    enemyCounter += 1;
 
                     break;
                 }
@@ -53,8 +54,8 @@ public class Level2 extends Level {
 
             for (Spaceship spaceship : spaceships) {
                 if (!spaceship.isActive()) {
-                    spaceship.startSpaceship(800, 700 - counter * 55, pc);
-                    counter += 1;
+                    spaceship.startSpaceship(800, 700 - enemyCounter * 55, pc);
+                    enemyCounter += 1;
                     timer = timer % 10;
                     break;
                 }
@@ -62,9 +63,9 @@ public class Level2 extends Level {
         }
         // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
 
-        if (counter > 7 && noSpaceships()) {
+        if (enemyCounter > 7 && noSpaceships()) {
             if (!levelEnded) {
-                pc.setSceneOrLevel(3);
+                pc.setSceneAndLevel(3);
                 levelEnded = true;
             }
         }
@@ -72,3 +73,4 @@ public class Level2 extends Level {
     }
 
 }
+*/

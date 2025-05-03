@@ -1,3 +1,4 @@
+/*
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
@@ -7,16 +8,12 @@ import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Spaceship;
 import my_project.model.FadingPicture;
 
-import java.awt.*;
-
-public class Level1 extends Level {
+public class Level1 extends LevelController {
 
     //Attribute
     private FadingPicture[] keys = new FadingPicture[6];
 
     private boolean tutorialStarted;
-    private Composite originalComposite;
-    private boolean setBackComposite;
 
     //Referenzen
     private final ProgramController pc;
@@ -55,11 +52,11 @@ public class Level1 extends Level {
             }
         }
 
-        if (timer > 10 && counter < 8) {
+        if (timer > 10 && enemyCounter < 8) {
             for (Spaceship spaceship : spaceships) {
                 if (!spaceship.isActive()) {
-                    spaceship.startSpaceship(800, counter * 80, pc);
-                    counter += 1;
+                    spaceship.startSpaceship(800, enemyCounter * 80, pc);
+                    enemyCounter += 1;
                     timer = timer % 10;
                     break;
                 }
@@ -67,9 +64,9 @@ public class Level1 extends Level {
         }
         // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
 
-        if (counter > 7 && noSpaceships()) {
+        if (enemyCounter > 7 && noSpaceships()) {
             if (!levelEnded) {
-                pc.setSceneOrLevel(2);
+                pc.setSceneAndLevel(2);
                 System.out.println("Szene auf 2 gesetzt");
                 levelEnded = true;
             }
@@ -93,3 +90,4 @@ public class Level1 extends Level {
     }
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
@@ -6,7 +7,7 @@ import my_project.model.Shield;
 import my_project.model.enemy.SmallSpaceship;
 import my_project.model.enemy.Stardestroyer;
 
-public class Level3 extends Level {
+public class Level3 extends LevelController {
     //Attribute
 
     //Referenzen
@@ -16,7 +17,7 @@ public class Level3 extends Level {
     public Level3(int nSpaceships, ProgramController pc, String bgSong, int nShields, ViewController viewController, int scene) {
         super(nSpaceships, pc, bgSong, nShields, viewController, scene, nSpaceships*5 + 20);
 
-        counter = 0;
+        enemyCounter = 0;
         this.pc = pc;
 
         for (int i = 0; i < nSpaceships - 4; i++) {
@@ -41,22 +42,22 @@ public class Level3 extends Level {
 
     public void update(double dt){
         super.update(dt);
-        if (timer > 10 && counter < 8) {
+        if (timer > 10 && enemyCounter < 8) {
             //System.out.println("Spaceship gestartet (2)");
-            if (counter%2 == 0){
+            if (enemyCounter %2 == 0){
                 for (int j = 0; j < spaceships.length-4; j++) {
                     if (!spaceships[j].isActive()) {
-                        spaceships[j].startSpaceship(800, counter * 80, pc);
-                        counter += 1;
+                        spaceships[j].startSpaceship(800, enemyCounter * 80, pc);
+                        enemyCounter += 1;
                     }
                 }
             }
 
-            if (counter%2 == 1){
+            if (enemyCounter %2 == 1){
                 for (int j = spaceships.length - 4; j < spaceships.length; j++) {
                     if (!spaceships[j].isActive()) {
-                        spaceships[j].startSpaceship(800, counter * 80, pc);
-                        counter += 1;
+                        spaceships[j].startSpaceship(800, enemyCounter * 80, pc);
+                        enemyCounter += 1;
                     }
                 }
             }
@@ -64,12 +65,13 @@ public class Level3 extends Level {
 
         // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
-        if (counter > 7 && noSpaceships()) {
+        if (enemyCounter > 7 && noSpaceships()) {
             //System.out.println(pc.getCurrentScene());
-            pc.setSceneOrLevel(4);
+            pc.setSceneAndLevel(4);
         }
 
     }
 
 
 }
+*/

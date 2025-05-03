@@ -1,3 +1,4 @@
+/*
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
@@ -6,7 +7,7 @@ import my_project.model.Shield;
 import my_project.model.enemy.Spaceship;
 import my_project.model.enemy.Stardestroyer;
 
-public class Level4 extends Level {
+public class Level4 extends LevelController {
     //Attribute
 
 
@@ -17,7 +18,7 @@ public class Level4 extends Level {
     public Level4 (int nSpaceships, ProgramController pc, String bgSong, int nShields, ViewController viewController, int scene) {
         super(nSpaceships, pc, bgSong, nShields, viewController, scene, nSpaceships*5 + 20);
 
-        counter = 0;
+        enemyCounter = 0;
         this.pc = pc;
 
         for (int i = 0 ; i < nSpaceships; i++) {
@@ -42,13 +43,13 @@ public class Level4 extends Level {
     public void update(double dt){
         super.update(dt);
 
-        if (timer > 10 && counter < 8) {
+        if (timer > 10 && enemyCounter < 8) {
             //System.out.println("Spaceship gestartet (2)");
             for (Spaceship spaceship : spaceships) {
 
                 if (!spaceship.isActive()) {
-                    spaceship.startSpaceship(800, counter * 60, pc);
-                    counter += 1;
+                    spaceship.startSpaceship(800, enemyCounter * 60, pc);
+                    enemyCounter += 1;
 
                     break;
                 }
@@ -56,8 +57,8 @@ public class Level4 extends Level {
 
             for (Spaceship spaceship : spaceships) {
                 if (!spaceship.isActive()) {
-                    spaceship.startSpaceship(800, 700 - counter * 50, pc);
-                    counter += 1;
+                    spaceship.startSpaceship(800, 700 - enemyCounter * 50, pc);
+                    enemyCounter += 1;
                     timer = timer % 10;
                     break;
                 }
@@ -67,9 +68,9 @@ public class Level4 extends Level {
 
         // Modulo teilt timer durch 1 und erhält den Redt (hinterm Komma); an den nächsten Intervall drangegangen wg. overflow
 
-        if (counter > 7 && noSpaceships()) {
-            pc.setSceneOrLevel(11);
+        if (enemyCounter > 7 && noSpaceships()) {
+            pc.setSceneAndLevel(11);
         }
     }
 
-}
+}*/

@@ -34,10 +34,10 @@ public class Spaceship extends GraphicalObject{
                     double phi = Math.atan2(-this.y + pc.getPlayer().getY(), -this.x + pc.getPlayer().getX());
                     //System.out.println(phi);
                     if (this instanceof Stardestroyer) {
-                        pc.getCurrentLevel().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 128 * Math.cos(phi), 128 * Math.sin(phi));
+                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 128 * Math.cos(phi), 128 * Math.sin(phi));
                     }
                     if (this instanceof SmallSpaceship) {
-                        pc.getCurrentLevel().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 128 * Math.cos(phi), 128 * Math.sin(phi));
+                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 128 * Math.cos(phi), 128 * Math.sin(phi));
                     }
 
                 }
@@ -67,7 +67,7 @@ public class Spaceship extends GraphicalObject{
         this.health += points;
         if (health <= 0) {
             isActive = false;
-            pc.getCurrentLevel().startShield(this.getX(), this.getY(), pc, true, false, 5000);
+            pc.getLevelController().startShield(this.getX(), this.getY(), pc, false, 5000);
             if (pc.getSC().getActivity(1)) pc.playSound("explosion");
         }
     }
