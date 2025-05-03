@@ -61,7 +61,7 @@ public class LevelController{
 
                         if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
                             spaceship.modifyHP(-(bullet.getDamage()));
-                            System.out.println("Bullet ist mit Gegner kollidiert");
+                            //System.out.println("Bullet ist mit Gegner kollidiert");
                             bullet.setIsActive(false);
                         }
                     }
@@ -82,17 +82,29 @@ public class LevelController{
         if (enemyCounter > spaceships.length-1 && noSpaceships()) {
 
                 //enemyCounter = 0;
-                if (level == LEVEL1) {
-                    startLevel(LEVEL2);
+            switch(level){
+                case LEVEL1: startLevel(LEVEL2);
+                break;
+                case LEVEL2: startLevel(LEVEL3);
+                break;
+                case LEVEL3: startLevel(LEVEL4);
+                break;
+                case LEVEL4: pc.setCurrentScene(11); //startLevel(LEVEL5); // Winner-Screen
+                break;
+                //case LEVEL5: startLevel(LEVEL6);
+                //break;
+            }
+                /*if (level == LEVEL1) {
+
                 } else if (level == LEVEL2) {
-                    startLevel(LEVEL4);
+                    startLevel(LEVEL3);
                 } else if (level == LEVEL3) {
                     startLevel(LEVEL4);
                 } else if (level == LEVEL4) {
                     pc.setCurrentScene(11);
                     System.out.println("WONNNN");
-                } // Winner-Screen
-                //if (level == LEVEL5) startLevel(LEVEL5);
+                }
+                //if (level == LEVEL5) startLevel(LEVEL5);*/
 
         }
     }
@@ -110,10 +122,11 @@ public class LevelController{
                         }
                     }
                 }
+                break;
 
             case LEVEL2:
                 if (timer > 10 && enemyCounter < 8) {
-                    System.out.println("Spaceship gestartet (2)");
+                    //System.out.println("Spaceship gestartet (2)");
                     for (Spaceship spaceship : spaceships) {
 
                         if (!spaceship.isActive()) {
@@ -133,6 +146,7 @@ public class LevelController{
                         }
                     }
                 }
+                break;
 
             case LEVEL3:
                 if (timer > 10 && enemyCounter < 8) {
@@ -155,6 +169,7 @@ public class LevelController{
                         }
                     }
                 }
+                break;
 
             case LEVEL4:
                 if (timer > 10 && enemyCounter < 8) {
@@ -177,8 +192,8 @@ public class LevelController{
                             break;
                         }
                     }
-
                 }
+                break;
 
             case LEVEL5:
         }
@@ -220,13 +235,14 @@ public class LevelController{
 
     public void startLevel(Level level) {
         this.level = level;
+        System.out.println(level);
 
         Picture bgPicture = new Picture(0, 0, level.bgPicture);
         assert viewController != null;
         viewController.draw(bgPicture, level.myScene);
 
         pc.addDrawablesAndInteractables(level.myScene);
-        if (level != LEVEL4) pc.setCurrentScene(level.myScene);
+        pc.setCurrentScene(level.myScene);
 
         // Arrays with Objects for the new Level
         spaceships = new Spaceship[level.nSpaceships];
@@ -274,10 +290,12 @@ public class LevelController{
                 for (int i = 0; i < level.nSpaceships; i++) {
                     spaceships[i] = new SmallSpaceship();
                 }
+                break;
             case LEVEL2:
                 for (int i = 0; i < level.nSpaceships; i++) {
                     spaceships[i] = new SmallSpaceship();
                 }
+                break;
             case LEVEL3:
                 for (int i = 0; i < level.nSpaceships - 4; i++) {
                     spaceships[i] = new SmallSpaceship();
@@ -285,10 +303,12 @@ public class LevelController{
                 for (int i = level.nSpaceships - 4; i < level.nSpaceships; i++) {
                     spaceships[i] = new Stardestroyer();
                 }
+                break;
             case LEVEL4:
                 for (int i = 0 ; i < level.nSpaceships; i++) {
                     spaceships[i] = new Stardestroyer();
                 }
+                break;
         }
     }
 

@@ -58,7 +58,7 @@ public class ProgramController {
 
         // Objekte
         p1 = new Player(50,300, this);
-        System.out.println("LevelController created");
+        //System.out.println("LevelController created");
 
 
         // Sounds
@@ -110,7 +110,6 @@ public class ProgramController {
             viewController.createScene();
             Picture loseText = new Picture(0,0,"src/main/resources/graphic/backgrounds/loseBG.png");
             viewController.draw(loseText,10);
-            System.out.println(deathReason);
 
         // Endbildschirm (Szene 11)
             viewController.createScene();
@@ -167,6 +166,7 @@ public class ProgramController {
     public void setCurrentScene(int s){
         this.currentScene = s;
         viewController.showScene(currentScene);
+        if (s == 10) System.out.println(deathReason);
     }
     public void addDrawablesAndInteractables(int s){
         viewController.draw(ui,s);

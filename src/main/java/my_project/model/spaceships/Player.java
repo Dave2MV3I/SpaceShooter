@@ -116,7 +116,7 @@ public class Player extends Spaceship {
             if (pc.getCurrentScene() > 0 && pc.getCurrentScene() < 10) if (pc.getSC().getActivity(1)) SoundController.playSound("laser");
             this.cooldownTimer = this.cooldown;
             this.ammunition = this.ammunition - 1;
-            System.out.println(this.ammunition);
+            //System.out.println(this.ammunition);
         }
     }
 

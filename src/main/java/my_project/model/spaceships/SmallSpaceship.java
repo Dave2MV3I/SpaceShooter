@@ -9,8 +9,8 @@ public class SmallSpaceship extends Spaceship {
         this.setNewImage("src/main/resources/graphic/spaceships/smallSpaceship.png");
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
         this.speed = 50;
-        this.cooldown = 5;
-        this.cooldownTimer = 5;
+        this.cooldown = 4;
+        this.cooldownTimer = 4;
     }
 
     @Override

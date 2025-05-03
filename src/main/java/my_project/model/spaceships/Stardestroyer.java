@@ -11,8 +11,8 @@ public class Stardestroyer extends Spaceship {
         //this.health = 20;
         //this.maxHealth = 20;
         this.speed = 32;
-        this.cooldown = 4;
-        this.cooldownTimer = 4;
+        this.cooldown = 2;
+        this.cooldownTimer = 2;
     }
 
     @Override
