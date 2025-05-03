@@ -29,7 +29,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
     private class Scene {
 
         DrawingPanel drawingPanel;
-        ArrayList<Drawable> drawables;
+        public ArrayList<Drawable> drawables;
         ArrayList<Interactable> interactables;
 
         Scene(ViewController viewController){
@@ -404,6 +404,10 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
             Interactable tmpInteractable = iterator.next();
             tmpInteractable.keyReleased(e.getKeyCode());
         }
+    }
+
+    public ArrayList<Drawable> getDrawables(){
+        return scenes.get(1).drawables;
     }
 
 }

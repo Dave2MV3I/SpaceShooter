@@ -1,9 +1,10 @@
 package my_project.control;
 
+import KAGO_framework.control.Drawable;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.*;
-import my_project.model.player.Player;
+import my_project.model.spaceships.Player;
 import my_project.model.userInterface.UserInterface;
 import my_project.view.InputManager;
 
@@ -23,7 +24,6 @@ import java.awt.event.KeyEvent;
 public class ProgramController {
 
     // Entwicklerattribute
-        private int afterPressingSpace = 4;     // <<<<<< Entwicklermodus: Um LevelController zu überspringen >>>>>>
 
     //Attribute
         private int currentScene;
@@ -44,7 +44,6 @@ public class ProgramController {
     // Methoden
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
-        levelController = new LevelController(this, viewController);
     }
 
     public void startProgram() {
@@ -56,6 +55,11 @@ public class ProgramController {
         sc = new Settings();
         ui = new UserInterface(this);
         viewController.register(ui,0);
+
+        // Objekte
+        p1 = new Player(50,300, this);
+        System.out.println("LevelController created");
+
 
         // Sounds
         viewController.getSoundController().loadSound("src/main/resources/sound/laser.mp3", "laser", false);
@@ -77,8 +81,6 @@ public class ProgramController {
 
         // Spielbildschirm (Szene 1)
             viewController.createScene();
-            p1 = new Player(50,300, this);
-            viewController.draw(levelController,1);
 
         // Spielbildschirm (Szene 2)
             viewController.createScene();
@@ -128,12 +130,13 @@ public class ProgramController {
             if (currentScene == 0) sback.update(dt);
             //if (currentScene > 0 && currentScene < nLevels+1) currentLevel.update(dt);
         }
+        if (currentScene > 0 && currentScene < 10) levelController.updateLevel(dt);
     }
 
     public void processKeyboardInput(int key, boolean pressed) {
         //System.out.println("process keyboardInput wird aufgerufen");
         if (!pressed && key == KeyEvent.VK_SPACE && currentScene == 0) {
-            setSceneAndLevel(afterPressingSpace);
+            levelController = new LevelController(this, viewController);
             checkAndHandleMusic(true);
         }
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
@@ -146,7 +149,10 @@ public class ProgramController {
         }
         if (key == KeyEvent.VK_F){
             //System.out.println("Playerposition: " + "X: " + Math.round(p1.getX()) + ", Y: " + Math.round(p1.getY()) + ", X2: " + Math.round(p1.getX()+p1.getWidth()) + ", Y2: " + Math.round(p1.getY()+p1.getHeight()));
-
+            //System.out.println(currentScene);
+            for (Drawable drawable : viewController.getDrawables()){
+                System.out.println(drawable);
+            }
         }
     }
 
@@ -158,33 +164,15 @@ public class ProgramController {
      *          10 für Lose <br>
      *          11 für Win <br>
      */
-    public void setSceneAndLevel(int s){
+    public void setCurrentScene(int s){
         this.currentScene = s;
-
-        if (s == 1) {
-            p1.setAmmunition(64);
-        }
-
-        if (s == 2) {
-            p1.setAmmunition(64);
-        }
-        if (s == 3) {
-            p1.setAmmunition(64);
-        }
-        if (s == 4){
-            p1.setAmmunition(64);
-        }
-
-        if (s > 0 && s < nLevels+1) {
-            viewController.draw(levelController, s);
-            viewController.draw(ui,s);
-            viewController.register(ui,s);
-            viewController.register(inputManager,s);
-            viewController.draw(p1, s);
-        }
-
         viewController.showScene(currentScene);
-        //System.out.println("CurrentScene: " + currentScene);
+    }
+    public void addDrawablesAndInteractables(int s){
+        viewController.draw(ui,s);
+        viewController.register(ui,s);
+        viewController.register(inputManager,s);
+        viewController.draw(p1, s);
     }
 
     /**
@@ -195,7 +183,11 @@ public class ProgramController {
     public void checkAndHandleMusic(boolean lvlChanged){
         if (lvlChanged) {
             SoundController.stopSound(currentSong);
-            currentSong = levelController.getBgSong();
+            if (currentScene == 0){
+                currentSong = "startBGM";
+            } else {
+                currentSong = levelController.getBgSong();
+            }
             if (sc.getActivity(0)) SoundController.playSound(currentSong);
         } else {
             if (sc.getActivity(0)) {
@@ -215,7 +207,6 @@ public class ProgramController {
     public void playSound(String soundName){
         SoundController.playSound(soundName);
     }
-
 
     public ViewController getViewController() {
         return viewController;

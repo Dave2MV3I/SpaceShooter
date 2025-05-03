@@ -1,11 +1,10 @@
-package my_project.model.player;
+package my_project.model.spaceships;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.ProgramController;
-import my_project.model.enemy.Spaceship;
 
 import java.awt.event.KeyEvent;
 

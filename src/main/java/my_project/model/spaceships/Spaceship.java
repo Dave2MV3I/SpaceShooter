@@ -1,4 +1,4 @@
-package my_project.model.enemy;
+package my_project.model.spaceships;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;

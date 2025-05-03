@@ -23,5 +23,4 @@ public enum Level {
         this.bgSong = bgSong;
         this.bgPicture = bgPicture;
     }
-
 }

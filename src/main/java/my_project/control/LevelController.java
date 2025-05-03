@@ -1,25 +1,21 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
-import KAGO_framework.view.DrawTool;
 import my_project.model.Bullet;
 import my_project.model.Level;
 import my_project.model.Picture;
 import my_project.model.Shield;
-import my_project.model.enemy.Spaceship;
+import my_project.model.spaceships.*;
 
-import static my_project.model.Level.LEVEL1;
-import static my_project.model.Level.LEVEL4;
+import static my_project.model.Level.*;
 
-public class LevelController extends GraphicalObject{
+public class LevelController{
 
     // Attribute
     protected double timer;
     protected int enemyCounter = 0;
 
     // Flags
-    protected boolean levelEnded = false;
 
     // Arrays
     protected Bullet[] bullets;
@@ -35,22 +31,13 @@ public class LevelController extends GraphicalObject{
         this.pc = pc;
         this.viewController = viewController;
         startLevel(LEVEL1);
-        for (int i = 0; i < level.nBullets; i++) {
-            bullets[i] = new Bullet(pc);
-        }
     }
 
-    @Override
-    public void draw(DrawTool drawTool){
-        //pc.getPlayer().draw(drawTool);
-    }
-
-    @Override
-    public void update(double dt){
+    public void updateLevel(double dt){
         timer += dt;
 
         if (pc.getPlayer().getHealth() <= 0) {
-            pc.setSceneAndLevel(10);
+            pc.setCurrentScene(10);
         }
 
         // Kollisionserkennung zwischen Bullets und Spaceships
@@ -62,7 +49,7 @@ public class LevelController extends GraphicalObject{
                     if (spaceship.isActive()) {
 
                         if (spaceship.getX() < - spaceship.getWidth()){
-                            pc.setSceneAndLevel(10); //Man verliert, wenn Gegner durchgeflogen ist
+                            pc.setCurrentScene(10); //Man verliert, wenn Gegner durchgeflogen ist
                         }
 
                         // Man verliert HP, wenn man mit Gegner kollidiert
@@ -91,22 +78,29 @@ public class LevelController extends GraphicalObject{
         updateEnemies();
 
         // Check if level ended
-        if (enemyCounter > spaceships.length && noSpaceships()) {
-            if (!levelEnded) {
-                if (level != LEVEL4) {
-                    pc.setSceneAndLevel(level.myScene + 1); // Next level
-                } else pc.setSceneAndLevel(11); // Winner-Screen
+        //System.out.println(enemyCounter > spaceships.length-1 && noSpaceships());
+        if (enemyCounter > spaceships.length-1 && noSpaceships()) {
 
-                System.out.println("Szene auf 2 gesetzt");
-                levelEnded = true;
-            }
+                //enemyCounter = 0;
+                if (level == LEVEL1) {
+                    startLevel(LEVEL2);
+                } else if (level == LEVEL2) {
+                    startLevel(LEVEL4);
+                } else if (level == LEVEL3) {
+                    startLevel(LEVEL4);
+                } else if (level == LEVEL4) {
+                    pc.setCurrentScene(11);
+                    System.out.println("WONNNN");
+                } // Winner-Screen
+                //if (level == LEVEL5) startLevel(LEVEL5);
+
         }
     }
 
     private void updateEnemies(){
         switch(level){
             case LEVEL1:
-                if (timer > 10 && enemyCounter < 8) {
+                if (timer > 1 && enemyCounter < 8) { // 1 statt 10
                     for (Spaceship spaceship : spaceships) {
                         if (!spaceship.isActive()) {
                             spaceship.startSpaceship(800, enemyCounter * 80, pc);
@@ -227,10 +221,28 @@ public class LevelController extends GraphicalObject{
     public void startLevel(Level level) {
         this.level = level;
 
+        Picture bgPicture = new Picture(0, 0, level.bgPicture);
+        assert viewController != null;
+        viewController.draw(bgPicture, level.myScene);
+
+        pc.addDrawablesAndInteractables(level.myScene);
+        if (level != LEVEL4) pc.setCurrentScene(level.myScene);
+
         // Arrays with Objects for the new Level
         spaceships = new Spaceship[level.nSpaceships];
         bullets = new Bullet[level.nBullets];
         shields = new Shield[level.nShields];
+
+        for (int i = 0; i < level.nBullets; i++) {
+            bullets[i] = new Bullet(pc);
+        }
+
+        enemyCounter = 0;
+        createEnemies();
+
+        for (int i = 0; i < level.nShields; i++){
+            shields[i] = new Shield();
+        }
 
         // Add drawables for them being drawn and updated
         for (Bullet bullet : bullets) {
@@ -240,6 +252,7 @@ public class LevelController extends GraphicalObject{
             // warum die Objekte nicht gezeichnet werden, sie würden im Stillen nicht zu den drawables hinzugefügt werden
             viewController.draw(bullet, level.myScene);
         }
+
         for (Spaceship spaceship : spaceships) {
             assert viewController != null;
             viewController.draw(spaceship, level.myScene);
@@ -249,14 +262,36 @@ public class LevelController extends GraphicalObject{
             viewController.draw(shield, level.myScene);
         }
 
-        Picture bgPicture = new Picture(0, 0, level.bgPicture);
-        assert viewController != null;
-        viewController.draw(bgPicture, level.myScene);
-
         assert pc != null;
         pc.getPlayer().setAmmunition(64);
 
-        pc.checkAndHandleMusic(true);
+        //apc.checkAndHandleMusic(true);
     }
+
+    private void createEnemies(){
+        switch(level){
+            case LEVEL1:
+                for (int i = 0; i < level.nSpaceships; i++) {
+                    spaceships[i] = new SmallSpaceship();
+                }
+            case LEVEL2:
+                for (int i = 0; i < level.nSpaceships; i++) {
+                    spaceships[i] = new SmallSpaceship();
+                }
+            case LEVEL3:
+                for (int i = 0; i < level.nSpaceships - 4; i++) {
+                    spaceships[i] = new SmallSpaceship();
+                }
+                for (int i = level.nSpaceships - 4; i < level.nSpaceships; i++) {
+                    spaceships[i] = new Stardestroyer();
+                }
+            case LEVEL4:
+                for (int i = 0 ; i < level.nSpaceships; i++) {
+                    spaceships[i] = new Stardestroyer();
+                }
+        }
+    }
+
+    public Spaceship[] getSpaceships(){return spaceships;}
 
 }

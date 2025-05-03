@@ -3,7 +3,7 @@ package my_project.model;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
-import my_project.model.player.Player;
+import my_project.model.spaceships.Player;
 
 
 public class Shield extends GraphicalObject {
