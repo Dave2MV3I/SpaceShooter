@@ -4,6 +4,7 @@ import KAGO_framework.control.MainController;
 public class MainProgram {
 
     /**
+     * hello
      * Die Main-Methode von Java startet das Programm. Sie ist einzigartig im ganzen Projekt.
      * Sie startet das Framework. Weitere Details zum Ablauf kann man sehen, wenn man mit STRG+Linksklick auf
      * "startFramework()" in der Methode klickt.
