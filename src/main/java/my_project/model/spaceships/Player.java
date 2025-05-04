@@ -23,6 +23,7 @@ public class Player extends Spaceship {
     private double cooldownTimer;
 
     private final ProgramController pc;
+    HitBoxObject hitBoxObject;
 
 
     private boolean isShielded;
@@ -45,6 +46,8 @@ public class Player extends Spaceship {
         this.maxHealth = 50;
 
         this.isActive = true;
+
+        hitBoxObject = new HitBoxObject(x+15, y+10, getWidth()-21, getHeight()-20);
     }
 
     @Override
@@ -90,6 +93,13 @@ public class Player extends Spaceship {
         if (isShielded && System.currentTimeMillis() > shieldEndTime) {
             isShielded = false;
         }
+
+        //links min 15, rechts min 6 und o und u min 10
+        //hoehe 40 br 39
+        //10px tiefer, 15px weiter rechts als vorher
+
+        hitBoxObject.setX(x+15);
+        hitBoxObject.setY(y+10);
     }
 
 
@@ -142,13 +152,6 @@ public class Player extends Spaceship {
         this.ammunition = ammunition;
     }
 
-    public GraphicalObject getHitBoxObject(){
-        //links min 15, rechts min 6 und o und u min 10
-        //hoehe 40 br 39
-        //10px tiefer, 15px weiter rechts als vorher
-        return new HitBoxObject(x+15, y+10, getWidth()-21, getHeight()-20);
-    }
-
     private class HitBoxObject extends GraphicalObject{
         public HitBoxObject(double x, double y, double width, double height) {
             this.x = x;
@@ -162,4 +165,5 @@ public class Player extends Spaceship {
             drawTool.drawRectangle(x, y, width, height);
         }
     }
+    public HitBoxObject getHitBoxObject(){return hitBoxObject;}
 }

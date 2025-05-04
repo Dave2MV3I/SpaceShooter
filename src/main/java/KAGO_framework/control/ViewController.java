@@ -29,7 +29,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
     private class Scene {
 
         DrawingPanel drawingPanel;
-        public ArrayList<Drawable> drawables;
+        ArrayList<Drawable> drawables;
         ArrayList<Interactable> interactables;
 
         Scene(ViewController viewController){
@@ -37,6 +37,10 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
             drawingPanel.setBackground(new Color(255,255,255));
             drawables = new ArrayList<>();
             interactables = new ArrayList<>();
+        }
+
+        public ArrayList<Drawable> getDrawables() {
+            return drawables;
         }
     }
 
@@ -407,7 +411,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
     }
 
     public ArrayList<Drawable> getDrawables(){
-        return scenes.get(1).drawables;
+        return scenes.get(1).getDrawables();
     }
 
 }

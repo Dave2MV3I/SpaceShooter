@@ -18,10 +18,8 @@ public class Shield extends GraphicalObject {
 
     public Shield(){ this.isActive = false; }
 
-
     public void startShield(double x, double y, ProgramController pc, boolean movingLeft, boolean collected, double spawnTime){
         this.isActive = true;
-        System.out.println("Shield started");
         this.x = x;
         this.y = y;
 
@@ -31,17 +29,12 @@ public class Shield extends GraphicalObject {
         this.collected = false;
     }
 
-
-
-
-
     public void draw(DrawTool drawTool){
         if (isActive) {
             drawTool.setCurrentColor(0, 0, 255, 100);
             drawTool.drawFilledCircle(this.x, this.y, 20);
         }
     }
-
 
     @Override
     public void update(double dt) {
@@ -69,11 +62,9 @@ public class Shield extends GraphicalObject {
         }
     }
 
-
     public boolean isActive() {
         return isActive;
     }
-
     private void activatePlayerShield(Player player) {
         player.activateShield();
     }
