@@ -5,7 +5,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
 
-public class Spaceship extends GraphicalObject{
+public abstract class Spaceship extends GraphicalObject{
     protected int maxHealth;
     protected int health;
     protected double speed;
@@ -16,6 +16,11 @@ public class Spaceship extends GraphicalObject{
     protected double cooldown;
     protected double cooldownTimer;
 
+    public Spaceship(String path, double speed){
+        this.setNewImage(path);
+        //System.out.println("Spaceship wurde aufgerufen");
+        this.speed = speed;
+    }
 
     public void draw(DrawTool drawTool){
         if (isActive){
@@ -39,10 +44,8 @@ public class Spaceship extends GraphicalObject{
                     if (this instanceof SmallSpaceship) {
                         pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 150 * Math.cos(phi), 150 * Math.sin(phi));
                     }
-
                 }
-
-            }else {
+            } else {
                 cooldownTimer = cooldownTimer - dt;
             }
         }

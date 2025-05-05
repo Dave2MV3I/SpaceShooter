@@ -30,8 +30,7 @@ public class Player extends Spaceship {
     private double shieldEndTime;
 
     public Player(double x, double y, ProgramController pc) {
-        super();
-        this.setNewImage("src/main/resources/graphic/spaceships/spaceship.png");
+        super("src/main/resources/graphic/spaceships/spaceship.png", 200);
         this.x = x;
         this.y = y;
         hoverUp = true;
@@ -40,7 +39,6 @@ public class Player extends Spaceship {
 
         this.cooldown = 0.0;
         this.cooldownTimer = 0.3;
-        this.speed = 200;
 
         this.health = 50;
         this.maxHealth = 50;

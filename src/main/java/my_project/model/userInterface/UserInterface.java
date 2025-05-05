@@ -137,7 +137,7 @@ public class UserInterface extends InteractiveGraphicalObject {
 
 
         if (pc.getPlayer().isShielded()) {
-            shieldStatusDisplay.setText(String.valueOf(pc.getPlayer().getShieldsActivityTime()));
+            shieldStatusDisplay.setText(String.valueOf(pc.getPlayer().getShieldsActivityTime()/1000));
             shieldStatusDisplay.setVisible(true);
         } else shieldStatusDisplay.setVisible(false);
     }
