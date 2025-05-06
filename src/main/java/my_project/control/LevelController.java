@@ -181,7 +181,7 @@ public class LevelController{
 
             case LEVEL5:
                 for (int i = 0 ; i < level.nSpaceships; i++) {
-                    spaceships[i] = new Stardestroyer();
+                    spaceships[i] = new ScratchCat(this.pc);
                 }
                 break;
         }
