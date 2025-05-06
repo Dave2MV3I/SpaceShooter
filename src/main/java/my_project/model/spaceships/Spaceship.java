@@ -36,7 +36,7 @@ public abstract class Spaceship extends GraphicalObject{
             if (cooldownTimer < 0) {
                 this.cooldownTimer = cooldown;
                 if (this.x > pc.getPlayer().getX()) {
-                    double phi = Math.atan2(-this.y + pc.getPlayer().getY(), -this.x + pc.getPlayer().getX());
+                    double phi = Math.atan2(-this.y + pc.getPlayer().getY() + pc.getPlayer().getWidth()/2, -this.x + pc.getPlayer().getX() + pc.getPlayer().getHeight()/2);
                     //System.out.println(phi);
                     if (this instanceof Stardestroyer) {
                         pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 250 * Math.cos(phi), 250 * Math.sin(phi));

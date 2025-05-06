@@ -13,8 +13,8 @@ public class ScratchCat extends Spaceship {
         super("src/main/resources/graphic/spaceships/smallSpaceship.png", 0);
         this.pc = pc;
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
-        this.cooldown = 2;
-        this.cooldownTimer = 2;
+        this.cooldown = 1;
+        this.cooldownTimer = 1;
         //System.out.println("created");
     }
 
@@ -27,15 +27,15 @@ public class ScratchCat extends Spaceship {
     public void update(double dt) {
         super.update(dt);
         if (this.y < pc.getPlayer().getY()){
-            if (this.y > 0){
+            if (this.y > 0+this.height){
                 this.y -= dt*vy;
             }
-        }else if (this.y > pc.getPlayer().getY()) {
-            if (this.y + this.height < Config.WINDOW_HEIGHT) {
+        } else if (this.y > pc.getPlayer().getY()) {
+            if (this.y + this.height < Config.WINDOW_HEIGHT-50) {
                 this.y += vy*dt;
             }
         }
 
-        if (this.x > Config.WINDOW_WIDTH || this.y > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}
+        if (this.x < 0  || this.x > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}
     }
 }

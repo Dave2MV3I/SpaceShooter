@@ -1,5 +1,6 @@
 package my_project.model;
 
+import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
@@ -14,6 +15,7 @@ public class StartBackground extends GraphicalObject {
 
     private double starsX = 0;
     private ProgramController pc;
+    private ViewController viewController;
 
     private int nPlanets = 7;
 
@@ -26,8 +28,13 @@ public class StartBackground extends GraphicalObject {
 
     private boolean[] dustFlags = new boolean[nPlanets];
 
-    public StartBackground(ProgramController pc) {
+    private boolean tutorialStarted;
+    private FadingPicture[] keys = new FadingPicture[6];
+
+    public StartBackground(ProgramController pc, ViewController vc) {
         this.pc = pc;
+        this.viewController = vc;
+
         for (int d = 0; d < xPositions.length; d++) {
             xPositions[d] = (double)(Math.random()*(Config.WINDOW_WIDTH));
         }
@@ -93,6 +100,18 @@ public class StartBackground extends GraphicalObject {
                 b[i] = Math.random()*255;
             }
         }
+
+        if (!tutorialStarted){
+            startTutorial();
+        } else {
+            for (int i = 0; i < keys.length; i++){
+                if (keys[i] != null && keys[i].getFadingEnded()) {
+                    viewController.removeDrawable(keys[i]);
+                    keys[i] = null;
+                }
+
+            }
+        }
     }
 
     private void drawPlanet(double x, double y, int radius, double r, double g, double b, double a, boolean withDust, DrawTool drawTool){
@@ -106,5 +125,20 @@ public class StartBackground extends GraphicalObject {
             drawTool.drawFilledCircle(x+1.5*radius, y, 0.1*radius);
         }
 
+    }
+
+    private void startTutorial(){
+        tutorialStarted = true;
+
+        keys[0] = new FadingPicture(250, 900,  "src/main/resources/graphic/keys/wkey.png", 500);
+        keys[1] = new FadingPicture(130, 1020, "src/main/resources/graphic/keys/akey.png", 620);
+        keys[2] = new FadingPicture(250, 1020, "src/main/resources/graphic/keys/skey.png", 620);
+        keys[3] = new FadingPicture(370, 1020, "src/main/resources/graphic/keys/dkey.png", 620);
+        keys[4] = new FadingPicture(530, 900, "src/main/resources/graphic/keys/spacekey.png", 500);
+        keys[5] = new FadingPicture(580, 875, "src/main/resources/graphic/keys/hand_shooting.png", 475);
+
+        for (FadingPicture key : keys){
+            viewController.draw(key);
+        }
     }
 }

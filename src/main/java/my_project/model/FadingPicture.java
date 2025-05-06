@@ -18,7 +18,6 @@ public class FadingPicture extends Picture{
     @Override
     public void draw(DrawTool drawTool) {
         Graphics2D g2d = drawTool.getGraphics2D();
-        Composite original = g2d.getComposite();
 
         if (fadingTimer <= timerLength) {
             float alpha = (float)(1.0 - (fadingTimer / timerLength));
@@ -26,7 +25,6 @@ public class FadingPicture extends Picture{
         }
 
         super.draw(drawTool);
-        //g2d.setComposite(original);
     }
 
 

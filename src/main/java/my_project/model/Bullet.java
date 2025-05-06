@@ -41,6 +41,12 @@ public class Bullet extends GraphicalObject {
         if (isActive) {
             drawTool.setCurrentColor(255, 0, 0, 255);
             drawTool.drawFilledCircle(this.x, this.y, 5);
+
+            double absSpeed = Math.sqrt(Math.pow(this.speedX, 2) + Math.pow(this.speedY, 2));
+            drawTool.setCurrentColor(255, 0, 0, 150);
+            for (int i = 0; i < 5; i++){
+                drawTool.drawFilledCircle(this.x- (speedX/ absSpeed)*5*i, this.y - (speedY/ absSpeed)*5*i, 4.5-0.5*i);
+            }
         }
     }
 

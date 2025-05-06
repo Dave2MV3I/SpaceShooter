@@ -73,7 +73,7 @@ public class ProgramController {
                 viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
                 currentSong = "startBGM";
             // Bild
-                sback = new StartBackground(this);
+                sback = new StartBackground(this, viewController);
                 viewController.draw(sback,0);
                 Picture titleText = new Picture(100, 350, "src/main/resources/graphic/title_text.png");
                 viewController.draw(titleText,0);
