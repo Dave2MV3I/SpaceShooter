@@ -30,7 +30,7 @@ public class LevelController{
     public LevelController(ProgramController pc, ViewController viewController) {
         this.pc = pc;
         this.viewController = viewController;
-        startLevel(LEVEL1);
+        startLevel(LEVEL5);
     }
 
     public void updateLevel(double dt){
@@ -81,7 +81,7 @@ public class LevelController{
 
         // Check if level ended and switch if needed
         if (enemyCounter > spaceships.length-1 && noSpaceships()) {
-            //level.nextScene(this);
+            level.nextScene(this);
         }
     }
 
@@ -127,6 +127,7 @@ public class LevelController{
         }
 
         enemyCounter = 0;
+        timer %= 10;
         createEnemies();
 
         for (int i = 0; i < level.nShields; i++){

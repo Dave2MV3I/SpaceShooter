@@ -1,11 +1,11 @@
 package my_project.model.spaceships;
 
-import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
 
-public abstract class Spaceship extends GraphicalObject{
+public abstract class Spaceship extends InteractiveGraphicalObject{
     protected int maxHealth;
     protected int health;
     protected double speed;

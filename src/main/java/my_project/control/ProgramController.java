@@ -139,21 +139,8 @@ public class ProgramController {
             levelController = new LevelController(this, viewController);
             checkAndHandleMusic(true);
         }
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_S || key == KeyEvent.VK_A || key == KeyEvent.VK_D){
-            p1.processWASD(key, pressed);
-        }
-        if (key == KeyEvent.VK_SPACE && pressed) {
-            //viewController.getSoundController().loadSound("src/main/resources/sound/shoot_sound.mp3","shootSound", false);
-            //SoundController.playSound(shootSound);
-            p1.processSpace();
-        }
         if (key == KeyEvent.VK_F){
             //System.out.println("Playerposition: " + "X: " + Math.round(p1.getX()) + ", Y: " + Math.round(p1.getY()) + ", X2: " + Math.round(p1.getX()+p1.getWidth()) + ", Y2: " + Math.round(p1.getY()+p1.getHeight()));
-            //System.out.println(currentScene);
-            System.out.println("HI");
-            for (Drawable drawable : viewController.getDrawables()){
-                System.out.println(drawable);
-            }
         }
     }
 
@@ -175,6 +162,7 @@ public class ProgramController {
         viewController.register(ui,s);
         viewController.register(inputManager,s);
         viewController.draw(p1, s);
+        viewController.register(p1,s);
     }
 
     /**

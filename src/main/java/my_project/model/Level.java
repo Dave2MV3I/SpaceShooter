@@ -12,7 +12,7 @@ public enum Level {
                     if (!spaceship.isActive()) {
                         spaceship.startSpaceship(800, lc.getEnemyCounter() * 80, lc.getPC());
                         lc.increaseEnemyCounter();
-                        lc.setTimer(lc.getTimer() % 10); // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
+                        //lc.setTimer(lc.getTimer() % 10); // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
                         break;
                     }
                 }
@@ -25,7 +25,7 @@ public enum Level {
     LEVEL2(2, 8, 60, 8, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
 
         public void updateEnemies(LevelController lc){
-            if (lc.getTimer() > 10 && lc.getEnemyCounter() < 8) {
+            if (lc.getTimer() > 2 && lc.getEnemyCounter() < 8) {
                 //System.out.println("Spaceship gestartet (2)");
                 for (Spaceship spaceship : lc.getSpaceships()) {
 
@@ -40,7 +40,7 @@ public enum Level {
                     if (!spaceship.isActive()) {
                         spaceship.startSpaceship(800, 700 - lc.getEnemyCounter() * 55, lc.getPC());
                         lc.increaseEnemyCounter();
-                        lc.setTimer(lc.getTimer() % 10);
+                        //lc.setTimer(lc.getTimer() % 10);
                         break;
                     }
                 }
@@ -53,7 +53,7 @@ public enum Level {
     LEVEL3(3, 8, 60, 8, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
 
         public void updateEnemies(LevelController lc){
-            if (lc.getTimer() > 10 && lc.getEnemyCounter() < 8) {
+            if (lc.getTimer() > 2 && lc.getEnemyCounter() < 8) {
                 //System.out.println("Spaceship gestartet (2)");
                 if (lc.getEnemyCounter() %2 == 0){
                     for (int j = 0; j < lc.getSpaceships().length-4; j++) {
@@ -81,7 +81,7 @@ public enum Level {
     LEVEL4(4, 8, 60, 8, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
 
         public void updateEnemies(LevelController lc){
-            if (lc.getTimer() > 10 && lc.getEnemyCounter() < 8) {
+            if (lc.getTimer() > 2 && lc.getEnemyCounter() < 8) {
                 //System.out.println("Spaceship gestartet (2)");
                 for (Spaceship spaceship : lc.getSpaceships()) {
 
@@ -96,7 +96,7 @@ public enum Level {
                     if (!spaceship.isActive()) {
                         spaceship.startSpaceship(800, 700 - lc.getEnemyCounter() * 50, lc.getPC());
                         lc.increaseEnemyCounter();
-                        lc.setTimer(lc.getTimer() % 10);
+                        //lc.setTimer(lc.getTimer() % 10);
                         break;
                     }
                 }
@@ -109,8 +109,8 @@ public enum Level {
     LEVEL5(5, 1, 100, 8, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
 
         public void updateEnemies(LevelController lc){
-            if (lc.getTimer() > 5 && lc.getEnemyCounter() < 1) {
-                lc.getSpaceships()[0].startSpaceship(190, 400, lc.getPC());
+            if (lc.getTimer() > 2 && lc.getEnemyCounter() < 1) {
+                lc.getSpaceships()[0].startSpaceship(300, 400, lc.getPC());
                 lc.increaseEnemyCounter();
             }
         }

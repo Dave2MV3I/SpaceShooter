@@ -100,6 +100,16 @@ public class Player extends Spaceship {
         hitBoxObject.setY(y+10);
     }
 
+    @Override
+    public void keyPressed(int key){
+        processWASD(key, true);
+        if (key == KeyEvent.VK_SPACE) processSpace();
+    }
+
+    @Override
+    public void keyReleased(int key){
+        processWASD(key, false);
+    }
 
     public void processWASD(int keyCode, boolean pressed) {
         if (keyCode == KeyEvent.VK_W) {
@@ -120,7 +130,7 @@ public class Player extends Spaceship {
         //new Bullet (this.pc.bulletControl , this.x + this.getWidth(), this.y + (this.getHeight()/2), 10, 50, "enemy");
 
         if (this.cooldownTimer < 0 && this.ammunition > 0) {
-            pc.getLevelController().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 100, 200, 0);
+            pc.getLevelController().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 10, 200, 0);
             if (pc.getCurrentScene() > 0 && pc.getCurrentScene() < 10) if (pc.getSC().getActivity(1)) SoundController.playSound("laser");
             this.cooldownTimer = this.cooldown;
             this.ammunition = this.ammunition - 1;
