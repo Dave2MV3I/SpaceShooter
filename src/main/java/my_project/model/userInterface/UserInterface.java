@@ -57,15 +57,21 @@ public class UserInterface extends InteractiveGraphicalObject {
 
     @Override
     public void draw(DrawTool drawTool){
+
+        if (menuOpen){
+            drawTool.setCurrentColor(44, 44, 44, 150);
+            drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
+        }
+
         // Buttons und Displays zeichnen
         if (theDrawTool == null){theDrawTool = drawTool;}
-        mainSettingButton.draw(drawTool);
-        for (SettingButton button : settingButtons) {
-            if (button.getVisible()) button.draw(drawTool);
-        }
-        for (StatusDisplay display : statusDisplays) {
-            //if (sc.getActivity(i+2)) statusDisplays[i].draw(drawTool);
-            if (display.getVisible()) display.draw(drawTool);
+            mainSettingButton.draw(drawTool);
+            for (SettingButton button : settingButtons) {
+                if (button.getVisible()) button.draw(drawTool);
+            }
+            for (StatusDisplay display : statusDisplays) {
+                //if (sc.getActivity(i+2)) statusDisplays[i].draw(drawTool);
+                if (display.getVisible()) display.draw(drawTool);
         }
 
         //Stecknadel zeichnen

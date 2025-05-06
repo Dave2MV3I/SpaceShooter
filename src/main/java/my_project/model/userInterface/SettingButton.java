@@ -5,8 +5,10 @@ import my_project.control.Settings;
 
 public class SettingButton extends BlockWithIcon{
 
-    private final int[] activeColor = {47,76,57,255};
-    private final int[] inactiveColor = {194,59,34,255};
+    /*private final int[] activeColor = {53,94,59,255};
+    private final int[] inactiveColor = {193,59,34,255};*/
+    private final int[] activeColor = {193,59,34,255};
+    private final int[] inactiveColor = {51,51,51,255};
     private final Settings sc;
     private final int index;
 
@@ -15,15 +17,31 @@ public class SettingButton extends BlockWithIcon{
         this.sc = ui.getSC();
         this.index = index;
         if (sc.getActivity(index)) {
-            color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
-        } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
+            color[0] = activeColor[0];
+            color[1] = activeColor[1];
+            color[2] = activeColor[2];
+            color[3] = activeColor[3];
+        } else {
+            color[0] = inactiveColor[0];
+            color[1] = inactiveColor[1];
+            color[2] = inactiveColor[2];
+            color[3] = inactiveColor[3];
+        }
     }
 
     @Override
     public void draw(DrawTool drawTool){
         if (sc.getActivity(index)) {
-            color[0] = activeColor[0]; color[1] = activeColor[1]; color[2] = activeColor[2]; color[3] = activeColor[3];
-        } else color[0] = inactiveColor[0]; color[1] = inactiveColor[1]; color[2] = inactiveColor[2]; color[3] = inactiveColor[3];
+            color[0] = activeColor[0];
+            color[1] = activeColor[1];
+            color[2] = activeColor[2];
+            color[3] = activeColor[3];
+        } else {
+            color[0] = inactiveColor[0];
+            color[1] = inactiveColor[1];
+            color[2] = inactiveColor[2];
+            color[3] = inactiveColor[3];
+        }
 
         super.draw(drawTool);
     }
