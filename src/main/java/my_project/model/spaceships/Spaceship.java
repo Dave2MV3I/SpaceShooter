@@ -44,6 +44,9 @@ public abstract class Spaceship extends GraphicalObject{
                     if (this instanceof SmallSpaceship) {
                         pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 150 * Math.cos(phi), 150 * Math.sin(phi));
                     }
+                    if (this instanceof ScratchCat) {
+                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 64, 150 * Math.cos(phi), 150 * Math.sin(phi));
+                    }
                 }
             } else {
                 cooldownTimer = cooldownTimer - dt;
@@ -56,12 +59,18 @@ public abstract class Spaceship extends GraphicalObject{
         this.x = x;
         this.y = y;
         this.pc = pc;
+
         if (this instanceof SmallSpaceship){
             this.health = 20;
             this.maxHealth = this.health;
         }
         if (this instanceof Stardestroyer){
             this.health = 40;
+            this.maxHealth = this.health;
+        }
+
+        if (this instanceof ScratchCat){
+            this.health = 128;
             this.maxHealth = this.health;
         }
     }

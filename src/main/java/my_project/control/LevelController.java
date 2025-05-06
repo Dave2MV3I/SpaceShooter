@@ -178,6 +178,12 @@ public class LevelController{
                     spaceships[i] = new Stardestroyer();
                 }
                 break;
+
+            case LEVEL5:
+                for (int i = 0 ; i < level.nSpaceships; i++) {
+                    spaceships[i] = new Stardestroyer();
+                }
+                break;
         }
     }
 

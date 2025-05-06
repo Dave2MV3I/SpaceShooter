@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.control.Drawable;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
+import KAGO_framework.model.GraphicalObject;
 import my_project.model.*;
 import my_project.model.spaceships.Player;
 import my_project.model.userInterface.UserInterface;
