@@ -150,6 +150,7 @@ public class ProgramController {
         if (key == KeyEvent.VK_F){
             //System.out.println("Playerposition: " + "X: " + Math.round(p1.getX()) + ", Y: " + Math.round(p1.getY()) + ", X2: " + Math.round(p1.getX()+p1.getWidth()) + ", Y2: " + Math.round(p1.getY()+p1.getHeight()));
             //System.out.println(currentScene);
+            System.out.println("HI");
             for (Drawable drawable : viewController.getDrawables()){
                 System.out.println(drawable);
             }

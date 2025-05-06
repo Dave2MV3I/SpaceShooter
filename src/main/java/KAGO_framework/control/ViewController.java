@@ -411,7 +411,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
     }
 
     public ArrayList<Drawable> getDrawables(){
-        return scenes.get(1).getDrawables();
+        return scenes.get(5).getDrawables();
     }
 
 }

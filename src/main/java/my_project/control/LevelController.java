@@ -30,7 +30,7 @@ public class LevelController{
     public LevelController(ProgramController pc, ViewController viewController) {
         this.pc = pc;
         this.viewController = viewController;
-        startLevel(LEVEL1);
+        startLevel(LEVEL5);
     }
 
     public void updateLevel(double dt){
@@ -155,16 +155,19 @@ public class LevelController{
 
     private void createEnemies(){
         switch(level){
+
             case LEVEL1:
                 for (int i = 0; i < level.nSpaceships; i++) {
                     spaceships[i] = new SmallSpaceship();
                 }
                 break;
+
             case LEVEL2:
                 for (int i = 0; i < level.nSpaceships; i++) {
                     spaceships[i] = new SmallSpaceship();
                 }
                 break;
+
             case LEVEL3:
                 for (int i = 0; i < level.nSpaceships - 4; i++) {
                     spaceships[i] = new SmallSpaceship();
@@ -173,6 +176,7 @@ public class LevelController{
                     spaceships[i] = new Stardestroyer();
                 }
                 break;
+
             case LEVEL4:
                 for (int i = 0 ; i < level.nSpaceships; i++) {
                     spaceships[i] = new Stardestroyer();

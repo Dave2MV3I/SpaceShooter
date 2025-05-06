@@ -6,20 +6,20 @@ import my_project.control.ProgramController;
 
 public class ScratchCat extends Spaceship {
 
-    int vy = 30;
+    int vy = 200;
     ProgramController pc;
 
     public ScratchCat(ProgramController pc){
-        super("src/main/resources/graphic/spaceships/smallSpaceship.png", 100);
+        super("src/main/resources/graphic/spaceships/smallSpaceship.png", 0);
         this.pc = pc;
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
-        this.cooldown = 4;
-        this.cooldownTimer = 4;
-        System.out.println("created");
+        this.cooldown = 2;
+        this.cooldownTimer = 2;
+        //System.out.println("created");
     }
 
     @Override
-    public void draw(DrawTool drawTool){
+    public void draw(DrawTool drawTool) {
         super.draw(drawTool);
     }
 
@@ -28,11 +28,11 @@ public class ScratchCat extends Spaceship {
         super.update(dt);
         if (this.y < pc.getPlayer().getY()){
             if (this.y > 0){
-                this.y = this.y - dt*vy;
+                this.y -= dt*vy;
             }
         }else if (this.y > pc.getPlayer().getY()) {
-            if (this.y < Config.WINDOW_HEIGHT) {
-                this.y = this.y + dt * vy;
+            if (this.y + this.height < Config.WINDOW_HEIGHT) {
+                this.y += vy*dt;
             }
         }
 
