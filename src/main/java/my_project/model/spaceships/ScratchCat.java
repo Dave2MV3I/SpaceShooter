@@ -7,10 +7,11 @@ import my_project.control.ProgramController;
 public class ScratchCat extends Spaceship {
 
     int vy = 200;
+    boolean floatingUp;
     ProgramController pc;
 
     public ScratchCat(ProgramController pc){
-        super("src/main/resources/graphic/spaceships/smallSpaceship.png", 0);
+        super("src/main/resources/graphic/spaceships/miau.png", 0);
         this.pc = pc;
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
         this.cooldown = 1;
@@ -26,7 +27,18 @@ public class ScratchCat extends Spaceship {
     @Override
     public void update(double dt) {
         super.update(dt);
-        if (this.y < pc.getPlayer().getY()){
+
+        if (floatingUp) {
+            if (this.y + this.height < Config.WINDOW_HEIGHT-50) {
+                this.y += dt * vy;
+            } else floatingUp = false;
+        } else {
+            if (this.y > 0 + 20) {
+                this.y -= dt * vy;
+            } else floatingUp = true;
+        }
+
+        /*if (this.y < pc.getPlayer().getY()){
             if (this.y > 0+this.height){
                 this.y -= dt*vy;
             }
@@ -34,7 +46,7 @@ public class ScratchCat extends Spaceship {
             if (this.y + this.height < Config.WINDOW_HEIGHT-50) {
                 this.y += vy*dt;
             }
-        }
+        }*/
 
         if (this.x < 0  || this.x > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}
     }

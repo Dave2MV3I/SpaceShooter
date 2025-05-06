@@ -36,16 +36,17 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
             if (cooldownTimer < 0) {
                 this.cooldownTimer = cooldown;
                 if (this.x > pc.getPlayer().getX()) {
-                    double phi = Math.atan2(-this.y + pc.getPlayer().getY() + pc.getPlayer().getWidth()/2, -this.x + pc.getPlayer().getX() + pc.getPlayer().getHeight()/2);
+                    //double phi = Math.atan2(-this.y + pc.getPlayer().getY(), -this.x + pc.getPlayer().getX());
+                    double phi = Math.atan2(-this.y + pc.getPlayer().getY() + pc.getPlayer().getHeight()/2, -this.x + pc.getPlayer().getX() + pc.getPlayer().getWidth()/2);
                     //System.out.println(phi);
-                    if (this instanceof Stardestroyer) {
+                    if (this instanceof BigSpaceship) {
                         pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 250 * Math.cos(phi), 250 * Math.sin(phi));
                     }
                     if (this instanceof SmallSpaceship) {
                         pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 150 * Math.cos(phi), 150 * Math.sin(phi));
                     }
                     if (this instanceof ScratchCat) {
-                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 64, 150 * Math.cos(phi), 150 * Math.sin(phi));
+                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 64, 200 * Math.cos(phi), 200 * Math.sin(phi));
                     }
                 }
             } else {
@@ -64,7 +65,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
             this.health = 20;
             this.maxHealth = this.health;
         }
-        if (this instanceof Stardestroyer){
+        if (this instanceof BigSpaceship){
             this.health = 40;
             this.maxHealth = this.health;
         }

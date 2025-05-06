@@ -3,9 +3,9 @@ package my_project.model.spaceships;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 
-public class Stardestroyer extends Spaceship {
+public class BigSpaceship extends Spaceship {
 
-    public Stardestroyer(){
+    public BigSpaceship(){
         super("src/main/resources/graphic/spaceships/stardestroyer1.png", 32);
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - Flaticon
         //this.health = 20;

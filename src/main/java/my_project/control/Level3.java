@@ -5,7 +5,7 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Shield;
 import my_project.model.enemy.SmallSpaceship;
-import my_project.model.enemy.Stardestroyer;
+import my_project.model.enemy.BigSpaceship;
 
 public class Level3 extends LevelController {
     //Attribute
@@ -25,7 +25,7 @@ public class Level3 extends LevelController {
         }
 
         for (int i = nSpaceships - 4; i < nSpaceships; i++) {
-            spaceships[i] = new Stardestroyer();
+            spaceships[i] = new BigSpaceship();
         }
         for (int i = 0; i < nShields; i++){
             shields[i] = new Shield();

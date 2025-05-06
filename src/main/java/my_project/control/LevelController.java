@@ -174,13 +174,13 @@ public class LevelController{
                     spaceships[i] = new SmallSpaceship();
                 }
                 for (int i = level.nSpaceships - 4; i < level.nSpaceships; i++) {
-                    spaceships[i] = new Stardestroyer();
+                    spaceships[i] = new BigSpaceship();
                 }
                 break;
 
             case LEVEL4:
                 for (int i = 0 ; i < level.nSpaceships; i++) {
-                    spaceships[i] = new Stardestroyer();
+                    spaceships[i] = new BigSpaceship();
                 }
                 break;
 
