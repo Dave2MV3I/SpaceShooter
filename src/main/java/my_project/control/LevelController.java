@@ -6,6 +6,7 @@ import my_project.model.Level;
 import my_project.model.Picture;
 import my_project.model.Shield;
 import my_project.model.spaceships.*;
+import my_project.view.DamageDisplay;
 
 import static my_project.model.Level.*;
 
@@ -30,7 +31,7 @@ public class LevelController{
     public LevelController(ProgramController pc, ViewController viewController) {
         this.pc = pc;
         this.viewController = viewController;
-        startLevel(LEVEL5);
+        startLevel(LEVEL1);
     }
 
     public void updateLevel(double dt){
@@ -51,6 +52,7 @@ public class LevelController{
                         if (spaceship.collidesWith(pc.getPlayer())){
                             spaceship.setActive(false);
                             pc.getPlayer().modifyHP(-16);
+                            if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du bist mit einem Gegner kollidiert");
                             if (pc.getSC().getActivity(1)) pc.playSound("impact");
                         }
 
@@ -65,6 +67,7 @@ public class LevelController{
                 if (bullet.collidesWith(pc.getPlayer().getHitBoxObject()) && bullet.getShooter().equals("enemy")) {
                     if (pc.getSC().getActivity(1)) pc.playSound("impact");
                     if (!pc.getPlayer().isShielded()) pc.getPlayer().modifyHP(-(bullet.getDamage()));
+                    if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du wurdest von einem Schuss getötet");
                     bullet.setIsActive(false);
                 }
             }
@@ -75,6 +78,7 @@ public class LevelController{
         //Man verliert, wenn ein Gegner durchgeflogen ist
         for (Spaceship spaceship : spaceships){
             if (spaceship.getX() < - spaceship.getWidth()){
+                pc.getDeathReason().setReason("Du hast einen Gegner verpasst");
                 pc.setCurrentScene(10);
             }
         }

@@ -4,9 +4,13 @@ import KAGO_framework.control.Drawable;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.view.DrawTool;
 import my_project.model.*;
+import my_project.model.DeathReason;
+import my_project.model.DeathTextDisplay;
 import my_project.model.spaceships.Player;
 import my_project.model.userInterface.UserInterface;
+import my_project.view.DamageDisplay;
 import my_project.view.InputManager;
 
 import java.awt.event.KeyEvent;
@@ -30,8 +34,9 @@ public class ProgramController {
         private int currentScene;
         private String currentSong = "level1BGM";
         private int nLevels = 9;
-        private String deathReason;
+        String deathReason;
         private double globalTimer;
+
 
     // Referenzen
         private final ViewController viewController;
@@ -41,7 +46,7 @@ public class ProgramController {
         private UserInterface ui;
         private Settings sc;
         private InputManager inputManager;
-
+        private DeathReason deathReasonObj;
     // Methoden
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
@@ -56,6 +61,8 @@ public class ProgramController {
         sc = new Settings();
         ui = new UserInterface(this);
         viewController.register(ui,0);
+        deathReasonObj = new DeathReason();
+
 
         // Objekte
         p1 = new Player(50,300, this);
@@ -155,8 +162,12 @@ public class ProgramController {
     public void setCurrentScene(int s){
         this.currentScene = s;
         viewController.showScene(currentScene);
-        if (s == 10) System.out.println(deathReason);
-    }
+        if (s == 10) {
+            DeathTextDisplay dtd = new DeathTextDisplay(deathReasonObj.getReason());
+            viewController.draw(dtd, 10);
+        }
+         }
+
     public void addDrawablesAndInteractables(int s){
         viewController.draw(ui,s);
         viewController.register(ui,s);
@@ -194,6 +205,7 @@ public class ProgramController {
     public int getNLevels(){return nLevels;}
     public double getGlobalTimer() { return globalTimer;}
 
+
     public void playSound(String soundName){
         SoundController.playSound(soundName);
     }
@@ -201,4 +213,9 @@ public class ProgramController {
     public ViewController getViewController() {
         return viewController;
     }
+
+    public DeathReason getDeathReason() {
+        return deathReasonObj;
+    }
+
 }

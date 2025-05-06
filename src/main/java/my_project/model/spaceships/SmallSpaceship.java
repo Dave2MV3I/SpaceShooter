@@ -5,6 +5,8 @@ import my_project.Config;
 
 public class SmallSpaceship extends Spaceship {
 
+    private double movementRandomizer = Math.random();
+
     public SmallSpaceship(){
         super("src/main/resources/graphic/spaceships/smallSpaceship.png", 50);
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
