@@ -19,7 +19,7 @@ public class Player extends Spaceship {
     private boolean floatRight = false;
     private boolean floatLeft = false;
 
-    private final double cooldown;
+    private double cooldown;
     private double cooldownTimer;
 
     private final ProgramController pc;
@@ -37,7 +37,7 @@ public class Player extends Spaceship {
 
         this.pc = pc;
 
-        this.cooldown = 0.0;
+        this.cooldown = 0.2;
         this.cooldownTimer = 0.3;
 
         this.health = 50;
@@ -180,4 +180,8 @@ public class Player extends Spaceship {
         }
     }
     public HitBoxObject getHitBoxObject(){return hitBoxObject;}
+
+    public void setCooldown(double cooldown){
+        this.cooldown = cooldown;
+    }
 }

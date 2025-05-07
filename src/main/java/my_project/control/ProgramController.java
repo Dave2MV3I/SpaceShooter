@@ -1,16 +1,12 @@
 package my_project.control;
 
-import KAGO_framework.control.Drawable;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
-import KAGO_framework.view.DrawTool;
 import my_project.model.*;
 import my_project.model.DeathReason;
 import my_project.model.DeathTextDisplay;
 import my_project.model.spaceships.Player;
 import my_project.model.userInterface.UserInterface;
-import my_project.view.DamageDisplay;
 import my_project.view.InputManager;
 
 import java.awt.event.KeyEvent;
@@ -23,8 +19,6 @@ import java.awt.event.KeyEvent;
  *   nicht geändert werden
  * - Zusätzliche Methoden sind natürlich gar kein Problem
  */
-
-
 
 public class ProgramController {
 
@@ -67,7 +61,6 @@ public class ProgramController {
         // Objekte
         p1 = new Player(50,300, this);
         //System.out.println("LevelController created");
-
 
         // Sounds
         viewController.getSoundController().loadSound("src/main/resources/sound/laser.mp3", "laser", false);

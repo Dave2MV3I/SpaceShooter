@@ -12,9 +12,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
 
     protected boolean isActive;
 
-    protected boolean movement1;
-    protected boolean movement2;
-    protected boolean movement3;
+    private int typeOfMovement;
     double trackingSpeed = 100;
     private double boostSpeed;
     private double boostDuration = 0.5;
@@ -48,41 +46,15 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
 
     public void update(double dt){
         if (this.isActive && !pc.getUI().getMenuOpen()) {
-            //if (this instanceof Starfighter) {  weiss nicht ob ihr das für alle spaceships möchtet
-            if (movement1) {
-                this.x -= speed * dt;
-                if (this.y < pc.getPlayer().getY()) {
-                    this.y += trackingSpeed * dt;
-                } else if (this.y > pc.getPlayer().getY()) {
-                    this.y -= trackingSpeed * dt;
-                }
-            } else if (movement2) {
-                if (this.isActive && !pc.getUI().getMenuOpen()) {
 
-                    if (isBoosting) {
-                        boostTimer -= dt;
-                        if (boostTimer <= 0) {
-                            isBoosting = false;
-                            cooldownTimerBoost = 0;  // Cooldown fängt neu an
-                        }
-                    } else {
-                        cooldownTimerBoost += dt;
-                        if (cooldownTimerBoost >= boostCooldown) {
-                            isBoosting = true;
-                            boostTimer = boostDuration;
-                        }
-                    }
-                    double currentSpeed = isBoosting ? boostSpeed : speed;
-                    this.x -= currentSpeed * dt;
-                }
-            } else if (movement3) {
-                x -= speed * dt;
-
-                double amplitude = 50;
-                double frequency = 2;
-                y = baseY + Math.sin(pc.getGlobalTimer() * frequency) * amplitude;
+            if (!(this instanceof ScratchCat))
+                switch(typeOfMovement){
+                    case 1: movement1(dt);
+                    case 2: movement2(dt);
+                    case 3: movement3(dt);
             }
-            // }
+
+            // Firing shots
             if (cooldownTimer < 0) {
                 Player p = pc.getPlayer();
                 this.cooldownTimer = cooldown;
@@ -146,19 +118,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
             this.maxHealth = this.health;
         }
 
-        int movementNumber = (int)(Math.random() * 3) + 1;
-
-        if (movementNumber == 1){
-            movement1 = true;
-        } else movement1 = false;
-
-        if (movementNumber == 2){
-            movement2 = true;
-        } else movement2 = false;
-
-        if (movementNumber == 3){
-            movement3 = true;
-        } else movement3 = false;
+        if (!(this instanceof ScratchCat)) typeOfMovement = (int)(Math.random() * 3) + 1;
     }
 
 
@@ -178,7 +138,6 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
         isActive = active;
     }
 
-
     private void drawHealthBar(DrawTool drawTool) {
         double barWidth = 40;
         double barHeight = 5;
@@ -192,5 +151,40 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
         drawTool.drawFilledRectangle(x, y - 10, barWidth, barHeight);
         drawTool.setCurrentColor(0, 255, 0, 255);
         drawTool.drawFilledRectangle(x, y - 10, barWidth * healthPercentage, barHeight);
+    }
+
+    public void movement1(double dt){
+        this.x -= speed * dt;
+        if (this.y < pc.getPlayer().getY()) {
+            this.y += trackingSpeed * dt;
+        } else if (this.y > pc.getPlayer().getY()) {
+            this.y -= trackingSpeed * dt;
+        }
+    }
+
+    public void movement2(double dt){
+        if (isBoosting) {
+            boostTimer -= dt;
+            if (boostTimer <= 0) {
+                isBoosting = false;
+                cooldownTimerBoost = 0;  // Cooldown fängt neu an
+            }
+        } else {
+            cooldownTimerBoost += dt;
+            if (cooldownTimerBoost >= boostCooldown) {
+                isBoosting = true;
+                boostTimer = boostDuration;
+            }
+        }
+        double currentSpeed = isBoosting ? boostSpeed : speed;
+        this.x -= currentSpeed * dt;
+    }
+
+    public void movement3(double dt){
+        x -= speed * dt;
+
+        double amplitude = 50;
+        double frequency = 2;
+        y = baseY + Math.sin(pc.getGlobalTimer() * frequency) * amplitude;
     }
 }

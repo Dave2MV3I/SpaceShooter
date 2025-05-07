@@ -13,6 +13,7 @@ import static my_project.model.Level.*;
 public class LevelController{
 
     // Attribute
+    private Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
     protected double timer;
     protected int enemyCounter = 0;
 
@@ -31,7 +32,7 @@ public class LevelController{
     public LevelController(ProgramController pc, ViewController viewController) {
         this.pc = pc;
         this.viewController = viewController;
-        startLevel(LEVEL1);
+        startLevel(levelAfterPressingSpace);
     }
 
     public void updateLevel(double dt){
@@ -133,6 +134,7 @@ public class LevelController{
         enemyCounter = 0;
         timer %= 10;
         createEnemies();
+        if (level == LEVEL5) pc.getPlayer().setCooldown(0.5);
 
         for (int i = 0; i < level.nShields; i++){
             shields[i] = new Shield();
@@ -155,7 +157,7 @@ public class LevelController{
 
         pc.getPlayer().setAmmunition(64);
 
-        //pc.checkAndHandleMusic(true);
+        if (level != levelAfterPressingSpace) pc.checkAndHandleMusic(true);
     }
 
     private void createEnemies(){
