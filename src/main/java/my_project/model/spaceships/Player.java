@@ -101,17 +101,13 @@ public class Player extends Spaceship {
     }
 
     @Override
-    public void keyPressed(int key){
-        processWASD(key, true);
-        if (key == KeyEvent.VK_SPACE) processSpace();
-    }
-
+    public void keyPressed(int key){processKey(key, true);}
     @Override
     public void keyReleased(int key){
-        processWASD(key, false);
+        processKey(key, false);
     }
 
-    public void processWASD(int keyCode, boolean pressed) {
+    public void processKey(int keyCode, boolean pressed) {
         if (keyCode == KeyEvent.VK_W) {
             floatUp = pressed;
 
@@ -123,6 +119,16 @@ public class Player extends Spaceship {
 
         } else if (keyCode == KeyEvent.VK_D) {
             floatRight = pressed;
+        }
+
+        if (keyCode == KeyEvent.VK_SPACE && pressed) {
+            if (this.cooldownTimer < 0 && this.ammunition > 0) {
+                pc.getLevelController().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 10, 200, 0);
+                if (pc.getCurrentScene() > 0 && pc.getCurrentScene() < 10) if (pc.getSC().getActivity(1)) SoundController.playSound("laser");
+                this.cooldownTimer = this.cooldown;
+                this.ammunition = this.ammunition - 1;
+                //System.out.println(this.ammunition);
+            }
         }
     }
 

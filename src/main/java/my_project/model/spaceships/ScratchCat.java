@@ -28,16 +28,18 @@ public class ScratchCat extends Spaceship {
     public void update(double dt) {
         super.update(dt);
 
+        // Endgegner fliegt von alleine hoch und runter
         if (floatingUp) {
             if (this.y + this.height < Config.WINDOW_HEIGHT-50) {
                 this.y += dt * vy;
             } else floatingUp = false;
         } else {
-            if (this.y > 0 + 20) {
+            if (this.y > 20) {
                 this.y -= dt * vy;
             } else floatingUp = true;
         }
 
+        // Endgegner fliegt hoch, wenn Player unter ihm und andersherum - fliegt also vertikal von ihm weg
         /*if (this.y < pc.getPlayer().getY()){
             if (this.y > 0+this.height){
                 this.y -= dt*vy;

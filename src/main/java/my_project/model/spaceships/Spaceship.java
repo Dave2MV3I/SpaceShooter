@@ -84,11 +84,13 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
             }
             // }
             if (cooldownTimer < 0) {
+                Player p = pc.getPlayer();
                 this.cooldownTimer = cooldown;
-                if (this.x > pc.getPlayer().getX()) {
-                    //double phi = Math.atan2(-this.y + pc.getPlayer().getY(), -this.x + pc.getPlayer().getX());
-                    double phi = Math.atan2(-this.y + pc.getPlayer().getY() + pc.getPlayer().getHeight()/2, -this.x + pc.getPlayer().getX() + pc.getPlayer().getWidth()/2);
-                    //System.out.println(phi);
+                if (this.x > p.getX()) {
+
+                    // SCHUSS AB MITTE LINKS DES GEGNERS
+                    double phi = Math.atan2((p.getY() + p.getHeight() / 2) - (this.y + this.height / 2), (p.getX() + p.getWidth() / 2) - this.x);
+
                     if (this instanceof BigSpaceship) {
                         pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 250 * Math.cos(phi), 250 * Math.sin(phi));
                     }
@@ -98,30 +100,28 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
                     if (this instanceof ScratchCat) {
                         pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 64, 200 * Math.cos(phi), 200 * Math.sin(phi));
                     }
+
+                    // SCHUSS AB MITTELPUNKT DES GEGNERS
+                    /*
+                    double sourceX = this.x + this.getWidth() / 2;
+                    double sourceY = this.y + this.getHeight() / 2;
+                    double targetX = p.getX() + p.getWidth() / 2;
+                    double targetY = p.getY() + p.getHeight() / 2;
+                    double phi = Math.atan2(targetY - sourceY, targetX - sourceX);
+
+                    if (this instanceof BigSpaceship) {
+                        pc.getLevelController().startBullet(sourceX, sourceY, "enemy", 20, 250 * Math.cos(phi), 250 * Math.sin(phi));
+                    }
+                    if (this instanceof SmallSpaceship) {
+                        pc.getLevelController().startBullet(sourceX, sourceY, "enemy", 10, 150 * Math.cos(phi), 150 * Math.sin(phi));
+                    }
+                    if (this instanceof ScratchCat) {
+                        pc.getLevelController().startBullet(sourceX, sourceY, "enemy", 64, 200 * Math.cos(phi), 200 * Math.sin(phi));
+                    }*/
                 }
             } else {
                 cooldownTimer = cooldownTimer - dt;
             }
-
-
-                if (cooldownTimer < 0) {
-                    this.cooldownTimer = cooldown;
-                    if (this.x > pc.getPlayer().getX()) {
-                        double phi = Math.atan2(-this.y + pc.getPlayer().getY(), -this.x + pc.getPlayer().getX());
-                        //System.out.println(phi);
-                     //   if (this instanceof Stardestroyer) {
-                         //   pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 20, 250 * Math.cos(phi), 250 * Math.sin(phi));
-                       // }
-                        if (this instanceof SmallSpaceship) {
-                            pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 10, 150 * Math.cos(phi), 150 * Math.sin(phi));
-                        }
-                        if (this instanceof ScratchCat) {
-                            pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, "enemy", 64, 150 * Math.cos(phi), 150 * Math.sin(phi));
-                        }
-                    }
-                } else {
-                    cooldownTimer = cooldownTimer - dt;
-                }
         }
     }
 
@@ -149,16 +149,16 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
         int movementNumber = (int)(Math.random() * 3) + 1;
 
         if (movementNumber == 1){
-            movement1=true;
-        }
+            movement1 = true;
+        } else movement1 = false;
 
         if (movementNumber == 2){
-            movement2= true;
-        }
+            movement2 = true;
+        } else movement2 = false;
 
         if (movementNumber == 3){
-            movement3=true;
-        }
+            movement3 = true;
+        } else movement3 = false;
     }
 
 

@@ -37,7 +37,6 @@ public class ProgramController {
         String deathReason;
         private double globalTimer;
 
-
     // Referenzen
         private final ViewController viewController;
         private Player p1;
@@ -47,6 +46,7 @@ public class ProgramController {
         private Settings sc;
         private InputManager inputManager;
         private DeathReason deathReasonObj;
+
     // Methoden
     public ProgramController(ViewController viewController){
         this.viewController = viewController;

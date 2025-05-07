@@ -39,7 +39,7 @@ public class Bullet extends GraphicalObject {
 
     public void draw(DrawTool drawTool) {
         if (isActive) {
-            drawTool.setCurrentColor(255, 0, 0, 255);
+            drawTool.setCurrentColor(0, 255, 255, 255); //TODO change back color?
             drawTool.drawFilledCircle(this.x, this.y, 5);
 
             double absSpeed = Math.sqrt(Math.pow(this.speedX, 2) + Math.pow(this.speedY, 2));
