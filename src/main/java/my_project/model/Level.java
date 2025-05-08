@@ -106,10 +106,10 @@ public enum Level {
         public void nextScene(LevelController lc){ lc.startLevel(LEVEL5); } // Winner-Screen statt startLevel(LEVEL5);
     },
 
-    LEVEL5(5, 1, 100, 8, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
+    LEVEL5(5, 8, 100, 8, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
 
         public void updateEnemies(LevelController lc){
-            if (lc.getTimer() > 2 && lc.getEnemyCounter() < 1) {
+            if (lc.getTimer() > 2 && lc.getEnemyCounter() < 8) {
                 for (Spaceship spaceship : lc.getSpaceships()) {
                     if (!spaceship.isActive()) {
                         spaceship.startSpaceship(800, lc.getEnemyCounter() * 80, lc.getPC());

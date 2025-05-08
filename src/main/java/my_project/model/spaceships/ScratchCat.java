@@ -11,9 +11,9 @@ public class ScratchCat extends Spaceship {
     ProgramController pc;
 
     public ScratchCat(ProgramController pc){
-        super("src/main/resources/graphic/spaceships/ScratchCat.png", 0);
+        super("src/main/resources/graphic/spaceships/miau.png", 0);
         this.pc = pc;
-        //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
+
         this.cooldown = 1;
         this.cooldownTimer = 1;
         //System.out.println("created");
@@ -21,7 +21,10 @@ public class ScratchCat extends Spaceship {
 
     @Override
     public void draw(DrawTool drawTool) {
+        System.out.println("hallo");
         super.draw(drawTool);
+        drawTool.setCurrentColor(255, 255, 255, 255);
+        drawTool.drawFilledCircle(10, 10, 10);
     }
 
     @Override

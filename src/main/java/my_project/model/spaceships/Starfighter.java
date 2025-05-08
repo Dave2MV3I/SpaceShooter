@@ -14,6 +14,7 @@ public class Starfighter extends Spaceship {
         this.cooldown = 3;
         this.cooldownTimer = 3;
         this.pc = pc;
+
     }
 
     @Override

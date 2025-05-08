@@ -48,6 +48,14 @@ public class Bullet extends GraphicalObject {
             for (int i = 0; i < 5; i++){
                 drawTool.drawFilledCircle(this.x- (speedX/ absSpeed)*5*i, this.y - (speedY/ absSpeed)*5*i, 4.5-0.5*i);
             }
+
+            if (isTorpedo) {
+                drawTool.setCurrentColor(255, 255, 255, 150);
+                for (int i = 0; i < 5; i++){
+                    drawTool.drawFilledCircle(this.x- (speedX/ absSpeed)*5*i, this.y - (speedY/ absSpeed)*5*i, 4.5-0.5*i);
+                }
+            }
+
         }
     }
 
@@ -55,10 +63,10 @@ public class Bullet extends GraphicalObject {
     public void update(double dt) {
         if (isActive && !pc.getUI().getMenuOpen()) {
             if (isTorpedo) {
-                double phi = Math.atan2( this.y - pc.getPlayer().getY(), this.x - pc.getPlayer().getX());
+                System.out.println("Torpedo");
+                double phi = Math.atan2(pc.getPlayer().getY() - this.y, pc.getPlayer().getX() - this.x);
                 speedX = 256*Math.cos(phi);
                 speedY = 256*Math.sin(phi);
-                System.out.println("Hallo");
             }
 
             this.x = this.x + speedX * dt;
