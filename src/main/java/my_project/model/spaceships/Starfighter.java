@@ -9,7 +9,7 @@ public class Starfighter extends Spaceship {
     private double movementRandomizer = Math.random();
 
     public Starfighter(ProgramController pc){
-        super("src/main/resources/graphic/spaceships/stardestroyer.png", 50);
+        super("src/main/resources/graphic/spaceships/stardestroyer.png", 35);
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
         this.cooldown = 3;
         this.cooldownTimer = 3;

@@ -6,7 +6,7 @@ import my_project.Config;
 public class BigSpaceship extends Spaceship {
 
     public BigSpaceship(){
-        super("src/main/resources/graphic/spaceships/stardestroyer1.png", 32);
+        super("src/main/resources/graphic/spaceships/stardestroyer1.png", 25);
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - Flaticon
         //this.health = 20;
         //this.maxHealth = 20;

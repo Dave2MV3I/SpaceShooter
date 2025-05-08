@@ -134,7 +134,7 @@ public class LevelController{
         enemyCounter = 0;
         timer %= 10;
         createEnemies();
-        if (level == LEVEL5) pc.getPlayer().setCooldown(0.5);
+        if (level == LEVEL5) pc.getPlayer().setCooldown(0);
 
         for (int i = 0; i < level.nShields; i++){
             shields[i] = new Shield();
@@ -191,7 +191,7 @@ public class LevelController{
                 break;
 
             case LEVEL5:
-                spaceships[0] = new ScratchCat (this.pc);
+                spaceships[0] = new ScratchCat(this.pc);
 
                 for (int i = 1 ; i < level.nSpaceships; i++) {
                     spaceships[i] = new Starfighter(this.pc);

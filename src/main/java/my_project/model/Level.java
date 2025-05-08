@@ -1,4 +1,5 @@
 package my_project.model;
+import my_project.Config;
 import my_project.control.LevelController;
 import my_project.model.spaceships.*;
 
@@ -103,16 +104,20 @@ public enum Level {
             }
         }
 
-        public void nextScene(LevelController lc){ lc.startLevel(LEVEL5); } // Winner-Screen statt startLevel(LEVEL5);
+        public void nextScene(LevelController lc){ lc.startLevel(LEVEL5); }
     },
 
     LEVEL5(5, 8, 100, 8, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
 
         public void updateEnemies(LevelController lc){
             if (lc.getTimer() > 2 && lc.getEnemyCounter() < 8) {
-                for (Spaceship spaceship : lc.getSpaceships()) {
-                    if (!spaceship.isActive()) {
-                        spaceship.startSpaceship(800, lc.getEnemyCounter() * 80, lc.getPC());
+
+                Spaceship[] spaceships = lc.getSpaceships();
+                spaceships[0].startSpaceship(500, (float)Config.WINDOW_HEIGHT/2, lc.getPC());
+
+                for (int i = 1; i < spaceships.length; i++) {
+                    if (!spaceships[i].isActive()) {
+                        spaceships[i].startSpaceship(800, lc.getEnemyCounter() * 80, lc.getPC());
                         lc.increaseEnemyCounter();
                         //lc.setTimer(lc.getTimer() % 10); // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
                         break;
@@ -120,8 +125,7 @@ public enum Level {
                 }
             }
         }
-
-        public void nextScene(LevelController lc){lc.getPC().setCurrentScene(11);}
+        public void nextScene(LevelController lc){lc.getPC().setCurrentScene(11);} // Winner-Screen statt startLevel(LEVEL5);
     };
 
     public final int myScene;
