@@ -13,7 +13,7 @@ import static my_project.model.Level.*;
 public class LevelController{
 
     // Attribute
-    private Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
+    private Level levelAfterPressingSpace = LEVEL5;  // <<<<<< Entwickleroption >>>>>>
     protected double timer;
     protected int enemyCounter = 0;
 
@@ -90,10 +90,10 @@ public class LevelController{
         }
     }
 
-    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY){
+    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY, boolean isTorpedo){
         for (Bullet bullet : bullets) {
             if (!bullet.isActive()) {
-                bullet.startBullet(x, y, shooter, damage, speedX, speedY);
+                bullet.startBullet(x, y, shooter, damage, speedX, speedY, isTorpedo);
                 break;
             }
         }
@@ -191,8 +191,10 @@ public class LevelController{
                 break;
 
             case LEVEL5:
-                for (int i = 0 ; i < level.nSpaceships; i++) {
-                    spaceships[i] = new ScratchCat(this.pc);
+                spaceships[0] = new ScratchCat (this.pc);
+
+                for (int i = 1 ; i < level.nSpaceships; i++) {
+                    spaceships[i] = new Starfighter(this.pc);
                 }
                 break;
         }

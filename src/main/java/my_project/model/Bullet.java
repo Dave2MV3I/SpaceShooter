@@ -16,6 +16,7 @@ public class Bullet extends GraphicalObject {
     private String shooter;
 
     private boolean isActive;
+    boolean isTorpedo;
     private ProgramController pc;
 
 
@@ -24,9 +25,9 @@ public class Bullet extends GraphicalObject {
         this.pc = pc;
     }
 
-    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY) {
+    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY, boolean isTorpedo) {
         this.isActive = true;
-
+        this.isTorpedo = isTorpedo;
         this.x = x;
         this.y = y;
 
@@ -53,8 +54,16 @@ public class Bullet extends GraphicalObject {
 
     public void update(double dt) {
         if (isActive && !pc.getUI().getMenuOpen()) {
+            if (isTorpedo) {
+                double phi = Math.atan2( this.y - pc.getPlayer().getY(), this.x - pc.getPlayer().getX());
+                speedX = 256*Math.cos(phi);
+                speedY = 256*Math.sin(phi);
+                System.out.println("Hallo");
+            }
+
             this.x = this.x + speedX * dt;
             this.y = this.y + speedY * dt;
+
             if (this.x > Config.WINDOW_WIDTH || this.x < 0 || this.y > Config.WINDOW_WIDTH || this.y < 0){this.isActive = false;}
         }
     }

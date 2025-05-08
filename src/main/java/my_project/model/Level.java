@@ -110,8 +110,14 @@ public enum Level {
 
         public void updateEnemies(LevelController lc){
             if (lc.getTimer() > 2 && lc.getEnemyCounter() < 1) {
-                lc.getSpaceships()[0].startSpaceship(300, 400, lc.getPC());
-                lc.increaseEnemyCounter();
+                for (Spaceship spaceship : lc.getSpaceships()) {
+                    if (!spaceship.isActive()) {
+                        spaceship.startSpaceship(800, lc.getEnemyCounter() * 80, lc.getPC());
+                        lc.increaseEnemyCounter();
+                        //lc.setTimer(lc.getTimer() % 10); // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
+                        break;
+                    }
+                }
             }
         }
 
