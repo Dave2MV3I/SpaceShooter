@@ -6,7 +6,7 @@ import my_project.model.Level;
 import my_project.model.Picture;
 import my_project.model.Shield;
 import my_project.model.spaceships.*;
-import my_project.view.DamageDisplay;
+//import my_project.view.DamageDisplay;
 
 import static my_project.model.Level.*;
 

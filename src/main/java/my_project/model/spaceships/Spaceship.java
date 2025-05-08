@@ -3,6 +3,7 @@ package my_project.model.spaceships;
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
+import my_project.model.DamageDisplay;
 
 
 public abstract class Spaceship extends InteractiveGraphicalObject{
@@ -128,6 +129,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
 
     public void modifyHP(int points) {
         this.health += points;
+        pc.getViewController().draw(new DamageDisplay(this.getX(), this.getY(), Math.abs(points)), pc.getCurrentScene());
         if (health <= 0) {
             isActive = false;
             pc.getLevelController().startShield(this.getX(), this.getY(), pc, false, 5000);
