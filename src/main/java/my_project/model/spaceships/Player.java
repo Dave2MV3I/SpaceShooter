@@ -40,8 +40,8 @@ public class Player extends Spaceship {
         this.cooldown = 0.2;
         this.cooldownTimer = 0;
 
-        this.health = 50;
-        this.maxHealth = 50;
+        //this.health = 50;
+        //this.maxHealth = 100;
 
         this.isActive = true;
 
@@ -123,7 +123,7 @@ public class Player extends Spaceship {
 
         if (keyCode == KeyEvent.VK_SPACE && pressed) {
             if (this.cooldownTimer < 0 && this.ammunition > 0) {
-                pc.getLevelController().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 100, 200, 0, false);
+                pc.getLevelController().startBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), "player", 10, 200, 0, false);
                 if (pc.getCurrentScene() > 0 && pc.getCurrentScene() < 10) if (pc.getSC().getActivity(1)) SoundController.playSound("laser");
                 this.cooldownTimer = this.cooldown;
                 this.ammunition = this.ammunition - 1;
@@ -183,5 +183,10 @@ public class Player extends Spaceship {
 
     public void setCooldown(double cooldown){
         this.cooldown = cooldown;
+    }
+
+    public void setHealth(int health){
+        this.maxHealth = health;
+        this.health = maxHealth;
     }
 }

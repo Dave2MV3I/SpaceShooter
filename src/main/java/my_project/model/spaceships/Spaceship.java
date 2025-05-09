@@ -119,7 +119,12 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
         }
 
         if (this instanceof ScratchCat){
-            this.health = 128;
+            this.health = 200;
+            this.maxHealth = this.health;
+        }
+
+        if (this instanceof Starfighter){
+            this.health = 60;
             this.maxHealth = this.health;
         }
 
@@ -145,7 +150,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
     }
 
     private void drawHealthBar(DrawTool drawTool) {
-        double barWidth = 40;
+        double barWidth = 0.5*this.maxHealth;
         double barHeight = 5;
         double h = this.health;
         double mH = this.maxHealth;
