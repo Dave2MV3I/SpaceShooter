@@ -147,3 +147,22 @@ public enum Level {
     public abstract void updateEnemies(LevelController lc);
     public abstract void nextScene(LevelController lc);
 }
+
+/*LEVEL6(6, 50, 100, 80, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
+    public void updateEnemies(LevelController lc) {
+        if (lc.getTimer() > 2 && lc.getEnemyCounter() < 50) {
+
+            Spaceship[] spaceships = lc.getSpaceships();
+
+            for (int i = 0; i < spaceships.length; i++) {
+                if (!spaceships[i].isActive()) {
+                    spaceships[i].startSpaceship(800, lc.getEnemyCounter() * 10, lc.getPC());
+                    lc.increaseEnemyCounter();
+                    //lc.setTimer(lc.getTimer() % 10); // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
+                    break;
+                }
+            }
+        }
+    }
+    public void nextScene(LevelController lc){lc.getPC().setCurrentScene(11);} // Winner-Screen statt startLevel(LEVEL5);
+}*/
