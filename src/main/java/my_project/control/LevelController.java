@@ -13,7 +13,7 @@ import static my_project.model.Level.*;
 public class LevelController{
 
     // Attribute
-    private Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
+    private Level levelAfterPressingSpace = LEVEL5;  // <<<<<< Entwickleroption >>>>>>
     protected double timer;
     protected int enemyCounter = 0;
 

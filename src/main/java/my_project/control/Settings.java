@@ -13,7 +13,7 @@ package my_project.control;
 public class Settings {
 
     private final boolean[] settings = {false, false, true, false, false, true};
-    private final int[] statusSettingIndices = {2, 3, 4, 5}; // die settings, im settings-Array zu denen ein StatusDisplay gehört
+    private final int[] statusSettingIndices = {2, 3, 4, 5}; // die settings im settings-Array, zu denen ein StatusDisplay gehört
 
     private final String[] settingNames = {
             "music",
@@ -41,7 +41,7 @@ public class Settings {
      * @param i
      * 0 - music
      * 1 - sounds
-     * 2 - levelTimer StatusDisplay
+     * 2 - level StatusDisplay
      * 3 - globalTimer StatusDisplay
      * 4 - FPS StatusDisplay
      * 5 - attacks left StatusDisplay
@@ -59,7 +59,7 @@ public class Settings {
      @param i
       * 0 - music
       * 1 - sounds
-      * 2 - levelTimer StatusDisplay
+      * 2 - level StatusDisplay
       * 3 - globalTimer StatusDisplay
       * 4 - FPS StatusDisplay
       * 5 - attacks left StatusDisplay
@@ -75,7 +75,7 @@ public class Settings {
      @param i
       * 0 - music
       * 1 - sounds
-      * 2 - levelTimer StatusDisplay
+      * 2 - Timer StatusDisplay
       * 3 - globalTimer StatusDisplay
       * 4 - FPS StatusDisplay
       * 5 - attacks left StatusDisplay

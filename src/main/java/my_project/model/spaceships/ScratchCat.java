@@ -20,14 +20,6 @@ public class ScratchCat extends Spaceship {
     }
 
     @Override
-    public void draw(DrawTool drawTool) {
-        System.out.println("hallo");
-        super.draw(drawTool);
-        drawTool.setCurrentColor(255, 255, 255, 255);
-        drawTool.drawFilledCircle(10, 10, 10);
-    }
-
-    @Override
     public void update(double dt) {
         super.update(dt);
 

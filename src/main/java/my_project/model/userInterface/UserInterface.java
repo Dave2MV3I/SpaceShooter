@@ -32,17 +32,18 @@ public class UserInterface extends InteractiveGraphicalObject {
     public UserInterface(ProgramController pc) {
         this.pc = pc;
         sc = pc.getSC();
-        shieldStatusDisplay = new BlockWithIcon(20, 750, buttonHeight, false, "src/main/resources/graphic/menu/shield.png", "Shield", this, false);
         settingButtons = new SettingButton[sc.getSettings().length];
+        statusDisplays = new StatusDisplay[sc.getStatusSettingIndices().length];
+        shieldStatusDisplay = new BlockWithIcon(20, 750, buttonHeight, false, "src/main/resources/graphic/menu/shield.png", "Shield", this, false);
 
         double buttonX = 20;
 
         // Icons von flaticon.com
         mainSettingButton = new MainSettingButton(buttonX, getButtonY(0), buttonHeight, "src/main/resources/graphic/menu/settings.png",  this);
-        for (int i = 0; i < sc.getSettings().length; i++){
+        for (int i = 0; i < settingButtons.length; i++){
             settingButtons[i] = new SettingButton(buttonX, getButtonY(i+1), buttonHeight, sc.getIconPaths()[i], this, i);
         }
-        statusDisplays = new StatusDisplay[sc.getStatusSettingIndices().length];
+
         for (int i = 0; i < statusDisplays.length; i++) {
             int settingIndex = sc.getStatusSettingIndices()[i];
             statusDisplays[i] = new StatusDisplay(200, 20, buttonHeight, sc.getActivity(settingIndex), sc.getIconPaths()[settingIndex], settingIndex, this);

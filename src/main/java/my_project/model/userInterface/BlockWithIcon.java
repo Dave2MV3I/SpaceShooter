@@ -16,10 +16,10 @@ public class BlockWithIcon extends GraphicalObject{
 
     // Arrays
     protected int[] color = new int[4];
-    protected UserInterface ui;
 
     // Referenzen
     protected Icon icon;
+    protected UserInterface ui;
 
     // Konstruktoren
     public BlockWithIcon(double x, double y, double height, boolean visible, String iconPath, String text, UserInterface ui, boolean colorIsSet) {

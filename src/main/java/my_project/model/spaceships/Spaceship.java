@@ -51,8 +51,11 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
             if (!(this instanceof ScratchCat))
                 switch(typeOfMovement){
                     case 1: movement1(dt);
+                    break
                     case 2: movement2(dt);
+                    break
                     case 3: movement3(dt);
+                    break
             }
 
             // Firing shots

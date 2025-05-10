@@ -5,8 +5,6 @@ import my_project.control.Settings;
 
 public class SettingButton extends BlockWithIcon{
 
-    /*private final int[] activeColor = {53,94,59,255};
-    private final int[] inactiveColor = {193,59,34,255};*/
     private final int[] activeColor = {193,59,34,255};
     private final int[] inactiveColor = {51,51,51,255};
     private final Settings sc;
