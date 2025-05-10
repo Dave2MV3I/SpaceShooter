@@ -213,6 +213,12 @@ public class LevelController{
                     spaceships[i] = new Starfighter(this.pc);
                 }
                 break;
+
+            /*case LEVEL6:
+                for (int i = 0 ; i < level.nSpaceships; i++) {
+                    spaceships[i] = new Starfighter(this.pc);
+                }
+                break;*/
         }
     }
 
