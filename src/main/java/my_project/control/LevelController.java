@@ -52,7 +52,17 @@ public class LevelController{
                         // Man verliert HP, wenn man mit Gegner kollidiert
                         if (spaceship.collidesWith(pc.getPlayer())){
                             spaceship.setActive(false);
-                            pc.getPlayer().modifyHP(-16);
+
+                            if (spaceship instanceof ScratchCat){
+                                pc.getPlayer().modifyHP(-128);
+                            } else if (spaceship instanceof BigSpaceship) {
+                                pc.getPlayer().modifyHP(-48);
+                            }else{
+                                pc.getPlayer().modifyHP(-16);
+                            }
+
+
+
                             if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du bist mit einem Gegner kollidiert");
                             if (pc.getSC().getActivity(1)) pc.playSound("impact");
                         }
@@ -127,14 +137,14 @@ public class LevelController{
         bullets = new Bullet[level.nBullets];
         shields = new Shield[level.nShields];
 
-        for (int i = 0; i < level.nBullets; i++) {
-            bullets[i] = new Bullet(pc);
-        }
-
         enemyCounter = 0;
         timer %= 10;
         createEnemies();
         if (level == LEVEL5) pc.getPlayer().setCooldown(0);
+        
+        for (int i = 0; i < level.nBullets; i++) {
+            bullets[i] = new Bullet(pc);
+        }
 
         for (int i = 0; i < level.nShields; i++){
             shields[i] = new Shield();
