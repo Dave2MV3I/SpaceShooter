@@ -42,44 +42,50 @@ public class LevelController{
             pc.setCurrentScene(10);
         }
 
-        // Kollisionserkennung, zwischen Bullets und Spaceships
+        // Kollisionserkennung, zwischen Bullets, Player und Spaceships
         for (Bullet bullet : bullets) {
 
             if (bullet.isActive()) {
                 for (Spaceship spaceship : spaceships) {
 
                     if (spaceship.isActive()) {
-                        // Man verliert HP, wenn man mit Gegner kollidiert
-                        if (spaceship.collidesWith(pc.getPlayer())){
-                            spaceship.setActive(false);
 
-                            if (spaceship instanceof ScratchCat){
-                                pc.getPlayer().modifyHP(-128);
-                            } else if (spaceship instanceof BigSpaceship) {
-                                pc.getPlayer().modifyHP(-48);
-                            }else{
-                                pc.getPlayer().modifyHP(-16);
+                        //Wenn Spaceship mit Spieler kollidiert
+                            if (spaceship.collidesWith(pc.getPlayer())){
+                                //Ziehe Player HP ab
+                                    if (spaceship instanceof ScratchCat){
+                                        pc.getPlayer().modifyHP(-128);
+                                    } else if (spaceship instanceof BigSpaceship) {
+                                        pc.getPlayer().modifyHP(-48);
+                                    }else{
+                                        pc.getPlayer().modifyHP(-16);
+                                    }
+
+                                //Verliere eventuell das Spiel
+                                    if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason()        .setReason("Du bist mit einem Gegner kollidiert");
+                                    if (pc.getSC().getActivity(1)) pc.playSound("impact");
+
+                                spaceship.setActive(false);
                             }
 
-                            if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason()        .setReason("Du bist mit einem Gegner kollidiert");
-                            if (pc.getSC().getActivity(1)) pc.playSound("impact");
-                        }
-
-                        if (bullet.collidesWith(spaceship) && bullet.getShooter() instanceof Player) {
-                            System.out.println("Hallo");
-                            spaceship.modifyHP(-(bullet.getDamage()));
-                            //System.out.println("Bullet ist mit Gegner kollidiert");
-                            bullet.setIsActive(false);
-                        }
+                        //Wenn Bullet mit Gegner kollidiert
+                            if (bullet.collidesWith(spaceship) && bullet.getShooter() instanceof Player) {
+                                //Ziehe Spieler HP ab
+                                    System.out.println("Hallo");
+                                    spaceship.modifyHP(-(bullet.getDamage()));
+                                    //System.out.println("Bullet ist mit Gegner kollidiert");
+                                    bullet.setIsActive(false);
+                            }
                     }
                 }
-
-                if (bullet.collidesWith(pc.getPlayer().getHitBoxObject()) && !(bullet.getShooter() instanceof Player)) {
-                    if (pc.getSC().getActivity(1)) pc.playSound("impact");
-                    if (!pc.getPlayer().isShielded()) pc.getPlayer().modifyHP(-(bullet.getDamage()));
-                    if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du wurdest von einem Schuss getötet");
-                    bullet.setIsActive(false);
-                }
+                //Wenn Bullet mit Player kollidiert
+                    if (bullet.collidesWith(pc.getPlayer().getHitBoxObject()) && !(bullet.getShooter() instanceof Player)) {
+                        //Ziehe Player HP ab und verliere Eventuell
+                            if (pc.getSC().getActivity(1)) pc.playSound("impact");
+                            if (!pc.getPlayer().isShielded()) pc.getPlayer().modifyHP(-(bullet.getDamage()));
+                            if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du wurdest von einem Schuss getötet");
+                            bullet.setIsActive(false);
+                    }
             }
         }
 
