@@ -127,7 +127,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
         }
 
         if (this instanceof Starfighter){
-            this.health = 60;
+            this.health = 30;
             this.maxHealth = this.health;
         }
 

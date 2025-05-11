@@ -13,7 +13,7 @@ import static my_project.model.Level.*;
 public class LevelController{
 
     // Attribute
-    private Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
+    private Level levelAfterPressingSpace = LEVEL5;  // <<<<<< Entwickleroption >>>>>>
     protected double timer;
     protected int enemyCounter = 0;
 
@@ -165,11 +165,13 @@ public class LevelController{
         }
 
         Player p = pc.getPlayer();
-        p.setAmmunition(64);
+
         if (level == LEVEL5) {
             p.setHealth(100);
+            p.setAmmunition(80);
         } else {
             p.setHealth(50);
+            p.setAmmunition(64);
         }
 
         if (level != levelAfterPressingSpace) pc.checkAndHandleMusic(true);

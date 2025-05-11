@@ -11,8 +11,8 @@ public class Starfighter extends Spaceship {
     public Starfighter(ProgramController pc){
         super("src/main/resources/graphic/spaceships/stardestroyer.png", 35);
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
-        this.cooldown = 5;
-        this.cooldownTimer = 3;
+        this.cooldown = 6.8;
+        this.cooldownTimer = 10;
         this.pc = pc;
 
     }
