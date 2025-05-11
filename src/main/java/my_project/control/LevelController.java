@@ -61,7 +61,7 @@ public class LevelController{
                                 pc.getPlayer().modifyHP(-16);
                             }
 
-                            if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du bist mit einem Gegner kollidiert");
+                            if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason()        .setReason("Du bist mit einem Gegner kollidiert");
                             if (pc.getSC().getActivity(1)) pc.playSound("impact");
                         }
 
