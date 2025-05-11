@@ -13,7 +13,7 @@ import static my_project.model.Level.*;
 public class LevelController{
 
     // Attribute
-    private Level levelAfterPressingSpace = LEVEL5;  // <<<<<< Entwickleroption >>>>>>
+    private Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
     protected double timer;
     protected int enemyCounter = 0;
 
@@ -61,13 +61,12 @@ public class LevelController{
                                 pc.getPlayer().modifyHP(-16);
                             }
 
-
-
                             if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du bist mit einem Gegner kollidiert");
                             if (pc.getSC().getActivity(1)) pc.playSound("impact");
                         }
 
-                        if (bullet.collidesWith(spaceship) && bullet.getShooter().equals("player")) {
+                        if (bullet.collidesWith(spaceship) && bullet.getShooter() instanceof Player) {
+                            System.out.println("Hallo");
                             spaceship.modifyHP(-(bullet.getDamage()));
                             //System.out.println("Bullet ist mit Gegner kollidiert");
                             bullet.setIsActive(false);
@@ -75,7 +74,7 @@ public class LevelController{
                     }
                 }
 
-                if (bullet.collidesWith(pc.getPlayer().getHitBoxObject()) && bullet.getShooter().equals("enemy")) {
+                if (bullet.collidesWith(pc.getPlayer().getHitBoxObject()) && !(bullet.getShooter() instanceof Player)) {
                     if (pc.getSC().getActivity(1)) pc.playSound("impact");
                     if (!pc.getPlayer().isShielded()) pc.getPlayer().modifyHP(-(bullet.getDamage()));
                     if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du wurdest von einem Schuss getötet");
@@ -100,7 +99,7 @@ public class LevelController{
         }
     }
 
-    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY, boolean isTorpedo){
+    public void startBullet(double x, double y, Spaceship shooter, int damage, double speedX, double speedY, boolean isTorpedo){
         for (Bullet bullet : bullets) {
             if (!bullet.isActive()) {
                 bullet.startBullet(x, y, shooter, damage, speedX, speedY, isTorpedo);

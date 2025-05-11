@@ -5,6 +5,7 @@ import my_project.Config;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
+import my_project.model.spaceships.Spaceship;
 
 
 public class Bullet extends GraphicalObject {
@@ -13,7 +14,7 @@ public class Bullet extends GraphicalObject {
 
     private int damage;
     double speedX, speedY;
-    private String shooter;
+    private Spaceship shooter;
 
     private boolean isActive;
     boolean isTorpedo;
@@ -25,7 +26,7 @@ public class Bullet extends GraphicalObject {
         this.pc = pc;
     }
 
-    public void startBullet(double x, double y, String shooter, int damage, double speedX, double speedY, boolean isTorpedo) {
+    public void startBullet(double x, double y, Spaceship shooter, int damage, double speedX, double speedY, boolean isTorpedo) {
         this.isActive = true;
         this.isTorpedo = isTorpedo;
         this.x = x;
@@ -63,7 +64,7 @@ public class Bullet extends GraphicalObject {
     public void update(double dt) {
         if (isActive && !pc.getUI().getMenuOpen()) {
             if (isTorpedo) {
-                System.out.println("Torpedo");
+                //System.out.println("Torpedo");
 
                 double dx = pc.getPlayer().getX() + pc.getPlayer().getWidth()/2 - this.x;
                 double dy = pc.getPlayer().getY() + pc.getPlayer().getHeight()/2 - this.y;
@@ -87,7 +88,7 @@ public class Bullet extends GraphicalObject {
         isActive = active;
     }
 
-    public String getShooter() {
+    public Spaceship getShooter() {
         return shooter;
     }
 
