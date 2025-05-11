@@ -13,7 +13,7 @@ import static my_project.model.Level.*;
 public class LevelController{
 
     // Attribute
-    private Level levelAfterPressingSpace = LEVEL5;  // <<<<<< Entwickleroption >>>>>>
+    private Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
     protected double timer;
     protected int enemyCounter = 0;
 
@@ -42,7 +42,7 @@ public class LevelController{
             pc.setCurrentScene(10);
         }
 
-        // Kollisionserkennung zwischen Bullets und Spaceships
+        // Kollisionserkennung, zwischen Bullets und Spaceships
         for (Bullet bullet : bullets) {
 
             if (bullet.isActive()) {
