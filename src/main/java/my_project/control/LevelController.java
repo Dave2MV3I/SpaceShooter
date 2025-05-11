@@ -168,6 +168,7 @@ public class LevelController{
 
         if (level == LEVEL5) {
             p.setHealth(100);
+
             p.setAmmunition(80);
         } else {
             p.setHealth(50);
