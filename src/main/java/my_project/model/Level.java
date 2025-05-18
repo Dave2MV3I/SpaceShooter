@@ -20,6 +20,14 @@ public enum Level {
             }
         }
 
+        public Spaceship[] createEnemies(LevelController lc){
+            Spaceship[] spaceships = new Spaceship[nSpaceships];
+            for (int i = 0; i < nSpaceships; i++) {
+                spaceships[i] = new SmallSpaceship();
+            }
+            return spaceships;
+        }
+
         public void nextScene(LevelController lc){lc.startLevel(LEVEL2);}
     },
 
@@ -46,6 +54,14 @@ public enum Level {
                     }
                 }
             }
+        }
+
+        public Spaceship[] createEnemies(LevelController lc){
+            Spaceship[] spaceships = new Spaceship[nSpaceships];
+            for (int i = 0; i < nSpaceships; i++) {
+                spaceships[i] = new SmallSpaceship();
+            }
+            return spaceships;
         }
 
         public void nextScene(LevelController lc){lc.startLevel(LEVEL3);}
@@ -76,6 +92,17 @@ public enum Level {
             }
         }
 
+        public Spaceship[] createEnemies(LevelController lc){
+            Spaceship[] spaceships = new Spaceship[nSpaceships];
+            for (int i = 0; i < nSpaceships - 4; i++) {
+                spaceships[i] = new SmallSpaceship();
+            }
+            for (int i = nSpaceships - 4; i < nSpaceships; i++) {
+                spaceships[i] = new BigSpaceship();
+            }
+            return spaceships;
+        }
+
         public void nextScene(LevelController lc){lc.startLevel(LEVEL4);}
     },
 
@@ -104,6 +131,14 @@ public enum Level {
             }
         }
 
+        public Spaceship[] createEnemies(LevelController lc){
+            Spaceship[] spaceships = new Spaceship[nSpaceships];
+            for (int i = 0 ; i < nSpaceships; i++) {
+                spaceships[i] = new BigSpaceship();
+            }
+            return spaceships;
+        }
+
         public void nextScene(LevelController lc){ lc.startLevel(LEVEL5); }
     },
 
@@ -125,6 +160,16 @@ public enum Level {
                 }
             }
         }
+
+        public Spaceship[] createEnemies(LevelController lc){
+            Spaceship[] spaceships = new Spaceship[nSpaceships];
+            spaceships[0] = new ScratchCat(lc.getPC());
+            for (int i = 1 ; i < nSpaceships; i++) {
+                spaceships[i] = new Starfighter(lc.getPC());
+            }
+            return spaceships;
+        }
+
         public void nextScene(LevelController lc){lc.getPC().setCurrentScene(11);} // Winner-Screen statt startLevel(LEVEL5);
     };
 
@@ -146,6 +191,7 @@ public enum Level {
 
     public abstract void updateEnemies(LevelController lc);
     public abstract void nextScene(LevelController lc);
+    public abstract Spaceship[] createEnemies(LevelController lc);
 }
 
 /*LEVEL6(6, 50, 100, 80, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
@@ -164,5 +210,14 @@ public enum Level {
             }
         }
     }
+
+    public Spaceship[] createEnemies(){
+        Spaceship[] spaceships = new Spaceship[nSpaceships];
+        for (int i = 0 ; i < nSpaceships; i++) {
+            spaceships[i] = new Starfighter(this.pc);
+        }
+        return spaceships;
+    }
+
     public void nextScene(LevelController lc){lc.getPC().setCurrentScene(11);} // Winner-Screen statt startLevel(LEVEL5);
 }*/

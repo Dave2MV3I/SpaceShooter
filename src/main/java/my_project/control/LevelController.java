@@ -13,7 +13,7 @@ import static my_project.model.Level.*;
 public class LevelController{
 
     // Attribute
-    private Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
+    private final Level levelAfterPressingSpace = LEVEL1;  // <<<<<< Entwickleroption >>>>>>
     protected double timer;
     protected int enemyCounter = 0;
 
@@ -62,7 +62,7 @@ public class LevelController{
                                     }
 
                                 //Verliere eventuell das Spiel
-                                    if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason()        .setReason("Du bist mit einem Gegner kollidiert");
+                                    if (pc.getPlayer().getHealth() <= 0) pc.getDeathReason().setReason("Du bist mit einem Gegner kollidiert");
                                     if (pc.getSC().getActivity(1)) pc.playSound("impact");
 
                                 spaceship.setActive(false);
@@ -105,7 +105,7 @@ public class LevelController{
         }
     }
 
-    public void startBullet(double x, double y, Spaceship shooter, int damage, double speedX, double speedY, boolean isTorpedo){
+    public void startNextBullet(double x, double y, Spaceship shooter, int damage, double speedX, double speedY, boolean isTorpedo){
         for (Bullet bullet : bullets) {
             if (!bullet.isActive()) {
                 bullet.startBullet(x, y, shooter, damage, speedX, speedY, isTorpedo);
@@ -114,7 +114,7 @@ public class LevelController{
         }
     }
 
-    public void startShield(double x, double y, ProgramController pc, boolean collected, double spawnTime) {
+    public void startNextShield(double x, double y, ProgramController pc, boolean collected, double spawnTime) {
         if (Math.random() < 0.5) {
             for (Shield shield : shields) {
                 if (!shield.isActive()) {
@@ -144,7 +144,8 @@ public class LevelController{
 
         enemyCounter = 0;
         timer %= 10;
-        createEnemies();
+        spaceships = level.createEnemies(this);
+
         if (level == LEVEL5) pc.getPlayer().setCooldown(0);
         
         for (int i = 0; i < level.nBullets; i++) {
@@ -182,52 +183,6 @@ public class LevelController{
         }
 
         if (level != levelAfterPressingSpace) pc.checkAndHandleMusic(true);
-    }
-
-    private void createEnemies(){
-        switch(level){
-
-            case LEVEL1:
-                for (int i = 0; i < level.nSpaceships; i++) {
-                    spaceships[i] = new SmallSpaceship();
-                }
-                break;
-
-            case LEVEL2:
-                for (int i = 0; i < level.nSpaceships; i++) {
-                    spaceships[i] = new SmallSpaceship();
-                }
-                break;
-
-            case LEVEL3:
-                for (int i = 0; i < level.nSpaceships - 4; i++) {
-                    spaceships[i] = new SmallSpaceship();
-                }
-                for (int i = level.nSpaceships - 4; i < level.nSpaceships; i++) {
-                    spaceships[i] = new BigSpaceship();
-                }
-                break;
-
-            case LEVEL4:
-                for (int i = 0 ; i < level.nSpaceships; i++) {
-                    spaceships[i] = new BigSpaceship();
-                }
-                break;
-
-            case LEVEL5:
-                spaceships[0] = new ScratchCat(this.pc);
-
-                for (int i = 1 ; i < level.nSpaceships; i++) {
-                    spaceships[i] = new Starfighter(this.pc);
-                }
-                break;
-
-            /*case LEVEL6:
-                for (int i = 0 ; i < level.nSpaceships; i++) {
-                    spaceships[i] = new Starfighter(this.pc);
-                }
-                break;*/
-        }
     }
 
     public Spaceship[] getSpaceships(){return spaceships;}

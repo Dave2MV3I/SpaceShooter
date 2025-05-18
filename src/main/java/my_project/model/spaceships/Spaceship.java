@@ -68,17 +68,17 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
                     double phi = Math.atan2((p.getY() + p.getHeight() / 2) - (this.y + this.height / 2), (p.getX() + p.getWidth() / 2) - this.x);
 
                     if (this instanceof BigSpaceship) {
-                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, this, 20, 256 * Math.cos(phi), 250 * Math.sin(phi), false);
+                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 20, 256 * Math.cos(phi), 250 * Math.sin(phi), false);
                     }
                     if (this instanceof SmallSpaceship) {
-                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, this, 10, 128 * Math.cos(phi), 150 * Math.sin(phi), false);
+                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 10, 128 * Math.cos(phi), 150 * Math.sin(phi), false);
                     }
                     if (this instanceof ScratchCat) {
-                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, this, 64, 196 * Math.cos(phi), 200 * Math.sin(phi), false);
+                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 64, 196 * Math.cos(phi), 200 * Math.sin(phi), false);
                     }
 
                     if (this instanceof Starfighter){
-                        pc.getLevelController().startBullet(this.x, this.y + this.getHeight() / 2, this, 32, 256 * Math.cos(phi), 256 * Math.sin(phi), true);
+                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 32, 256 * Math.cos(phi), 256 * Math.sin(phi), true);
                     }
 
                     // SCHUSS AB MITTELPUNKT DES GEGNERS
@@ -140,7 +140,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
         pc.getViewController().draw(new DamageDisplay(this.getX(), this.getY(), Math.abs(points)), pc.getCurrentScene());
         if (health <= 0) {
             isActive = false;
-            pc.getLevelController().startShield(this.getX(), this.getY(), pc, false, 5000);
+            pc.getLevelController().startNextShield(this.getX(), this.getY(), pc, false, 5000);
             if (pc.getSC().getActivity(1)) pc.playSound("explosion");
         }
     }
