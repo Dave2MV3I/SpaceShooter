@@ -194,30 +194,32 @@ public enum Level {
     public abstract Spaceship[] createEnemies(LevelController lc);
 }
 
-/*LEVEL6(6, 50, 100, 80, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
-    public void updateEnemies(LevelController lc) {
-        if (lc.getTimer() > 2 && lc.getEnemyCounter() < 50) {
-
-            Spaceship[] spaceships = lc.getSpaceships();
-
-            for (int i = 0; i < spaceships.length; i++) {
-                if (!spaceships[i].isActive()) {
-                    spaceships[i].startSpaceship(800, lc.getEnemyCounter() * 10, lc.getPC());
-                    lc.increaseEnemyCounter();
-                    //lc.setTimer(lc.getTimer() % 10); // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
-                    break;
+/*
+LEVEL6(6, 300, 1000, 200, "level1BGM", "src/main/resources/graphic/backgrounds/spaceBG.png"){
+        public void updateEnemies(LevelController lc){
+            if (lc.getTimer() > 5 && lc.getEnemyCounter() < nSpaceships) {
+                Spaceship[] spaceships = lc.getSpaceships();
+                for (int i = 0; i < spaceships.length; i++) {
+                    if (!spaceships[i].isActive()) {
+                        spaceships[i].startSpaceship(800, lc.getEnemyCounter() * 80, lc.getPC());
+                        lc.increaseEnemyCounter();
+                        //lc.setTimer(lc.getTimer() % 10); // Modulo teilt timer durch 1 und erhält den Rest (hinterm Komma); ans nächste Intervall drangegangen wg. overflow
+                        break;
+                    }
                 }
             }
         }
-    }
 
-    public Spaceship[] createEnemies(){
-        Spaceship[] spaceships = new Spaceship[nSpaceships];
-        for (int i = 0 ; i < nSpaceships; i++) {
-            spaceships[i] = new Starfighter(this.pc);
+        public Spaceship[] createEnemies(LevelController lc){
+            Spaceship[] spaceships = new Spaceship[nSpaceships];
+            for (int i = 0; i < nSpaceships; i++){
+                spaceships[i] = new BigSpaceship();
+            }
+            return spaceships;
         }
-        return spaceships;
-    }
 
-    public void nextScene(LevelController lc){lc.getPC().setCurrentScene(11);} // Winner-Screen statt startLevel(LEVEL5);
-}*/
+        public void nextScene(LevelController lc){
+            lc.getPC().setCurrentScene(11);
+        }
+    }
+*/
