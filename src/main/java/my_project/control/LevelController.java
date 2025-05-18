@@ -71,7 +71,7 @@ public class LevelController{
                         //Wenn Bullet mit Gegner kollidiert
                             if (bullet.collidesWith(spaceship) && bullet.getShooter() instanceof Player) {
                                 //Ziehe Spieler HP ab
-                                    System.out.println("Hallo");
+                                    //System.out.println("Hallo");
                                     spaceship.modifyHP(-(bullet.getDamage()));
                                     //System.out.println("Bullet ist mit Gegner kollidiert");
                                     bullet.setIsActive(false);
