@@ -30,7 +30,7 @@ public class Player extends Spaceship {
     private double shieldEndTime;
 
     public Player(double x, double y, ProgramController pc) {
-        super("src/main/resources/graphic/spaceships/spaceship.png", 200);
+        super("src/main/resources/graphic/spaceships/spaceship.png", 200, 200, 0, 10, false);
         this.x = x;
         this.y = y;
         hoverUp = true;
@@ -123,7 +123,7 @@ public class Player extends Spaceship {
 
         if (keyCode == KeyEvent.VK_SPACE && pressed) {
             if (this.cooldownTimer < 0 && this.ammunition > 0) {
-                pc.getLevelController().startNextBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), this, 10, 200, 0, false);
+                pc.getLevelController().startNextBullet(this.x + this.getWidth(), this.y + (this.getHeight() / 2), this, this.bulletDamage, this.bulletSpeedX, this.bulletSpeedY, this.bulletIsTorpedo);
                 if (pc.getCurrentScene() > 0 && pc.getCurrentScene() < 10) if (pc.getSC().getActivity(1)) SoundController.playSound("laser");
                 this.cooldownTimer = this.cooldown;
                 this.ammunition = this.ammunition - 1;

@@ -8,7 +8,7 @@ public class SmallSpaceship extends Spaceship {
     private double movementRandomizer = Math.random();
 
     public SmallSpaceship(){
-        super("src/main/resources/graphic/spaceships/smallSpaceship.png", 15);
+        super("src/main/resources/graphic/spaceships/smallSpaceship.png", 15, 128, 150, 10, false);
         //https://www.flaticon.com/free-icons/topdown Topdown icons created by Andrew Dynamite - FlatIcon
         this.cooldown = 4;
         this.cooldownTimer = 4;

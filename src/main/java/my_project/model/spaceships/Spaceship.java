@@ -23,18 +23,27 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
     private boolean isBoosting = false;
     private double baseY;
 
-
+    // Shooting Attributes
+    protected double bulletSpeedX;
+    protected double bulletSpeedY;
+    protected int bulletDamage;
+    protected boolean bulletIsTorpedo;
 
     protected ProgramController pc;
 
     protected double cooldown;
     protected double cooldownTimer;
 
-    public Spaceship(String path, double speed){
+    public Spaceship(String path, double speed, double bulletSpeedX, double bulletSpeedY, int bulletDamage, boolean bulletIsTorpedo) {
         this.setNewImage(path);
         //System.out.println("Spaceship wurde aufgerufen");
         this.speed = speed;
         this.boostSpeed = speed*2;
+
+        this.bulletSpeedX = bulletSpeedX;
+        this.bulletSpeedY = bulletSpeedY;
+        this.bulletDamage = bulletDamage;
+        this.bulletIsTorpedo = bulletIsTorpedo;
     }
 
     public void draw(DrawTool drawTool){
@@ -67,19 +76,7 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
                     // SCHUSS AB MITTE LINKS DES GEGNERS
                     double phi = Math.atan2((p.getY() + p.getHeight() / 2) - (this.y + this.height / 2), (p.getX() + p.getWidth() / 2) - this.x);
 
-                    if (this instanceof BigSpaceship) {
-                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 20, 256 * Math.cos(phi), 250 * Math.sin(phi), false);
-                    }
-                    if (this instanceof SmallSpaceship) {
-                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 10, 128 * Math.cos(phi), 150 * Math.sin(phi), false);
-                    }
-                    if (this instanceof ScratchCat) {
-                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 64, 196 * Math.cos(phi), 200 * Math.sin(phi), false);
-                    }
-
-                    if (this instanceof Starfighter){
-                        pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, 32, 256 * Math.cos(phi), 256 * Math.sin(phi), true);
-                    }
+                    pc.getLevelController().startNextBullet(this.x, this.y + this.getHeight() / 2, this, bulletDamage, bulletSpeedX * Math.cos(phi), bulletSpeedY * Math.sin(phi), bulletIsTorpedo);
 
                     // SCHUSS AB MITTELPUNKT DES GEGNERS
                     /*
@@ -89,15 +86,8 @@ public abstract class Spaceship extends InteractiveGraphicalObject{
                     double targetY = p.getY() + p.getHeight() / 2;
                     double phi = Math.atan2(targetY - sourceY, targetX - sourceX);
 
-                    if (this instanceof BigSpaceship) {
-                        pc.getLevelController().startBullet(sourceX, sourceY, "enemy", 20, 250 * Math.cos(phi), 250 * Math.sin(phi));
-                    }
-                    if (this instanceof SmallSpaceship) {
-                        pc.getLevelController().startBullet(sourceX, sourceY, "enemy", 10, 150 * Math.cos(phi), 150 * Math.sin(phi));
-                    }
-                    if (this instanceof ScratchCat) {
-                        pc.getLevelController().startBullet(sourceX, sourceY, "enemy", 64, 200 * Math.cos(phi), 200 * Math.sin(phi));
-                    }*/
+                    pc.getLevelController().startNextBullet(sourceX, sourceY, this, bulletDamage, bulletSpeedX * Math.cos(phi), bulletSpeedY * Math.sin(phi), bulletIsTorpedo);
+                    */
                 }
             } else {
                 cooldownTimer = cooldownTimer - dt;

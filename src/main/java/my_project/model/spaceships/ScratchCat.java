@@ -11,7 +11,7 @@ public class ScratchCat extends Spaceship {
     ProgramController pc;
 
     public ScratchCat(ProgramController pc){
-        super("src/main/resources/graphic/spaceships/miau.png", 0);
+        super("src/main/resources/graphic/spaceships/miau.png", 0, 196, 200, 64, false);
         this.pc = pc;
 
         this.cooldown = 1;
